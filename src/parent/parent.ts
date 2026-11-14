@@ -3,6 +3,15 @@ import { emptyProgress, getProgress, migrate, setProgress } from '../state.ts'
 import { eraseAll, saveProgress } from '../save/store.ts'
 import { buildSaveText, decodeSaveText } from '../save/string.ts'
 import { gradeCases } from '../grades.ts'
+import qrcode from '../lib/qrcode.js'
+
+export async function importSaveText(text: string): Promise<void> {
+  const decoded = await decodeSaveText(text)
+  if (decoded.version !== 1) throw new Error('unsupported version')
+  const next = migrate(decoded.progress)
+  setProgress(next)
+  saveProgress(next)
+}
 
 export function openParentView(root: HTMLElement, back: () => void): void {
   root.innerHTML = ''
@@ -71,7 +80,39 @@ export function openParentView(root: HTMLElement, back: () => void): void {
     link.click()
     URL.revokeObjectURL(url)
   })
-  exportBox.append(exportBtn, exportText, copyBtn, shareBtn, download, exportMsg)
+  const qrBtn = el('button', 'btn', 'Show QR')
+  const qrBox = el('div', 'parent-qr')
+  qrBtn.addEventListener('click', async () => {
+    let text = exportText.value
+    if (!text) {
+      const result = await buildSaveText(getProgress())
+      text = result.text
+      exportText.value = text
+      exportText.dataset.compressed = String(result.compressed)
+    }
+    qrBox.innerHTML = ''
+    const url = `${location.origin}${location.pathname}?code=${encodeURIComponent(text)}`
+    const qr = qrcode(0, 'M')
+    qr.addData(url)
+    qr.make()
+    const count = qr.getModuleCount()
+    const canvas = document.createElement('canvas')
+    const cell = 4
+    canvas.width = count * cell
+    canvas.height = count * cell
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+    ctx.fillStyle = '#fffdf6'
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+    ctx.fillStyle = '#2b2622'
+    for (let row = 0; row < count; row++) {
+      for (let col = 0; col < count; col++) {
+        if (qr.isDark(row, col)) ctx.fillRect(col * cell, row * cell, cell, cell)
+      }
+    }
+    qrBox.append(canvas, el('p', 'parent-msg', 'Scan with a phone camera. It opens this page with the code.'))
+  })
+  exportBox.append(exportBtn, exportText, copyBtn, shareBtn, download, qrBtn, qrBox, exportMsg)
   view.append(exportBox)
 
   const importBox = el('div', 'parent-box')
@@ -82,11 +123,7 @@ export function openParentView(root: HTMLElement, back: () => void): void {
   const importMsg = el('p', 'parent-msg', '')
   importBtn.addEventListener('click', async () => {
     try {
-      const decoded = await decodeSaveText(importText.value)
-      if (decoded.version !== 1) throw new Error('unsupported version')
-      const next = migrate(decoded.progress)
-      setProgress(next)
-      saveProgress(next)
+      await importSaveText(importText.value)
       importMsg.textContent = 'Progress imported and saved.'
     } catch (err) {
       importMsg.textContent = `Import failed: ${err instanceof Error ? err.message : 'bad string'}`

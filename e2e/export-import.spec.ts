@@ -67,6 +67,9 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
   const save = await exportBox.inputValue()
   expect(save.length).toBeGreaterThan(100)
 
+  // BDD: the QR handoff. Show QR renders a scannable code for this page.
+  await page.getByRole('button', { name: 'Show QR' }).click()
+  await expect(page.locator('.parent-qr canvas')).toBeVisible()
   const desktopMinutes = await page.evaluate(() =>
     (JSON.parse(localStorage.getItem('mda.progress.v1') as string) as { minutesPlayed: number }).minutesPlayed,
   )
@@ -110,6 +113,14 @@ async function importOnMobile(
   expect(flow.btnMin).toBeGreaterThanOrEqual(40)
   expect(flow.minutes).toBe(carried.desktopMinutes)
 
+  // BDD: the QR handoff. A fresh scan opens the page with ?code= and offers to load.
+  const scanned = await mobile.newPage()
+  await scanned.goto(`/?code=${encodeURIComponent(carried.save)}`)
+  await expect(scanned.locator('.break-nudge')).toContainText('A save code arrived')
+  expect(scanned.url()).not.toContain('code=')
+  await scanned.getByRole('button', { name: 'Load this code' }).click()
+  await expect(scanned.locator('.case-card.done')).toHaveCount(3)
+  await scanned.close()
   await m.screenshot({ path: testInfo.outputPath('mobile-import.png') })
   await mobile.close()
 }

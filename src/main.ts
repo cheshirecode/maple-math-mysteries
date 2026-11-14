@@ -3,7 +3,7 @@ import { getProgress, migrate, updateProgress, subscribe } from './state.ts'
 import { loadProgress, saveProgress } from './save/store.ts'
 import { runCase, confetti } from './engine/run.ts'
 import { GRADES, gradeCases, gradeWord, isGradeActive, COUNT_WORD } from './grades.ts'
-import { openParentView } from './parent/parent.ts'
+import { openParentView, importSaveText } from './parent/parent.ts'
 import './style.css'
 
 let sessionSolves = 0
@@ -28,6 +28,9 @@ export function start(): void {
     const restored = migrate(stored)
     updateProgress(() => ({ ...restored, digitsMode: false }))
   }
+
+  let handoffCode = new URLSearchParams(location.search).get('code')
+  if (handoffCode) history.replaceState(null, '', location.pathname)
 
   const header = el('header', 'topbar')
   const brand = el('h1', 'brand', 'Maple Math Mysteries')
@@ -144,6 +147,29 @@ export function start(): void {
       town.append(card)
     }
     stage.append(town)
+    if (handoffCode) {
+      const code = handoffCode
+      const handoff = el('div', 'break-nudge')
+      handoff.setAttribute('aria-live', 'polite')
+      handoff.append(el('p', '', 'A save code arrived from another device.'))
+      const loadBtn = el('button', 'btn', 'Load this code')
+      loadBtn.addEventListener('click', async () => {
+        try {
+          await importSaveText(code)
+        } catch {
+          handoffCode = null
+        }
+        handoffCode = null
+        render()
+      })
+      const skipBtn = el('button', 'btn btn-ghost', 'Not now')
+      skipBtn.addEventListener('click', () => {
+        handoffCode = null
+        render()
+      })
+      handoff.append(loadBtn, skipBtn)
+      stage.append(handoff)
+    }
     if (justCompleted) {
       justCompleted = false
       const banner = el('div', 'town-banner')

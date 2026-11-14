@@ -934,6 +934,18 @@ body {
   color: var(--ink);
 }
 
+.parent-qr {
+  width: max-content;
+}
+
+.parent-qr canvas {
+  display: block;
+  width: 176px;
+  image-rendering: pixelated;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+}
+
 .parent-danger {
   border-color: rgb(232 68 58 / 35%);
   background: var(--accent-tint);
