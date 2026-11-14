@@ -2,17 +2,25 @@ import { el } from '../../voice.ts'
 import type { WidgetHooks } from '../run.ts'
 import type { PuzzleData } from '../case.ts'
 
+const COLOURS: Record<string, string> = {
+  red: '#c0392b',
+  blue: '#4a6fa5',
+  gold: '#e9b949',
+  green: '#33714a',
+}
+
 function dial(slices: { colour: string; weight: number }[]): HTMLElement {
   const box = el('div', 'spinner-dial')
-  let angle = 0
   const total = slices.reduce((s, x) => s + x.weight, 0)
+  const stops: string[] = []
+  let acc = 0
   for (const s of slices) {
-    const slice = el('div', 'spinner-slice')
-    slice.style.background = s.colour
-    slice.style.transform = `rotate(${(360 * angle) / total}deg) skewY(${-(90 - (360 * s.weight) / total)}deg)`
-    box.append(slice)
-    angle += s.weight
+    const from = (acc / total) * 360
+    acc += s.weight
+    const to = (acc / total) * 360
+    stops.push(`${COLOURS[s.colour] ?? s.colour} ${from}deg ${to}deg`)
   }
+  box.style.background = `conic-gradient(${stops.join(', ')})`
   return box
 }
 

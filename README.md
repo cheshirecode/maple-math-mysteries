@@ -69,9 +69,9 @@ A fresh session restores it from the parent view. See
 
 ## Decisions
 
-See [docs/adr/](docs/adr/) for the six recorded decisions: stack, case
-engine, save-string format, access code, hosting, and the no-digit rule.
-The product audit of the child flow lives in
+See [docs/adr/](docs/adr/) for the seven recorded decisions: stack, case
+engine, save-string format, access code, hosting, the no-digit rule, and
+the design system. The product audit of the child flow lives in
 [docs/pm-audit.md](docs/pm-audit.md).
 
 ## Hosting
