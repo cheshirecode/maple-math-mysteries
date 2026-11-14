@@ -1,0 +1,17 @@
+{
+  "name": "Maple Math Mysteries",
+  "short_name": "Maple Mysteries",
+  "description": "A detective game where math is the tool. Built for grade 3, BC curriculum.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fff8ee",
+  "theme_color": "#b22234",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
