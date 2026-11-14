@@ -25,6 +25,7 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
 
   await page.locator('.case-card').first().click()
   await expect(page.locator('.case-title')).toHaveText('The Locked Safe')
+  await expect(page.locator('[aria-label="Hear this line"]')).toHaveCount(0)
 
   for (let i = 0; i < 3; i++) await page.getByRole('button', { name: 'add big block' }).click()
   for (let i = 0; i < 4; i++) await page.getByRole('button', { name: 'add long block' }).click()

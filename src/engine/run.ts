@@ -1,4 +1,4 @@
-import { el, speak, speakable } from '../voice.ts'
+import { el } from '../voice.ts'
 import type { CaseDef, PuzzleData } from './case.ts'
 import { widgetDots } from './widgets/dots.ts'
 import { widgetBlocks } from './widgets/blocks.ts'
@@ -47,9 +47,7 @@ export function runCase(root: HTMLElement, def: CaseDef, opts: RunOptions): void
   for (const line of story) {
     const p = el('p', 'case-story', line)
     box.append(p)
-    speakable(p, line)
   }
-  speak(story.join(' '))
   const area = el('div', 'case-widget')
   box.append(area)
   const feedback = el('p', 'case-feedback', '')
@@ -63,11 +61,9 @@ export function runCase(root: HTMLElement, def: CaseDef, opts: RunOptions): void
     digitsMode,
     onRetry: () => {
       feedback.textContent = 'Not quite. Look again, detective.'
-      speak('Not quite. Look again.')
     },
     onSolved: () => {
       feedback.textContent = 'Case closed!'
-      speak('Case closed.')
       confetti(box)
       opts.onBadge(def.badge)
     },
@@ -75,8 +71,6 @@ export function runCase(root: HTMLElement, def: CaseDef, opts: RunOptions): void
   const run = runners[def.widget]
   if (!run) throw new Error(`unknown widget ${def.widget}`)
   run(area, def.puzzle, hooks)
-  const q = area.querySelector('p')
-  if (q && q.textContent) speakable(q, q.textContent)
 }
 
 const CONFETTI_COLORS = ['#e8443a', '#ffc834', '#2ea44f', '#4a90d9']

@@ -58,15 +58,6 @@ body {
   border-radius: var(--radius-s);
 }
 
-.speakable {
-  cursor: pointer;
-}
-
-.speakable:hover {
-  text-decoration: underline dotted;
-  text-underline-offset: 4px;
-}
-
 /* Topbar: brand left, parent button right */
 
 .topbar {
