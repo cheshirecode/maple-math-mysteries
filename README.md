@@ -6,8 +6,8 @@ Play it: **<https://cheshirecode.github.io/maple-math-mysteries/>**
 
 A detective game where math is the tool. Built for a grade-3 reader of the
 British Columbia curriculum. Quantity comes before digits: every case starts
-with dot patterns, blocks, nets, jugs, and coins. Numerals appear only after
-the child taps "show digits."
+with dot patterns, blocks, nets, jugs, and coins. No numeral renders anywhere
+in the child's view. Pictures and word numerals carry the meaning.
 
 No login. No accounts. No data collection. One save code carries all state
 between devices: export it, load it on a fresh device, keep playing.
@@ -31,7 +31,7 @@ between devices: export it, load it on a fresh device, keep playing.
 ```
 index.html                 entry page
 public/                    manifest, icon, service worker
-src/main.ts               shell: town map, digits toggle, minutes tracker
+src/main.ts               shell: town map, minutes tracker
 src/state.ts               progress model, migration, store bus
 src/save/string.ts         save-string encode/decode, CRC-32
 src/save/code.ts           access-code hash (PBKDF2)

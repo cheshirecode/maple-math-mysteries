@@ -4,6 +4,7 @@ export interface Progress {
   completedCases: string[]
   badges: string[]
   minutesPlayed: number
+  // digitsMode and showDigitsDefault are kept for save-code schema 1 compatibility; always false now.
   digitsMode: boolean
   showDigitsDefault: boolean
 }

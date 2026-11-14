@@ -1,5 +1,5 @@
 import { el } from '../voice.ts'
-import { emptyProgress, getProgress, migrate, setProgress, updateProgress } from '../state.ts'
+import { emptyProgress, getProgress, migrate, setProgress } from '../state.ts'
 import { eraseAll, saveProgress } from '../save/store.ts'
 import { buildSaveText, decodeSaveText } from '../save/string.ts'
 import { gradeCases } from '../grades.ts'
@@ -23,13 +23,6 @@ export function openParentView(root: HTMLElement, back: () => void): void {
   stats.append(el('p', '', `Cases solved: ${progress.completedCases.length}`))
   stats.append(el('p', '', `Groups covered: ${[...groups].join(', ') || 'none yet'}`))
   view.append(stats)
-
-  const digits = el('button', 'btn', progress.showDigitsDefault ? 'Digits default: on' : 'Digits default: off')
-  digits.addEventListener('click', () => {
-    updateProgress((p) => ({ ...p, showDigitsDefault: !p.showDigitsDefault }))
-    openParentView(root, back)
-  })
-  view.append(digits)
 
   const exportBox = el('div', 'parent-box')
   exportBox.append(el('h3', '', 'Save code'))

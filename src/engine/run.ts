@@ -38,9 +38,9 @@ export interface RunOptions {
 
 export function runCase(root: HTMLElement, def: CaseDef, opts: RunOptions): void {
   root.innerHTML = ''
-  const digitsMode = currentDigitsMode()
-  const title = digitsMode ? def.titleDigits ?? def.titleNoDigits : def.titleNoDigits
-  const story = digitsMode ? def.storyDigits ?? def.storyNoDigits : def.storyNoDigits
+  const digitsMode = false
+  const title = def.titleNoDigits
+  const story = def.storyNoDigits
 
   const box = el('div', 'case')
   box.append(el('h2', 'case-title', title))
@@ -73,8 +73,4 @@ export function runCase(root: HTMLElement, def: CaseDef, opts: RunOptions): void
   const run = runners[def.widget]
   if (!run) throw new Error(`unknown widget ${def.widget}`)
   run(area, def.puzzle, hooks)
-}
-
-function currentDigitsMode(): boolean {
-  return document.body.dataset.digitsMode === 'true'
 }

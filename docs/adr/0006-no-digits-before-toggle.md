@@ -1,11 +1,13 @@
 # ADR 0006: Digit-free authoring, enforced by test
 
-Status: accepted
+Status: superseded in part by 0009
 
 ## Context
 
 The player avoids numbers. No numeral may be visible until the child taps "show digits". Review cannot hold that promise across nine
 cases and future edits; a regression must fail a build, not a child.
+
+The digits toggle shipped first. The owner removed it after live play.
 
 ## Decision
 

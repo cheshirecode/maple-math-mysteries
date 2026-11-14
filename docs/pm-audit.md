@@ -18,7 +18,7 @@ friction, and privacy. A finding marked `fixed` ships now. A finding marked
 | Dots case | 13 dots in one strip is over the subitizing range. Rows now wrap at five dots, a ten-frame shape. | fixed |
 | Wrong answer | No red X, no timer. A wrong tap brings a retry line and a fresh arrangement. This is the right shape for this child. | keep |
 | Right answer | Text "Case closed!" plus a badge. A small confetti burst would make the win feel bigger. It needs art first. | later |
-| Digits toggle | Off by default; parent default respected at load. No digit renders before the toggle; enforced by test and browser check. | keep |
+| Digits toggle | Removed. The owner called it useless in live play. Picture quantities carry all meaning. | fixed |
 | Session | No natural stop. A gentle "detective break" after three solved cases would help. Needs a product call first. | later |
 | Parent gate | No gate, no lock. One code carries all state; import loads it anywhere. Friction is one paste. | keep |
 | Export/import | One string, checksum, version reject. Verified across two fresh browser profiles. | keep |

@@ -13,3 +13,4 @@ Numbering is sequential; status is `accepted` or `superseded`.
 | [0006](0006-no-digits-before-toggle.md) | Digit-free authoring, enforced by test |
 | [0007](0007-warm-paper-design-system.md) | Warm-paper design system, no web fonts |
 | [0008](0008-state-code-replaces-gate.md) | State code replaces the access-code gate |
+| [0009](0009-no-toggle-one-theme.md) | Digits toggle removed; toy-bright theme |

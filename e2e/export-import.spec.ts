@@ -32,7 +32,7 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
   await page.getByRole('button', { name: 'Check the lock' }).click()
   await expect(page.locator('.case-feedback')).toHaveText('Case closed!')
 
-  await page.getByRole('button', { name: 'parent' }).click()
+  await page.getByRole('button', { name: 'Parent area' }).click()
   await expect(page.locator('.parent-stats')).toBeVisible()
 
   await page.getByRole('button', { name: 'Build save code' }).click()
@@ -60,7 +60,7 @@ async function importOnMobile(
   await expect(m.locator('.case-card')).toHaveCount(9)
   await expect(m.locator('.case-card.done')).toHaveCount(0)
 
-  await m.getByRole('button', { name: 'parent' }).click()
+  await m.getByRole('button', { name: 'Parent area' }).click()
   await expect(m.locator('.parent-stats')).toBeVisible()
 
   await m.locator('.parent-io').nth(1).fill(carried.save)
@@ -70,14 +70,17 @@ async function importOnMobile(
   await m.getByRole('button', { name: 'Back to the map' }).click()
   await expect(m.locator('.case-card.done')).toHaveCount(1)
 
-  const flow = await m.evaluate(() => ({
-    scrollW: document.documentElement.scrollWidth,
-    innerW: window.innerWidth,
-    btnMin: getComputedStyle(document.querySelector('.btn') as HTMLElement).minHeight,
-    minutes: (JSON.parse(localStorage.getItem('mda.progress.v1') as string) as { minutesPlayed: number }).minutesPlayed,
-  }))
+  const flow = await m.evaluate(() => {
+    const tap = document.querySelector('.btn:not(.btn-small)') ?? document.querySelector('.case-card')
+    return {
+      scrollW: document.documentElement.scrollWidth,
+      innerW: window.innerWidth,
+      btnMin: tap ? (tap as HTMLElement).getBoundingClientRect().height : 0,
+      minutes: (JSON.parse(localStorage.getItem('mda.progress.v1') as string) as { minutesPlayed: number }).minutesPlayed,
+    }
+  })
   expect(flow.scrollW).toBeLessThanOrEqual(flow.innerW + 1)
-  expect(parseInt(flow.btnMin, 10)).toBeGreaterThanOrEqual(40)
+  expect(flow.btnMin).toBeGreaterThanOrEqual(40)
   expect(flow.minutes).toBe(carried.desktopMinutes)
   await m.screenshot({ path: testInfo.outputPath('mobile-import.png') })
   await mobile.close()

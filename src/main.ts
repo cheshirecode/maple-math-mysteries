@@ -22,7 +22,7 @@ export function start(): void {
 
   if (stored) {
     const restored = migrate(stored)
-    updateProgress(() => ({ ...restored, digitsMode: restored.showDigitsDefault }))
+    updateProgress(() => ({ ...restored, digitsMode: false }))
   }
 
   const header = el('header', 'topbar')
@@ -64,26 +64,17 @@ export function start(): void {
     }
   }
   renderPicker()
-  header.append(picker)
 
-  const digitsBtn = el('button', 'btn btn-ghost', 'show digits')
-  digitsBtn.addEventListener('click', () => {
-    updateProgress((p) => ({ ...p, digitsMode: !p.digitsMode }))
-    render()
-  })
-  header.append(digitsBtn)
   // The stage holds whichever view is open - the town map or one case.
   // Views swap by clearing the stage only, so the header above survives.
   const stage = el('div', 'stage')
-  const parentBtn = el('button', 'btn btn-ghost', 'parent')
+  const parentBtn = el('button', 'btn btn-ghost btn-small', 'Parent area')
+  parentBtn.setAttribute('aria-label', 'Open parent area')
   parentBtn.addEventListener('click', () => openParentView(stage, () => render()))
   header.append(parentBtn)
-  root.append(header, stage)
+  root.append(header, picker, stage)
 
   const render = () => {
-    document.body.dataset.digitsMode = String(getProgress().digitsMode)
-    digitsBtn.textContent = getProgress().digitsMode ? 'hide digits' : 'show digits'
-    digitsBtn.setAttribute('aria-pressed', String(getProgress().digitsMode))
     renderPicker()
     stage.innerHTML = ''
     const town = el('div', 'town')

@@ -2,21 +2,22 @@
    Tokens first; components use them. No web fonts loaded. */
 
 :root {
-  --paper: #faf6ee;
+  --paper: #fffdf6;
   --surface: #fffdf8;
   --ink: #2b2622;
   --ink-soft: #6e6560;
   --line: #e7e0d2;
-  --accent: #b3402e;
-  --accent-deep: #8f3125;
-  --accent-tint: #f7e9e4;
-  --gold: #e9b949;
-  --gold-deep: #c99a2e;
-  --gold-tint: #f7efdb;
-  --green: #33714a;
-  --green-tint: #e7f0e9;
-  --radius-s: 10px;
-  --radius-m: 14px;
+  --accent: #e8443a;
+  --accent-deep: #b93228;
+  --accent-tint: #ffe9e5;
+  --gold: #ffc834;
+  --gold-deep: #e0a41a;
+  --gold-tint: #fff4d2;
+  --green: #2ea44f;
+  --green-tint: #e3f6e9;
+  --sky: #4a90d9;
+  --radius-s: 12px;
+  --radius-m: 18px;
   --radius-pill: 999px;
   --shadow-s: 0 1px 2px rgb(43 38 34 / 8%), 0 2px 6px rgb(43 38 34 / 6%);
   --shadow-m: 0 2px 4px rgb(43 38 34 / 8%), 0 8px 20px rgb(43 38 34 / 10%);
@@ -37,7 +38,9 @@ body {
   color: var(--ink);
   background:
     radial-gradient(1200px 500px at 50% -10%, #fffdf8 0%, transparent 60%),
+    radial-gradient(circle at 1px 1px, rgb(196 181 152 / 28%) 1.6px, transparent 0),
     var(--paper);
+  background-size: auto, 26px 26px, auto;
   -webkit-font-smoothing: antialiased;
   line-height: 1.45;
 }
@@ -49,18 +52,17 @@ body {
 }
 
 :focus-visible {
-  outline: 3px solid rgb(179 64 46 / 45%);
+  outline: 3px solid rgb(232 68 58 / 45%);
   outline-offset: 2px;
   border-radius: var(--radius-s);
 }
 
-/* Topbar: brand + actions on the first row, picker on its own row */
+/* Topbar: brand left, parent button right */
 
 .topbar {
   display: flex;
   align-items: center;
   gap: 0.6rem 0.75rem;
-  flex-wrap: wrap;
   padding: 0.25rem 0 1rem;
 }
 
@@ -80,35 +82,35 @@ body {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #d96a55, var(--accent));
-  box-shadow: 0 1px 3px rgb(143 49 37 / 40%);
+  background: radial-gradient(circle at 30% 30%, #f08a78, var(--accent));
+  box-shadow: 0 1px 3px rgb(185 50 40 / 40%);
   flex: none;
 }
 
 /* Buttons */
 
 .btn {
-  border: 1px solid var(--accent-deep);
+  border: 1px solid var(--gold-deep);
   border-radius: var(--radius-pill);
-  background: linear-gradient(180deg, #c2492f 0%, var(--accent) 100%);
-  color: #fff;
+  background: linear-gradient(180deg, var(--gold) 0%, var(--gold-deep) 100%);
+  color: #292524;
   font: inherit;
   font-weight: 700;
   padding: 0 1.15rem;
   min-height: 44px;
   cursor: pointer;
-  box-shadow: var(--shadow-s);
+  box-shadow: 0 4px 0 var(--gold-deep);
   transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
 }
 
 .btn:hover {
   transform: translateY(-1px);
-  box-shadow: var(--shadow-m);
+  box-shadow: 0 5px 0 var(--gold-deep);
 }
 
 .btn:active {
-  transform: translateY(0);
-  filter: brightness(0.96);
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--gold-deep);
 }
 
 .btn-ghost {
@@ -124,8 +126,15 @@ body {
 }
 
 .btn-danger {
-  background: linear-gradient(180deg, #c2492f 0%, var(--accent-deep) 100%);
-  border-color: #742a20;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-deep) 100%);
+  border-color: var(--accent-deep);
+  color: #fff;
+  box-shadow: 0 4px 0 var(--accent-deep);
+}
+
+.btn-danger:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--accent-deep);
 }
 
 /* Town map: fluid cards, denser on wide screens */
@@ -162,7 +171,7 @@ body {
   content: "";
   position: absolute;
   inset: 0 auto 0 0;
-  width: 5px;
+  width: 6px;
   border-radius: var(--radius-m) 0 0 var(--radius-m);
   background: linear-gradient(180deg, var(--gold), var(--gold-deep));
 }
@@ -186,7 +195,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: var(--green);
-  border: 2px dashed rgb(51 113 74 / 50%);
+  border: 2px dashed rgb(46 164 79 / 55%);
   border-radius: var(--radius-s);
   padding: 0.15rem 0.55rem;
   transform: rotate(-4deg);
@@ -194,7 +203,7 @@ body {
 
 .case-card.done {
   background: var(--green-tint);
-  border-color: rgb(51 113 74 / 25%);
+  border-color: rgb(46 164 79 / 25%);
 }
 
 .case-card.done::before {
@@ -299,8 +308,8 @@ body {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: radial-gradient(circle at 32% 30%, #d96a55, var(--accent) 70%);
-  box-shadow: inset 0 -2px 3px rgb(143 49 37 / 35%);
+  background: radial-gradient(circle at 32% 30%, #f08a78, var(--accent) 70%);
+  box-shadow: inset 0 -2px 3px rgb(185 50 40 / 35%);
   display: inline-block;
   margin: 2px;
 }
@@ -805,7 +814,7 @@ body {
 }
 
 .parent-danger {
-  border-color: rgb(179 64 46 / 35%);
+  border-color: rgb(232 68 58 / 35%);
   background: var(--accent-tint);
 }
 
@@ -813,11 +822,9 @@ body {
   color: var(--accent-deep);
 }
 
-/* Grade picker: its own row under the brand, a segmented control */
+/* Grade picker: its own row under the topbar, a segmented control */
 
 .grade-picker {
-  order: 10;
-  flex-basis: 100%;
   display: flex;
   gap: 0.35rem;
   flex-wrap: wrap;
@@ -849,8 +856,8 @@ body {
 }
 
 .grade-pill.selected {
-  background: linear-gradient(180deg, #c2492f 0%, var(--accent) 100%);
-  color: #fff;
+  background: linear-gradient(180deg, var(--gold) 0%, var(--gold-deep) 100%);
+  color: #292524;
   box-shadow: var(--shadow-s);
 }
 
