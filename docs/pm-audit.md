@@ -23,13 +23,16 @@ call or art, not a bug fix.
 | Coins case | Coin sizes differ per value; colour is not the only signal. Fine for colour-blind play. | keep |
 | Spinner case | Answer buttons name colours in text, so the label survives colour blindness. | keep |
 | Privacy | No accounts, no analytics, no network calls. Nothing to collect. | keep |
-| Offline | Service worker caches the shell; verified with the network cut. | keep |
+| Offline | Service worker caches the shell; verified with the network cut. Navigation is network-first so updates reach returning visitors. | keep |
+| Device handoff | Export offers copy, share, and download; import verified desktop to emulated mobile in CI. A QR code for phone scan is a later add. | later |
+| Small screens | 44px buttons, wrapped dot rows, scaled widgets; e2e asserts no horizontal overflow at 390px. | keep |
 
 ## Deferred, with owners
 
 - Voice on prompts: `mmm-pm-audit` follow-up. Needs per-line tap targets.
 - Confetti beat: art asset, then `engine/run.ts`.
 - Detective-break nudge: product decision on session shape, then `main.ts`.
+- QR handoff: encode the save-string in the URL or a QR on the export box, then `parent.ts`.
 
 ## Verdict
 
