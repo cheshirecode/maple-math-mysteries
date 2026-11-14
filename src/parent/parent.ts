@@ -85,12 +85,37 @@ export function openParentView(root: HTMLElement, back: () => void): void {
   exportBox.append(el('h3', '', 'Export progress'))
   const exportText = el('textarea', 'parent-io') as HTMLTextAreaElement
   exportText.readOnly = true
+  const exportMsg = el('p', 'parent-msg', '')
   const exportBtn = el('button', 'btn', 'Build save-string')
+  const copyBtn = el('button', 'btn', 'Copy string')
+  const shareBtn = el('button', 'btn', 'Share')
   const download = el('button', 'btn', 'Download file')
   exportBtn.addEventListener('click', async () => {
     const result = await buildSaveText(getProgress())
     exportText.value = result.text
     exportText.dataset.compressed = String(result.compressed)
+  })
+  copyBtn.addEventListener('click', async () => {
+    if (!exportText.value) return
+    try {
+      await navigator.clipboard.writeText(exportText.value)
+      exportMsg.textContent = 'Copied. Paste it on the other device.'
+    } catch {
+      exportMsg.textContent = 'Copy blocked. Select the text and copy by hand.'
+    }
+  })
+  shareBtn.addEventListener('click', async () => {
+    if (!exportText.value) return
+    const nav = navigator as Navigator & { share?: (d: { text: string }) => Promise<void> }
+    if (!nav.share) {
+      exportMsg.textContent = 'Share is not here. Use Copy or Download.'
+      return
+    }
+    try {
+      await nav.share({ text: exportText.value })
+    } catch {
+      exportMsg.textContent = 'Share closed.'
+    }
   })
   download.addEventListener('click', () => {
     if (!exportText.value) return
@@ -102,7 +127,7 @@ export function openParentView(root: HTMLElement, back: () => void): void {
     link.click()
     URL.revokeObjectURL(url)
   })
-  exportBox.append(exportBtn, exportText, download)
+  exportBox.append(exportBtn, exportText, copyBtn, shareBtn, download, exportMsg)
   view.append(exportBox)
 
   const importBox = el('div', 'parent-box')
