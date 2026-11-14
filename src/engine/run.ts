@@ -70,7 +70,9 @@ export function runCase(root: HTMLElement, def: CaseDef, opts: RunOptions): void
       opts.onBadge(def.badge)
     },
   }
-  runners[def.widget](area, def.puzzle, hooks)
+  const run = runners[def.widget]
+  if (!run) throw new Error(`unknown widget ${def.widget}`)
+  run(area, def.puzzle, hooks)
 }
 
 function currentDigitsMode(): boolean {

@@ -66,12 +66,14 @@ export function start(): void {
   renderPicker()
   header.append(picker)
 
-  const digitsBtn = el('button', 'btn btn-digits', 'show digits')
+  const digitsBtn = el('button', 'btn btn-ghost', 'show digits')
   digitsBtn.addEventListener('click', () => {
     updateProgress((p) => ({ ...p, digitsMode: !p.digitsMode }))
     render()
   })
   header.append(digitsBtn)
+  // The stage holds whichever view is open - the town map or one case.
+  // Views swap by clearing the stage only, so the header above survives.
   const stage = el('div', 'stage')
   const parentBtn = el('button', 'btn btn-ghost', 'parent')
   parentBtn.addEventListener('click', () => openParentView(stage, () => render()))
@@ -81,6 +83,7 @@ export function start(): void {
   const render = () => {
     document.body.dataset.digitsMode = String(getProgress().digitsMode)
     digitsBtn.textContent = getProgress().digitsMode ? 'hide digits' : 'show digits'
+    digitsBtn.setAttribute('aria-pressed', String(getProgress().digitsMode))
     renderPicker()
     stage.innerHTML = ''
     const town = el('div', 'town')

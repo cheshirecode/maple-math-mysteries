@@ -2,7 +2,7 @@ import { el } from '../../voice.ts'
 import type { WidgetHooks } from '../run.ts'
 import type { PuzzleData } from '../case.ts'
 
-const FACES: Record<string, number> = { cube: 6, prism: 6, cylinder: 3 }
+const FACES: Record<'cube' | 'prism' | 'cylinder', number> = { cube: 6, prism: 6, cylinder: 3 }
 
 export function widgetCrate(root: HTMLElement, puzzle: PuzzleData, hooks: WidgetHooks): void {
   if (puzzle.kind !== 'crate') return

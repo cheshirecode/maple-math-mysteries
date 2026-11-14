@@ -16,7 +16,5 @@ export const c9Stand: CaseDef = {
     'Detectives pay a small fee at the snack stand.',
     'The fee is shown in coins. Pay the same amount with your own coins.',
   ],
-  questionNoDigits: 'Tap coins to pay the exact fee.',
-  questionDigits: 'Count mixed coins to pay the exact fee.',
   puzzle: { kind: 'coins', target: [25, 25, 10, 5] },
 }

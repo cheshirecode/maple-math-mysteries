@@ -16,7 +16,5 @@ export const c3Loot: CaseDef = {
     'The suspect left a trail across the muddy yard.',
     'The footprints form an array of equal rows.',
   ],
-  questionNoDigits: 'How many rows of footprints?',
-  questionDigits: 'How many rows are in the array?',
   puzzle: { kind: 'arrays', rows: 4, cols: 6 },
 }

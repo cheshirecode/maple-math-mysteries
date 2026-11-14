@@ -21,9 +21,11 @@ export function openParentView(root: HTMLElement, back: () => void): void {
     const a = el('input', 'parent-code') as HTMLInputElement
     a.type = 'password'
     a.placeholder = 'access code'
+    a.setAttribute('aria-label', 'Create access code')
     const b = el('input', 'parent-code') as HTMLInputElement
     b.type = 'password'
     b.placeholder = 'repeat access code'
+    b.setAttribute('aria-label', 'Repeat access code')
     const set = el('button', 'btn', 'Set access code')
     const msg = el('p', 'parent-msg', '')
     set.addEventListener('click', async () => {
@@ -31,12 +33,16 @@ export function openParentView(root: HTMLElement, back: () => void): void {
         msg.textContent = 'The two entries do not match.'
         return
       }
-      const salt = newSalt()
-      const hash = await deriveCodeHash(a.value, salt)
-      setCodeRecord(salt, hash)
-      unlocked = true
-      msg.textContent = 'Access code saved.'
-      setTimeout(() => openParentView(root, back), 400)
+      try {
+        const salt = newSalt()
+        const hash = await deriveCodeHash(a.value, salt)
+        setCodeRecord(salt, hash)
+        unlocked = true
+        msg.textContent = 'Access code saved.'
+        setTimeout(() => openParentView(root, back), 400)
+      } catch {
+        msg.textContent = 'This page needs a secure connection to store a code.'
+      }
     })
     form.append(a, b, set, msg)
     view.append(form)
@@ -49,15 +55,20 @@ export function openParentView(root: HTMLElement, back: () => void): void {
     form.append(el('p', '', 'Enter the access code.'))
     const input = el('input', 'parent-code') as HTMLInputElement
     input.type = 'password'
+    input.setAttribute('aria-label', 'Access code')
     const enter = el('button', 'btn', 'Unlock')
     const msg = el('p', 'parent-msg', '')
     enter.addEventListener('click', async () => {
       const rec = getCodeRecord()
-      if (rec && (await verifyCodeHash(input.value, rec.salt, rec.hash))) {
-        unlocked = true
-        openParentView(root, back)
-      } else {
-        msg.textContent = 'Wrong code. Nothing changed.'
+      try {
+        if (rec && (await verifyCodeHash(input.value, rec.salt, rec.hash))) {
+          unlocked = true
+          openParentView(root, back)
+        } else {
+          msg.textContent = 'Wrong code. Nothing changed.'
+        }
+      } catch {
+        msg.textContent = 'This page needs a secure connection to store a code.'
       }
     })
     form.append(input, enter, msg)

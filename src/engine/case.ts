@@ -21,8 +21,6 @@ export interface CaseDef {
   titleDigits?: string
   storyNoDigits: string[]
   storyDigits?: string[]
-  questionNoDigits: string
-  questionDigits?: string
   puzzle: PuzzleData
 }
 
@@ -44,7 +42,6 @@ export function validateCase(def: CaseDef): string[] {
   if (digit.test(def.titleNoDigits)) errors.push(`${def.id}: titleNoDigits has digits`)
   if (digit.test(def.kidLabel)) errors.push(`${def.id}: kidLabel has digits`)
   for (const line of def.storyNoDigits) if (digit.test(line)) errors.push(`${def.id}: storyNoDigits line has digits`)
-  if (digit.test(def.questionNoDigits)) errors.push(`${def.id}: questionNoDigits has digits`)
   if (!BC_GROUPS.includes(def.group as (typeof BC_GROUPS)[number]))
     errors.push(`${def.id}: unknown group ${def.group}`)
   return errors

@@ -1,6 +1,6 @@
 import { defineConfig } from '@playwright/test'
 
-const use: object = process.env.PW_CHANNEL ? { channel: process.env.PW_CHANNEL } : {}
+const use: { channel?: string } = process.env.PW_CHANNEL ? { channel: process.env.PW_CHANNEL } : {}
 
 export default defineConfig({
   testDir: './e2e',

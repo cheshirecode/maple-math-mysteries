@@ -6,7 +6,7 @@ export function widgetFraction(root: HTMLElement, puzzle: PuzzleData, hooks: Wid
   if (puzzle.kind !== 'fraction') return
   const options = el('div', 'fraction-options')
   const question = el('p', 'fraction-question', '')
-  const choices = [puzzle.parts, puzzle.parts + 1, Math.max(2, puzzle.parts - 1)]
+  const choices = [...new Set([puzzle.parts, puzzle.parts + 1, Math.max(2, puzzle.parts - 1)])]
   for (const cuts of choices) {
     const pie = el('div', 'pie')
     for (let i = 0; i < cuts; i++) {

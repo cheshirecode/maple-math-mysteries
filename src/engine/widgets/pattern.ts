@@ -19,7 +19,7 @@ export function widgetPattern(root: HTMLElement, puzzle: PuzzleData, hooks: Widg
   const answer = next
   const options = el('div', 'pattern-options')
   const question = el('p', 'pattern-question', '')
-  const choices = [answer, answer + 1, Math.max(answer - 1, 1)]
+  const choices = [...new Set([answer, answer + 1, Math.max(answer - 1, 1)])]
   for (const c of choices) {
     const opt = el('button', 'pattern-option')
     opt.append(tile(c))

@@ -22,7 +22,11 @@ export function loadProgress(): unknown | null {
 }
 
 export function saveProgress(p: unknown): void {
-  ls()?.setItem(KEY, JSON.stringify(p))
+  try {
+    ls()?.setItem(KEY, JSON.stringify(p))
+  } catch {
+    /* storage may be unavailable or full; ignore */
+  }
 }
 
 export function hasCode(): boolean {

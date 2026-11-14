@@ -16,7 +16,5 @@ export const c4Pie: CaseDef = {
     'The bake sale needs a fair pie.',
     'Cut the pie into equal parts. Fractions are equal shares of a whole.',
   ],
-  questionNoDigits: 'Which pie shares every part fairly?',
-  questionDigits: 'Which pie shows equal parts?',
   puzzle: { kind: 'fraction', parts: 6 },
 }

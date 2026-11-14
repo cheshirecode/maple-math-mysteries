@@ -1,5 +1,10 @@
 import { CURRENT_SCHEMA } from '../state.ts'
 
+// One save-string holds the whole game state: MDA1.<version>.<crc32>.<base64url>.
+// The CRC catches a mistyped or truncated string before any state changes.
+// The payload is deflate-raw when the browser supports it, raw UTF-8 JSON
+// otherwise. A leading '{' byte tells the decoder which one it is.
+
 const CRC_TABLE: number[] = (() => {
   const table: number[] = []
   for (let n = 0; n < 256; n++) {

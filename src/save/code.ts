@@ -1,3 +1,6 @@
+// The access code is the parent's gate, not the child's. We never store the
+// code itself - only a salted PBKDF2 hash, so a lost or shared device leaks
+// nothing useful. 210k iterations keeps a casual guess slow on purpose.
 const ITERATIONS = 210000
 
 function toBase64(bytes: ArrayBufferLike): string {

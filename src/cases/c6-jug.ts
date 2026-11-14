@@ -16,7 +16,5 @@ export const c6Jug: CaseDef = {
     'The diner needs the right jug of juice for the recipe.',
     'The recipe pours a set number of cupfuls.',
   ],
-  questionNoDigits: 'Tap the jug that is right.',
-  questionDigits: 'Which jug holds the right number of cupfuls?',
   puzzle: { kind: 'measure', cups: 4, options: [4, 2, 6] },
 }

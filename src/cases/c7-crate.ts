@@ -16,7 +16,5 @@ export const c7Crate: CaseDef = {
     'The trophy was taken in a folding crate.',
     'A flat net was left behind. Count its faces to find the crate.',
   ],
-  questionNoDigits: 'Which crate matches the net?',
-  questionDigits: 'Which crate has the same number of faces as the net?',
   puzzle: { kind: 'crate', shape: 'cube', suspects: [6, 5, 3] },
 }

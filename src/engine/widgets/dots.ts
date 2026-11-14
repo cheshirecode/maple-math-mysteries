@@ -21,7 +21,7 @@ export function widgetDots(root: HTMLElement, puzzle: PuzzleData, hooks: WidgetH
   const held = el('div', 'dots-held')
   held.append(dotRow(puzzle.pairA))
   const options = el('div', 'dots-options')
-  const choices = [answer, answer + 1, Math.max(1, answer - 1)]
+  const choices = [...new Set([answer, answer + 1, Math.max(1, answer - 1)])]
   for (const c of choices) {
     const opt = el('button', 'dots-option')
     opt.append(dotRow(c))

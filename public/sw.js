@@ -1,3 +1,7 @@
+// Navigation requests go to the network first, so a returning player gets
+// the newest build; the cache is the fallback for offline play. Asset
+// requests are cache-first because their filenames are hashed. Bump the
+// cache name when the shell changes shape.
 const CACHE = 'mmm-v2'
 
 self.addEventListener('install', (event) => {
@@ -22,7 +26,7 @@ async function cacheFirst(request) {
   const res = await fetch(request)
   if (res.ok) {
     const copy = res.clone()
-    caches.open(CACHE).then((cache) => cache.put(request, copy))
+    caches.open(CACHE).then((cache) => cache.put(request, copy)).catch(() => undefined)
   }
   return res
 }
@@ -32,7 +36,7 @@ async function networkFirstNavigation(request) {
     const res = await fetch(request)
     if (res.ok) {
       const copy = res.clone()
-      caches.open(CACHE).then((cache) => cache.put(request, copy))
+      caches.open(CACHE).then((cache) => cache.put(request, copy)).catch(() => undefined)
     }
     return res
   } catch {

@@ -16,7 +16,5 @@ export const c2Fare: CaseDef = {
     'Two friends share one fare on the streetcar.',
     'One friend already holds some of the tickets.',
   ],
-  questionNoDigits: 'Which picture completes the pair of tickets?',
-  questionDigits: 'What pairs with the first pile to make the whole fare?',
   puzzle: { kind: 'dots', pairTarget: 20, pairA: 13 },
 }

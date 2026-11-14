@@ -374,6 +374,11 @@ body {
   background: var(--paper);
 }
 
+.blocks-stacks {
+  display: flex;
+  flex-direction: column;
+}
+
 .block {
   background: linear-gradient(180deg, var(--gold), var(--gold-deep));
   border: 1px solid rgb(201 154 46 / 60%);
@@ -850,12 +855,12 @@ body {
 }
 
 .grade-pill.off {
-  color: #8d8578;
+  color: #5f574d;
   cursor: default;
 }
 
 .grade-pill.off:hover {
-  color: #8d8578;
+  color: #5f574d;
   background: transparent;
 }
 

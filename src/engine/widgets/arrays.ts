@@ -14,7 +14,7 @@ export function widgetArrays(root: HTMLElement, puzzle: PuzzleData, hooks: Widge
   const answer = puzzle.rows
   const options = el('div', 'arrays-options')
   const question = el('p', 'arrays-question', '')
-  const choices = [answer, answer + 1, Math.max(1, answer - 1)]
+  const choices = [...new Set([answer, answer + 1, Math.max(1, answer - 1)])]
   for (const c of choices) {
     const opt = el('button', 'btn', hooks.digitsMode ? String(c) : '•'.repeat(c))
     opt.addEventListener('click', () => (c === answer ? hooks.onSolved() : hooks.onRetry()))

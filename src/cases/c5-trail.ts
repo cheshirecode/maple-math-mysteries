@@ -16,7 +16,5 @@ export const c5Trail: CaseDef = {
     'The culprit leaves a trail of pinecone piles.',
     'Each pile grows by the same rule. Predict the next pile.',
   ],
-  questionNoDigits: 'Which tile comes next on the trail?',
-  questionDigits: 'How many pinecones are in the next pile?',
   puzzle: { kind: 'pattern', steps: [2, 4, 6, 8] },
 }

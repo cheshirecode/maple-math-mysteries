@@ -77,7 +77,6 @@ describe('digits guard', () => {
   it('digits variants exist for every case', () => {
     for (const c of CASES) {
       assertStrict(typeof c.storyDigits !== 'undefined', `${c.id} needs storyDigits`)
-      assertStrict(typeof c.questionDigits !== 'undefined', `${c.id} needs questionDigits`)
     }
   })
 })

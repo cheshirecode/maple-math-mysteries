@@ -16,8 +16,6 @@ export const c8Spinner: CaseDef = {
     'The fair booth hides a spinner with coloured slices.',
     'Bigger slices are more likely. Smaller slices are less likely.',
   ],
-  questionNoDigits: 'Which colour lands most often?',
-  questionDigits: 'Which colour is most likely?',
   puzzle: {
     kind: 'spinner',
     slices: [
