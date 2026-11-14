@@ -16,6 +16,7 @@
   --green: #2ea44f;
   --green-tint: #e3f6e9;
   --sky: #4a90d9;
+  --sky-tint: #e8f1fb;
   --radius-s: 12px;
   --radius-m: 18px;
   --radius-pill: 999px;
@@ -55,6 +56,15 @@ body {
   outline: 3px solid rgb(232 68 58 / 45%);
   outline-offset: 2px;
   border-radius: var(--radius-s);
+}
+
+.speakable {
+  cursor: pointer;
+}
+
+.speakable:hover {
+  text-decoration: underline dotted;
+  text-underline-offset: 4px;
 }
 
 /* Topbar: brand left, parent button right */
@@ -237,6 +247,7 @@ body {
   gap: 0.7rem;
   max-width: 760px;
   margin: 0 auto;
+  position: relative;
   animation: case-in 200ms ease;
 }
 
@@ -303,6 +314,25 @@ body {
   font-weight: 800;
   color: var(--green);
   min-height: 1.6rem;
+}
+
+.confetti-bit {
+  position: absolute;
+  top: 18%;
+  pointer-events: none;
+  animation: confetti-fly 900ms ease-out forwards;
+}
+
+@keyframes confetti-fly {
+  from {
+    transform: translate(0, 0) rotate(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translate(var(--dx), 320px) rotate(var(--rot));
+    opacity: 0;
+  }
 }
 
 /* Dots */
@@ -738,6 +768,20 @@ body {
 }
 
 /* Parent view */
+
+.break-nudge {
+  background: var(--sky-tint, #e8f1fb);
+  border: 1px solid rgb(74 144 217 / 35%);
+  border-radius: var(--radius-m);
+  padding: 1rem;
+  margin: 1.25rem auto 0;
+  max-width: 560px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: center;
+}
 
 .parent {
   display: flex;

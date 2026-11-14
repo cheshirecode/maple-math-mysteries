@@ -1,4 +1,4 @@
-import { el, speak } from '../voice.ts'
+import { el, speak, speakable } from '../voice.ts'
 import type { CaseDef, PuzzleData } from './case.ts'
 import { widgetDots } from './widgets/dots.ts'
 import { widgetBlocks } from './widgets/blocks.ts'
@@ -47,6 +47,7 @@ export function runCase(root: HTMLElement, def: CaseDef, opts: RunOptions): void
   for (const line of story) {
     const p = el('p', 'case-story', line)
     box.append(p)
+    speakable(p, line)
   }
   speak(story.join(' '))
   const area = el('div', 'case-widget')
@@ -67,10 +68,33 @@ export function runCase(root: HTMLElement, def: CaseDef, opts: RunOptions): void
     onSolved: () => {
       feedback.textContent = 'Case closed!'
       speak('Case closed.')
+      confetti(box)
       opts.onBadge(def.badge)
     },
   }
   const run = runners[def.widget]
   if (!run) throw new Error(`unknown widget ${def.widget}`)
   run(area, def.puzzle, hooks)
+  const q = area.querySelector('p')
+  if (q && q.textContent) speakable(q, q.textContent)
+}
+
+const CONFETTI_COLORS = ['#e8443a', '#ffc834', '#2ea44f', '#4a90d9']
+
+function confetti(box: HTMLElement): void {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  for (let i = 0; i < 24; i++) {
+    const bit = document.createElement('div')
+    bit.className = 'confetti-bit'
+    bit.style.left = `${5 + Math.random() * 90}%`
+    const size = 8 + Math.floor(Math.random() * 7)
+    bit.style.width = `${size}px`
+    bit.style.height = `${size}px`
+    bit.style.borderRadius = i % 2 === 0 ? '2px' : '50%'
+    bit.style.background = CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)]
+    bit.style.setProperty('--dx', `${Math.floor(Math.random() * 241) - 120}px`)
+    bit.style.setProperty('--rot', `${Math.floor(Math.random() * 1081) - 540}deg`)
+    box.append(bit)
+    setTimeout(() => bit.remove(), 950)
+  }
 }
