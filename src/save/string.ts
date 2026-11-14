@@ -1,3 +1,5 @@
+import { CURRENT_SCHEMA } from '../state.ts'
+
 const CRC_TABLE: number[] = (() => {
   const table: number[] = []
   for (let n = 0; n < 256; n++) {
@@ -90,6 +92,7 @@ export async function decodeSaveText(text: string): Promise<DecodedSave> {
   if (parts.length !== 4 || parts[0] !== 'MDA1') throw new Error('bad save-string shape')
   const version = Number(parts[1])
   if (!Number.isInteger(version) || version < 1) throw new Error('bad save-string version')
+  if (version > CURRENT_SCHEMA) throw new Error('unsupported save-string version')
   const payload = fromBase64Url(parts[3])
   if (crc32(payload) !== Number.parseInt(parts[2], 16)) throw new Error('save-string checksum mismatch')
   let raw: Uint8Array

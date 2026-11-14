@@ -1,7 +1,61 @@
 import { describe, it } from 'node:test'
 import assertStrict from 'node:assert/strict'
 import { CASES } from '../src/cases/index.ts'
-import { validateCase } from '../src/engine/case.ts'
+import { validateCase, BC_GROUPS } from '../src/engine/case.ts'
+
+describe('BC coverage', () => {
+  it('every BC content group has at least one case', () => {
+    for (const g of BC_GROUPS) {
+      assertStrict(CASES.some((c) => c.group === g), `no case covers ${g}`)
+    }
+  })
+
+  it('badges and kid labels are unique and present', () => {
+    const badges = new Set(CASES.map((c) => c.badge))
+    assertStrict.equal(badges.size, CASES.length)
+    for (const c of CASES) {
+      assertStrict(c.kidLabel.length > 0, `${c.id} needs a kidLabel`)
+    }
+  })
+
+  it('puzzle kind matches the widget kind', () => {
+    for (const c of CASES) {
+      assertStrict.equal(c.puzzle.kind, c.widget, `${c.id}: puzzle/widget mismatch`)
+    }
+  })
+
+  it('spinner answers name a slice with positive weight', () => {
+    for (const c of CASES) {
+      if (c.puzzle.kind !== 'spinner') continue
+      const puzzle = c.puzzle
+      const hit = puzzle.slices.find((s) => s.colour === puzzle.answer)
+      assertStrict(hit, `${c.id}: answer missing from slices`)
+      assertStrict((hit?.weight ?? 0) > 0, `${c.id}: answer weight must be positive`)
+    }
+  })
+
+  it('coins targets use real canadian coin values', () => {
+    const legal = new Set([1, 5, 10, 25])
+    for (const c of CASES) {
+      if (c.puzzle.kind !== 'coins') continue
+      for (const v of c.puzzle.target) {
+        assertStrict(legal.has(v), `${c.id}: coin value ${v} not canadian`)
+      }
+    }
+  })
+
+  it('measure and crate options include the answer', () => {
+    for (const c of CASES) {
+      if (c.puzzle.kind === 'measure') {
+        assertStrict(c.puzzle.options.includes(c.puzzle.cups), `${c.id}: cups missing from options`)
+      }
+      if (c.puzzle.kind === 'crate') {
+        const want = { cube: 6, prism: 6, cylinder: 3 }[c.puzzle.shape]
+        assertStrict(c.puzzle.suspects.includes(want), `${c.id}: answer missing from suspects`)
+      }
+    }
+  })
+})
 
 describe('digits guard', () => {
   it('every case has digit-free titles, stories, and questions', () => {

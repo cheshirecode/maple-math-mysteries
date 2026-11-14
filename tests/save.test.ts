@@ -35,4 +35,29 @@ describe('save-string round trip', () => {
   it('computes a known crc32', () => {
     assertStrict.equal(crc32(new TextEncoder().encode('123456789')), 0xcbf43926)
   })
+
+  it('round-trips unicode badges and a full case list', async () => {
+    const p = {
+      ...emptyProgress(),
+      completedCases: ['c1-safe', 'c2-fare', 'c3-loot', 'c4-pie', 'c5-trail'],
+      badges: ['safe-opener', '🕵️', '界'],
+      minutesPlayed: 999,
+    }
+    const decoded = await decodeSaveText((await buildSaveText(p)).text)
+    assertStrict.deepEqual(decoded.progress, p)
+  })
+
+  it('rejects an unknown future version', async () => {
+    const built = await buildSaveText(emptyProgress())
+    const parts = built.text.split('.')
+    const future = `MDA1.99.${parts[2]}.${parts[3]}`
+    await assertStrict.rejects(decodeSaveText(future), /unsupported/)
+  })
+
+  it('trims surrounding whitespace on import', async () => {
+    const p = { ...emptyProgress(), minutesPlayed: 5 }
+    const text = (await buildSaveText(p)).text
+    const decoded = await decodeSaveText(`  ${text} \n`)
+    assertStrict.deepEqual(decoded.progress, p)
+  })
 })
