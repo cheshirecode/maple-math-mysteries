@@ -17,7 +17,7 @@ no requirement, it guards nothing and should go. Last reviewed: 2026-11-14.
 | R7 | Layout works from phone to desktop | Fluid `#app` up to 1080px; `clamp()` type; 4-up grid at width; `.stage` view container | E2e: no horizontal overflow at 390px; CI e2e job | `src/style.css` |
 | R8 | Wrong answers never punish | Retry line, new arrangement; no timers, no red X | E2e: wrong-tap path in dots case; manual PM audit | `src/engine/run.ts`, `docs/pm-audit.md` |
 | R9 | App installs and plays offline | PWA manifest + network-first SW, versioned cache | Manual: reload with network cut renders fully. SW registration asserted in e2e-era checks | `public/sw.js`, `public/manifest.webmanifest` |
-| R10 | Story text reads aloud on case open; prompt tap-to-speak is deferred (see pm-audit) | Web Speech wrapper on story lines | Unit-free: presence of `speak()` call path; manual audit lists it deferred (tap-to-speak) | `src/voice.ts` |
+| R10 | E2e: three solves then break nudge; speakable lines in DOM | Web Speech wrapper; speakable story and prompt lines | `src/voice.ts`, `src/engine/run.ts`, `e2e/export-import.spec.ts` |
 
 ## Keeping this file true
 

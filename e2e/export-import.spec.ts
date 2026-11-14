@@ -32,6 +32,25 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
   await page.getByRole('button', { name: 'Check the lock' }).click()
   await expect(page.locator('.case-feedback')).toHaveText('Case closed!')
 
+  // Solve two more cases so sessionSolves hits 3 and the break nudge appears.
+  await page.getByRole('button', { name: 'Back to the map' }).click()
+  await page.locator('.case-card').nth(1).click()
+  await expect(page.locator('.case-title')).toHaveText('The Streetcar Fare')
+  await page.locator('.dots-option').first().click()
+  await expect(page.locator('.case-feedback')).toHaveText('Case closed!')
+
+  await page.getByRole('button', { name: 'Back to the map' }).click()
+  await page.locator('.case-card').nth(2).click()
+  await expect(page.locator('.case-title')).toHaveText('The Equal Loot')
+  await page.locator('.arrays-options button').first().click()
+  await expect(page.locator('.case-feedback')).toHaveText('Case closed!')
+
+  await page.getByRole('button', { name: 'Back to the map' }).click()
+  await expect(page.locator('.break-nudge')).toBeVisible()
+  await expect(page.locator('.break-nudge')).toContainText('Stretch your legs')
+  await page.getByRole('button', { name: 'Keep playing' }).click()
+  await expect(page.locator('.break-nudge')).toHaveCount(0)
+
   await page.getByRole('button', { name: 'Parent area' }).click()
   await expect(page.locator('.parent-stats')).toBeVisible()
 
@@ -68,7 +87,7 @@ async function importOnMobile(
   await expect(m.locator('.parent-msg').last()).toHaveText('Progress imported and saved.')
 
   await m.getByRole('button', { name: 'Back to the map' }).click()
-  await expect(m.locator('.case-card.done')).toHaveCount(1)
+  await expect(m.locator('.case-card.done')).toHaveCount(3)
 
   const flow = await m.evaluate(() => {
     const tap = document.querySelector('.btn:not(.btn-small)') ?? document.querySelector('.case-card')
