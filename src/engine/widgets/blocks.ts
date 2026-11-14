@@ -54,6 +54,13 @@ export function widgetBlocks(root: HTMLElement, puzzle: PuzzleData, hooks: Widge
   })
   board.append(check)
 
+  const target = el('div', 'blocks-target')
+  for (const n of NAMES) {
+    const row = el('div', `blocks-target-row ${n}`)
+    for (let i = 0; i < want[n]; i++) row.append(el('span', 'block'))
+    target.append(row)
+  }
+
   const hint = el(
     'p',
     'blocks-hint',
@@ -62,5 +69,6 @@ export function widgetBlocks(root: HTMLElement, puzzle: PuzzleData, hooks: Widge
       : 'Build the stacks that match the lock picture.',
   )
   board.prepend(hint)
+  hint.after(target)
   root.append(board)
 }
