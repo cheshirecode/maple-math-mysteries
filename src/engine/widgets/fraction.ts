@@ -20,7 +20,7 @@ export function widgetFraction(root: HTMLElement, puzzle: PuzzleData, hooks: Wid
     options.append(opt)
   }
   if (hooks.digitsMode) question.textContent = `Cut the pie into ${puzzle.parts} equal shares.`
-  else question.textContent = 'Which pie shares every part fairly?'
+  else question.textContent = 'Which pie gives every friend a fair share?'
   root.prepend(question)
   root.append(options)
 }

@@ -10,7 +10,7 @@ export const c4Pie: CaseDef = {
   titleDigits: 'The Bake-Sale Pie',
   storyNoDigits: [
     'The bake sale needs a fair pie.',
-    'Every part must be the same size, so every friend gets a fair share.',
+    'Six friends share one pie. Every part must be the same size, so every friend gets a fair share.',
   ],
   storyDigits: [
     'The bake sale needs a fair pie.',
