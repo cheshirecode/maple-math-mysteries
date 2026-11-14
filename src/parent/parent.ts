@@ -114,7 +114,7 @@ export function openParentView(root: HTMLElement, back: () => void): void {
     try {
       const decoded = await decodeSaveText(importText.value)
       if (decoded.version !== 1) throw new Error('unsupported version')
-      const next = migrate(decoded.progress as Parameters<typeof migrate>[0])
+      const next = migrate(decoded.progress)
       setProgress(next)
       saveProgress(next)
       importMsg.textContent = 'Progress imported and saved.'

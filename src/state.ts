@@ -43,11 +43,18 @@ export function subscribe(fn: Listener): () => void {
   return () => listeners.delete(fn)
 }
 
-export function migrate(p: Progress): Progress {
+export function migrate(input: unknown): Progress {
   const base = emptyProgress()
-  const out: Progress = { ...base, ...p, schemaVersion: CURRENT_SCHEMA }
-  out.completedCases = Array.isArray(out.completedCases) ? out.completedCases : []
-  out.badges = Array.isArray(out.badges) ? out.badges : []
-  out.minutesPlayed = Number.isFinite(out.minutesPlayed) ? out.minutesPlayed : 0
-  return out
+  if (typeof input !== 'object' || input === null) return base
+  const p = input as Record<string, unknown>
+  const strings = (v: unknown): string[] =>
+    Array.isArray(v) ? v.filter((x): x is string => typeof x === 'string') : []
+  return {
+    schemaVersion: CURRENT_SCHEMA,
+    completedCases: strings(p.completedCases),
+    badges: strings(p.badges),
+    minutesPlayed: typeof p.minutesPlayed === 'number' && Number.isFinite(p.minutesPlayed) ? p.minutesPlayed : 0,
+    digitsMode: typeof p.digitsMode === 'boolean' ? p.digitsMode : false,
+    showDigitsDefault: typeof p.showDigitsDefault === 'boolean' ? p.showDigitsDefault : false,
+  }
 }

@@ -1,11 +1,15 @@
-export type WidgetKind = 'dots' | 'blocks' | 'arrays' | 'fraction' | 'pattern'
+export type WidgetKind = 'dots' | 'blocks' | 'arrays' | 'fraction' | 'pattern' | 'measure' | 'crate' | 'spinner' | 'coins'
 
 export type PuzzleData =
-  | { kind: 'dots'; count: number; pairTarget: number; pairA: number }
+  | { kind: 'dots'; pairTarget: number; pairA: number }
   | { kind: 'blocks'; hundreds: number; tens: number; ones: number }
   | { kind: 'arrays'; rows: number; cols: number }
   | { kind: 'fraction'; parts: number }
   | { kind: 'pattern'; steps: number[] }
+  | { kind: 'measure'; cups: number; options: number[] }
+  | { kind: 'crate'; shape: 'cube' | 'prism' | 'cylinder'; suspects: number[] }
+  | { kind: 'spinner'; slices: { colour: string; weight: number }[]; answer: string }
+  | { kind: 'coins'; target: number[] }
 
 export interface CaseDef {
   id: string
@@ -27,6 +31,10 @@ export const BC_GROUPS = [
   'multiplication and division concepts',
   'fraction concepts',
   'patterns and pattern rules',
+  'measurement and time',
+  '3d objects and graphs',
+  'likelihood of simulated events',
+  'financial literacy',
 ] as const
 
 export function validateCase(def: CaseDef): string[] {

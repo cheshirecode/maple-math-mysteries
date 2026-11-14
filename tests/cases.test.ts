@@ -20,12 +20,10 @@ describe('digits guard', () => {
     assertStrict.equal(ids.size, CASES.length)
   })
 
-  it('digits variants exist where the puzzle carries numerals', () => {
+  it('digits variants exist for every case', () => {
     for (const c of CASES) {
-      if (c.puzzle.kind === 'blocks' || c.puzzle.kind === 'dots') {
-        assertStrict(typeof c.storyDigits !== 'undefined', `${c.id} needs storyDigits`)
-        assertStrict(typeof c.questionDigits !== 'undefined', `${c.id} needs questionDigits`)
-      }
+      assertStrict(typeof c.storyDigits !== 'undefined', `${c.id} needs storyDigits`)
+      assertStrict(typeof c.questionDigits !== 'undefined', `${c.id} needs questionDigits`)
     }
   })
 })

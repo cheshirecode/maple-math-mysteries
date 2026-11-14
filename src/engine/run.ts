@@ -5,6 +5,10 @@ import { widgetBlocks } from './widgets/blocks.ts'
 import { widgetArrays } from './widgets/arrays.ts'
 import { widgetFraction } from './widgets/fraction.ts'
 import { widgetPattern } from './widgets/pattern.ts'
+import { widgetMeasure } from './widgets/measure.ts'
+import { widgetCrate } from './widgets/crate.ts'
+import { widgetSpinner } from './widgets/spinner.ts'
+import { widgetCoins } from './widgets/coins.ts'
 
 export interface WidgetHooks {
   digitsMode: boolean
@@ -21,6 +25,10 @@ const runners: Record<
   arrays: widgetArrays,
   fraction: widgetFraction,
   pattern: widgetPattern,
+  measure: widgetMeasure,
+  crate: widgetCrate,
+  spinner: widgetSpinner,
+  coins: widgetCoins,
 }
 
 export interface RunOptions {

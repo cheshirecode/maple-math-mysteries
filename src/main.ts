@@ -1,5 +1,5 @@
 import { el } from './voice.ts'
-import { emptyProgress, getProgress, updateProgress, subscribe } from './state.ts'
+import { getProgress, migrate, updateProgress, subscribe } from './state.ts'
 import { loadProgress, saveProgress } from './save/store.ts'
 import { runCase } from './engine/run.ts'
 import { CASES } from './cases/index.ts'
@@ -21,11 +21,8 @@ export function start(): void {
   }
 
   if (stored) {
-    updateProgress(() => ({
-      ...emptyProgress(),
-      ...(stored as ReturnType<typeof emptyProgress>),
-      digitsMode: false,
-    }))
+    const restored = migrate(stored)
+    updateProgress(() => ({ ...restored, digitsMode: restored.showDigitsDefault }))
   }
 
   const header = el('header', 'topbar')
