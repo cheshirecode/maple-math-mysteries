@@ -74,5 +74,12 @@ export function start(): void {
   }
 
   render(root)
+
+  setInterval(() => {
+    if (document.visibilityState === 'visible') {
+      updateProgress((p) => ({ ...p, minutesPlayed: p.minutesPlayed + 1 }))
+    }
+  }, 60000)
 }
+
 start()
