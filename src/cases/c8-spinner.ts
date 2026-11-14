@@ -3,6 +3,7 @@ import type { CaseDef } from '../engine/case.ts'
 export const c8Spinner: CaseDef = {
   id: 'c8-spinner',
   group: 'likelihood of simulated events',
+  kidLabel: 'chance',
   badge: 'chance-teller',
   widget: 'spinner',
   titleNoDigits: 'The Likely Spinner',

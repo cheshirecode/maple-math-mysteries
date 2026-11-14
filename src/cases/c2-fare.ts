@@ -3,6 +3,7 @@ import type { CaseDef } from '../engine/case.ts'
 export const c2Fare: CaseDef = {
   id: 'c2-fare',
   group: 'addition and subtraction to 1000',
+  kidLabel: 'adding and subtracting',
   badge: 'fare-friend',
   widget: 'dots',
   titleNoDigits: 'The Streetcar Fare',

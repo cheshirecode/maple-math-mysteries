@@ -3,6 +3,7 @@ import type { CaseDef } from '../engine/case.ts'
 export const c7Crate: CaseDef = {
   id: 'c7-crate',
   group: '3d objects and graphs',
+  kidLabel: 'shapes and graphs',
   badge: 'crate-spotter',
   widget: 'crate',
   titleNoDigits: 'The Crate Clue',

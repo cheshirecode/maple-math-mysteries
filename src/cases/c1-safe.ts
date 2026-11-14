@@ -3,6 +3,7 @@ import type { CaseDef } from '../engine/case.ts'
 export const c1Safe: CaseDef = {
   id: 'c1-safe',
   group: 'number to 1000',
+  kidLabel: 'counting and place value',
   badge: 'safe-opener',
   widget: 'blocks',
   titleNoDigits: 'The Locked Safe',

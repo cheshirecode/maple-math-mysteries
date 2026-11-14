@@ -3,6 +3,7 @@ import type { CaseDef } from '../engine/case.ts'
 export const c4Pie: CaseDef = {
   id: 'c4-pie',
   group: 'fraction concepts',
+  kidLabel: 'equal parts',
   badge: 'fair-baker',
   widget: 'fraction',
   titleNoDigits: 'The Bake-Sale Pie',

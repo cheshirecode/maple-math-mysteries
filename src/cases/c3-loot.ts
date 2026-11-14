@@ -3,6 +3,7 @@ import type { CaseDef } from '../engine/case.ts'
 export const c3Loot: CaseDef = {
   id: 'c3-loot',
   group: 'multiplication and division concepts',
+  kidLabel: 'groups and sharing',
   badge: 'fair-sharer',
   widget: 'arrays',
   titleNoDigits: 'The Equal Loot',

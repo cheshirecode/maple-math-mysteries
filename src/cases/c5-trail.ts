@@ -3,6 +3,7 @@ import type { CaseDef } from '../engine/case.ts'
 export const c5Trail: CaseDef = {
   id: 'c5-trail',
   group: 'patterns and pattern rules',
+  kidLabel: 'growing patterns',
   badge: 'trail-follower',
   widget: 'pattern',
   titleNoDigits: 'The Growing Trail',

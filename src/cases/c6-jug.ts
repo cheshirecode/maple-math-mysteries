@@ -3,6 +3,7 @@ import type { CaseDef } from '../engine/case.ts'
 export const c6Jug: CaseDef = {
   id: 'c6-jug',
   group: 'measurement and time',
+  kidLabel: 'measuring and pouring',
   badge: 'jug-filler',
   widget: 'measure',
   titleNoDigits: 'The Thirsty Jug',

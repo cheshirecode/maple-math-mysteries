@@ -3,6 +3,7 @@ import type { CaseDef } from '../engine/case.ts'
 export const c9Stand: CaseDef = {
   id: 'c9-stand',
   group: 'financial literacy',
+  kidLabel: 'money sense',
   badge: 'fee-payer',
   widget: 'coins',
   titleNoDigits: 'The Snack-Stand Fee',

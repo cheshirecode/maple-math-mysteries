@@ -17,7 +17,7 @@ export function start(): void {
   const root = document.getElementById('app')
   if (!root) return
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').catch(() => undefined)
+    navigator.serviceWorker.register('./sw.js').catch(() => undefined)
   }
 
   if (stored) {
@@ -52,7 +52,7 @@ export function start(): void {
       const done = progress.completedCases.includes(def.id)
       const card = el('button', `case-card ${done ? 'done' : ''}`)
       card.append(el('span', 'case-card-title', def.titleNoDigits))
-      card.append(el('span', 'case-card-group', def.group))
+      card.append(el('span', 'case-card-group', def.kidLabel))
       if (done) card.append(el('span', 'case-card-badge', 'solved'))
       card.addEventListener('click', () => {
         runCase(main, def, {
