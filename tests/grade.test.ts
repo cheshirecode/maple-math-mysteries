@@ -1,7 +1,7 @@
 import assertStrict from 'node:assert/strict'
 import { describe, it } from 'node:test'
 import { GRADES, ACTIVE_GRADES, WORD, gradeCases, gradeWord, isGradeActive } from '../src/grades.ts'
-import { CASES } from '../src/cases/index.ts'
+import { CASES, CASES_G1, CASES_G2, CASES_G4, CASES_G5 } from '../src/cases/index.ts'
 import { migrate } from '../src/state.ts'
 
 describe('grade model', () => {
@@ -19,9 +19,10 @@ describe('grade model', () => {
 
   it('every grade is active and carries its own case set', () => {
     assertStrict.deepEqual([...ACTIVE_GRADES], [1, 2, 3, 4, 5])
+    const registry: Record<number, typeof CASES> = { 1: CASES_G1, 2: CASES_G2, 3: CASES, 4: CASES_G4, 5: CASES_G5 }
     for (const g of GRADES) {
       assertStrict.ok(isGradeActive(g), `grade ${g} must be active`)
-      assertStrict.equal(gradeCases(g).length, g === 3 ? CASES.length : 3)
+      assertStrict.deepEqual(gradeCases(g), registry[g])
     }
   })
 

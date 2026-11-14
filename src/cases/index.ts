@@ -8,7 +8,7 @@ import { c6Jug } from './c6-jug.ts'
 import { c7Crate } from './c7-crate.ts'
 import { c8Spinner } from './c8-spinner.ts'
 import { c9Stand } from './c9-stand.ts'
-import { c10Library, c11Ferry, c12Tip } from './extra.ts'
+import { c10Library, c11Ferry, c12Tip, c13Watch, c14FerryCount, c15Boundary, c16Bridge, c17Press, c18Harbour, c19Route, c20Kettle } from './extra.ts'
 import { CASES_G1 } from './grade1.ts'
 import { CASES_G2 } from './grade2.ts'
 import { CASES_G4 } from './grade4.ts'
@@ -27,6 +27,14 @@ export const CASES: CaseDef[] = [
   c10Library,
   c11Ferry,
   c12Tip,
+  c13Watch,
+  c14FerryCount,
+  c15Boundary,
+  c16Bridge,
+  c17Press,
+  c18Harbour,
+  c19Route,
+  c20Kettle,
 ]
 export { CASES_G1, CASES_G2, CASES_G4, CASES_G5 }
 export const ALL_CASES: CaseDef[] = [...CASES, ...CASES_G1, ...CASES_G2, ...CASES_G4, ...CASES_G5]
