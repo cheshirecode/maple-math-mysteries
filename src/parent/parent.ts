@@ -34,6 +34,7 @@ export function openParentView(root: HTMLElement, back: () => void): void {
       const salt = newSalt()
       const hash = await deriveCodeHash(a.value, salt)
       setCodeRecord(salt, hash)
+      unlocked = true
       msg.textContent = 'Access code saved.'
       setTimeout(() => openParentView(root, back), 400)
     })
