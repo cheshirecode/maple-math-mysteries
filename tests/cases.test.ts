@@ -55,6 +55,29 @@ describe('BC coverage', () => {
       }
     }
   })
+
+  it('compare puzzles name the strictly larger side', () => {
+    const value = (p: { hundreds: number; tens: number; ones: number }) => p.hundreds * 100 + p.tens * 10 + p.ones
+    for (const c of ALL_CASES) {
+      if (c.puzzle.kind !== 'compare') continue
+      const va = value(c.puzzle.a)
+      const vb = value(c.puzzle.b)
+      assertStrict.notEqual(va, vb, `${c.id}: compare sides must differ`)
+      assertStrict.equal(c.puzzle.more, va > vb ? 'a' : 'b', `${c.id}: more does not name the larger side`)
+    }
+  })
+
+  it('combine puzzles land inside three digits', () => {
+    const value = (p: { hundreds: number; tens: number; ones: number }) => p.hundreds * 100 + p.tens * 10 + p.ones
+    for (const c of ALL_CASES) {
+      if (c.puzzle.kind !== 'combine') continue
+      const start = value(c.puzzle.a)
+      const change = value(c.puzzle.b)
+      const result = c.puzzle.op === 'add' ? start + change : start - change
+      assertStrict.ok(result > 0, `${c.id}: combine result must be positive`)
+      assertStrict.ok(result <= 999, `${c.id}: combine result must stay inside three digits`)
+    }
+  })
 })
 
 describe('digits guard', () => {

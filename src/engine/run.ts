@@ -10,6 +10,8 @@ import { widgetMeasure } from './widgets/measure.ts'
 import { widgetCrate } from './widgets/crate.ts'
 import { widgetSpinner } from './widgets/spinner.ts'
 import { widgetCoins } from './widgets/coins.ts'
+import { widgetCompare } from './widgets/compare.ts'
+import { widgetCombine } from './widgets/combine.ts'
 
 export interface WidgetHooks {
   digitsMode: boolean
@@ -30,6 +32,8 @@ const runners: Record<
   crate: widgetCrate,
   spinner: widgetSpinner,
   coins: widgetCoins,
+  compare: widgetCompare,
+  combine: widgetCombine,
 }
 
 export interface RunOptions {

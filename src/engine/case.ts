@@ -1,4 +1,21 @@
-export type WidgetKind = 'dots' | 'blocks' | 'arrays' | 'fraction' | 'pattern' | 'measure' | 'crate' | 'spinner' | 'coins'
+export type WidgetKind =
+  | 'dots'
+  | 'blocks'
+  | 'arrays'
+  | 'fraction'
+  | 'pattern'
+  | 'measure'
+  | 'crate'
+  | 'spinner'
+  | 'coins'
+  | 'compare'
+  | 'combine'
+
+export interface BlockPicture {
+  hundreds: number
+  tens: number
+  ones: number
+}
 
 export type PuzzleData =
   | { kind: 'dots'; pairTarget: number; pairA: number }
@@ -10,6 +27,8 @@ export type PuzzleData =
   | { kind: 'crate'; shape: 'cube' | 'prism' | 'cylinder'; suspects: number[] }
   | { kind: 'spinner'; slices: { colour: string; weight: number }[]; answer: string }
   | { kind: 'coins'; target: number[] }
+  | { kind: 'compare'; a: BlockPicture; b: BlockPicture; more: 'a' | 'b' }
+  | { kind: 'combine'; op: 'add' | 'take'; a: BlockPicture; b: BlockPicture }
 
 export interface CaseDef {
   id: string

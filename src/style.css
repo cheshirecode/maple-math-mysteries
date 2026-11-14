@@ -309,8 +309,6 @@ body {
 .spinner-options,
 .measure-target,
 .fraction-options,
-.coins-fee,
-.coins-tray,
 .coins-controls {
   margin-inline: auto;
 }
@@ -320,11 +318,6 @@ body {
 .fraction-options,
 .pattern-options,
 .spinner-options,
-.coins-tray,
-.coins-fee {
-  justify-content: center;
-}
-
 .case-feedback {
   margin: 0.4rem 0 0;
   font-weight: 800;
@@ -767,31 +760,6 @@ body {
   background: radial-gradient(circle at 32% 30%, #e2ab7c, #b06f3c 75%);
 }
 
-.coins-fee,
-.coins-tray {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  min-height: 44px;
-  margin: 0.5rem 0;
-}
-
-.coins-fee {
-  background: var(--gold-tint);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-s);
-  padding: 0.4rem 0.6rem;
-  width: max-content;
-}
-
-.coins-tray {
-  border: 2px dashed var(--line);
-  border-radius: var(--radius-m);
-  padding: 0.5rem 0.6rem;
-  width: 92%;
-  background: var(--surface);
-}
-
 .coins-tray-info {
   margin: 0.2rem 0;
   color: var(--ink-soft);
@@ -809,6 +777,113 @@ body {
   background: var(--surface);
   color: var(--ink);
   border: 1px solid var(--line);
+}
+
+/* Coins: fee row and paid row share aligned slots so coins pair up */
+
+.coins-board {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0.5rem auto;
+  width: max-content;
+}
+
+.coins-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 40px;
+}
+
+.coins-row-label {
+  width: 84px;
+  font-weight: 800;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  flex: none;
+}
+
+.coins-fee-row {
+  background: var(--gold-tint);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+  padding: 4px 6px;
+}
+
+.coin-slot {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.coin-slot-empty {
+  border: 2px dashed rgb(110 101 96 / 40%);
+  border-radius: 50%;
+}
+
+/* Compare: two block pictures side by side, tap the one with more */
+
+.compare-options {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 0.8rem;
+}
+
+.compare-option {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  background: var(--surface);
+  padding: 12px 16px;
+  cursor: pointer;
+  box-shadow: var(--shadow-s);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.compare-option:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-m);
+}
+
+.compare-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.compare-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+/* Combine: two labelled pictures, then build the answer */
+
+.combine-pictures {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0.6rem 0;
+}
+
+.combine-picture {
+  background: var(--gold-tint);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-s);
+  padding: 8px 12px;
+}
+
+.combine-label {
+  margin: 0 0 4px;
+  font-weight: 800;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
 }
 
 /* Parent view */
