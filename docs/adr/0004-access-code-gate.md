@@ -4,8 +4,8 @@ Status: accepted
 
 ## Context
 
-The parent view carries import, export, and erase. The child must not reach
-it by tapping around. There is no server, so there can be no login; and a
+The parent view carries import, export, and erase. The child must not
+reach it by tapping around. There is no server, so there is no login. A
 family app collects nothing, so there is nothing to recover by email.
 
 ## Decision

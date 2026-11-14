@@ -4,8 +4,8 @@ Status: accepted
 
 ## Context
 
-The game must be free to host for a public, open-source repo, installable
-on a family tablet, and usable offline at a cabin. No account, no backend,
+The game must be free to host. It must install on a family tablet and
+play offline at a cabin. No account, no backend,
 no analytics are wanted.
 
 ## Decision

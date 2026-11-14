@@ -4,8 +4,8 @@ Status: accepted
 
 ## Context
 
-The app is a small static game for one child: a case picker, nine puzzle
-widgets, a save system, and a parent view. It must keep working on free
+The app is a small static game for one child. It needs a case picker,
+nine puzzle widgets, a save system, and a parent view. It must keep working on free
 static hosting for years, with minimal maintenance. The team is one parent
 plus an agent; long-lived beats fashionable.
 

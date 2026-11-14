@@ -4,8 +4,9 @@ Status: accepted
 
 ## Context
 
-Progress must move between devices with no accounts and no server: a long
-string the parent saves, then imports in a fresh session. Import must fail
+Progress must move between devices with no accounts and no server. One
+long string carries it. The parent saves it, then imports it in a fresh
+session. Import must fail
 loudly on truncation or corruption, and old strings must keep working as the
 schema grows.
 

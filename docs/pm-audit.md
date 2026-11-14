@@ -1,9 +1,11 @@
 # Product audit: the child flow
 
-Audience: one eight-year-old, mild ADHD, prefers not to see numerals.
-Lens: first-run experience, the case loop, failure states, parent friction,
-privacy. Status `fixed` ships in this wave. Status `later` needs a design
-call or art, not a bug fix.
+The player is one eight-year-old with mild ADHD. She avoids numerals, so
+quantity comes first and digits stay hidden until she asks for them.
+
+This pass covers the first run, the case loop, failure states, parent
+friction, and privacy. A finding marked `fixed` ships now. A finding marked
+`later` needs art or a product call, not a bug fix.
 
 ## Walk and findings
 
@@ -14,10 +16,10 @@ call or art, not a bug fix.
 | Case open | No way back until solved. A wrong tap trapped the child. Every case now shows "Back to the map". | fixed |
 | Case loop | The story reads aloud once. Buttons carry no speech. Tap-to-speak on prompt lines would help pre-readers. | later |
 | Dots case | 13 dots in one strip is over the subitizing range. Rows now wrap at five dots, a ten-frame shape. | fixed |
-| Wrong answer | No red X, no timer: a retry line and new arrangement. Matches the ADHD brief. | keep |
-| Right answer | Text "Case closed!" plus a badge. A confetti beat would add delight; art needed. | later |
+| Wrong answer | No red X, no timer. A wrong tap brings a retry line and a fresh arrangement. This is the right shape for this child. | keep |
+| Right answer | Text "Case closed!" plus a badge. A small confetti burst would make the win feel bigger. It needs art first. | later |
 | Digits toggle | Off by default; parent default respected at load. No digit renders before the toggle; enforced by test and browser check. | keep |
-| Session | No natural stop. A "detective break" nudge after three solved cases would fit the ADHD brief; needs a design call. | later |
+| Session | No natural stop. A gentle "detective break" after three solved cases would help. Needs a product call first. | later |
 | Parent gate | One code, hash-only, wrong code does nothing. Friction is one field; acceptable. | keep |
 | Export/import | One string, checksum, version reject. Verified across two fresh browser profiles. | keep |
 | Coins case | Coin sizes differ per value; colour is not the only signal. Fine for colour-blind play. | keep |
@@ -36,6 +38,7 @@ call or art, not a bug fix.
 
 ## Verdict
 
-The flow is sound for the MVP audience: no fail states, no timers, digits
-gated, escape hatches everywhere, progress portable by hand. The deferred
-items are polish, not defects.
+The flow fits this child. Nothing punishes a wrong tap. No timer presses
+her. Digits stay hidden until asked for. Every case has a way out, and
+progress moves by hand between devices. What is left is polish, not
+defects.

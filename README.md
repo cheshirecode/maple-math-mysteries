@@ -60,10 +60,10 @@ npm run build
 npm run test:e2e
 ```
 
-Node 24 or newer (the test runner uses native TypeScript stripping).
-The e2e suite drives headless Chromium through the desktop-export to
-mobile-import handoff; `PW_CHANNEL=chrome` uses an installed Chrome
-instead of the bundled Chromium.
+Node 24 or newer. The runner reads TypeScript without a build step.
+
+The e2e suite runs the full handoff in headless Chromium. Set
+`PW_CHANNEL=chrome` to use an installed Chrome instead.
 
 ## Save-string
 
@@ -75,11 +75,11 @@ A fresh session restores it from the parent view. See
 
 The CSS lints with stylelint; JS/TS with oxlint.
 
-See [docs/adr/](docs/adr/) for the seven recorded decisions: stack, case
-engine, save-string format, access code, hosting, the no-digit rule, and
-the design system. The product audit of the child flow lives in
-[docs/pm-audit.md](docs/pm-audit.md). Requirements trace to checks in
-[docs/requirements.md](docs/requirements.md).
+Seven decisions live in [docs/adr/](docs/adr/).
+
+The child-flow audit is [docs/pm-audit.md](docs/pm-audit.md).
+
+Requirements trace to checks in [docs/requirements.md](docs/requirements.md).
 
 ## Hosting
 

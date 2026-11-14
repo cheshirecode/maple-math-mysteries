@@ -1,8 +1,8 @@
 # Requirements traceability
 
-Each product requirement maps to a mechanism and a check. A requirement with
-no check is a gap; a check with no requirement is coverage theater. This file
-syncs the two. Last reviewed: 2026-11-14, head `main`.
+Each requirement below maps to one mechanism and one check. If a
+requirement has no check, we do not know if the app meets it. If a check has
+no requirement, it guards nothing and should go. Last reviewed: 2026-11-14.
 
 ## Traceability matrix
 
@@ -17,13 +17,13 @@ syncs the two. Last reviewed: 2026-11-14, head `main`.
 | R7 | Layout works from phone to desktop | Fluid `#app` up to 1080px; `clamp()` type; 4-up grid at width; `.stage` view container | E2e: no horizontal overflow at 390px; CI e2e job | `src/style.css` |
 | R8 | Wrong answers never punish | Retry line, new arrangement; no timers, no red X | E2e: wrong-tap path in dots case; manual PM audit | `src/engine/run.ts`, `docs/pm-audit.md` |
 | R9 | App installs and plays offline | PWA manifest + network-first SW, versioned cache | Manual: reload with network cut renders fully. SW registration asserted in e2e-era checks | `public/sw.js`, `public/manifest.webmanifest` |
-| R10 | Voice reads every text aloud | Web Speech wrapper on story lines | Unit-free: presence of `speak()` call path; manual audit lists it deferred (tap-to-speak) | `src/voice.ts` |
+| R10 | Story text reads aloud on case open; prompt tap-to-speak is deferred (see pm-audit) | Web Speech wrapper on story lines | Unit-free: presence of `speak()` call path; manual audit lists it deferred (tap-to-speak) | `src/voice.ts` |
 
-## Sync rules
+## Keeping this file true
 
-- A new requirement gets a row before code lands; a dropped requirement
-  keeps its row with a removal note.
-- A check that cannot run headless stays in the matrix with its manual
-  owner and last run date.
-- CI green is evidence only when the relevant check is wired into the
-  workflow file; see `.github/workflows/ci.yml`.
+- Add a row before the code for a new requirement lands. Keep the row when
+  a requirement is dropped, and note why it went.
+- A check that cannot run headless stays listed with its manual owner and
+  the date it last ran.
+- CI counts as evidence only when the check runs in
+  `.github/workflows/ci.yml`. A green badge alone proves nothing.

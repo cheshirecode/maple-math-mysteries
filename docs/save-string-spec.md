@@ -33,6 +33,7 @@ A tampered byte fails step 3. A truncated string fails step 1 or 3.
 ```json
 {
   "schemaVersion": 1,
+  "grade": 3,
   "completedCases": ["c1-safe"],
   "badges": ["safe-opener"],
   "minutesPlayed": 12,
