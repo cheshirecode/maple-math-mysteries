@@ -53,6 +53,9 @@ export function runCase(root: HTMLElement, def: CaseDef, opts: RunOptions): void
   box.append(area)
   const feedback = el('p', 'case-feedback', '')
   box.append(feedback)
+  const back = el('button', 'btn btn-ghost', 'Back to the map')
+  back.addEventListener('click', opts.onDone)
+  box.append(back)
   root.append(box)
 
   const hooks: WidgetHooks = {
@@ -65,9 +68,6 @@ export function runCase(root: HTMLElement, def: CaseDef, opts: RunOptions): void
       feedback.textContent = 'Case closed!'
       speak('Case closed.')
       opts.onBadge(def.badge)
-      const again = el('button', 'btn', 'Back to the map')
-      again.addEventListener('click', opts.onDone)
-      box.append(again)
     },
   }
   runners[def.widget](area, def.puzzle, hooks)

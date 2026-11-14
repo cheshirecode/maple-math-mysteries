@@ -48,9 +48,14 @@ export function start(): void {
     digitsBtn.textContent = getProgress().digitsMode ? 'hide digits' : 'show digits'
     main.innerHTML = ''
     const progress = getProgress()
+    let nextAssigned = false
     for (const def of CASES) {
       const done = progress.completedCases.includes(def.id)
-      const card = el('button', `case-card ${done ? 'done' : ''}`)
+      const card = el('button', `case-card ${done ? 'done' : ''} ${!done && !nextAssigned ? 'next' : ''}`)
+      if (!done && !nextAssigned) {
+        card.append(el('span', 'case-card-hint', 'start here'))
+        nextAssigned = true
+      }
       card.append(el('span', 'case-card-title', def.titleNoDigits))
       card.append(el('span', 'case-card-group', def.kidLabel))
       if (done) card.append(el('span', 'case-card-badge', 'solved'))

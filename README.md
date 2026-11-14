@@ -49,6 +49,7 @@ docs/save-string-spec.md   save-string envelope spec
 ```
 npm install
 npm run dev
+npm run lint
 npm test
 npm run typecheck
 npm run build
@@ -66,6 +67,8 @@ A fresh session restores it from the parent view. See
 
 See [docs/adr/](docs/adr/) for the six recorded decisions: stack, case
 engine, save-string format, access code, hosting, and the no-digit rule.
+The product audit of the child flow lives in
+[docs/pm-audit.md](docs/pm-audit.md).
 
 ## Hosting
 

@@ -107,7 +107,22 @@ body {
 .dots-row {
   display: flex;
   flex-wrap: wrap;
-  max-width: 200px;
+  max-width: 145px;
+}
+
+.case-card.next {
+  outline: 4px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.case-card-hint {
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: #fff;
+  background: var(--green);
+  border-radius: 8px;
+  padding: 2px 8px;
+  width: max-content;
 }
 
 .dots-options {
