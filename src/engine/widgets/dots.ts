@@ -20,6 +20,12 @@ export function widgetDots(root: HTMLElement, puzzle: PuzzleData, hooks: WidgetH
   )
   const held = el('div', 'dots-held')
   held.append(dotRow(puzzle.pairA))
+  const missing = puzzle.pairTarget - puzzle.pairA
+  if (missing > 0) {
+    const ghosts = el('div', 'dots-row')
+    for (let i = 0; i < missing; i++) ghosts.append(el('span', 'dot dot-ghost'))
+    held.append(ghosts)
+  }
   const options = el('div', 'dots-options')
   const choices = [...new Set([answer, answer + 1, Math.max(1, answer - 1)])]
   for (const c of choices) {
