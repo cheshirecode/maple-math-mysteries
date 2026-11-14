@@ -44,17 +44,12 @@ A tampered byte fails step 3. A truncated string fails step 1 or 3.
 
 No names, no dates, no identifiers — progress numbers and badge ids only.
 
-## Access code
+## State code
 
-One code, set by the parent on first parent-view entry, covers every setting
-and all progress. The device stores a salted PBKDF2-SHA-256 hash only
-(210000 iterations, WebCrypto). A wrong code does nothing. The forgot-code
-reset erases all local data, then the parent imports the last save-string.
+One save code holds every piece of state: progress, settings, and any field added later. The parent exports it from this view and loads it on any fresh device to restore the same state. There is no lock and no account: the code itself is the transfer.
 
 ## Roles
 
 - `src/save/string.ts` — encode and decode, CRC-32, migration.
-- `src/save/code.ts` — code hash and check.
 - `src/save/store.ts` — localStorage autosave.
 - `tests/save.test.ts` — round-trip and tamper checks.
-- `tests/code.test.ts` — code hash and wrong-code checks.

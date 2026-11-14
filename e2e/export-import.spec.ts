@@ -33,13 +33,9 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
   await expect(page.locator('.case-feedback')).toHaveText('Case closed!')
 
   await page.getByRole('button', { name: 'parent' }).click()
-  await expect(page.locator('.parent-code')).toHaveCount(2)
-  await page.locator('.parent-code').first().fill('maplesyrup42')
-  await page.locator('.parent-code').nth(1).fill('maplesyrup42')
-  await page.getByRole('button', { name: 'Set access code' }).click()
   await expect(page.locator('.parent-stats')).toBeVisible()
 
-  await page.getByRole('button', { name: 'Build save-string' }).click()
+  await page.getByRole('button', { name: 'Build save code' }).click()
   const exportBox = page.locator('.parent-io').first()
   await expect(exportBox).toHaveValue(/^MDA1\.1\./)
   const save = await exportBox.inputValue()
@@ -65,14 +61,10 @@ async function importOnMobile(
   await expect(m.locator('.case-card.done')).toHaveCount(0)
 
   await m.getByRole('button', { name: 'parent' }).click()
-  await expect(m.locator('.parent-code')).toHaveCount(2)
-  await m.locator('.parent-code').first().fill('pancake99')
-  await m.locator('.parent-code').nth(1).fill('pancake99')
-  await m.getByRole('button', { name: 'Set access code' }).click()
   await expect(m.locator('.parent-stats')).toBeVisible()
 
   await m.locator('.parent-io').nth(1).fill(carried.save)
-  await m.getByRole('button', { name: 'Import', exact: true }).click()
+  await m.getByRole('button', { name: 'Load code', exact: true }).click()
   await expect(m.locator('.parent-msg').last()).toHaveText('Progress imported and saved.')
 
   await m.getByRole('button', { name: 'Back to the map' }).click()

@@ -20,7 +20,7 @@ friction, and privacy. A finding marked `fixed` ships now. A finding marked
 | Right answer | Text "Case closed!" plus a badge. A small confetti burst would make the win feel bigger. It needs art first. | later |
 | Digits toggle | Off by default; parent default respected at load. No digit renders before the toggle; enforced by test and browser check. | keep |
 | Session | No natural stop. A gentle "detective break" after three solved cases would help. Needs a product call first. | later |
-| Parent gate | One code, hash-only, wrong code does nothing. Friction is one field; acceptable. | keep |
+| Parent gate | No gate, no lock. One code carries all state; import loads it anywhere. Friction is one paste. | keep |
 | Export/import | One string, checksum, version reject. Verified across two fresh browser profiles. | keep |
 | Coins case | Coin sizes differ per value; colour is not the only signal. Fine for colour-blind play. | keep |
 | Spinner case | Answer buttons name colours in text, so the label survives colour blindness. | keep |

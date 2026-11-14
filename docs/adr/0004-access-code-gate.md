@@ -1,6 +1,6 @@
 # ADR 0004: One access code, hash-only storage, no login
 
-Status: accepted
+Status: superseded by [0008](0008-state-code-replaces-gate.md)
 
 ## Context
 

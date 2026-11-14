@@ -12,3 +12,4 @@ Numbering is sequential; status is `accepted` or `superseded`.
 | [0005](0005-github-pages-static-hosting.md) | GitHub Pages via Actions; static-only forever |
 | [0006](0006-no-digits-before-toggle.md) | Digit-free authoring, enforced by test |
 | [0007](0007-warm-paper-design-system.md) | Warm-paper design system, no web fonts |
+| [0008](0008-state-code-replaces-gate.md) | State code replaces the access-code gate |

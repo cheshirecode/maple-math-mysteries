@@ -9,8 +9,8 @@ British Columbia curriculum. Quantity comes before digits: every case starts
 with dot patterns, blocks, nets, jugs, and coins. Numerals appear only after
 the child taps "show digits."
 
-No login. No accounts. No data collection. One parent-set access code guards
-the parent view, including import and export of progress.
+No login. No accounts. No data collection. One save code carries all state
+between devices: export it, load it on a fresh device, keep playing.
 
 ## Cases (BC grade-3 content standards)
 
