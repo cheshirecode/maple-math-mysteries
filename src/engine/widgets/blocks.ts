@@ -56,6 +56,7 @@ export function widgetBlocks(root: HTMLElement, puzzle: PuzzleData, hooks: Widge
 
   const target = el('div', 'blocks-target')
   for (const n of NAMES) {
+    if (want[n] <= 0) continue
     const row = el('div', `blocks-target-row ${n}`)
     for (let i = 0; i < want[n]; i++) row.append(el('span', 'block'))
     target.append(row)
