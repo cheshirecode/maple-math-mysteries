@@ -35,7 +35,7 @@ export function start(): void {
   })
   header.append(digitsBtn)
   const parentBtn = el('button', 'btn btn-ghost', 'parent')
-  parentBtn.addEventListener('click', () => openParentView(root, () => render(root)))
+  parentBtn.addEventListener('click', () => openParentView(main, () => render(root)))
   header.append(parentBtn)
   root.append(header)
 
