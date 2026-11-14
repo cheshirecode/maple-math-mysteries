@@ -87,7 +87,11 @@ export function start(): void {
   const stage = el('div', 'stage')
   const parentBtn = el('button', 'btn btn-ghost btn-small', 'Parent area')
   parentBtn.setAttribute('aria-label', 'Open parent area')
-  parentBtn.addEventListener('click', () => openParentView(stage, () => render()))
+  parentBtn.addEventListener('click', () => {
+    note.textContent = ''
+    clearTimeout(noteTimer)
+    openParentView(stage, () => render())
+  })
   header.append(parentBtn)
   root.append(header, picker, note, stage)
 
