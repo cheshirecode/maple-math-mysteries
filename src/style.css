@@ -814,13 +814,23 @@ body {
 }
 
 .grade-pill.off {
-  color: #c5bdb2;
+  color: #8d8578;
   cursor: default;
 }
 
 .grade-pill.off:hover {
-  color: #c5bdb2;
+  color: #8d8578;
   background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Small screens */
