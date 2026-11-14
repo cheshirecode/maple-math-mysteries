@@ -3,7 +3,7 @@ import { emptyProgress, getProgress, migrate, setProgress, updateProgress } from
 import { hasCode, getCodeRecord, setCodeRecord, eraseAll, saveProgress } from '../save/store.ts'
 import { deriveCodeHash, newSalt, verifyCodeHash } from '../save/code.ts'
 import { buildSaveText, decodeSaveText } from '../save/string.ts'
-import { CASES } from '../cases/index.ts'
+import { gradeCases } from '../grades.ts'
 
 let unlocked = false
 
@@ -67,7 +67,11 @@ export function openParentView(root: HTMLElement, back: () => void): void {
   }
 
   const progress = getProgress()
-  const groups = new Set(CASES.filter((c) => progress.completedCases.includes(c.id)).map((c) => c.group))
+  const groups = new Set(
+    gradeCases(progress.grade)
+      .filter((c) => progress.completedCases.includes(c.id))
+      .map((c) => c.group),
+  )
   const stats = el('div', 'parent-stats')
   stats.append(el('p', '', `Minutes played: ${progress.minutesPlayed}`))
   stats.append(el('p', '', `Cases solved: ${progress.completedCases.length}`))

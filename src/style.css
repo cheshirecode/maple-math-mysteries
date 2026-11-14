@@ -773,6 +773,56 @@ body {
   color: var(--accent-deep);
 }
 
+/* Grade picker */
+
+.grade-picker {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 0 1rem;
+  padding: 0.3rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-s);
+}
+
+.grade-pill {
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-pill);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.86rem;
+  padding: 0 0.8rem;
+  min-height: 36px;
+  cursor: pointer;
+  color: var(--ink-soft);
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.grade-pill:hover {
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.grade-pill.selected {
+  background: linear-gradient(180deg, #c2492f 0%, var(--accent) 100%);
+  color: #fff;
+  box-shadow: var(--shadow-s);
+}
+
+.grade-pill.off {
+  color: #c5bdb2;
+  cursor: default;
+}
+
+.grade-pill.off:hover {
+  color: #c5bdb2;
+  background: transparent;
+}
+
 /* Small screens */
 
 @media (max-width: 480px) {

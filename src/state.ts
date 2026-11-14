@@ -1,5 +1,6 @@
 export interface Progress {
   schemaVersion: number
+  grade: number
   completedCases: string[]
   badges: string[]
   minutesPlayed: number
@@ -8,10 +9,12 @@ export interface Progress {
 }
 
 export const CURRENT_SCHEMA = 1
+export const DEFAULT_GRADE = 3
 
 export function emptyProgress(): Progress {
   return {
     schemaVersion: CURRENT_SCHEMA,
+    grade: DEFAULT_GRADE,
     completedCases: [],
     badges: [],
     minutesPlayed: 0,
@@ -49,8 +52,11 @@ export function migrate(input: unknown): Progress {
   const p = input as Record<string, unknown>
   const strings = (v: unknown): string[] =>
     Array.isArray(v) ? v.filter((x): x is string => typeof x === 'string') : []
+  const grade =
+    typeof p.grade === 'number' && [1, 2, 3, 4, 5].includes(p.grade) ? p.grade : DEFAULT_GRADE
   return {
     schemaVersion: CURRENT_SCHEMA,
+    grade,
     completedCases: strings(p.completedCases),
     badges: strings(p.badges),
     minutesPlayed: typeof p.minutesPlayed === 'number' && Number.isFinite(p.minutesPlayed) ? p.minutesPlayed : 0,

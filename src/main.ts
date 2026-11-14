@@ -2,7 +2,7 @@ import { el } from './voice.ts'
 import { getProgress, migrate, updateProgress, subscribe } from './state.ts'
 import { loadProgress, saveProgress } from './save/store.ts'
 import { runCase } from './engine/run.ts'
-import { CASES } from './cases/index.ts'
+import { GRADES, gradeCases, gradeWord, isGradeActive } from './grades.ts'
 import { openParentView } from './parent/parent.ts'
 import './style.css'
 
@@ -28,6 +28,44 @@ export function start(): void {
   const header = el('header', 'topbar')
   const brand = el('h1', 'brand', 'Maple Math Mysteries')
   header.append(brand)
+
+  const picker = el('div', 'grade-picker')
+  picker.setAttribute('role', 'group')
+  picker.setAttribute('aria-label', 'Grade')
+  const renderPicker = () => {
+    picker.innerHTML = ''
+    const progress = getProgress()
+    for (const g of GRADES) {
+      const active = isGradeActive(g)
+      const selected = progress.grade === g
+      const b = el(
+        'button',
+        `grade-pill ${selected ? 'selected' : ''} ${active ? '' : 'off'}`,
+        `grade ${gradeWord(g, progress.digitsMode)}`,
+      )
+      if (selected) b.setAttribute('aria-pressed', 'true')
+      else b.setAttribute('aria-pressed', 'false')
+      if (!active) {
+        b.setAttribute('aria-disabled', 'true')
+        b.tabIndex = -1
+        b.title = 'Coming soon'
+        b.dataset.soon = 'true'
+      } else if (!selected) {
+        b.addEventListener('click', () => {
+          updateProgress((p) => ({
+            ...p,
+            grade: g,
+            digitsMode: p.digitsMode,
+          }))
+          render()
+        })
+      }
+      picker.append(b)
+    }
+  }
+  renderPicker()
+  header.append(picker)
+
   const digitsBtn = el('button', 'btn btn-digits', 'show digits')
   digitsBtn.addEventListener('click', () => {
     updateProgress((p) => ({ ...p, digitsMode: !p.digitsMode }))
@@ -43,13 +81,13 @@ export function start(): void {
   root.append(main)
 
   const render = () => {
-    // rerender handlers were bound with the latest render closure
     document.body.dataset.digitsMode = String(getProgress().digitsMode)
     digitsBtn.textContent = getProgress().digitsMode ? 'hide digits' : 'show digits'
+    renderPicker()
     main.innerHTML = ''
     const progress = getProgress()
     let nextAssigned = false
-    for (const def of CASES) {
+    for (const def of gradeCases(progress.grade)) {
       const done = progress.completedCases.includes(def.id)
       const card = el('button', `case-card ${done ? 'done' : ''} ${!done && !nextAssigned ? 'next' : ''}`)
       if (!done && !nextAssigned) {
