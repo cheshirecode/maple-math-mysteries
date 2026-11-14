@@ -2,6 +2,7 @@ import { el } from './voice.ts'
 import { getProgress, migrate, updateProgress, subscribe } from './state.ts'
 import { loadProgress, saveProgress } from './save/store.ts'
 import { runCase, confetti } from './engine/run.ts'
+import { playFanfare } from './sfx.ts'
 import { GRADES, gradeCases, gradeWord, isGradeActive, COUNT_WORD } from './grades.ts'
 import { openParentView, importSaveText } from './parent/parent.ts'
 import './style.css'
@@ -186,7 +187,8 @@ export function start(): void {
       keepBtn.addEventListener('click', () => render())
       banner.append(keepBtn)
       stage.append(banner)
-      confetti(banner)
+      confetti(banner, true)
+      playFanfare()
     }
     if (breakDue) {
       const nudge = el('div', 'break-nudge')

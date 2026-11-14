@@ -4,6 +4,7 @@ import { eraseAll, saveProgress } from '../save/store.ts'
 import { buildSaveText, decodeSaveText } from '../save/string.ts'
 import { gradeCases } from '../grades.ts'
 import qrcode from '../lib/qrcode.js'
+import { isMuted, setMuted } from '../sfx.ts'
 
 export async function importSaveText(text: string): Promise<void> {
   const decoded = await decodeSaveText(text)
@@ -33,6 +34,12 @@ export function openParentView(root: HTMLElement, back: () => void): void {
   stats.append(el('p', '', `Groups covered: ${[...groups].join(', ') || 'none yet'}`))
   view.append(stats)
 
+  const soundBtn = el('button', 'btn btn-ghost btn-small', isMuted() ? 'Sounds: off' : 'Sounds: on')
+  soundBtn.addEventListener('click', () => {
+    setMuted(!isMuted())
+    soundBtn.textContent = isMuted() ? 'Sounds: off' : 'Sounds: on'
+  })
+  view.append(soundBtn)
 
   const exportBox = el('div', 'parent-box')
   exportBox.append(el('h3', '', 'Save code'))

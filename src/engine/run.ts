@@ -1,4 +1,5 @@
 import { el } from '../voice.ts'
+import { playSolve, playRetry } from '../sfx.ts'
 import type { CaseDef, PuzzleData } from './case.ts'
 import { widgetDots } from './widgets/dots.ts'
 import { widgetBlocks } from './widgets/blocks.ts'
@@ -61,9 +62,11 @@ export function runCase(root: HTMLElement, def: CaseDef, opts: RunOptions): void
     digitsMode,
     onRetry: () => {
       feedback.textContent = 'Not quite. Look again, detective.'
+      playRetry()
     },
     onSolved: () => {
       feedback.textContent = 'Case closed!'
+      playSolve()
       confetti(box)
       opts.onBadge(def.badge)
     },
@@ -75,20 +78,23 @@ export function runCase(root: HTMLElement, def: CaseDef, opts: RunOptions): void
 
 const CONFETTI_COLORS = ['#e8443a', '#ffc834', '#2ea44f', '#4a90d9']
 
-export function confetti(box: HTMLElement): void {
+export function confetti(box: HTMLElement, big = false): void {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-  for (let i = 0; i < 24; i++) {
+  const count = big ? 64 : 36
+  for (let i = 0; i < count; i++) {
     const bit = document.createElement('div')
     bit.className = 'confetti-bit'
     bit.style.left = `${5 + Math.random() * 90}%`
-    const size = 8 + Math.floor(Math.random() * 7)
-    bit.style.width = `${size}px`
-    bit.style.height = `${size}px`
-    bit.style.borderRadius = i % 2 === 0 ? '2px' : '50%'
+    const shape = i % 3
+    const size = (big ? 10 : 8) + Math.floor(Math.random() * 7)
+    bit.style.width = `${shape === 2 ? size * 2.4 : size}px`
+    bit.style.height = `${shape === 2 ? size * 0.6 : size}px`
+    bit.style.borderRadius = shape === 1 ? '50%' : '2px'
     bit.style.background = CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)]
     bit.style.setProperty('--dx', `${Math.floor(Math.random() * 241) - 120}px`)
     bit.style.setProperty('--rot', `${Math.floor(Math.random() * 1081) - 540}deg`)
+    bit.style.animationDelay = `${Math.floor(Math.random() * 180)}ms`
     box.append(bit)
-    setTimeout(() => bit.remove(), 950)
+    setTimeout(() => bit.remove(), 1150)
   }
 }
