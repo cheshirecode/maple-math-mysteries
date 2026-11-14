@@ -22,7 +22,8 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
   await expect(page.locator('.grade-pill.selected')).toHaveText('grade three')
   await expect(page.locator('.grade-pill.off')).toHaveCount(4)
   await expect(page.locator('.grade-pill.off').first()).toHaveAttribute('aria-disabled', 'true')
-  await page.locator('.grade-pill.off').first().click()
+  // aria-disabled pills stay tappable by design - bypass the actionability check.
+  await page.locator('.grade-pill.off').first().click({ force: true })
   await expect(page.locator('.grade-note')).toHaveText('grade one is coming soon')
 
   await page.locator('.case-card').first().click()
