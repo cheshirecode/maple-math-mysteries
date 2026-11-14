@@ -22,6 +22,8 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
   await expect(page.locator('.grade-pill.selected')).toHaveText('grade three')
   await expect(page.locator('.grade-pill.off')).toHaveCount(4)
   await expect(page.locator('.grade-pill.off').first()).toHaveAttribute('aria-disabled', 'true')
+  await page.locator('.grade-pill.off').first().click()
+  await expect(page.locator('.grade-note')).toHaveText('grade one is coming soon')
 
   await page.locator('.case-card').first().click()
   await expect(page.locator('.case-title')).toHaveText('The Locked Safe')

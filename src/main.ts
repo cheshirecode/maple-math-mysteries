@@ -35,6 +35,16 @@ export function start(): void {
   const picker = el('div', 'grade-picker')
   picker.setAttribute('role', 'group')
   picker.setAttribute('aria-label', 'Grade')
+  const note = el('div', 'grade-note')
+  note.setAttribute('aria-live', 'polite')
+  let noteTimer: ReturnType<typeof setTimeout> | undefined
+  const showNote = (text: string) => {
+    note.textContent = text
+    clearTimeout(noteTimer)
+    noteTimer = setTimeout(() => {
+      note.textContent = ''
+    }, 2500)
+  }
   const renderPicker = () => {
     picker.innerHTML = ''
     const progress = getProgress()
@@ -50,9 +60,11 @@ export function start(): void {
       else b.setAttribute('aria-pressed', 'false')
       if (!active) {
         b.setAttribute('aria-disabled', 'true')
-        b.tabIndex = -1
         b.title = 'Coming soon'
         b.dataset.soon = 'true'
+        b.addEventListener('click', () =>
+          showNote(`grade ${gradeWord(g, progress.digitsMode)} is coming soon`),
+        )
       } else if (!selected) {
         b.addEventListener('click', () => {
           updateProgress((p) => ({
@@ -75,7 +87,7 @@ export function start(): void {
   parentBtn.setAttribute('aria-label', 'Open parent area')
   parentBtn.addEventListener('click', () => openParentView(stage, () => render()))
   header.append(parentBtn)
-  root.append(header, picker, stage)
+  root.append(header, picker, note, stage)
 
   const render = () => {
     renderPicker()
