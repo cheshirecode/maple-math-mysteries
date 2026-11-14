@@ -53,9 +53,13 @@ npm run lint
 npm test
 npm run typecheck
 npm run build
+npm run test:e2e
 ```
 
 Node 24 or newer (the test runner uses native TypeScript stripping).
+The e2e suite drives headless Chromium through the desktop-export to
+mobile-import handoff; `PW_CHANNEL=chrome` uses an installed Chrome
+instead of the bundled Chromium.
 
 ## Save-string
 
