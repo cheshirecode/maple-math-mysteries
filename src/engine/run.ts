@@ -41,7 +41,6 @@ export function runCase(root: HTMLElement, def: CaseDef, opts: RunOptions): void
   const digitsMode = currentDigitsMode()
   const title = digitsMode ? def.titleDigits ?? def.titleNoDigits : def.titleNoDigits
   const story = digitsMode ? def.storyDigits ?? def.storyNoDigits : def.storyNoDigits
-  const question = digitsMode ? def.questionDigits ?? def.questionNoDigits : def.questionNoDigits
 
   const box = el('div', 'case')
   box.append(el('h2', 'case-title', title))

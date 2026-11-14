@@ -31,18 +31,18 @@ export function start(): void {
   const digitsBtn = el('button', 'btn btn-digits', 'show digits')
   digitsBtn.addEventListener('click', () => {
     updateProgress((p) => ({ ...p, digitsMode: !p.digitsMode }))
-    render(root)
+    render()
   })
   header.append(digitsBtn)
   const parentBtn = el('button', 'btn btn-ghost', 'parent')
-  parentBtn.addEventListener('click', () => openParentView(main, () => render(root)))
+  parentBtn.addEventListener('click', () => openParentView(main, () => render()))
   header.append(parentBtn)
   root.append(header)
 
   const main = el('main', 'town')
   root.append(main)
 
-  const render = (target: HTMLElement) => {
+  const render = () => {
     // rerender handlers were bound with the latest render closure
     document.body.dataset.digitsMode = String(getProgress().digitsMode)
     digitsBtn.textContent = getProgress().digitsMode ? 'hide digits' : 'show digits'
@@ -63,14 +63,14 @@ export function start(): void {
                 : { ...p, badges: [...p.badges, badge], completedCases: [...new Set([...p.completedCases, def.id])] },
             )
           },
-          onDone: () => render(root),
+          onDone: () => render(),
         })
       })
       main.append(card)
     }
   }
 
-  render(root)
+  render()
 
   setInterval(() => {
     if (document.visibilityState === 'visible') {
