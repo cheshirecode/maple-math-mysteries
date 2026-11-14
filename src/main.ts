@@ -72,19 +72,18 @@ export function start(): void {
     render()
   })
   header.append(digitsBtn)
+  const stage = el('div', 'stage')
   const parentBtn = el('button', 'btn btn-ghost', 'parent')
-  parentBtn.addEventListener('click', () => openParentView(main, () => render()))
+  parentBtn.addEventListener('click', () => openParentView(stage, () => render()))
   header.append(parentBtn)
-  root.append(header)
-
-  const main = el('main', 'town')
-  root.append(main)
+  root.append(header, stage)
 
   const render = () => {
     document.body.dataset.digitsMode = String(getProgress().digitsMode)
     digitsBtn.textContent = getProgress().digitsMode ? 'hide digits' : 'show digits'
     renderPicker()
-    main.innerHTML = ''
+    stage.innerHTML = ''
+    const town = el('div', 'town')
     const progress = getProgress()
     let nextAssigned = false
     for (const def of gradeCases(progress.grade)) {
@@ -98,7 +97,7 @@ export function start(): void {
       card.append(el('span', 'case-card-group', def.kidLabel))
       if (done) card.append(el('span', 'case-card-badge', 'solved'))
       card.addEventListener('click', () => {
-        runCase(main, def, {
+        runCase(stage, def, {
           onBadge: (badge) => {
             updateProgress((p) =>
               p.badges.includes(badge)
@@ -109,8 +108,9 @@ export function start(): void {
           onDone: () => render(),
         })
       })
-      main.append(card)
+      town.append(card)
     }
+    stage.append(town)
   }
 
   render()

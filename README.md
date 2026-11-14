@@ -1,5 +1,9 @@
 # Maple Math Mysteries
 
+[![Pages](https://img.shields.io/badge/pages-live-brightgreen)](https://cheshirecode.github.io/maple-math-mysteries/)
+
+Play it: **<https://cheshirecode.github.io/maple-math-mysteries/>**
+
 A detective game where math is the tool. Built for a grade-3 reader of the
 British Columbia curriculum. Quantity comes before digits: every case starts
 with dot patterns, blocks, nets, jugs, and coins. Numerals appear only after
@@ -69,10 +73,13 @@ A fresh session restores it from the parent view. See
 
 ## Decisions
 
+The CSS lints with stylelint; JS/TS with oxlint.
+
 See [docs/adr/](docs/adr/) for the seven recorded decisions: stack, case
 engine, save-string format, access code, hosting, the no-digit rule, and
 the design system. The product audit of the child flow lives in
-[docs/pm-audit.md](docs/pm-audit.md).
+[docs/pm-audit.md](docs/pm-audit.md). Requirements trace to checks in
+[docs/requirements.md](docs/requirements.md).
 
 ## Hosting
 
