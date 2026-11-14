@@ -61,6 +61,7 @@ body {
 
 .topbar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.6rem 0.75rem;
   padding: 0.25rem 0 1rem;
@@ -75,6 +76,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   margin-right: auto;
+  max-width: calc(100% - 140px);
 }
 
 .brand::before {
@@ -104,7 +106,7 @@ body {
 }
 
 .btn:hover {
-  transform: translateY(-1px);
+  transform: translateY(-1px) scale(1.02);
   box-shadow: 0 5px 0 var(--gold-deep);
 }
 
@@ -163,7 +165,7 @@ body {
 }
 
 .case-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.015);
   box-shadow: var(--shadow-m);
 }
 
@@ -183,9 +185,10 @@ body {
 }
 
 .case-card-group {
-  font-size: 0.76rem;
-  color: var(--ink-soft);
+  font-size: 0.8rem;
+  color: #57504a;
   letter-spacing: 0.02em;
+  overflow-wrap: anywhere;
 }
 
 .case-card-badge {
@@ -216,14 +219,14 @@ body {
 
 .case-card-hint {
   align-self: flex-start;
-  font-size: 0.66rem;
+  font-size: 0.7rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: #fff;
   background: linear-gradient(180deg, #4c8a60, var(--green));
   border-radius: var(--radius-pill);
-  padding: 0.18rem 0.7rem;
+  padding: 0.28rem 0.85rem;
 }
 
 /* Case view: readable column, centered widget stages */
@@ -828,6 +831,7 @@ body {
   display: flex;
   gap: 0.35rem;
   flex-wrap: wrap;
+  justify-content: center;
   margin: 0 0 1.1rem;
   padding: 0.3rem;
   background: var(--surface);
@@ -847,6 +851,7 @@ body {
   min-height: 36px;
   cursor: pointer;
   color: var(--ink-soft);
+  flex: none;
   transition: background 120ms ease, color 120ms ease;
 }
 
@@ -909,7 +914,7 @@ body {
   }
 
   #app {
-    padding: 0.9rem 0.9rem 2.5rem;
+    padding: 1.1rem 1rem 2.5rem;
   }
 
   .town {
