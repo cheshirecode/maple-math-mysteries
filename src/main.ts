@@ -6,6 +6,9 @@ import { GRADES, gradeCases, gradeWord, isGradeActive } from './grades.ts'
 import { openParentView } from './parent/parent.ts'
 import './style.css'
 
+let sessionSolves = 0
+let breakDue = false
+
 function save(): void {
   saveProgress(getProgress())
 }
@@ -91,6 +94,7 @@ export function start(): void {
       card.append(el('span', 'case-card-group', def.kidLabel))
       if (done) card.append(el('span', 'case-card-badge', 'solved'))
       card.addEventListener('click', () => {
+        breakDue = false
         runCase(stage, def, {
           onBadge: (badge) => {
             updateProgress((p) =>
@@ -98,6 +102,8 @@ export function start(): void {
                 ? { ...p, completedCases: [...new Set([...p.completedCases, def.id])] }
                 : { ...p, badges: [...p.badges, badge], completedCases: [...new Set([...p.completedCases, def.id])] },
             )
+            sessionSolves++
+            if (sessionSolves === 3) breakDue = true
           },
           onDone: () => render(),
         })
@@ -105,6 +111,18 @@ export function start(): void {
       town.append(card)
     }
     stage.append(town)
+    if (breakDue) {
+      const nudge = el('div', 'break-nudge')
+      nudge.setAttribute('aria-live', 'polite')
+      nudge.append(el('p', '', 'Three cases closed, detective. Stretch your legs, then come back.'))
+      const keepBtn = el('button', 'btn', 'Keep playing')
+      keepBtn.addEventListener('click', () => {
+        breakDue = false
+        render()
+      })
+      nudge.append(keepBtn)
+      stage.append(nudge)
+    }
   }
 
   render()
