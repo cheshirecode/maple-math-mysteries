@@ -2,7 +2,7 @@ import { el } from './voice.ts'
 import { getProgress, migrate, updateProgress, subscribe } from './state.ts'
 import { loadProgress, saveProgress } from './save/store.ts'
 import { runCase } from './engine/run.ts'
-import { GRADES, gradeCases, gradeWord, isGradeActive } from './grades.ts'
+import { GRADES, gradeCases, gradeWord, isGradeActive, COUNT_WORD } from './grades.ts'
 import { openParentView } from './parent/parent.ts'
 import './style.css'
 
@@ -94,8 +94,19 @@ export function start(): void {
     stage.innerHTML = ''
     const town = el('div', 'town')
     const progress = getProgress()
+    const cases = gradeCases(progress.grade)
+    const doneCount = cases.filter((c) => progress.completedCases.includes(c.id)).length
+    if (cases.length > 0) {
+      town.append(
+        el(
+          'div',
+          'town-progress',
+          `${COUNT_WORD[doneCount]} of ${COUNT_WORD[cases.length]} mysteries closed`,
+        ),
+      )
+    }
     let nextAssigned = false
-    for (const def of gradeCases(progress.grade)) {
+    for (const def of cases) {
       const done = progress.completedCases.includes(def.id)
       const card = el('button', `case-card ${done ? 'done' : ''} ${!done && !nextAssigned ? 'next' : ''}`)
       if (!done && !nextAssigned) {
