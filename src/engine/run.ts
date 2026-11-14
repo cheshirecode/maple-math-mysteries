@@ -75,7 +75,7 @@ export function runCase(root: HTMLElement, def: CaseDef, opts: RunOptions): void
 
 const CONFETTI_COLORS = ['#e8443a', '#ffc834', '#2ea44f', '#4a90d9']
 
-function confetti(box: HTMLElement): void {
+export function confetti(box: HTMLElement): void {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
   for (let i = 0; i < 24; i++) {
     const bit = document.createElement('div')

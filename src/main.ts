@@ -1,13 +1,14 @@
 import { el } from './voice.ts'
 import { getProgress, migrate, updateProgress, subscribe } from './state.ts'
 import { loadProgress, saveProgress } from './save/store.ts'
-import { runCase } from './engine/run.ts'
+import { runCase, confetti } from './engine/run.ts'
 import { GRADES, gradeCases, gradeWord, isGradeActive, COUNT_WORD } from './grades.ts'
 import { openParentView } from './parent/parent.ts'
 import './style.css'
 
 let sessionSolves = 0
 let breakDue = false
+let justCompleted = false
 
 function save(): void {
   saveProgress(getProgress())
@@ -67,6 +68,7 @@ export function start(): void {
         )
       } else if (!selected) {
         b.addEventListener('click', () => {
+          justCompleted = false
           updateProgress((p) => ({
             ...p,
             grade: g,
@@ -125,6 +127,10 @@ export function start(): void {
                 ? { ...p, completedCases: [...new Set([...p.completedCases, def.id])] }
                 : { ...p, badges: [...p.badges, badge], completedCases: [...new Set([...p.completedCases, def.id])] },
             )
+            const after = getProgress()
+            if (gradeCases(after.grade).every((c) => after.completedCases.includes(c.id))) {
+              justCompleted = true
+            }
             sessionSolves++
             if (sessionSolves === 3) breakDue = true
           },
@@ -134,6 +140,24 @@ export function start(): void {
       town.append(card)
     }
     stage.append(town)
+    if (justCompleted) {
+      justCompleted = false
+      const banner = el('div', 'town-banner')
+      banner.setAttribute('aria-live', 'polite')
+      banner.append(el('p', 'town-banner-title', 'Every case in town is closed, detective.'))
+      banner.append(
+        el(
+          'p',
+          'town-banner-sub',
+          'All nine badges are yours. Stretch your legs, then try a mystery again from the start.',
+        ),
+      )
+      const keepBtn = el('button', 'btn', 'Keep playing')
+      keepBtn.addEventListener('click', () => render())
+      banner.append(keepBtn)
+      stage.append(banner)
+      confetti(banner)
+    }
     if (breakDue) {
       const nudge = el('div', 'break-nudge')
       nudge.setAttribute('aria-live', 'polite')

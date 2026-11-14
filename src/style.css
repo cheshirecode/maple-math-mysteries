@@ -796,6 +796,36 @@ body {
   align-items: center;
 }
 
+/* Town-complete banner: shown once when the last case of the grade closes */
+
+.town-banner {
+  position: relative;
+  background: var(--sky-tint);
+  border: 1px solid rgb(74 144 217 / 35%);
+  border-radius: var(--radius-m);
+  padding: 1.25rem 1rem;
+  margin: 1.25rem auto 0;
+  max-width: 560px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.town-banner p {
+  margin: 0;
+}
+
+.town-banner-title {
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.town-banner-sub {
+  color: var(--ink-soft);
+}
+
 .parent {
   display: flex;
   flex-direction: column;
