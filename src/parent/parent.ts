@@ -24,6 +24,7 @@ export function openParentView(root: HTMLElement, back: () => void): void {
   stats.append(el('p', '', `Groups covered: ${[...groups].join(', ') || 'none yet'}`))
   view.append(stats)
 
+
   const exportBox = el('div', 'parent-box')
   exportBox.append(el('h3', '', 'Save code'))
   const exportText = el('textarea', 'parent-io') as HTMLTextAreaElement

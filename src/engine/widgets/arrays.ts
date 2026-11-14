@@ -21,7 +21,7 @@ export function widgetArrays(root: HTMLElement, puzzle: PuzzleData, hooks: Widge
     options.append(opt)
   }
   if (hooks.digitsMode) question.textContent = `${puzzle.rows} rows of ${puzzle.cols} footprints. How many rows?`
-  else question.textContent = 'How many rows of footprints?'
+  else question.textContent = 'How many rows are there?'
   root.prepend(question)
   root.append(options)
 }

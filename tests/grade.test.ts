@@ -17,11 +17,11 @@ describe('grade model', () => {
     assertStrict.equal(gradeWord(3, true), '3')
   })
 
-  it('only grade three is active and has cases', () => {
-    assertStrict.deepEqual([...ACTIVE_GRADES], [3])
+  it('every grade is active and carries its own case set', () => {
+    assertStrict.deepEqual([...ACTIVE_GRADES], [1, 2, 3, 4, 5])
     for (const g of GRADES) {
-      assertStrict.equal(isGradeActive(g), g === 3)
-      assertStrict.equal(gradeCases(g).length, g === 3 ? CASES.length : 0)
+      assertStrict.ok(isGradeActive(g), `grade ${g} must be active`)
+      assertStrict.equal(gradeCases(g).length, g === 3 ? CASES.length : 3)
     }
   })
 

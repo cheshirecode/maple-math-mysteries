@@ -46,7 +46,7 @@ export function widgetBlocks(root: HTMLElement, puzzle: PuzzleData, hooks: Widge
   }
   board.append(controls)
 
-  const check = el('button', 'btn', 'Check the lock')
+  const check = el('button', 'btn', 'Check the stacks')
   check.addEventListener('click', () => {
     const ok = NAMES.every((n) => have[n] === want[n])
     if (ok) hooks.onSolved()
@@ -66,7 +66,7 @@ export function widgetBlocks(root: HTMLElement, puzzle: PuzzleData, hooks: Widge
     'blocks-hint',
     hooks.digitsMode
       ? `Open the safe: ${want.hundreds} big blocks, ${want.tens} long blocks, ${want.ones} small blocks.`
-      : 'Build the stacks that match the lock picture.',
+      : 'Build the stacks that match the picture.',
   )
   board.prepend(hint)
   hint.after(target)

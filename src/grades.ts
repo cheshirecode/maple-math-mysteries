@@ -1,8 +1,8 @@
-import { CASES } from './cases/index.ts'
+import { CASES, CASES_G1, CASES_G2, CASES_G4, CASES_G5 } from './cases/index.ts'
 import type { CaseDef } from './engine/case.ts'
 
 export const GRADES = [1, 2, 3, 4, 5] as const
-export const ACTIVE_GRADES = [3] as const
+export const ACTIVE_GRADES = [1, 2, 3, 4, 5] as const
 export const WORD: Record<number, string> = {
   1: 'one',
   2: 'two',
@@ -32,6 +32,14 @@ export function gradeWord(grade: number, digitsMode: boolean): string {
   return digitsMode ? String(grade) : WORD[grade] ?? String(grade)
 }
 
+const BY_GRADE: Record<number, CaseDef[]> = {
+  1: CASES_G1,
+  2: CASES_G2,
+  3: CASES,
+  4: CASES_G4,
+  5: CASES_G5,
+}
+
 export function gradeCases(grade: number): CaseDef[] {
-  return isGradeActive(grade) ? CASES : []
+  return BY_GRADE[grade] ?? []
 }

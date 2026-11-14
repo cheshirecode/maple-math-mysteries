@@ -14,17 +14,20 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
   const page = await desktop.newPage()
   await page.goto('/')
 
-  await expect(page.locator('.case-card')).toHaveCount(9)
+  await expect(page.locator('.case-card')).toHaveCount(12)
   await expect(page.locator('.case-card-hint')).toHaveText('start here')
   expect(await page.evaluate(() => document.body.innerText.match(/\d/))).toBeNull()
 
   await expect(page.locator('.grade-pill')).toHaveCount(5)
   await expect(page.locator('.grade-pill.selected')).toHaveText('grade three')
-  await expect(page.locator('.grade-pill.off')).toHaveCount(4)
-  await expect(page.locator('.grade-pill.off').first()).toHaveAttribute('aria-disabled', 'true')
-  // aria-disabled pills stay tappable by design - bypass the actionability check.
-  await page.locator('.grade-pill.off').first().click({ force: true })
-  await expect(page.locator('.grade-note')).toHaveText('grade one is coming soon')
+  await expect(page.locator('.grade-pill.off')).toHaveCount(0)
+
+  // BDD: every grade has its own case set. Switch to grade one, then back.
+  await page.getByRole('button', { name: 'grade one' }).click()
+  await expect(page.locator('.case-card')).toHaveCount(3)
+  await expect(page.locator('.town-progress')).toHaveText('zero of three mysteries closed')
+  await page.getByRole('button', { name: 'grade three' }).click()
+  await expect(page.locator('.case-card')).toHaveCount(12)
 
   await page.locator('.case-card').first().click()
   await expect(page.locator('.case-title')).toHaveText('The Locked Safe')
@@ -33,7 +36,7 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
   for (let i = 0; i < 3; i++) await page.getByRole('button', { name: 'add big block' }).click()
   for (let i = 0; i < 4; i++) await page.getByRole('button', { name: 'add long block' }).click()
   for (let i = 0; i < 2; i++) await page.getByRole('button', { name: 'add small block' }).click()
-  await page.getByRole('button', { name: 'Check the lock' }).click()
+  await page.getByRole('button', { name: 'Check the stacks' }).click()
   await expect(page.locator('.case-feedback')).toHaveText('Case closed!')
 
   // Solve two more cases so sessionSolves hits 3 and the break nudge appears.
@@ -63,6 +66,7 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
   await expect(exportBox).toHaveValue(/^MDA1\.1\./)
   const save = await exportBox.inputValue()
   expect(save.length).toBeGreaterThan(100)
+
   const desktopMinutes = await page.evaluate(() =>
     (JSON.parse(localStorage.getItem('mda.progress.v1') as string) as { minutesPlayed: number }).minutesPlayed,
   )
@@ -80,7 +84,7 @@ async function importOnMobile(
   const m = await mobile.newPage()
   await m.goto('/')
 
-  await expect(m.locator('.case-card')).toHaveCount(9)
+  await expect(m.locator('.case-card')).toHaveCount(12)
   await expect(m.locator('.case-card.done')).toHaveCount(0)
 
   await m.getByRole('button', { name: 'Parent area' }).click()
@@ -105,6 +109,7 @@ async function importOnMobile(
   expect(flow.scrollW).toBeLessThanOrEqual(flow.innerW + 1)
   expect(flow.btnMin).toBeGreaterThanOrEqual(40)
   expect(flow.minutes).toBe(carried.desktopMinutes)
+
   await m.screenshot({ path: testInfo.outputPath('mobile-import.png') })
   await mobile.close()
 }

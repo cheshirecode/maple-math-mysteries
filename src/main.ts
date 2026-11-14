@@ -153,7 +153,7 @@ export function start(): void {
         el(
           'p',
           'town-banner-sub',
-          'All nine badges are yours. Stretch your legs, then try a mystery again from the start.',
+          `All ${COUNT_WORD[cases.length]} badges are yours. Stretch your legs, then try a mystery again from the start.`,
         ),
       )
       const keepBtn = el('button', 'btn', 'Keep playing')
