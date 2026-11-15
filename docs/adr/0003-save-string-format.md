@@ -23,5 +23,6 @@ bytes; the version gates `migrate()` in `src/state.ts`. Details:
 
 - A tampered or truncated string is rejected before any state changes.
 - Both compression paths share one envelope, so old browsers still export.
-- The string is not secret; secrecy is the access code's job (ADR 0004).
+- The string is not secret; the transfer model is the code itself
+  (ADR [0008](0008-state-code-replaces-gate.md)).
   Sealing it with AES-GCM later would add a fifth field, not a new format.
