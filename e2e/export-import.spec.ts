@@ -1,8 +1,14 @@
 import { expect, test, devices } from '@playwright/test'
+import { packForGrade } from '../src/content/packs'
+import { countWord } from '../src/grades'
 
 // Given a clean desktop session on the built app
 // When the child solves a case and the parent exports a save-string
 // Then a mobile-emulated fresh session imports it and continues
+
+// Derived from src/content/packs.ts so content changes flow through here.
+const GRADE_THREE_COUNT = packForGrade(3)?.cases.length ?? 0
+const GRADE_ONE_COUNT = packForGrade(1)?.cases.length ?? 0
 
 test('desktop export to mobile import carries progress', async ({ browser }, testInfo) => {
   const carried = await exportOnDesktop(browser, testInfo)
@@ -25,7 +31,7 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
   })
   await page.goto('/')
 
-  await expect(page.locator('.case-card')).toHaveCount(39)
+  await expect(page.locator('.case-card')).toHaveCount(GRADE_THREE_COUNT)
   await expect(page.locator('.case-card-hint')).toHaveText('start here')
   expect(await page.evaluate(() => document.body.innerText.match(/\d/))).toBeNull()
 
@@ -35,10 +41,10 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
 
   // BDD: every grade has its own case set. Switch to grade one, then back.
   await page.getByRole('button', { name: 'grade one' }).click()
-  await expect(page.locator('.case-card')).toHaveCount(33)
-  await expect(page.locator('.town-progress')).toHaveText('zero of thirty-three mysteries closed')
+  await expect(page.locator('.case-card')).toHaveCount(GRADE_ONE_COUNT)
+  await expect(page.locator('.town-progress')).toHaveText(`zero of ${countWord(GRADE_ONE_COUNT)} mysteries closed`)
   await page.getByRole('button', { name: 'grade three' }).click()
-  await expect(page.locator('.case-card')).toHaveCount(39)
+  await expect(page.locator('.case-card')).toHaveCount(GRADE_THREE_COUNT)
 
   await page.locator('.case-card').first().click()
   await expect(page.locator('.case-title')).toHaveText('The Locked Safe')
@@ -71,11 +77,11 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
   await page.getByRole('button', { name: 'Back to the map' }).click()
   // BDD: solved cases hide by default; the filter offers them back.
   await expect(page.locator('.town-filter')).toHaveText('show solved')
-  await expect(page.locator('.case-card')).toHaveCount(36)
+  await expect(page.locator('.case-card')).toHaveCount(GRADE_THREE_COUNT - 3)
   await page.getByRole('button', { name: 'show solved' }).click()
-  await expect(page.locator('.case-card')).toHaveCount(39)
+  await expect(page.locator('.case-card')).toHaveCount(GRADE_THREE_COUNT)
   await page.getByRole('button', { name: 'hide solved' }).click()
-  await expect(page.locator('.case-card')).toHaveCount(36)
+  await expect(page.locator('.case-card')).toHaveCount(GRADE_THREE_COUNT - 3)
   await expect(page.locator('.break-nudge')).toBeVisible()
   await expect(page.locator('.break-nudge')).toContainText('Stretch your legs')
   await page.getByRole('button', { name: 'Keep playing' }).click()
@@ -110,7 +116,7 @@ async function importOnMobile(
   const m = await mobile.newPage()
   await m.goto('/')
 
-  await expect(m.locator('.case-card')).toHaveCount(39)
+  await expect(m.locator('.case-card')).toHaveCount(GRADE_THREE_COUNT)
   await expect(m.locator('.case-card.done')).toHaveCount(0)
 
   await m.getByRole('button', { name: 'Parent area' }).click()
