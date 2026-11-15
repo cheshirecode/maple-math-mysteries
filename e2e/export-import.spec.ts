@@ -155,6 +155,27 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
   // BDD: the QR handoff. Show QR renders a scannable code for this page.
   await page.getByRole('button', { name: 'Show QR' }).click()
   await expect(page.locator('.parent-qr canvas')).toBeVisible()
+  // BDD: the QR encodes the handoff URL with the code attached.
+  const decoded = await page.evaluate(async () => {
+    const cdn = 'https://cdn.jsdelivr.net/npm/jsqr@1.4.0/+esm'
+    const src = (await import(/* @vite-ignore */ cdn)).default
+    const canvas = document.querySelector('.parent-qr canvas') as HTMLCanvasElement
+    const scale = 2
+    const quiet = 8
+    const big = document.createElement('canvas')
+    big.width = canvas.width * scale + quiet * 2
+    big.height = canvas.height * scale + quiet * 2
+    const ctx = big.getContext('2d')!
+    ctx.fillStyle = '#ffffff'
+    ctx.fillRect(0, 0, big.width, big.height)
+    ctx.imageSmoothingEnabled = false
+    ctx.drawImage(canvas, quiet, quiet, canvas.width * scale, canvas.height * scale)
+    const data = ctx.getImageData(0, 0, big.width, big.height)
+    const result = src(data.data, big.width, big.height)
+    return result?.data ?? null
+  })
+  const served = new URL(page.url())
+  expect(decoded).toBe(`${served.origin}${served.pathname}?code=${encodeURIComponent(save)}`)
   const desktopMinutes = await page.evaluate(() =>
     (JSON.parse(localStorage.getItem('mda.progress.v1') as string) as { minutesPlayed: number }).minutesPlayed,
   )
@@ -199,15 +220,44 @@ async function importOnMobile(
   expect(flow.btnMin).toBeGreaterThanOrEqual(40)
   expect(flow.minutes).toBe(carried.desktopMinutes)
 
-  // BDD: the QR handoff. A fresh scan opens the page with ?code= and offers to load.
+  // BDD: the QR handoff. A fresh scan opens the page with ?code= and the panel
+  // states that importing replaces local progress.
   const scanned = await mobile.newPage()
   await scanned.goto(`/?code=${encodeURIComponent(carried.save)}`)
-  await expect(scanned.locator('.break-nudge')).toContainText('A save code arrived')
+  await expect(scanned.locator('.handoff-title')).toHaveText('Import this save code?')
   expect(scanned.url()).not.toContain('code=')
-  await scanned.getByRole('button', { name: 'Load this code' }).click()
+  await expect(scanned.locator('.handoff-sub')).toHaveText('It replaces the progress on this device.')
+  await expect(scanned.locator('.handoff-panel [role=alertdialog]')).toHaveCount(0)
+  await expect(scanned.locator('.handoff-panel')).toHaveRole('alertdialog')
+  await expect(scanned.getByRole('button', { name: 'Yes, import it' })).toBeFocused()
+  await scanned.getByRole('button', { name: 'Yes, import it' }).click()
+  await expect(scanned.locator('.handoff-panel')).toHaveCount(0)
   await scanned.getByRole('button', { name: 'show solved' }).click()
   await expect(scanned.locator(CARDS + '.done')).toHaveCount(WALKED.length + 1)
   await scanned.close()
+
+  // BDD: the decline branch keeps local progress untouched.
+  const declined = await mobile.newPage()
+  await declined.goto(`/?code=${encodeURIComponent(carried.save)}`)
+  await expect(declined.locator('.handoff-title')).toHaveText('Import this save code?')
+  await declined.getByRole('button', { name: 'No, keep mine' }).click()
+  await expect(declined.locator('.handoff-panel')).toHaveCount(0)
+  await expect(declined.locator(CARDS + '.done')).toHaveCount(0)
+  await declined.close()
   await m.screenshot({ path: testInfo.outputPath('mobile-import.png') })
   await mobile.close()
 }
+
+// BDD: a corrupt handoff code shows a visible failure and keeps the panel.
+// Red against the old silent catch by design.
+test('a bad handoff code shows a visible failure', async ({ browser }) => {
+  const ctx = await browser.newContext()
+  const page = await ctx.newPage()
+  await page.goto('/?code=MDA1.garbage')
+  await expect(page.locator('.handoff-title')).toHaveText('Import this save code?')
+  await page.getByRole('button', { name: 'Yes, import it' }).click()
+  await expect(page.locator('.handoff-msg')).toContainText('did not work')
+  await expect(page.locator('.handoff-panel')).toBeVisible()
+  await expect(page.locator(CARDS + '.done')).toHaveCount(0)
+  await ctx.close()
+})

@@ -1,19 +1,13 @@
 import { el } from '../voice.ts'
-import { emptyProgress, getProgress, migrate, setProgress } from '../state.ts'
-import { eraseAll, saveProgress } from '../save/store.ts'
-import { buildSaveText, decodeSaveText } from '../save/string.ts'
+import { emptyProgress, getProgress, setProgress } from '../state.ts'
+import { eraseAll } from '../save/store.ts'
+import { buildSaveText } from '../save/string.ts'
+import { importSaveText } from '../save/import.ts'
 import { gradeCases } from '../grades.ts'
 import qrcode from '../lib/qrcode.js'
 import { isMuted, setMuted } from '../sfx.ts'
 import { isVoiceOff, setVoiceOff } from '../voice.ts'
-
-export async function importSaveText(text: string): Promise<void> {
-  const decoded = await decodeSaveText(text)
-  if (decoded.version !== 1) throw new Error('unsupported version')
-  const next = migrate(decoded.progress)
-  setProgress(next)
-  saveProgress(next)
-}
+import { handoffUrl } from './handoff.ts'
 
 export function openParentView(root: HTMLElement, back: () => void): void {
   root.innerHTML = ''
@@ -106,7 +100,7 @@ export function openParentView(root: HTMLElement, back: () => void): void {
       exportText.dataset.compressed = String(result.compressed)
     }
     qrBox.innerHTML = ''
-    const url = `${location.origin}${location.pathname}?code=${encodeURIComponent(text)}`
+    const url = handoffUrl(text)
     const qr = qrcode(0, 'M')
     qr.addData(url)
     qr.make()

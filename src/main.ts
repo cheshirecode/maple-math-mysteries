@@ -6,7 +6,8 @@ import type { WidgetKind } from './engine/case.ts'
 import { playFanfare } from './sfx.ts'
 import { GRADES, gradeCases, gradeWord, isGradeActive, countWord, visibleCases, lockedConcepts, CONCEPT_SEQUENCE } from './grades.ts'
 import { loadPack, packForGrade } from './content/packs.ts'
-import { openParentView, importSaveText } from './parent/parent.ts'
+import { openParentView } from './parent/parent.ts'
+import { readHandoffCode, renderHandoff } from './parent/handoff.ts'
 import './style.css'
 
 let sessionSolves = 0
@@ -15,6 +16,7 @@ let justCompleted = false
 let hideSolved = true
 let inCase = false
 let lastCaseId: string | null = null
+let handoffDone = false
 
 const CONCEPT_LABEL: Record<WidgetKind, string> = {
   dots: 'ticket-pair',
@@ -53,8 +55,7 @@ export function start(): void {
     updateProgress(() => ({ ...restored, digitsMode: false }))
   }
 
-  let handoffCode = new URLSearchParams(location.search).get('code')
-  if (handoffCode) history.replaceState(null, '', location.pathname)
+  const handoff = readHandoffCode()
 
   const header = el('header', 'topbar')
   const brand = el('h1', 'brand', 'Maple Math Mysteries')
@@ -238,28 +239,11 @@ export function start(): void {
       town.append(shelf)
     }
     stage.append(town)
-    if (handoffCode) {
-      const code = handoffCode
-      const handoff = el('div', 'break-nudge')
-      handoff.setAttribute('aria-live', 'polite')
-      handoff.append(el('p', '', 'A save code arrived from another device.'))
-      const loadBtn = el('button', 'btn', 'Load this code')
-      loadBtn.addEventListener('click', async () => {
-        try {
-          await importSaveText(code)
-        } catch {
-          handoffCode = null
-        }
-        handoffCode = null
+    if (handoff && !handoffDone) {
+      renderHandoff(stage, handoff, () => {
+        handoffDone = true
         render()
       })
-      const skipBtn = el('button', 'btn btn-ghost', 'Not now')
-      skipBtn.addEventListener('click', () => {
-        handoffCode = null
-        render()
-      })
-      handoff.append(loadBtn, skipBtn)
-      stage.append(handoff)
     }
     if (justCompleted) {
       justCompleted = false
