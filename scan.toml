@@ -1,0 +1,17 @@
+# lessons-to-guards scan config for maple-math-mysteries.
+# Fixture-fact counts are allowlisted with reasons; everything else derives.
+
+[[allowlist]]
+rule = "drift-count"
+pattern = "case-card\\.done.*toHaveCount\\(3\\)"  # fixture fact: the imported save code carries three completions
+
+[[duplication]]
+name = "story lines vs widget questions"
+left = { glob = "content/cases/*.json", line_regex = '"([^"]{16,})"', min_length = 16 }
+right = { glob = "src/engine/widgets/*.ts", line_regex = "'([^']{16,})'", min_length = 16 }
+threshold = 0.8
+
+[[set-equality]]
+name = "pack files vs grade list"
+left = { dir_glob = "content/cases/*", name_regex = "grade-(\\w+)\\.json" }
+right = { file = "src/grades.ts", line_regex = "(one|two|three|four|five)(?=\\.json|')" }

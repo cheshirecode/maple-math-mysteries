@@ -1,6 +1,6 @@
 import { expect, test, devices } from '@playwright/test'
-import { packForGrade } from '../src/content/packs'
-import { countWord } from '../src/grades'
+import { GRADES, countWord, gradeCases } from '../src/grades.ts'
+import { packForGrade } from '../src/content/packs.ts'
 
 // Given a clean desktop session on the built app
 // When the child solves a case and the parent exports a save-string
@@ -35,7 +35,7 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
   await expect(page.locator('.case-card-hint')).toHaveText('start here')
   expect(await page.evaluate(() => document.body.innerText.match(/\d/))).toBeNull()
 
-  await expect(page.locator('.grade-pill')).toHaveCount(5)
+  await expect(page.locator('.grade-pill')).toHaveCount(GRADES.length)
   await expect(page.locator('.grade-pill.selected')).toHaveText('grade three')
   await expect(page.locator('.grade-pill.off')).toHaveCount(0)
 

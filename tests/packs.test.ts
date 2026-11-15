@@ -1,6 +1,7 @@
 import { describe, it } from 'node:test'
 import assert from 'node:assert/strict'
 import { parsePack, SUPPORTED_SCHEMA_VERSION, ALL_CASES, BUILTIN_PACKS } from '../src/content/packs.ts'
+import { GRADES } from '../src/grades.ts'
 
 const goodCase = {
   id: 'probe-case',
@@ -19,7 +20,7 @@ function packWith(overrides: Record<string, unknown>): unknown {
 
 describe('content pack loader', () => {
   it('builtin packs loaded and cover every grade', () => {
-    assert.equal(BUILTIN_PACKS.length, 5)
+    assert.equal(BUILTIN_PACKS.length, GRADES.length)
     assert.ok(ALL_CASES.length >= 52, `expected the full library, got ${ALL_CASES.length}`)
   })
 
