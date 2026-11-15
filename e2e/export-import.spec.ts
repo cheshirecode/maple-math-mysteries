@@ -41,18 +41,25 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
 
   // Solve two more cases so sessionSolves hits 3 and the break nudge appears.
   await page.getByRole('button', { name: 'Back to the map' }).click()
-  await page.locator('.case-card').nth(1).click()
+  await page.locator('.case-card').first().click()
   await expect(page.locator('.case-title')).toHaveText('The Streetcar Fare')
   await page.locator('.dots-option').first().click()
   await expect(page.locator('.case-feedback')).toHaveText('Case closed!')
 
   await page.getByRole('button', { name: 'Back to the map' }).click()
-  await page.locator('.case-card').nth(2).click()
+  await page.locator('.case-card').first().click()
   await expect(page.locator('.case-title')).toHaveText('The Equal Loot')
   await page.locator('.arrays-options button').first().click()
   await expect(page.locator('.case-feedback')).toHaveText('Case closed!')
 
   await page.getByRole('button', { name: 'Back to the map' }).click()
+  // BDD: solved cases hide by default; the filter offers them back.
+  await expect(page.locator('.town-filter')).toHaveText('show solved')
+  await expect(page.locator('.case-card')).toHaveCount(17)
+  await page.getByRole('button', { name: 'show solved' }).click()
+  await expect(page.locator('.case-card')).toHaveCount(20)
+  await page.getByRole('button', { name: 'hide solved' }).click()
+  await expect(page.locator('.case-card')).toHaveCount(17)
   await expect(page.locator('.break-nudge')).toBeVisible()
   await expect(page.locator('.break-nudge')).toContainText('Stretch your legs')
   await page.getByRole('button', { name: 'Keep playing' }).click()
@@ -98,6 +105,7 @@ async function importOnMobile(
   await expect(m.locator('.parent-msg').last()).toHaveText('Progress imported and saved.')
 
   await m.getByRole('button', { name: 'Back to the map' }).click()
+  await m.getByRole('button', { name: 'show solved' }).click()
   await expect(m.locator('.case-card.done')).toHaveCount(3)
 
   const flow = await m.evaluate(() => {
@@ -119,6 +127,7 @@ async function importOnMobile(
   await expect(scanned.locator('.break-nudge')).toContainText('A save code arrived')
   expect(scanned.url()).not.toContain('code=')
   await scanned.getByRole('button', { name: 'Load this code' }).click()
+  await scanned.getByRole('button', { name: 'show solved' }).click()
   await expect(scanned.locator('.case-card.done')).toHaveCount(3)
   await scanned.close()
   await m.screenshot({ path: testInfo.outputPath('mobile-import.png') })

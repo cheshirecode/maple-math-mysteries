@@ -165,6 +165,31 @@ body {
   gap: 0.9rem 1rem;
 }
 
+.town-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0.2rem;
+}
+
+.town-filter {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-soft);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.72rem;
+  border-radius: var(--radius-pill);
+  padding: 0.25rem 0.7rem;
+  min-height: 32px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.town-filter:hover {
+  color: var(--ink);
+}
+
 .town-progress {
   grid-column: 1 / -1;
   font-weight: 800;

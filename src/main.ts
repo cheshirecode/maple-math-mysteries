@@ -10,6 +10,7 @@ import './style.css'
 let sessionSolves = 0
 let breakDue = false
 let justCompleted = false
+let hideSolved = true
 
 function save(): void {
   saveProgress(getProgress())
@@ -107,17 +108,29 @@ export function start(): void {
     const cases = gradeCases(progress.grade)
     const doneCount = cases.filter((c) => progress.completedCases.includes(c.id)).length
     if (cases.length > 0) {
-      town.append(
+      const head = el('div', 'town-head')
+      head.append(
         el(
           'div',
           'town-progress',
           `${COUNT_WORD[doneCount]} of ${COUNT_WORD[cases.length]} mysteries closed`,
         ),
       )
+      if (doneCount > 0 && doneCount < cases.length) {
+        const toggle = el('button', 'town-filter', hideSolved ? 'show solved' : 'hide solved')
+        toggle.setAttribute('aria-pressed', String(!hideSolved))
+        toggle.addEventListener('click', () => {
+          hideSolved = !hideSolved
+          render()
+        })
+        head.append(toggle)
+      }
+      town.append(head)
     }
     let nextAssigned = false
     for (const def of cases) {
       const done = progress.completedCases.includes(def.id)
+      if (done && hideSolved && doneCount < cases.length) continue
       const card = el('button', `case-card ${done ? 'done' : ''} ${!done && !nextAssigned ? 'next' : ''}`)
       if (!done && !nextAssigned) {
         card.append(el('span', 'case-card-hint', 'start here'))
