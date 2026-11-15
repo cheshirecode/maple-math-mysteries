@@ -83,7 +83,7 @@
       "titleDigits": "The Popcorn Tubs",
       "storyNoDigits": [
         "The cinema counts popcorn tubs before the show.",
-        "Build the stacks that match the picture."
+        "Make the block piles look like the target."
       ],
       "storyDigits": [
         "The cinema counts popcorn tubs before the show.",
@@ -263,7 +263,7 @@
       "titleDigits": "The Mirror Numbers",
       "storyNoDigits": [
         "Two scores were chalked on the rink board with the same digits.",
-        "Which pile holds more?"
+        "Pick the side that has more."
       ],
       "storyDigits": [
         "Two scores were chalked on the rink board with the same digits.",
@@ -314,11 +314,11 @@
       "titleNoDigits": "The Postmaster Stacks",
       "storyNoDigits": [
         "The conductor counts the popcorn tubs.",
-        "Build the stacks to match the picture."
+        "Stack the blocks to match the target picture."
       ],
       "storyDigits": [
         "The conductor counts the popcorn tubs.",
-        "Build the stacks to match the picture."
+        "Stack the blocks to match the target picture."
       ],
       "puzzle": {
         "kind": "blocks",
@@ -336,11 +336,11 @@
       "titleNoDigits": "The Grocer Stacks",
       "storyNoDigits": [
         "The baker counts the popcorn tubs.",
-        "Build the stacks to match the picture."
+        "Stack the blocks to match the target picture."
       ],
       "storyDigits": [
         "The baker counts the popcorn tubs.",
-        "Build the stacks to match the picture."
+        "Stack the blocks to match the target picture."
       ],
       "puzzle": {
         "kind": "blocks",

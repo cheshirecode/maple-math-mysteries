@@ -33,7 +33,7 @@ const KIND_LABEL: Record<WidgetKind, string> = {
 }
 const GUIDANCE: Record<WidgetKind, string> = {
   dots: 'Count the empty spots, then choose the matching picture.',
-  blocks: 'Build the stacks to match the picture.',
+  blocks: 'Stack the blocks to match the target picture.',
   arrays: 'Count the equal rows you see.',
   fraction: 'Look for the piece cut into fair shares.',
   pattern: 'Say the rule, then pick the next pile.',

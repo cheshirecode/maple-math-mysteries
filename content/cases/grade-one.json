@@ -110,7 +110,7 @@
       "titleDigits": "The Penny Stairs",
       "storyNoDigits": [
         "The fountain collects pennies on its steps.",
-        "Build the stacks that match the picture."
+        "Make the block piles look like the target."
       ],
       "storyDigits": [
         "The fountain collects pennies on its steps.",
@@ -155,7 +155,7 @@
       "titleDigits": "The Lemonade Coin",
       "storyNoDigits": [
         "The lemonade stand takes the exact coin.",
-        "Pay the fee using the same coins as the picture."
+        "Use the same coin set the picture shows."
       ],
       "storyDigits": [
         "The lemonade stand takes the exact coin.",
@@ -242,11 +242,11 @@
       "titleDigits": "The Mitten Count",
       "storyNoDigits": [
         "Two mittens hang on the drying rack.",
-        "Which pile holds more?"
+        "Pick the side that has more."
       ],
       "storyDigits": [
         "Two mittens hang on the drying rack.",
-        "Which pile holds more?"
+        "Which side has the larger count?"
       ],
       "puzzle": {
         "kind": "compare",
@@ -293,11 +293,11 @@
       "titleNoDigits": "The Postmaster Stacks",
       "storyNoDigits": [
         "The conductor stacks pennies on the steps.",
-        "Build the stacks to match the picture."
+        "Stack the blocks to match the target picture."
       ],
       "storyDigits": [
         "The conductor stacks pennies on the steps.",
-        "Build the stacks to match the picture."
+        "Stack the blocks to match the target picture."
       ],
       "puzzle": {
         "kind": "blocks",
@@ -315,11 +315,11 @@
       "titleNoDigits": "The Grocer Stacks",
       "storyNoDigits": [
         "The baker stacks pennies on the steps.",
-        "Build the stacks to match the picture."
+        "Stack the blocks to match the target picture."
       ],
       "storyDigits": [
         "The baker stacks pennies on the steps.",
-        "Build the stacks to match the picture."
+        "Stack the blocks to match the target picture."
       ],
       "puzzle": {
         "kind": "blocks",

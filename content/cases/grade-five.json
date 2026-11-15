@@ -347,11 +347,11 @@
       "titleNoDigits": "The Librarian Stacks",
       "storyNoDigits": [
         "The conductor audits the lodge shelves.",
-        "Build the stacks to match the picture."
+        "Stack the blocks to match the target picture."
       ],
       "storyDigits": [
         "The conductor audits the lodge shelves.",
-        "Build the stacks to match the picture."
+        "Stack the blocks to match the target picture."
       ],
       "puzzle": {
         "kind": "blocks",
@@ -369,11 +369,11 @@
       "titleNoDigits": "The Coach Stacks",
       "storyNoDigits": [
         "The coach audits the lodge shelves.",
-        "Build the stacks to match the picture."
+        "Stack the blocks to match the target picture."
       ],
       "storyDigits": [
         "The coach audits the lodge shelves.",
-        "Build the stacks to match the picture."
+        "Stack the blocks to match the target picture."
       ],
       "puzzle": {
         "kind": "blocks",
@@ -391,11 +391,11 @@
       "titleNoDigits": "The Conductor Stacks",
       "storyNoDigits": [
         "The ferry captain audits the lodge shelves.",
-        "Build the stacks to match the picture."
+        "Stack the blocks to match the target picture."
       ],
       "storyDigits": [
         "The ferry captain audits the lodge shelves.",
-        "Build the stacks to match the picture."
+        "Stack the blocks to match the target picture."
       ],
       "puzzle": {
         "kind": "blocks",

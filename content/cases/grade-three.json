@@ -241,7 +241,7 @@
       "titleDigits": "The Library Ladder",
       "storyNoDigits": [
         "The librarian stacks returns on a rolling ladder.",
-        "Build the stacks that match the ladder picture."
+        "Make the block piles look like the ladder."
       ],
       "storyDigits": [
         "The librarian stacks returns on a rolling ladder.",
@@ -754,11 +754,11 @@
       "titleNoDigits": "The Harbourmaster Stacks",
       "storyNoDigits": [
         "The harbourmaster restocks the library ladder.",
-        "Build the stacks to match the picture."
+        "Stack the blocks to match the target picture."
       ],
       "storyDigits": [
         "The harbourmaster restocks the library ladder.",
-        "Build the stacks to match the picture."
+        "Stack the blocks to match the target picture."
       ],
       "puzzle": {
         "kind": "blocks",

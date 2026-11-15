@@ -191,7 +191,7 @@
       "titleDigits": "The Stall Rent",
       "storyNoDigits": [
         "The market charges a small rent for each stall.",
-        "Pay the fee using the same coins as the picture."
+        "Use the same coin set the picture shows."
       ],
       "storyDigits": [
         "The market charges a small rent for each stall.",
@@ -249,7 +249,7 @@
       "titleDigits": "The Dock Tallies",
       "storyNoDigits": [
         "Two dock workers tallied the salmon crates at the same hour.",
-        "Which pile holds more?"
+        "Pick the side that has more."
       ],
       "storyDigits": [
         "Two dock workers tallied the salmon crates at the same hour.",
@@ -342,11 +342,11 @@
       "titleNoDigits": "The Librarian Stacks",
       "storyNoDigits": [
         "The conductor stacks supply crates at the fort.",
-        "Build the stacks to match the picture."
+        "Stack the blocks to match the target picture."
       ],
       "storyDigits": [
         "The conductor stacks supply crates at the fort.",
-        "Build the stacks to match the picture."
+        "Stack the blocks to match the target picture."
       ],
       "puzzle": {
         "kind": "blocks",
@@ -364,11 +364,11 @@
       "titleNoDigits": "The Coach Stacks",
       "storyNoDigits": [
         "The coach stacks supply crates at the fort.",
-        "Build the stacks to match the picture."
+        "Stack the blocks to match the target picture."
       ],
       "storyDigits": [
         "The coach stacks supply crates at the fort.",
-        "Build the stacks to match the picture."
+        "Stack the blocks to match the target picture."
       ],
       "puzzle": {
         "kind": "blocks",
@@ -386,11 +386,11 @@
       "titleNoDigits": "The Conductor Stacks",
       "storyNoDigits": [
         "The ferry captain stacks supply crates at the fort.",
-        "Build the stacks to match the picture."
+        "Stack the blocks to match the target picture."
       ],
       "storyDigits": [
         "The ferry captain stacks supply crates at the fort.",
-        "Build the stacks to match the picture."
+        "Stack the blocks to match the target picture."
       ],
       "puzzle": {
         "kind": "blocks",
