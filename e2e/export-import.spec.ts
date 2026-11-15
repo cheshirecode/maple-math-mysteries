@@ -1,6 +1,16 @@
 import { expect, test, devices } from '@playwright/test'
-import { GRADES, countWord, gradeCases, visibleCases, lockedConcepts } from '../src/grades.ts'
-import { packForGrade } from '../src/content/packs.ts'
+import { readFileSync } from 'node:fs'
+import { GRADES, countWord, visibleCases, lockedConcepts } from '../src/grades.ts'
+import type { CaseDef } from '../src/engine/case.ts'
+
+// Pack data straight from the repo; the model helpers stay pure over case lists.
+const WORD: Record<number, string> = { 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five' }
+const casesByGrade: Record<number, CaseDef[]> = {}
+for (const g of GRADES) {
+  const raw = JSON.parse(readFileSync(new URL(`../content/cases/grade-${WORD[g]}.json`, import.meta.url), 'utf8'))
+  casesByGrade[g] = raw.cases
+}
+const gradeCases = (grade: number): CaseDef[] => casesByGrade[grade] ?? []
 
 // Given a clean desktop session on the built app
 // When the child solves a case and the parent exports a save-string
@@ -9,14 +19,14 @@ import { packForGrade } from '../src/content/packs.ts'
 // Derived from src/content/packs.ts so content changes flow through here.
 // Cards on the map follow the progression model: unlocked bands only.
 const CARDS = '.case-card:not(.locked-shelf)'
-const GRADE_THREE_FRESH = visibleCases(3, []).length
+const GRADE_THREE_FRESH = visibleCases(gradeCases(3), []).length
 // The desktop walk solves the first three blocks-band cases in order.
-const WALKED = packForGrade(3)
-  ?.cases.filter((c) => c.widget === 'blocks')
+const WALKED = gradeCases(3)
+  .filter((c) => c.widget === 'blocks')
   .slice(0, 3)
   .map((c) => c.id) ?? []
-const GRADE_ONE_FRESH = visibleCases(1, []).length
-const GRADE_ONE_COUNT = packForGrade(1)?.cases.length ?? 0
+const GRADE_ONE_FRESH = visibleCases(gradeCases(1), []).length
+const GRADE_ONE_COUNT = gradeCases(1).length
 
 test('desktop export to mobile import carries progress', async ({ browser }, testInfo) => {
   const carried = await exportOnDesktop(browser, testInfo)
@@ -116,18 +126,18 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
   await page.getByRole('button', { name: '← Map' }).click()
   // BDD: solved cases hide by default; the filter offers them back.
   await expect(page.locator('.town-filter')).toHaveText('show solved')
-  await expect(page.locator(CARDS)).toHaveCount(visibleCases(3, WALKED).length - WALKED.length)
+  await expect(page.locator(CARDS)).toHaveCount(visibleCases(gradeCases(3), WALKED).length - WALKED.length)
   await page.getByRole('button', { name: 'show solved' }).click()
-  await expect(page.locator(CARDS)).toHaveCount(visibleCases(3, WALKED).length)
+  await expect(page.locator(CARDS)).toHaveCount(visibleCases(gradeCases(3), WALKED).length)
   await page.getByRole('button', { name: 'hide solved' }).click()
-  await expect(page.locator(CARDS)).toHaveCount(visibleCases(3, WALKED).length - WALKED.length)
+  await expect(page.locator(CARDS)).toHaveCount(visibleCases(gradeCases(3), WALKED).length - WALKED.length)
   await expect(page.locator('.break-nudge')).toBeVisible()
   await expect(page.locator('.break-nudge')).toContainText('Stretch your legs')
   await page.getByRole('button', { name: 'Keep playing' }).click()
   await expect(page.locator('.break-nudge')).toHaveCount(0)
 
   // BDD: three solved place-value cases unlock the comparing band.
-  const compareId = packForGrade(3)?.cases.find((c) => c.widget === 'compare')?.id ?? ''
+  const compareId = gradeCases(3).find((c) => c.widget === 'compare')?.id ?? ''
   await page.locator(`[data-case-id="${compareId}"]`).click()
   await solveCompare(page)
   await expect(page.locator('.case-feedback')).toHaveText('Case closed!')
@@ -162,7 +172,7 @@ async function importOnMobile(
   const m = await mobile.newPage()
   await m.goto('/')
 
-  await expect(m.locator(CARDS)).toHaveCount(visibleCases(3, []).length)
+  await expect(m.locator(CARDS)).toHaveCount(visibleCases(gradeCases(3), []).length)
   await expect(m.locator(CARDS + '.done')).toHaveCount(0)
 
   await m.getByRole('button', { name: 'Parent area' }).click()

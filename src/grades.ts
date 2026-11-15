@@ -1,4 +1,4 @@
-import { packForGrade } from './content/packs.ts'
+import { packForGrade, PACK_GRADES } from './content/packs.ts'
 import type { CaseDef, WidgetKind } from './engine/case.ts'
 import { numToWords } from './numwords.ts'
 
@@ -18,7 +18,7 @@ export function countWord(n: number): string {
 }
 
 export function isGradeActive(grade: number): boolean {
-  return packForGrade(grade) !== undefined
+  return (PACK_GRADES as readonly number[]).includes(grade)
 }
 
 export function gradeWord(grade: number, digitsMode: boolean): string {
@@ -51,11 +51,10 @@ const UNLOCK_AFTER_SOLVED = 3
 // when the band itself already holds a completed case (replayed or imported
 // progress stays visible instead of vanishing behind a lock).
 function bandUnlocked(
-  grade: number,
+  cases: CaseDef[],
   kind: WidgetKind,
   doneSet: Set<string>,
 ): boolean {
-  const cases = gradeCases(grade)
   if (cases.some((c) => c.widget === kind && doneSet.has(c.id))) return true
   const position = CONCEPT_SEQUENCE.indexOf(kind)
   if (position <= 0) return true
@@ -68,27 +67,25 @@ function bandUnlocked(
 
 // Cards the map shows for this grade: every unlocked band's cases, in concept
 // order. Locked bands collapse to shelves in the caller.
-export function visibleCases(grade: number, completed: string[]): CaseDef[] {
+export function visibleCases(cases: CaseDef[], completed: string[]): CaseDef[] {
   const doneSet = new Set(completed)
-  const cases = gradeCases(grade)
   const out: CaseDef[] = []
   for (const kind of CONCEPT_SEQUENCE) {
     const bandCases = cases.filter((c) => c.widget === kind)
     if (bandCases.length === 0) continue
-    if (!bandUnlocked(grade, kind, doneSet)) continue
+    if (!bandUnlocked(cases, kind, doneSet)) continue
     out.push(...bandCases)
   }
   return out
 }
 
-export function lockedConcepts(grade: number, completed: string[]): { kind: WidgetKind; count: number }[] {
+export function lockedConcepts(cases: CaseDef[], completed: string[]): { kind: WidgetKind; count: number }[] {
   const doneSet = new Set(completed)
-  const cases = gradeCases(grade)
   const out: { kind: WidgetKind; count: number }[] = []
   for (const kind of CONCEPT_SEQUENCE) {
     const bandCases = cases.filter((c) => c.widget === kind)
     if (bandCases.length === 0) continue
-    if (!bandUnlocked(grade, kind, doneSet)) out.push({ kind, count: bandCases.length })
+    if (!bandUnlocked(cases, kind, doneSet)) out.push({ kind, count: bandCases.length })
   }
   return out
 }

@@ -1,6 +1,8 @@
 import { describe, it } from 'node:test'
 import assert from 'node:assert/strict'
-import { ALL_CASES } from '../src/content/packs.ts'
+import { loadAllPacks } from '../src/content/packs.ts'
+
+const ALL_CASES = (await loadAllPacks()).flatMap((p) => p.cases)
 
 // Widget question strings shown to the kid (non-digits mode, the default).
 // Sourced from src/engine/widgets/*.ts — update there if widgets change.

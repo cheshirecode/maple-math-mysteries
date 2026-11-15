@@ -1,6 +1,9 @@
 import { describe, it } from 'node:test'
 import assert from 'node:assert/strict'
-import { parsePack, SUPPORTED_SCHEMA_VERSION, ALL_CASES, BUILTIN_PACKS } from '../src/content/packs.ts'
+import { parsePack, SUPPORTED_SCHEMA_VERSION, loadAllPacks } from '../src/content/packs.ts'
+
+const BUILTIN_PACKS = await loadAllPacks()
+const ALL_CASES = BUILTIN_PACKS.flatMap((p) => p.cases)
 import { GRADES } from '../src/grades.ts'
 
 const goodCase = {

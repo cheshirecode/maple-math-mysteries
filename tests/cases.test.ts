@@ -1,6 +1,8 @@
 import { describe, it } from 'node:test'
 import assertStrict from 'node:assert/strict'
-import { ALL_CASES } from '../src/content/packs.ts'
+import { loadAllPacks } from '../src/content/packs.ts'
+
+const ALL_CASES = (await loadAllPacks()).flatMap((p) => p.cases)
 import { validateCase, BC_GROUPS } from '../src/engine/case.ts'
 
 describe('BC coverage', () => {

@@ -43,34 +43,48 @@ export function parsePack(raw: unknown): ParseResult {
   if (ids.size !== cases.length) errors.push('case ids must be unique inside a pack')
   const badges = new Set(cases.map((c) => c.badge))
   if (badges.size !== cases.length) errors.push('badges must be unique inside a pack')
+  const titles = new Set(cases.map((c) => c.titleNoDigits))
+  if (titles.size !== cases.length) errors.push('titles must be unique inside a pack')
   if (errors.length > 0) return { errors }
   return { pack: { packId, schemaVersion: pack.schemaVersion as number, grade: grade as number, title: pack.title as string, cases } }
 }
 
-import g1 from '../../content/cases/grade-one.json' with { type: 'json' }
-import g2 from '../../content/cases/grade-two.json' with { type: 'json' }
-import g3 from '../../content/cases/grade-three.json' with { type: 'json' }
-import g4 from '../../content/cases/grade-four.json' with { type: 'json' }
-import g5 from '../../content/cases/grade-five.json' with { type: 'json' }
+export const PACK_GRADES = [1, 2, 3, 4, 5] as const
 
-const BUILTIN_RAW: unknown[] = [g1, g2, g3, g4, g5]
-
-function loadBuiltin(): CasePack[] {
-  const packs: CasePack[] = []
-  for (const raw of BUILTIN_RAW) {
-    const result = parsePack(raw)
-    if ('errors' in result) {
-      throw new Error(`builtin content pack rejected: ${result.errors.join('; ')}`)
-    }
-    packs.push(result.pack)
-  }
-  return packs
+const loaders: Record<number, () => Promise<unknown>> = {
+  1: () => import('../../content/cases/grade-one.json', { with: { type: 'json' } }).then((m) => m.default),
+  2: () => import('../../content/cases/grade-two.json', { with: { type: 'json' } }).then((m) => m.default),
+  3: () => import('../../content/cases/grade-three.json', { with: { type: 'json' } }).then((m) => m.default),
+  4: () => import('../../content/cases/grade-four.json', { with: { type: 'json' } }).then((m) => m.default),
+  5: () => import('../../content/cases/grade-five.json', { with: { type: 'json' } }).then((m) => m.default),
 }
 
-export const BUILTIN_PACKS: CasePack[] = loadBuiltin()
+const loaded = new Map<number, CasePack>()
 
-export const ALL_CASES: CaseDef[] = BUILTIN_PACKS.flatMap((p) => p.cases)
+// Loads one grade's pack on demand and caches it. A rejected pack throws:
+// a broken pack must never silently shrink the town map.
+export async function loadPack(grade: number): Promise<CasePack> {
+  const cached = loaded.get(grade)
+  if (cached) return cached
+  const loader = loaders[grade]
+  if (!loader) throw new Error(`no content pack for grade ${grade}`)
+  const raw = await loader()
+  const result = parsePack(raw)
+  if ('errors' in result) {
+    throw new Error(`grade ${grade} content pack rejected: ${result.errors.join('; ')}`)
+  }
+  loaded.set(grade, result.pack)
+  return result.pack
+}
+
+export async function loadAllPacks(): Promise<CasePack[]> {
+  return Promise.all(GRADE_IDS.map((g) => loadPack(g)))
+}
 
 export function packForGrade(grade: number): CasePack | undefined {
-  return BUILTIN_PACKS.find((p) => p.grade === grade)
+  return loaded.get(grade)
+}
+
+export function loadedGrades(): number[] {
+  return GRADE_IDS.filter((g) => loaded.has(g))
 }

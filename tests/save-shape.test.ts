@@ -1,6 +1,9 @@
 import { describe, it } from 'node:test'
 import assert from 'node:assert/strict'
-import { BUILTIN_PACKS, ALL_CASES } from '../src/content/packs.ts'
+import { loadAllPacks } from '../src/content/packs.ts'
+
+const BUILTIN_PACKS = await loadAllPacks()
+const ALL_CASES = BUILTIN_PACKS.flatMap((p) => p.cases)
 
 const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/
 

@@ -5,6 +5,7 @@ import { runCase, confetti } from './engine/run.ts'
 import type { WidgetKind } from './engine/case.ts'
 import { playFanfare } from './sfx.ts'
 import { GRADES, gradeCases, gradeWord, isGradeActive, countWord, visibleCases, lockedConcepts, CONCEPT_SEQUENCE } from './grades.ts'
+import { loadPack, packForGrade } from './content/packs.ts'
 import { openParentView, importSaveText } from './parent/parent.ts'
 import './style.css'
 
@@ -136,11 +137,17 @@ export function start(): void {
     inCase = false
     renderPicker()
     stage.innerHTML = ''
-    const town = el('div', 'town')
     const progress = getProgress()
+    if (!packForGrade(progress.grade)) {
+      // Pack chunks load per grade on demand; every path funnels through here.
+      void loadPack(progress.grade).then(render)
+      stage.append(el('p', 'case-story', 'Opening the case files...'))
+      return
+    }
+    const town = el('div', 'town')
     const doneSet = new Set(progress.completedCases)
     const cases = gradeCases(progress.grade)
-    const visible = visibleCases(progress.grade, progress.completedCases)
+    const visible = visibleCases(cases, progress.completedCases)
     const doneCount = cases.filter((c) => doneSet.has(c.id)).length
     if (cases.length > 0) {
       const head = el('div', 'town-head')
@@ -214,7 +221,7 @@ export function start(): void {
       town.append(card)
       }
     }
-    const locked = lockedConcepts(progress.grade, progress.completedCases)
+    const locked = lockedConcepts(cases, progress.completedCases)
     if (locked.length > 0) {
       const waiting = locked.reduce((n, l) => n + l.count, 0)
       const shelf = el('button', 'case-card locked-shelf')

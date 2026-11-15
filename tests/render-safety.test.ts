@@ -1,7 +1,9 @@
 import { describe, it } from 'node:test'
 import assert from 'node:assert/strict'
 import { countWord } from '../src/grades.ts'
-import { BUILTIN_PACKS } from '../src/content/packs.ts'
+import { loadAllPacks } from '../src/content/packs.ts'
+
+const BUILTIN_PACKS = await loadAllPacks()
 
 describe('render safety: countWord', () => {
   it('returns a digit-free word for every n from 0 to 250', () => {

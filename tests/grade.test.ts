@@ -1,7 +1,9 @@
 import { describe, it } from 'node:test'
 import assert from 'node:assert/strict'
 import { GRADES, WORD, gradeCases, gradeWord, isGradeActive } from '../src/grades.ts'
-import { BUILTIN_PACKS, packForGrade } from '../src/content/packs.ts'
+import { loadAllPacks, packForGrade } from '../src/content/packs.ts'
+
+const BUILTIN_PACKS = await loadAllPacks()
 import { migrate } from '../src/state.ts'
 
 describe('grade model', () => {

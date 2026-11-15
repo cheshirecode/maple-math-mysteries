@@ -4,8 +4,7 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { numToWords } from '../src/numwords.ts'
 import { fingerprint, generateCases, checkGenerated, BAND_FLOOR } from '../scripts/generate.ts'
-import { parsePack } from '../src/content/packs.ts'
-import { ALL_CASES } from '../src/content/packs.ts'
+import { parsePack, loadPack, loadAllPacks } from '../src/content/packs.ts'
 
 const SEED = 2026
 
@@ -80,8 +79,8 @@ describe('pack generator', () => {
     assert.equal(new Set(fps).size, fps.length)
   })
 
-  it('lifts every band to the floor and mints pack-scoped unique ids', () => {
-    const ids = new Set(ALL_CASES.map((c) => c.id))
+  it('lifts every band to the floor and mints pack-scoped unique ids', async () => {
+    const ids = new Set((await loadAllPacks()).flatMap((p) => p.cases).map((c) => c.id))
     for (const grade of [1, 2, 3, 4, 5]) {
       const raw = gradePackRaw(grade)
       const pack = parsePack(raw)
