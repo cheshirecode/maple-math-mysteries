@@ -1,4 +1,4 @@
-import { el } from '../voice.ts'
+import { el, speakable } from '../voice.ts'
 import { playSolve, playRetry } from '../sfx.ts'
 import type { CaseDef, PuzzleData } from './case.ts'
 import { widgetDots } from './widgets/dots.ts'
@@ -52,6 +52,7 @@ export function runCase(root: HTMLElement, def: CaseDef, opts: RunOptions): void
   for (const line of story) {
     const p = el('p', 'case-story', line)
     box.append(p)
+    speakable(p, line)
   }
   const area = el('div', 'case-widget')
   box.append(area)
@@ -78,6 +79,8 @@ export function runCase(root: HTMLElement, def: CaseDef, opts: RunOptions): void
   const run = runners[def.widget]
   if (!run) throw new Error(`unknown widget ${def.widget}`)
   run(area, def.puzzle, hooks)
+  const q = area.querySelector('p')
+  if (q && q.textContent) speakable(q, q.textContent)
 }
 
 const CONFETTI_COLORS = ['#e8443a', '#ffc834', '#2ea44f', '#4a90d9']

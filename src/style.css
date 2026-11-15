@@ -58,6 +58,15 @@ body {
   border-radius: var(--radius-s);
 }
 
+.speakable {
+  cursor: pointer;
+}
+
+.speakable:hover {
+  text-decoration: underline dotted;
+  text-underline-offset: 4px;
+}
+
 /* Topbar: brand left, parent button right */
 
 .topbar {
@@ -990,6 +999,17 @@ body {
   color: var(--green);
   font-weight: 700;
   margin: 0.3rem 0;
+}
+
+.parent-toggles {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0.4rem 0;
+}
+
+.parent-toggles .btn {
+  margin: 0;
 }
 
 .parent-stats {

@@ -5,6 +5,7 @@ import { buildSaveText, decodeSaveText } from '../save/string.ts'
 import { gradeCases } from '../grades.ts'
 import qrcode from '../lib/qrcode.js'
 import { isMuted, setMuted } from '../sfx.ts'
+import { isVoiceOff, setVoiceOff } from '../voice.ts'
 
 export async function importSaveText(text: string): Promise<void> {
   const decoded = await decodeSaveText(text)
@@ -39,7 +40,14 @@ export function openParentView(root: HTMLElement, back: () => void): void {
     setMuted(!isMuted())
     soundBtn.textContent = isMuted() ? 'Sounds: off' : 'Sounds: on'
   })
-  view.append(soundBtn)
+  const voiceBtn = el('button', 'btn btn-ghost btn-small', isVoiceOff() ? 'Voice: off' : 'Voice: on')
+  voiceBtn.addEventListener('click', () => {
+    setVoiceOff(!isVoiceOff())
+    voiceBtn.textContent = isVoiceOff() ? 'Voice: off' : 'Voice: on'
+  })
+  const toggles = el('div', 'parent-toggles')
+  toggles.append(soundBtn, voiceBtn)
+  view.append(toggles)
 
   const exportBox = el('div', 'parent-box')
   exportBox.append(el('h3', '', 'Save code'))

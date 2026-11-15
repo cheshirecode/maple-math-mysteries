@@ -12,6 +12,17 @@ test('desktop export to mobile import carries progress', async ({ browser }, tes
 async function exportOnDesktop(browser: import('@playwright/test').Browser, testInfo: import('@playwright/test').TestInfo) {
   const desktop = await browser.newContext()
   const page = await desktop.newPage()
+  await page.addInitScript(() => {
+    const synth = window.speechSynthesis
+    ;(window as unknown as { __spokenCount: number }).__spokenCount = 0
+    if (synth) {
+      const orig = synth.speak.bind(synth)
+      synth.speak = (u: SpeechSynthesisUtterance) => {
+        ;(window as unknown as { __spokenCount: number }).__spokenCount++
+        return orig(u)
+      }
+    }
+  })
   await page.goto('/')
 
   await expect(page.locator('.case-card')).toHaveCount(25)
@@ -31,7 +42,12 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
 
   await page.locator('.case-card').first().click()
   await expect(page.locator('.case-title')).toHaveText('The Locked Safe')
-  await expect(page.locator('[aria-label="Hear this line"]')).toHaveCount(0)
+  await expect(page.locator('[aria-label="Hear this line"]').first()).toBeVisible()
+  // BDD: voice is tap-only — nothing speaks before the child taps a line.
+  const spoken = () => page.evaluate(() => (window as unknown as { __spokenCount: number }).__spokenCount)
+  expect(await spoken()).toBe(0)
+  await page.locator('[aria-label="Hear this line"]').first().click()
+  expect(await spoken()).toBe(1)
 
   for (let i = 0; i < 3; i++) await page.getByRole('button', { name: 'add big block' }).click()
   for (let i = 0; i < 4; i++) await page.getByRole('button', { name: 'add long block' }).click()
