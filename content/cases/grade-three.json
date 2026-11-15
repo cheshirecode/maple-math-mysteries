@@ -547,6 +547,161 @@
           10
         ]
       }
+    },
+    {
+      "id": "c21-tallies",
+      "group": "number to 1000",
+      "kidLabel": "comparing with zeroes",
+      "badge": "tally-master",
+      "widget": "compare",
+      "titleNoDigits": "The Two Tallies",
+      "titleDigits": "The Two Tallies",
+      "storyNoDigits": [
+        "Two tally boards hang at the general store.",
+        "Both boards counted the same day."
+      ],
+      "storyDigits": [
+        "Two tally boards hang at the general store.",
+        "Which board counts more?"
+      ],
+      "puzzle": {
+        "kind": "compare",
+        "a": {
+          "hundreds": 3,
+          "tens": 1,
+          "ones": 0
+        },
+        "b": {
+          "hundreds": 3,
+          "tens": 0,
+          "ones": 1
+        },
+        "more": "a"
+      }
+    },
+    {
+      "id": "c22-record",
+      "group": "number to 1000",
+      "kidLabel": "comparing near one thousand",
+      "badge": "record-holder",
+      "widget": "compare",
+      "titleNoDigits": "The Record Board",
+      "titleDigits": "The Record Board",
+      "storyNoDigits": [
+        "The rink keeps a record board for the longest skate.",
+        "Two seasons are written side by side."
+      ],
+      "storyDigits": [
+        "The rink keeps a record board for the longest skate.",
+        "Which board holds the bigger record?"
+      ],
+      "puzzle": {
+        "kind": "compare",
+        "a": {
+          "hundreds": 9,
+          "tens": 9,
+          "ones": 8
+        },
+        "b": {
+          "hundreds": 9,
+          "tens": 8,
+          "ones": 9
+        },
+        "more": "a"
+      }
+    },
+    {
+      "id": "c23-rain",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "adding with regrouping",
+      "badge": "rain-reader",
+      "widget": "combine",
+      "titleNoDigits": "The Rain Gauge",
+      "titleDigits": "The Rain Gauge",
+      "storyNoDigits": [
+        "The rain gauge filled past one mark in the spring and past another by the fall.",
+        "Ten long blocks make one big block, so regroup as you build."
+      ],
+      "storyDigits": [
+        "The rain gauge read one amount in the spring and more in the fall.",
+        "Build the year total."
+      ],
+      "puzzle": {
+        "kind": "combine",
+        "op": "add",
+        "a": {
+          "hundreds": 5,
+          "tens": 6,
+          "ones": 8
+        },
+        "b": {
+          "hundreds": 2,
+          "tens": 6,
+          "ones": 4
+        }
+      }
+    },
+    {
+      "id": "c24-thaw",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "subtracting from nine hundred",
+      "badge": "thaw-watcher",
+      "widget": "combine",
+      "titleNoDigits": "The Big Thaw",
+      "titleDigits": "The Big Thaw",
+      "storyNoDigits": [
+        "The skate shed started with a full wall of rentals.",
+        "The thaw sent most of them home, so regroup twice to build what is left."
+      ],
+      "storyDigits": [
+        "The ice rink held a full count of skate rentals.",
+        "Half the rentals went home. Build what is left."
+      ],
+      "puzzle": {
+        "kind": "combine",
+        "op": "take",
+        "a": {
+          "hundreds": 9,
+          "tens": 0,
+          "ones": 0
+        },
+        "b": {
+          "hundreds": 4,
+          "tens": 5,
+          "ones": 8
+        }
+      }
+    },
+    {
+      "id": "c25-mail",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "adding across one hundred",
+      "badge": "mail-sorter",
+      "widget": "combine",
+      "titleNoDigits": "The Mail Sack",
+      "titleDigits": "The Mail Sack",
+      "storyNoDigits": [
+        "The post office sorted one sack in the morning and another after lunch.",
+        "The morning sack was nearly full, so the piles join across a new big block."
+      ],
+      "storyDigits": [
+        "The post office sorted one sack in the morning and another after lunch.",
+        "Build the day total."
+      ],
+      "puzzle": {
+        "kind": "combine",
+        "op": "add",
+        "a": {
+          "hundreds": 3,
+          "tens": 9,
+          "ones": 5
+        },
+        "b": {
+          "hundreds": 1,
+          "tens": 1,
+          "ones": 5
+        }
+      }
     }
   ]
 }

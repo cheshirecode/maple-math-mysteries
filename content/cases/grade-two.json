@@ -190,6 +190,99 @@
           7
         ]
       }
+    },
+    {
+      "id": "g2-kites",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "adding with regrouping",
+      "badge": "kite-keeper",
+      "widget": "combine",
+      "titleNoDigits": "The Kite Strings",
+      "titleDigits": "The Kite Strings",
+      "storyNoDigits": [
+        "The kite cart holds string spools from two stalls.",
+        "Ten small blocks make one long block, so regroup as you build."
+      ],
+      "storyDigits": [
+        "The kite cart holds string spools from two stalls.",
+        "Build the sum. Remember to regroup."
+      ],
+      "puzzle": {
+        "kind": "combine",
+        "op": "add",
+        "a": {
+          "hundreds": 0,
+          "tens": 4,
+          "ones": 7
+        },
+        "b": {
+          "hundreds": 0,
+          "tens": 2,
+          "ones": 5
+        }
+      }
+    },
+    {
+      "id": "g2-stamps",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "subtracting with regrouping",
+      "badge": "stamp-sorter",
+      "widget": "combine",
+      "titleNoDigits": "The Stamp Page",
+      "titleDigits": "The Stamp Page",
+      "storyNoDigits": [
+        "The stamp album started with a full page.",
+        "Some stamps were traded away, so regroup to build what is left."
+      ],
+      "storyDigits": [
+        "The stamp album started with a full page.",
+        "Build the difference. Remember to regroup."
+      ],
+      "puzzle": {
+        "kind": "combine",
+        "op": "take",
+        "a": {
+          "hundreds": 0,
+          "tens": 5,
+          "ones": 2
+        },
+        "b": {
+          "hundreds": 0,
+          "tens": 2,
+          "ones": 7
+        }
+      }
+    },
+    {
+      "id": "g2-mirror",
+      "group": "number to 1000",
+      "kidLabel": "comparing tens and ones",
+      "badge": "mirror-spotter",
+      "widget": "compare",
+      "titleNoDigits": "The Mirror Numbers",
+      "titleDigits": "The Mirror Numbers",
+      "storyNoDigits": [
+        "Two scores were chalked on the rink board with the same digits.",
+        "Which pile holds more?"
+      ],
+      "storyDigits": [
+        "Two scores were chalked on the rink board with the same digits.",
+        "Which number is larger?"
+      ],
+      "puzzle": {
+        "kind": "compare",
+        "a": {
+          "hundreds": 0,
+          "tens": 4,
+          "ones": 8
+        },
+        "b": {
+          "hundreds": 0,
+          "tens": 8,
+          "ones": 4
+        },
+        "more": "b"
+      }
     }
   ]
 }

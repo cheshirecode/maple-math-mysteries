@@ -200,6 +200,68 @@
         ],
         "answer": "red"
       }
+    },
+    {
+      "id": "g1-hands",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "putting together",
+      "badge": "finger-counter",
+      "widget": "combine",
+      "titleNoDigits": "The Mitten Pairs",
+      "titleDigits": "The Mitten Pairs",
+      "storyNoDigits": [
+        "One mitten holds a few buttons and another holds some more.",
+        "Build the stacks for both mittens together."
+      ],
+      "storyDigits": [
+        "One mitten holds a few buttons and another holds some more.",
+        "Build the sum of the two mittens."
+      ],
+      "puzzle": {
+        "kind": "combine",
+        "op": "add",
+        "a": {
+          "hundreds": 0,
+          "tens": 0,
+          "ones": 3
+        },
+        "b": {
+          "hundreds": 0,
+          "tens": 0,
+          "ones": 2
+        }
+      }
+    },
+    {
+      "id": "g1-gloves",
+      "group": "number to 1000",
+      "kidLabel": "comparing small counts",
+      "badge": "glove-guesser",
+      "widget": "compare",
+      "titleNoDigits": "The Mitten Count",
+      "titleDigits": "The Mitten Count",
+      "storyNoDigits": [
+        "Two mittens hang on the drying rack.",
+        "Which pile holds more?"
+      ],
+      "storyDigits": [
+        "Two mittens hang on the drying rack.",
+        "Which pile holds more?"
+      ],
+      "puzzle": {
+        "kind": "compare",
+        "a": {
+          "hundreds": 0,
+          "tens": 0,
+          "ones": 7
+        },
+        "b": {
+          "hundreds": 0,
+          "tens": 0,
+          "ones": 4
+        },
+        "more": "a"
+      }
     }
   ]
 }

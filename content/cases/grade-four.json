@@ -207,6 +207,68 @@
           5
         ]
       }
+    },
+    {
+      "id": "g4-ridge",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "adding with regrouping",
+      "badge": "ridge-hiker",
+      "widget": "combine",
+      "titleNoDigits": "The Ridge Trail",
+      "titleDigits": "The Ridge Trail",
+      "storyNoDigits": [
+        "Two trail clubs counted their steps for the ridge walk.",
+        "Ten long blocks make one big block, so regroup as you build."
+      ],
+      "storyDigits": [
+        "Two trail clubs counted their steps for the ridge walk.",
+        "Build the sum. Remember to regroup."
+      ],
+      "puzzle": {
+        "kind": "combine",
+        "op": "add",
+        "a": {
+          "hundreds": 6,
+          "tens": 8,
+          "ones": 9
+        },
+        "b": {
+          "hundreds": 2,
+          "tens": 7,
+          "ones": 5
+        }
+      }
+    },
+    {
+      "id": "g4-docks",
+      "group": "number to 1000",
+      "kidLabel": "comparing near one thousand",
+      "badge": "dock-watcher",
+      "widget": "compare",
+      "titleNoDigits": "The Dock Tallies",
+      "titleDigits": "The Dock Tallies",
+      "storyNoDigits": [
+        "Two dock workers tallied the salmon crates at the same hour.",
+        "Which pile holds more?"
+      ],
+      "storyDigits": [
+        "Two dock workers tallied the salmon crates at the same hour.",
+        "Which tally is larger?"
+      ],
+      "puzzle": {
+        "kind": "compare",
+        "a": {
+          "hundreds": 6,
+          "tens": 9,
+          "ones": 0
+        },
+        "b": {
+          "hundreds": 6,
+          "tens": 9,
+          "ones": 9
+        },
+        "more": "b"
+      }
     }
   ]
 }

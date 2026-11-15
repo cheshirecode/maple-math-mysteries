@@ -212,6 +212,68 @@
         "kind": "fraction",
         "parts": 9
       }
+    },
+    {
+      "id": "g5-frost",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "subtracting with regrouping",
+      "badge": "frost-scribe",
+      "widget": "combine",
+      "titleNoDigits": "The Frost Ledger",
+      "titleDigits": "The Frost Ledger",
+      "storyNoDigits": [
+        "The lodge ledger counted its blanket stock before the frost.",
+        "Regroup twice to build what stayed after the order left."
+      ],
+      "storyDigits": [
+        "The lodge ledger counted its blanket stock before the frost.",
+        "Build the difference. Regroup twice."
+      ],
+      "puzzle": {
+        "kind": "combine",
+        "op": "take",
+        "a": {
+          "hundreds": 8,
+          "tens": 4,
+          "ones": 5
+        },
+        "b": {
+          "hundreds": 3,
+          "tens": 7,
+          "ones": 9
+        }
+      }
+    },
+    {
+      "id": "g5-summit",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "adding with regrouping",
+      "badge": "summit-supplier",
+      "widget": "combine",
+      "titleNoDigits": "The Summit Supplies",
+      "titleDigits": "The Summit Supplies",
+      "storyNoDigits": [
+        "Two supply sleds met at the summit cabin.",
+        "Ten long blocks make one big block, so regroup as you build."
+      ],
+      "storyDigits": [
+        "Two supply sleds met at the summit cabin.",
+        "Build the sum. Regroup twice."
+      ],
+      "puzzle": {
+        "kind": "combine",
+        "op": "add",
+        "a": {
+          "hundreds": 4,
+          "tens": 9,
+          "ones": 7
+        },
+        "b": {
+          "hundreds": 4,
+          "tens": 6,
+          "ones": 8
+        }
+      }
     }
   ]
 }

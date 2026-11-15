@@ -14,7 +14,7 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
   const page = await desktop.newPage()
   await page.goto('/')
 
-  await expect(page.locator('.case-card')).toHaveCount(20)
+  await expect(page.locator('.case-card')).toHaveCount(25)
   await expect(page.locator('.case-card-hint')).toHaveText('start here')
   expect(await page.evaluate(() => document.body.innerText.match(/\d/))).toBeNull()
 
@@ -24,10 +24,10 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
 
   // BDD: every grade has its own case set. Switch to grade one, then back.
   await page.getByRole('button', { name: 'grade one' }).click()
-  await expect(page.locator('.case-card')).toHaveCount(8)
-  await expect(page.locator('.town-progress')).toHaveText('zero of eight mysteries closed')
+  await expect(page.locator('.case-card')).toHaveCount(10)
+  await expect(page.locator('.town-progress')).toHaveText('zero of ten mysteries closed')
   await page.getByRole('button', { name: 'grade three' }).click()
-  await expect(page.locator('.case-card')).toHaveCount(20)
+  await expect(page.locator('.case-card')).toHaveCount(25)
 
   await page.locator('.case-card').first().click()
   await expect(page.locator('.case-title')).toHaveText('The Locked Safe')
@@ -55,11 +55,11 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
   await page.getByRole('button', { name: 'Back to the map' }).click()
   // BDD: solved cases hide by default; the filter offers them back.
   await expect(page.locator('.town-filter')).toHaveText('show solved')
-  await expect(page.locator('.case-card')).toHaveCount(17)
+  await expect(page.locator('.case-card')).toHaveCount(22)
   await page.getByRole('button', { name: 'show solved' }).click()
-  await expect(page.locator('.case-card')).toHaveCount(20)
+  await expect(page.locator('.case-card')).toHaveCount(25)
   await page.getByRole('button', { name: 'hide solved' }).click()
-  await expect(page.locator('.case-card')).toHaveCount(17)
+  await expect(page.locator('.case-card')).toHaveCount(22)
   await expect(page.locator('.break-nudge')).toBeVisible()
   await expect(page.locator('.break-nudge')).toContainText('Stretch your legs')
   await page.getByRole('button', { name: 'Keep playing' }).click()
@@ -94,7 +94,7 @@ async function importOnMobile(
   const m = await mobile.newPage()
   await m.goto('/')
 
-  await expect(m.locator('.case-card')).toHaveCount(20)
+  await expect(m.locator('.case-card')).toHaveCount(25)
   await expect(m.locator('.case-card.done')).toHaveCount(0)
 
   await m.getByRole('button', { name: 'Parent area' }).click()
