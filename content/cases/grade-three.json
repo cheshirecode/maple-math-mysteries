@@ -702,6 +702,340 @@
           "ones": 5
         }
       }
+    },
+    {
+      "id": "core-grade-three-x26",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "counting pairs",
+      "badge": "dots-3-26",
+      "widget": "dots",
+      "titleNoDigits": "The Grocer Roll",
+      "storyNoDigits": [
+        "The grocer rides with a partly punched ticket roll.",
+        "Count the empty spots, then choose the matching picture."
+      ],
+      "storyDigits": [
+        "The grocer rides with a partly punched ticket roll.",
+        "Count the empty spots, then choose the matching picture."
+      ],
+      "puzzle": {
+        "kind": "dots",
+        "pairTarget": 16,
+        "pairA": 5
+      }
+    },
+    {
+      "id": "core-grade-three-x27",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "counting pairs",
+      "badge": "dots-3-27",
+      "widget": "dots",
+      "titleNoDigits": "The Conductor Roll",
+      "storyNoDigits": [
+        "The librarian rides with a partly punched ticket roll.",
+        "Count the empty spots, then choose the matching picture."
+      ],
+      "storyDigits": [
+        "The librarian rides with a partly punched ticket roll.",
+        "Count the empty spots, then choose the matching picture."
+      ],
+      "puzzle": {
+        "kind": "dots",
+        "pairTarget": 18,
+        "pairA": 14
+      }
+    },
+    {
+      "id": "core-grade-three-x28",
+      "group": "number to 1000",
+      "kidLabel": "place value",
+      "badge": "blocks-3-28",
+      "widget": "blocks",
+      "titleNoDigits": "The Harbourmaster Stacks",
+      "storyNoDigits": [
+        "The harbourmaster restocks the library ladder.",
+        "Build the stacks to match the picture."
+      ],
+      "storyDigits": [
+        "The harbourmaster restocks the library ladder.",
+        "Build the stacks to match the picture."
+      ],
+      "puzzle": {
+        "kind": "blocks",
+        "hundreds": 4,
+        "tens": 4,
+        "ones": 9
+      }
+    },
+    {
+      "id": "core-grade-three-x29",
+      "group": "multiplication and division concepts",
+      "kidLabel": "equal rows",
+      "badge": "arrays-3-29",
+      "widget": "arrays",
+      "titleNoDigits": "The Park Ranger Rows",
+      "storyNoDigits": [
+        "The librarian counts rows at the ferry queue.",
+        "Count the equal rows you see."
+      ],
+      "storyDigits": [
+        "The librarian counts rows at the ferry queue.",
+        "Count the equal rows you see."
+      ],
+      "puzzle": {
+        "kind": "arrays",
+        "rows": 5,
+        "cols": 6
+      }
+    },
+    {
+      "id": "core-grade-three-x30",
+      "group": "fraction concepts",
+      "kidLabel": "fair shares",
+      "badge": "fraction-3-30",
+      "widget": "fraction",
+      "titleNoDigits": "The Lighthouse Keeper Share",
+      "storyNoDigits": [
+        "The coach shares a pie at the bake sale.",
+        "Look for the piece cut into fair shares."
+      ],
+      "storyDigits": [
+        "The coach shares a pie at the bake sale.",
+        "Look for the piece cut into fair shares."
+      ],
+      "puzzle": {
+        "kind": "fraction",
+        "parts": 7
+      }
+    },
+    {
+      "id": "core-grade-three-x31",
+      "group": "fraction concepts",
+      "kidLabel": "fair shares",
+      "badge": "fraction-3-31",
+      "widget": "fraction",
+      "titleNoDigits": "The Conductor Share",
+      "storyNoDigits": [
+        "The conductor shares a pie at the bake sale.",
+        "Look for the piece cut into fair shares."
+      ],
+      "storyDigits": [
+        "The conductor shares a pie at the bake sale.",
+        "Look for the piece cut into fair shares."
+      ],
+      "puzzle": {
+        "kind": "fraction",
+        "parts": 11
+      }
+    },
+    {
+      "id": "core-grade-three-x32",
+      "group": "patterns and pattern rules",
+      "kidLabel": "growing patterns",
+      "badge": "pattern-3-32",
+      "widget": "pattern",
+      "titleNoDigits": "The Postmaster Pile",
+      "storyNoDigits": [
+        "The baker follows the growing trail.",
+        "Say the rule, then pick the next pile."
+      ],
+      "storyDigits": [
+        "The baker follows the growing trail.",
+        "Say the rule, then pick the next pile."
+      ],
+      "puzzle": {
+        "kind": "pattern",
+        "steps": [
+          12,
+          13,
+          14,
+          15
+        ]
+      }
+    },
+    {
+      "id": "core-grade-three-x33",
+      "group": "patterns and pattern rules",
+      "kidLabel": "growing patterns",
+      "badge": "pattern-3-33",
+      "widget": "pattern",
+      "titleNoDigits": "The Baker Pile",
+      "storyNoDigits": [
+        "The lighthouse keeper follows the growing trail.",
+        "Say the rule, then pick the next pile."
+      ],
+      "storyDigits": [
+        "The lighthouse keeper follows the growing trail.",
+        "Say the rule, then pick the next pile."
+      ],
+      "puzzle": {
+        "kind": "pattern",
+        "steps": [
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    },
+    {
+      "id": "core-grade-three-x34",
+      "group": "measurement and time",
+      "kidLabel": "measuring and pouring",
+      "badge": "measure-3-34",
+      "widget": "measure",
+      "titleNoDigits": "The Grocer Pour",
+      "storyNoDigits": [
+        "The baker fills the soup kettle.",
+        "Compare the fills before you tap."
+      ],
+      "storyDigits": [
+        "The baker fills the soup kettle.",
+        "Compare the fills before you tap."
+      ],
+      "puzzle": {
+        "kind": "measure",
+        "cups": 7,
+        "options": [
+          7,
+          5,
+          9
+        ]
+      }
+    },
+    {
+      "id": "core-grade-three-x35",
+      "group": "3d objects and graphs",
+      "kidLabel": "shapes and nets",
+      "badge": "crate-3-35",
+      "widget": "crate",
+      "titleNoDigits": "The Postmaster Box",
+      "storyNoDigits": [
+        "The conductor folds a crate at the depot.",
+        "Fold the net in your head, then choose."
+      ],
+      "storyDigits": [
+        "The conductor folds a crate at the depot.",
+        "Fold the net in your head, then choose."
+      ],
+      "puzzle": {
+        "kind": "crate",
+        "shape": "cylinder",
+        "suspects": [
+          5,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "core-grade-three-x36",
+      "group": "3d objects and graphs",
+      "kidLabel": "shapes and nets",
+      "badge": "crate-3-36",
+      "widget": "crate",
+      "titleNoDigits": "The Postmaster Box",
+      "storyNoDigits": [
+        "The lighthouse keeper folds a crate at the depot.",
+        "Fold the net in your head, then choose."
+      ],
+      "storyDigits": [
+        "The lighthouse keeper folds a crate at the depot.",
+        "Fold the net in your head, then choose."
+      ],
+      "puzzle": {
+        "kind": "crate",
+        "shape": "cube",
+        "suspects": [
+          6,
+          3,
+          4
+        ]
+      }
+    },
+    {
+      "id": "core-grade-three-x37",
+      "group": "likelihood of simulated events",
+      "kidLabel": "chance",
+      "badge": "spinner-3-37",
+      "widget": "spinner",
+      "titleNoDigits": "The Grocer Wheel",
+      "storyNoDigits": [
+        "The coach spins the raffle dial.",
+        "The biggest slice lands most often."
+      ],
+      "storyDigits": [
+        "The coach spins the raffle dial.",
+        "The biggest slice lands most often."
+      ],
+      "puzzle": {
+        "kind": "spinner",
+        "slices": [
+          {
+            "colour": "gold",
+            "weight": 4
+          },
+          {
+            "colour": "green",
+            "weight": 3
+          }
+        ],
+        "answer": "gold"
+      }
+    },
+    {
+      "id": "core-grade-three-x38",
+      "group": "likelihood of simulated events",
+      "kidLabel": "chance",
+      "badge": "spinner-3-38",
+      "widget": "spinner",
+      "titleNoDigits": "The Harbourmaster Wheel",
+      "storyNoDigits": [
+        "The ferry captain spins the raffle dial.",
+        "The biggest slice lands most often."
+      ],
+      "storyDigits": [
+        "The ferry captain spins the raffle dial.",
+        "The biggest slice lands most often."
+      ],
+      "puzzle": {
+        "kind": "spinner",
+        "slices": [
+          {
+            "colour": "red",
+            "weight": 4
+          },
+          {
+            "colour": "green",
+            "weight": 1
+          }
+        ],
+        "answer": "red"
+      }
+    },
+    {
+      "id": "core-grade-three-x39",
+      "group": "financial literacy",
+      "kidLabel": "money sense",
+      "badge": "coins-3-39",
+      "widget": "coins",
+      "titleNoDigits": "The Coach Payment",
+      "storyNoDigits": [
+        "The grocer pays the snack stand.",
+        "Pay with the same coins as the picture."
+      ],
+      "storyDigits": [
+        "The grocer pays the snack stand.",
+        "Pay with the same coins as the picture."
+      ],
+      "puzzle": {
+        "kind": "coins",
+        "target": [
+          1,
+          1,
+          25
+        ]
+      }
     }
   ]
 }
