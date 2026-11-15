@@ -36,6 +36,7 @@ test('desktop export to mobile import carries progress', async ({ browser }, tes
 
 // Read the target picture and build the matching stacks.
 async function solveBlocks(page: import('@playwright/test').Page): Promise<void> {
+  await page.locator('.blocks-target-row').first().waitFor()
   const want = await page.evaluate(() => {
     const count = (cls: string) => document.querySelectorAll(`.blocks-target-row.${cls} .block`).length
     return { h: count('hundreds'), t: count('tens'), o: count('ones') }
@@ -48,6 +49,7 @@ async function solveBlocks(page: import('@playwright/test').Page): Promise<void>
 
 // Read both block pictures as numbers and tap the larger one.
 async function solveCompare(page: import('@playwright/test').Page): Promise<void> {
+  await page.locator('.compare-option').first().waitFor()
   const value = (index: number) =>
     page.evaluate((idx) => {
       const opt = document.querySelectorAll('.compare-option')[idx]
@@ -105,7 +107,16 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
   await expect(page.locator('.case-title')).toHaveCount(0)
   await page.locator(CARDS).first().click()
   await expect(page.locator('.case-title')).toBeVisible()
-  await expect(page.getByRole('button', { name: 'grade one' })).toBeDisabled()
+  // Council-4 item 5: pills navigate now; mid-case inertness is obsolete.
+  // The selected pill goes home; an unselected pill switches grade with an
+  // explicit navigation, so re-open the case afterwards.
+  await page.getByRole('button', { name: 'grade three' }).click()
+  await expect(page.locator('.case-title')).toHaveCount(0)
+  await page.getByRole('button', { name: 'grade one' }).click()
+  await expect(page.locator('.grade-pill.selected')).toHaveText('grade one')
+  await page.getByRole('button', { name: 'grade three' }).click()
+  await expect(page.locator('.grade-pill.selected')).toHaveText('grade three')
+  await page.locator(CARDS).first().click()
   await expect(page.locator('.case-title')).toBeVisible()
   await page.getByRole('button', { name: '← Map' }).click()
   await expect(page.locator('.case-title')).toHaveCount(0)

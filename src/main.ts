@@ -4,8 +4,9 @@ import { loadProgress, saveProgress } from './save/store.ts'
 import { runCase, confetti } from './engine/run.ts'
 import type { WidgetKind } from './engine/case.ts'
 import { playFanfare } from './sfx.ts'
-import { GRADES, gradeCases, gradeWord, isGradeActive, countWord, visibleCases, lockedConcepts, CONCEPT_SEQUENCE } from './grades.ts'
+import { GRADES, gradeCases, gradeWord, gradeSlug, gradeFromSlug, isGradeActive, countWord, visibleCases, lockedConcepts, CONCEPT_SEQUENCE } from './grades.ts'
 import { loadPack, packForGrade } from './content/packs.ts'
+import { navigate, onRoute, startRouter, type Route } from './lib/router.ts'
 import { openParentView } from './parent/parent.ts'
 import { readHandoffCode, renderHandoff } from './parent/handoff.ts'
 import './style.css'
@@ -14,9 +15,9 @@ let sessionSolves = 0
 let breakDue = false
 let justCompleted = false
 let hideSolved = true
-let inCase = false
 let lastCaseId: string | null = null
 let handoffDone = false
+let currentRoute: Route = { grade: 'grade-three' }
 
 const CONCEPT_LABEL: Record<WidgetKind, string> = {
   dots: 'ticket-pair',
@@ -77,9 +78,10 @@ export function start(): void {
   const renderPicker = () => {
     picker.innerHTML = ''
     const progress = getProgress()
+    const renderedGrade = gradeFromSlug(currentRoute.grade) ?? progress.grade
     for (const g of GRADES) {
       const active = isGradeActive(g)
-      const selected = progress.grade === g
+      const selected = renderedGrade === g
       const b = el(
         'button',
         `grade-pill ${selected ? 'selected' : ''} ${active ? '' : 'off'}`,
@@ -95,17 +97,13 @@ export function start(): void {
           showNote(`grade ${gradeWord(g, progress.digitsMode)} is coming soon`),
         )
       } else if (selected) {
-        // The gold pill is "where I am". Tapping it from an exercise goes home;
-        // on the map it is already home, so it stays quiet.
-        if (inCase) {
-          b.addEventListener('click', () => render())
+        // The gold pill is "where I am": tapping it goes home from a case.
+        if (currentRoute.band || currentRoute.caseId) {
+          b.addEventListener('click', () => navigate({ grade: gradeSlug(g) }))
         }
-      } else if (inCase) {
-        // Switching grades mid-exercise would silently wipe the widget; the
-        // pills stay inert until the detective is back on the map.
-        b.setAttribute('aria-disabled', 'true')
-        b.title = 'Go back to the map first'
       } else {
+        // Council-4 item 5: the progress write lives on the user-initiated
+        // pill path; deep links and back never rewrite progression state.
         b.addEventListener('click', () => {
           justCompleted = false
           updateProgress((p) => ({
@@ -113,7 +111,7 @@ export function start(): void {
             grade: g,
             digitsMode: p.digitsMode,
           }))
-          render()
+          navigate({ grade: gradeSlug(g) })
         })
       }
       picker.append(b)
@@ -135,13 +133,14 @@ export function start(): void {
   root.append(header, picker, note, stage)
 
   const render = () => {
-    inCase = false
     renderPicker()
     stage.innerHTML = ''
     const progress = getProgress()
-    if (!packForGrade(progress.grade)) {
+    const routeGrade = gradeFromSlug(currentRoute.grade) ?? progress.grade
+    if (!packForGrade(routeGrade)) {
       // Pack chunks load per grade on demand; every path funnels through here.
-      void loadPack(progress.grade).then(render)
+      // Re-read the route after the load resolves: the hash may have moved.
+      void loadPack(routeGrade).then(() => render())
       stage.append(el('p', 'case-story', 'Opening the case files...'))
       return
     }
@@ -176,6 +175,7 @@ export function start(): void {
       if (bandCases.length === 0) continue
       const bandSolved = bandCases.filter((c) => doneSet.has(c.id)).length
       const header = el('div', 'band-head')
+      header.dataset.band = kind
       header.append(el('span', 'band-head-label', conceptLabel(kind)))
       header.append(
         el('span', 'band-head-count', `${countWord(bandSolved)} of ${countWord(bandCases.length)} closed`),
@@ -193,31 +193,7 @@ export function start(): void {
         if (done) card.append(el('span', 'case-card-badge', 'solved'))
         card.dataset.caseId = def.id
       card.addEventListener('click', () => {
-        breakDue = false
-        inCase = true
-        lastCaseId = def.id
-        renderPicker()
-        runCase(stage, def, {
-          onBadge: (badge) => {
-            updateProgress((p) =>
-              p.badges.includes(badge)
-                ? { ...p, completedCases: [...new Set([...p.completedCases, def.id])] }
-                : { ...p, badges: [...p.badges, badge], completedCases: [...new Set([...p.completedCases, def.id])] },
-            )
-            const after = getProgress()
-            const afterSet = new Set(after.completedCases)
-            if (gradeCases(after.grade).every((c) => afterSet.has(c.id))) {
-              justCompleted = true
-            }
-            sessionSolves++
-            if (sessionSolves === 3) breakDue = true
-          },
-          onDone: () => {
-            render()
-            const played = stage.querySelector<HTMLElement>(`[data-case-id="${lastCaseId}"]`)
-            ;(played ?? stage.querySelector<HTMLElement>('.case-card'))?.focus()
-          },
-        })
+        navigate({ grade: gradeSlug(routeGrade), band: def.widget, caseId: def.id })
       })
       town.append(card)
       }
@@ -239,6 +215,8 @@ export function start(): void {
       town.append(shelf)
     }
     stage.append(town)
+    // Council-4 item 4: the handoff wins over a case route on first render —
+    // the panel needs the map behind it, not a swallowed case view.
     if (handoff && !handoffDone) {
       renderHandoff(stage, handoff, () => {
         handoffDone = true
@@ -276,9 +254,63 @@ export function start(): void {
       nudge.append(keepBtn)
       stage.append(nudge)
     }
+    runRoute()
   }
 
-  render()
+  // Route rendering: a case route runs the exercise; a band route scrolls the
+  // map to that concept section. The route is the single view source.
+  const runRoute = () => {
+    // Handoff wins over a case route: the panel needs the map behind it.
+    if (handoff && !handoffDone) return
+    const routeGrade = gradeFromSlug(currentRoute.grade) ?? getProgress().grade
+    const band = currentRoute.band as WidgetKind | undefined
+    if (currentRoute.caseId) {
+      const def = gradeCases(routeGrade).find((c) => c.id === currentRoute.caseId)
+      if (!def) {
+        navigate({ grade: currentRoute.grade })
+        return
+      }
+      lastCaseId = def.id
+      breakDue = false
+      runCase(stage, def, {
+        onBadge: (badge) => {
+          updateProgress((p) =>
+            p.badges.includes(badge)
+              ? { ...p, completedCases: [...new Set([...p.completedCases, def.id])] }
+              : { ...p, badges: [...p.badges, badge], completedCases: [...new Set([...p.completedCases, def.id])] },
+          )
+          const after = getProgress()
+          const afterSet = new Set(after.completedCases)
+          if (gradeCases(after.grade).every((c) => afterSet.has(c.id))) {
+            justCompleted = true
+          }
+          sessionSolves++
+          if (sessionSolves === 3) breakDue = true
+        },
+        onDone: () => {
+          navigate({ grade: gradeSlug(routeGrade), band: def.widget })
+          const played = stage.querySelector<HTMLElement>(`[data-case-id="${lastCaseId}"]`)
+          ;(played ?? stage.querySelector<HTMLElement>('.case-card'))?.focus()
+        },
+      })
+    } else if (band) {
+      // A locked band has no section yet: the shelf explains the lock.
+      const head = stage.querySelector<HTMLElement>(`[data-band="${band}"]`)
+      ;(head ?? stage.querySelector<HTMLElement>('.locked-shelf'))?.scrollIntoView({ block: 'start' })
+    }
+  }
+
+  const dispatch = (route: Route) => {
+    if (gradeFromSlug(route.grade) === null && route.grade !== '') {
+      // Malformed grades degrade to the default route instead of an empty map.
+      navigate({ grade: gradeSlug(getProgress().grade) })
+      return
+    }
+    currentRoute = route
+    render()
+  }
+  onRoute(dispatch)
+  startRouter()
 
   setInterval(() => {
     if (document.visibilityState === 'visible') {

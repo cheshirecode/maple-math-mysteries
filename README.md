@@ -67,6 +67,14 @@ e2e/                       one Playwright walk: solve, nudge, export, import
 tests/                     unit gates: packs, content lint, generator, save
 ```
 
+## Deep links
+
+Every view has an address. `#/grade-three` opens the grade map,
+`#/grade-three/combine` opens it at that concept band, and appending a case id
+(`#/grade-three/combine/c16-bridge`) opens the exercise itself. The browser
+back button stays inside the app. Save codes travel in the query string
+(`?code=...`) and compose with any hash route.
+
 ## Development
 
 ```sh

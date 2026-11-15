@@ -29,6 +29,16 @@ export function gradeCases(grade: number): CaseDef[] {
   return packForGrade(grade)?.cases ?? []
 }
 
+export function gradeSlug(grade: number): string {
+  return `grade-${WORD[grade] ?? grade}`
+}
+
+export function gradeFromSlug(slug: string): number | null {
+  const m = /^grade-(one|two|three|four|five)$/.exec(slug)
+  if (!m) return null
+  return GRADES.find((g) => WORD[g] === m[1]) ?? null
+}
+
 // The grade-three year in concept order: place value first, chance and money
 // last. Other grades follow the same sequence with their own case sets.
 export const CONCEPT_SEQUENCE: WidgetKind[] = [

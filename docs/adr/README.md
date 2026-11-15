@@ -15,3 +15,4 @@ Numbering is sequential; status is `accepted` or `superseded`.
 | [0008](0008-state-code-replaces-gate.md) | State code replaces the access-code gate |
 | [0009](0009-no-toggle-one-theme.md) | Digits toggle removed; toy-bright theme |
 | [0010](0010-content-packs.md) | Case content as validated JSON packs, generator-ready |
+| [0011](0011-hash-routing.md) | Hash routes grade/band/case, hand-rolled router |

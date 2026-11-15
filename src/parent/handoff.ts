@@ -9,11 +9,11 @@ export function handoffUrl(code: string): string {
 }
 
 // Reads a handoff code from the URL and cleans the address bar so a refresh
-// never re-prompts. Returns null when no code is present.
+// never re-prompts. The hash route survives: query and fragment are separate.
 export function readHandoffCode(): string | null {
   const code = new URLSearchParams(location.search).get('code')
   if (!code) return null
-  history.replaceState(null, '', location.pathname)
+  history.replaceState(null, '', location.pathname + location.hash)
   return code
 }
 
