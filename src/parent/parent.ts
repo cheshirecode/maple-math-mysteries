@@ -68,13 +68,15 @@ export function openParentView(root: HTMLElement, back: () => void): void {
   })
   shareBtn.addEventListener('click', async () => {
     if (!exportText.value) return
-    const nav = navigator as Navigator & { share?: (d: { text: string }) => Promise<void> }
+    const nav = navigator as Navigator & { share?: (d: { text?: string; url?: string }) => Promise<void> }
     if (!nav.share) {
       exportMsg.textContent = 'Share is not here. Use Copy or Download.'
       return
     }
     try {
-      await nav.share({ text: exportText.value })
+      // The query string is the share: the recipient opens the site with the
+      // code attached and gets the same confirmation as a scanned QR.
+      await nav.share({ title: 'Maple Math Mysteries', url: handoffUrl(exportText.value) })
     } catch {
       exportMsg.textContent = 'Share closed.'
     }

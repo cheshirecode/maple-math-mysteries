@@ -53,3 +53,14 @@ One save code holds every piece of state: progress, settings, and any field adde
 - `src/save/string.ts` — encode and decode, CRC-32, migration.
 - `src/save/store.ts` — localStorage autosave.
 - `tests/save.test.ts` — round-trip and tamper checks.
+
+## Handoff by query string
+
+Any share surface produces the same URL: `origin + pathname + ?code=` plus the
+URL-encoded save code. `handoffUrl()` in `src/parent/handoff.ts` builds it; the
+QR renders it, the Share button sends it, and the reader turns it into the
+confirmation panel. Every import surface, paste or URL, calls the one
+`importSaveText()` in `src/save/import.ts`; substituting one surface for
+another changes nothing about the contract. The panel states when the import
+replaces local progress, and a failed code keeps the panel open with a visible
+message.
