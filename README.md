@@ -7,86 +7,75 @@ Play it: **<https://cheshirecode.github.io/maple-math-mysteries/>**
 A detective game where math is the tool. Built for a grade-3 reader of the
 British Columbia curriculum. Quantity comes before digits: every case starts
 with dot patterns, blocks, nets, jugs, and coins. No numeral renders anywhere
-in the child's view. Pictures and word numerals carry the meaning.
+in the child's view; pictures and word numerals carry the meaning. There is
+no login and nothing leaves the browser. One save code carries all state
+between devices.
 
-No login. No accounts. No data collection. One save code carries all state
-between devices: export it, load it on a fresh device, keep playing.
+## How the content is organized
 
-## Cases (BC grade-3 content standards)
+Two hundred thirty-nine cases live in five JSON packs, one per grade,
+under `content/cases/`. Each case pairs a story with a widget.
+Eleven widgets cover the formats, from base-ten blocks and dot pairs to
+coin trays and spinner dials.
 
-| Case | Tool | BC content standard |
+Cases inside a grade open in concept order: place value first, chance and
+money last. The map shows one concept band at a time until the child clears
+it. A generator (`npm run generate`) extends bands with variant puzzles.
+Every pack passes a fail-closed validator before the app loads it, and the
+tests reject any numeral in child-facing text.
+
+| Concept band (grade three) | Widget | BC strand |
 | --- | --- | --- |
-| The Locked Safe | base-ten blocks | number concepts to 1000 |
-| The Streetcar Fare | dot cards | addition and subtraction to 1000, facts to 20 |
-| The Equal Loot | footprint arrays | multiplication and division concepts |
-| The Bake-Sale Pie | pie shares | fraction concepts |
-| The Growing Trail | pattern strip | patterns and pattern rules |
-| The Thirsty Jug | jug bands | measurement and time |
-| The Crate Clue | crate nets | 3D objects and graphs |
-| The Likely Spinner | spinner dial | likelihood of simulated events |
-| The Snack-Stand Fee | coin tray | financial literacy |
+| Place value | base-ten blocks | number concepts to 1000 |
+| Comparing | block pictures | number concepts to 1000 |
+| Ticket pairs | dot cards | addition and subtraction facts to 20 |
+| Add and take away | build-the-answer | addition and subtraction to 1000 |
+| Equal rows | footprint arrays | multiplication and division concepts |
+| Fair shares | pie slices | fraction concepts |
+| Growing patterns | pattern strip | patterns and pattern rules |
+| Measuring | jug bands | measurement and time |
+| Net folding | crate nets | 3D objects and graphs |
+| Chance | spinner dial | likelihood of simulated events |
+| Money | coin tray | financial literacy |
+
+## Parent tools
+
+The parent area shows play statistics, a sounds toggle, and a voice toggle.
+Progress moves between devices three ways. A save code copies as text. A QR
+code opens the site with the code attached. A file download works offline.
 
 ## Repository map
 
 ```
 index.html                 entry page
+content/cases/             JSON packs, one per grade (the content source)
+scripts/                   pack generator and variant bands
 public/                    manifest, icon, service worker
-src/main.ts               shell: town map, minutes tracker
+src/main.ts                shell: town map, concept sections, minutes tracker
 src/state.ts               progress model, migration, store bus
+src/grades.ts              grade registry, concept sequence, unlock rules
+src/content/               pack loader and fail-closed validation
 src/save/string.ts         save-string encode/decode, CRC-32
-src/save/code.ts           access-code hash (PBKDF2)
 src/save/store.ts          localStorage keys
 src/engine/case.ts         CaseDef and PuzzleData types, validation
 src/engine/run.ts          case loop: story, widget, feedback, badge
-src/engine/widgets/        dots, blocks, arrays, fraction, pattern,
-                           measure, crate, spinner, coins
-src/cases/                 one data file per case + registry
-src/parent/parent.ts       gated parent view: stats, import, export, reset
-tests/                     node tests: save round-trip, code, digits guard
-docs/adr/                  architecture decision records
-docs/save-string-spec.md   save-string envelope spec
-.github/workflows/          ci (every push), deploy (Pages on main)
+src/engine/widgets/        the eleven puzzle widgets
+src/voice.ts               tap-to-speak lines (Web Speech)
+src/sfx.ts                 solve chime, retry tone, fanfare (Web Audio)
+src/parent/                parent area: stats, toggles, QR handoff
+e2e/                       one Playwright walk: solve, nudge, export, import
+tests/                     unit gates: packs, content lint, generator, save
 ```
 
 ## Development
 
-```
+```sh
 npm install
-npm run dev
-npm run lint
-npm test
-npm run typecheck
-npm run build
-npm run test:e2e
+npm run dev        # local dev server
+npm test           # unit gates (69 and counting)
+npm run test:e2e   # PW_CHANNEL=chrome locally; CI runs bundled chromium
+npm run generate   # extend content packs with variant puzzles
 ```
 
-Node 24 or newer. The runner reads TypeScript without a build step.
-
-The e2e suite runs the full handoff in headless Chromium. Set
-`PW_CHANNEL=chrome` to use an installed Chrome instead.
-
-## Save-string
-
-Progress serializes to one long string: `MDA1.<version>.<crc32>.<base64url>`.
-A fresh session restores it from the parent view. See
-[docs/save-string-spec.md](docs/save-string-spec.md).
-
-## Decisions
-
-The CSS lints with stylelint; JS/TS with oxlint.
-
-Seven decisions live in [docs/adr/](docs/adr/).
-
-The child-flow audit is [docs/pm-audit.md](docs/pm-audit.md).
-
-Requirements trace to checks in [docs/requirements.md](docs/requirements.md).
-
-## Hosting
-
-Static site. GitHub Pages deploys the `dist/` build on every push to `main`
-via `.github/workflows/deploy.yml`. The service worker caches the app for
-offline play.
-
-## License
-
-MIT
+Design history and decisions live in `docs/adr/`. Session lessons and the
+guards they produced live in `docs/lessons.md`.
