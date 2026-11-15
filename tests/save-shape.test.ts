@@ -27,4 +27,9 @@ describe('save shape: case ids', () => {
     const all = ALL_CASES.map((c) => c.badge)
     assert.equal(new Set(all).size, all.length, `duplicate badges across packs`)
   })
+
+  it('titles are globally unique across all packs', () => {
+    const all = ALL_CASES.map((c) => c.titleNoDigits)
+    assert.equal(new Set(all).size, all.length, `duplicate titles across packs`)
+  })
 })

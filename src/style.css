@@ -199,6 +199,33 @@ body {
   color: var(--ink);
 }
 
+.band-head {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0.9rem 0 0.2rem;
+}
+
+.band-head:first-child {
+  margin-top: 0;
+}
+
+.band-head-label {
+  font-family: var(--font);
+  font-weight: 800;
+  font-size: 1.02rem;
+  color: var(--ink);
+  text-transform: capitalize;
+}
+
+.band-head-count {
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.03em;
+  color: #1e7d38;
+}
+
 .town-progress {
   grid-column: 1 / -1;
   font-weight: 800;

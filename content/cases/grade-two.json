@@ -290,7 +290,7 @@
       "kidLabel": "counting pairs",
       "badge": "dots-2-12",
       "widget": "dots",
-      "titleNoDigits": "The Grocer Roll",
+      "titleNoDigits": "The Ferry Clerk Roll",
       "storyNoDigits": [
         "The grocer fills a roll that holds twelve tickets.",
         "Count the empty spots, then choose the matching picture."
@@ -311,7 +311,7 @@
       "kidLabel": "place value",
       "badge": "blocks-2-13",
       "widget": "blocks",
-      "titleNoDigits": "The Postmaster Stacks",
+      "titleNoDigits": "The Ferry Clerk Stacks",
       "storyNoDigits": [
         "The conductor counts the popcorn tubs.",
         "Stack the blocks to match the target picture."
@@ -333,7 +333,7 @@
       "kidLabel": "place value",
       "badge": "blocks-2-14",
       "widget": "blocks",
-      "titleNoDigits": "The Grocer Stacks",
+      "titleNoDigits": "The Ferry Clerk Ladder",
       "storyNoDigits": [
         "The baker counts the popcorn tubs.",
         "Stack the blocks to match the target picture."
@@ -355,7 +355,7 @@
       "kidLabel": "equal rows",
       "badge": "arrays-2-15",
       "widget": "arrays",
-      "titleNoDigits": "The Ferry Captain Rows",
+      "titleNoDigits": "The Ferry Clerk Rows",
       "storyNoDigits": [
         "The coach lines up neat rows of prints.",
         "Count the equal rows you see."
@@ -376,7 +376,7 @@
       "kidLabel": "equal rows",
       "badge": "arrays-2-16",
       "widget": "arrays",
-      "titleNoDigits": "The Lighthouse Keeper Rows",
+      "titleNoDigits": "The Ferry Clerk Grid",
       "storyNoDigits": [
         "The conductor lines up neat rows of prints.",
         "Count the equal rows you see."
@@ -397,7 +397,7 @@
       "kidLabel": "fair shares",
       "badge": "fraction-2-17",
       "widget": "fraction",
-      "titleNoDigits": "The Conductor Share",
+      "titleNoDigits": "The Ferry Clerk Share",
       "storyNoDigits": [
         "The grocer cuts a campfire pie.",
         "Look for the piece cut into fair shares."
@@ -417,7 +417,7 @@
       "kidLabel": "fair shares",
       "badge": "fraction-2-18",
       "widget": "fraction",
-      "titleNoDigits": "The Librarian Share",
+      "titleNoDigits": "The Ferry Clerk Pie",
       "storyNoDigits": [
         "The librarian cuts a campfire pie.",
         "Look for the piece cut into fair shares."
@@ -437,7 +437,7 @@
       "kidLabel": "growing patterns",
       "badge": "pattern-2-19",
       "widget": "pattern",
-      "titleNoDigits": "The Baker Pile",
+      "titleNoDigits": "The Ferry Clerk Pile",
       "storyNoDigits": [
         "The coach spots shells along the dock path.",
         "Say the rule, then pick the next pile."
@@ -462,7 +462,7 @@
       "kidLabel": "growing patterns",
       "badge": "pattern-2-20",
       "widget": "pattern",
-      "titleNoDigits": "The Librarian Pile",
+      "titleNoDigits": "The Ferry Clerk Trail",
       "storyNoDigits": [
         "The coach spots shells along the dock path.",
         "Say the rule, then pick the next pile."
@@ -512,7 +512,7 @@
       "kidLabel": "measuring and pouring",
       "badge": "measure-2-22",
       "widget": "measure",
-      "titleNoDigits": "The Lighthouse Keeper Pour",
+      "titleNoDigits": "The Ferry Clerk Pour",
       "storyNoDigits": [
         "The lighthouse keeper fills the watering can.",
         "Compare the fills before you tap."
@@ -612,7 +612,7 @@
       "kidLabel": "chance",
       "badge": "spinner-2-26",
       "widget": "spinner",
-      "titleNoDigits": "The Coach Wheel",
+      "titleNoDigits": "The Ferry Clerk Wheel",
       "storyNoDigits": [
         "The park ranger spins at the school fair.",
         "The biggest slice lands most often."
@@ -646,7 +646,7 @@
       "kidLabel": "chance",
       "badge": "spinner-2-27",
       "widget": "spinner",
-      "titleNoDigits": "The Baker Wheel",
+      "titleNoDigits": "The Ferry Clerk Dial",
       "storyNoDigits": [
         "The lighthouse keeper spins at the school fair.",
         "The biggest slice lands most often."
@@ -676,7 +676,7 @@
       "kidLabel": "chance",
       "badge": "spinner-2-28",
       "widget": "spinner",
-      "titleNoDigits": "The Harbourmaster Wheel",
+      "titleNoDigits": "The Ferry Clerk Spin",
       "storyNoDigits": [
         "The grocer spins at the school fair.",
         "The biggest slice lands most often."
@@ -706,7 +706,7 @@
       "kidLabel": "money sense",
       "badge": "coins-2-29",
       "widget": "coins",
-      "titleNoDigits": "The Harbourmaster Payment",
+      "titleNoDigits": "The Ferry Clerk Payment",
       "storyNoDigits": [
         "The coach pays the bus driver.",
         "Pay with the same coins as the picture."
@@ -729,7 +729,7 @@
       "kidLabel": "money sense",
       "badge": "coins-2-30",
       "widget": "coins",
-      "titleNoDigits": "The Coach Payment",
+      "titleNoDigits": "The Ferry Clerk Till",
       "storyNoDigits": [
         "The postmaster pays the bus driver.",
         "Pay with the same coins as the picture."

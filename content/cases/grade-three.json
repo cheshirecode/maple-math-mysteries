@@ -709,7 +709,7 @@
       "kidLabel": "counting pairs",
       "badge": "dots-3-26",
       "widget": "dots",
-      "titleNoDigits": "The Grocer Roll",
+      "titleNoDigits": "The Ferry Clerk Tickets",
       "storyNoDigits": [
         "The grocer rides with a partly punched ticket roll.",
         "Count the empty spots, then choose the matching picture."
@@ -730,7 +730,7 @@
       "kidLabel": "counting pairs",
       "badge": "dots-3-27",
       "widget": "dots",
-      "titleNoDigits": "The Conductor Roll",
+      "titleNoDigits": "The Ferry Clerk Pair",
       "storyNoDigits": [
         "The librarian rides with a partly punched ticket roll.",
         "Count the empty spots, then choose the matching picture."
@@ -751,7 +751,7 @@
       "kidLabel": "place value",
       "badge": "blocks-3-28",
       "widget": "blocks",
-      "titleNoDigits": "The Harbourmaster Stacks",
+      "titleNoDigits": "The Ferry Clerk Tower",
       "storyNoDigits": [
         "The harbourmaster restocks the library ladder.",
         "Stack the blocks to match the target picture."
@@ -773,7 +773,7 @@
       "kidLabel": "equal rows",
       "badge": "arrays-3-29",
       "widget": "arrays",
-      "titleNoDigits": "The Park Ranger Rows",
+      "titleNoDigits": "The Ferry Clerk Tracks",
       "storyNoDigits": [
         "The librarian counts rows at the ferry queue.",
         "Count the equal rows you see."
@@ -794,7 +794,7 @@
       "kidLabel": "fair shares",
       "badge": "fraction-3-30",
       "widget": "fraction",
-      "titleNoDigits": "The Lighthouse Keeper Share",
+      "titleNoDigits": "The Ferry Clerk Reel",
       "storyNoDigits": [
         "The coach shares a pie at the bake sale.",
         "Look for the piece cut into fair shares."
@@ -814,7 +814,7 @@
       "kidLabel": "fair shares",
       "badge": "fraction-3-31",
       "widget": "fraction",
-      "titleNoDigits": "The Conductor Share",
+      "titleNoDigits": "The Librarian Share",
       "storyNoDigits": [
         "The conductor shares a pie at the bake sale.",
         "Look for the piece cut into fair shares."
@@ -834,7 +834,7 @@
       "kidLabel": "growing patterns",
       "badge": "pattern-3-32",
       "widget": "pattern",
-      "titleNoDigits": "The Postmaster Pile",
+      "titleNoDigits": "The Ferry Clerk Rule",
       "storyNoDigits": [
         "The baker follows the growing trail.",
         "Say the rule, then pick the next pile."
@@ -859,7 +859,7 @@
       "kidLabel": "growing patterns",
       "badge": "pattern-3-33",
       "widget": "pattern",
-      "titleNoDigits": "The Baker Pile",
+      "titleNoDigits": "The Librarian Pile",
       "storyNoDigits": [
         "The lighthouse keeper follows the growing trail.",
         "Say the rule, then pick the next pile."
@@ -884,7 +884,7 @@
       "kidLabel": "measuring and pouring",
       "badge": "measure-3-34",
       "widget": "measure",
-      "titleNoDigits": "The Grocer Pour",
+      "titleNoDigits": "The Ferry Clerk Kettle",
       "storyNoDigits": [
         "The baker fills the soup kettle.",
         "Compare the fills before you tap."
@@ -909,7 +909,7 @@
       "kidLabel": "shapes and nets",
       "badge": "crate-3-35",
       "widget": "crate",
-      "titleNoDigits": "The Postmaster Box",
+      "titleNoDigits": "The Ferry Clerk Box",
       "storyNoDigits": [
         "The conductor folds a crate at the depot.",
         "Fold the net in your head, then choose."
@@ -934,7 +934,7 @@
       "kidLabel": "shapes and nets",
       "badge": "crate-3-36",
       "widget": "crate",
-      "titleNoDigits": "The Postmaster Box",
+      "titleNoDigits": "The Ferry Clerk Crate",
       "storyNoDigits": [
         "The lighthouse keeper folds a crate at the depot.",
         "Fold the net in your head, then choose."
@@ -989,7 +989,7 @@
       "kidLabel": "chance",
       "badge": "spinner-3-38",
       "widget": "spinner",
-      "titleNoDigits": "The Harbourmaster Wheel",
+      "titleNoDigits": "The Librarian Wheel",
       "storyNoDigits": [
         "The ferry captain spins the raffle dial.",
         "The biggest slice lands most often."
@@ -1019,7 +1019,7 @@
       "kidLabel": "money sense",
       "badge": "coins-3-39",
       "widget": "coins",
-      "titleNoDigits": "The Coach Payment",
+      "titleNoDigits": "The Ferry Clerk Fee",
       "storyNoDigits": [
         "The grocer pays the snack stand.",
         "Pay with the same coins as the picture."
@@ -1127,7 +1127,7 @@
       "kidLabel": "counting pairs",
       "badge": "dots-3-44",
       "widget": "dots",
-      "titleNoDigits": "The Grocer Roll",
+      "titleNoDigits": "The Fishmonger Roll",
       "storyNoDigits": [
         "The postmaster rides with a partly punched ticket roll.",
         "Count the empty spots, then choose the matching picture."
@@ -1169,7 +1169,7 @@
       "kidLabel": "counting pairs",
       "badge": "dots-3-46",
       "widget": "dots",
-      "titleNoDigits": "The Librarian Roll",
+      "titleNoDigits": "The Fishmonger Tickets",
       "storyNoDigits": [
         "The coach rides with a partly punched ticket roll.",
         "Count the empty spots, then choose the matching picture."
@@ -1190,7 +1190,7 @@
       "kidLabel": "place value",
       "badge": "blocks-3-47",
       "widget": "blocks",
-      "titleNoDigits": "The Conductor Stacks",
+      "titleNoDigits": "The Ferry Clerk Safe",
       "storyNoDigits": [
         "The ferry captain restocks the library ladder.",
         "Stack the blocks to match the target picture."
@@ -1212,7 +1212,7 @@
       "kidLabel": "place value",
       "badge": "blocks-3-48",
       "widget": "blocks",
-      "titleNoDigits": "The Grocer Stacks",
+      "titleNoDigits": "The Librarian Stacks",
       "storyNoDigits": [
         "The postmaster restocks the library ladder.",
         "Stack the blocks to match the target picture."
@@ -1278,7 +1278,7 @@
       "kidLabel": "place value",
       "badge": "blocks-3-51",
       "widget": "blocks",
-      "titleNoDigits": "The Librarian Stacks",
+      "titleNoDigits": "The Librarian Ladder",
       "storyNoDigits": [
         "The harbourmaster restocks the library ladder.",
         "Stack the blocks to match the target picture."
@@ -1322,7 +1322,7 @@
       "kidLabel": "place value",
       "badge": "blocks-3-53",
       "widget": "blocks",
-      "titleNoDigits": "The Park Ranger Stacks",
+      "titleNoDigits": "The Fishmonger Stacks",
       "storyNoDigits": [
         "The conductor restocks the library ladder.",
         "Stack the blocks to match the target picture."
@@ -1344,7 +1344,7 @@
       "kidLabel": "equal rows",
       "badge": "arrays-3-54",
       "widget": "arrays",
-      "titleNoDigits": "The Coach Rows",
+      "titleNoDigits": "The Librarian Rows",
       "storyNoDigits": [
         "The grocer counts rows at the ferry queue.",
         "Count the equal rows you see."
@@ -1365,7 +1365,7 @@
       "kidLabel": "equal rows",
       "badge": "arrays-3-55",
       "widget": "arrays",
-      "titleNoDigits": "The Park Ranger Rows",
+      "titleNoDigits": "The Fishmonger Rows",
       "storyNoDigits": [
         "The librarian counts rows at the ferry queue.",
         "Count the equal rows you see."
@@ -1407,7 +1407,7 @@
       "kidLabel": "equal rows",
       "badge": "arrays-3-57",
       "widget": "arrays",
-      "titleNoDigits": "The Ferry Captain Rows",
+      "titleNoDigits": "The Librarian Grid",
       "storyNoDigits": [
         "The librarian counts rows at the ferry queue.",
         "Count the equal rows you see."
@@ -1428,7 +1428,7 @@
       "kidLabel": "equal rows",
       "badge": "arrays-3-58",
       "widget": "arrays",
-      "titleNoDigits": "The Librarian Rows",
+      "titleNoDigits": "The Librarian Tracks",
       "storyNoDigits": [
         "The ferry captain counts rows at the ferry queue.",
         "Count the equal rows you see."
@@ -1470,7 +1470,7 @@
       "kidLabel": "equal rows",
       "badge": "arrays-3-60",
       "widget": "arrays",
-      "titleNoDigits": "The Coach Rows",
+      "titleNoDigits": "The Fishmonger Grid",
       "storyNoDigits": [
         "The librarian counts rows at the ferry queue.",
         "Count the equal rows you see."
@@ -1531,7 +1531,7 @@
       "kidLabel": "fair shares",
       "badge": "fraction-3-63",
       "widget": "fraction",
-      "titleNoDigits": "The Postmaster Share",
+      "titleNoDigits": "The Librarian Pie",
       "storyNoDigits": [
         "The grocer shares a pie at the bake sale.",
         "Look for the piece cut into fair shares."
@@ -1551,7 +1551,7 @@
       "kidLabel": "fair shares",
       "badge": "fraction-3-64",
       "widget": "fraction",
-      "titleNoDigits": "The Conductor Share",
+      "titleNoDigits": "The Fishmonger Share",
       "storyNoDigits": [
         "The librarian shares a pie at the bake sale.",
         "Look for the piece cut into fair shares."
@@ -1621,7 +1621,7 @@
       "kidLabel": "growing patterns",
       "badge": "pattern-3-67",
       "widget": "pattern",
-      "titleNoDigits": "The Conductor Pile",
+      "titleNoDigits": "The Fishmonger Pile",
       "storyNoDigits": [
         "The baker follows the growing trail.",
         "Say the rule, then pick the next pile."
@@ -1671,7 +1671,7 @@
       "kidLabel": "growing patterns",
       "badge": "pattern-3-69",
       "widget": "pattern",
-      "titleNoDigits": "The Postmaster Pile",
+      "titleNoDigits": "The Fishmonger Trail",
       "storyNoDigits": [
         "The postmaster follows the growing trail.",
         "Say the rule, then pick the next pile."
@@ -1721,7 +1721,7 @@
       "kidLabel": "growing patterns",
       "badge": "pattern-3-71",
       "widget": "pattern",
-      "titleNoDigits": "The Conductor Pile",
+      "titleNoDigits": "The Fishmonger Rule",
       "storyNoDigits": [
         "The coach follows the growing trail.",
         "Say the rule, then pick the next pile."
@@ -1746,7 +1746,7 @@
       "kidLabel": "measuring and pouring",
       "badge": "measure-3-72",
       "widget": "measure",
-      "titleNoDigits": "The Harbourmaster Pour",
+      "titleNoDigits": "The Ferry Clerk Can",
       "storyNoDigits": [
         "The librarian fills the soup kettle.",
         "Compare the fills before you tap."
@@ -1796,7 +1796,7 @@
       "kidLabel": "measuring and pouring",
       "badge": "measure-3-74",
       "widget": "measure",
-      "titleNoDigits": "The Ferry Captain Pour",
+      "titleNoDigits": "The Librarian Pour",
       "storyNoDigits": [
         "The baker fills the soup kettle.",
         "Compare the fills before you tap."
@@ -1821,7 +1821,7 @@
       "kidLabel": "measuring and pouring",
       "badge": "measure-3-75",
       "widget": "measure",
-      "titleNoDigits": "The Lighthouse Keeper Pour",
+      "titleNoDigits": "The Librarian Kettle",
       "storyNoDigits": [
         "The librarian fills the soup kettle.",
         "Compare the fills before you tap."
@@ -1846,7 +1846,7 @@
       "kidLabel": "measuring and pouring",
       "badge": "measure-3-76",
       "widget": "measure",
-      "titleNoDigits": "The Lighthouse Keeper Pour",
+      "titleNoDigits": "The Fishmonger Pour",
       "storyNoDigits": [
         "The lighthouse keeper fills the soup kettle.",
         "Compare the fills before you tap."
@@ -1871,7 +1871,7 @@
       "kidLabel": "measuring and pouring",
       "badge": "measure-3-77",
       "widget": "measure",
-      "titleNoDigits": "The Grocer Pour",
+      "titleNoDigits": "The Fishmonger Kettle",
       "storyNoDigits": [
         "The harbourmaster fills the soup kettle.",
         "Compare the fills before you tap."
@@ -1896,7 +1896,7 @@
       "kidLabel": "measuring and pouring",
       "badge": "measure-3-78",
       "widget": "measure",
-      "titleNoDigits": "The Lighthouse Keeper Pour",
+      "titleNoDigits": "The Fishmonger Can",
       "storyNoDigits": [
         "The conductor fills the soup kettle.",
         "Compare the fills before you tap."
@@ -1921,7 +1921,7 @@
       "kidLabel": "shapes and nets",
       "badge": "crate-3-79",
       "widget": "crate",
-      "titleNoDigits": "The Lighthouse Keeper Box",
+      "titleNoDigits": "The Ferry Clerk Parcel",
       "storyNoDigits": [
         "The conductor folds a crate at the depot.",
         "Fold the net in your head, then choose."
@@ -1946,7 +1946,7 @@
       "kidLabel": "shapes and nets",
       "badge": "crate-3-80",
       "widget": "crate",
-      "titleNoDigits": "The Harbourmaster Box",
+      "titleNoDigits": "The Librarian Crate",
       "storyNoDigits": [
         "The librarian folds a crate at the depot.",
         "Fold the net in your head, then choose."
@@ -1996,7 +1996,7 @@
       "kidLabel": "shapes and nets",
       "badge": "crate-3-82",
       "widget": "crate",
-      "titleNoDigits": "The Postmaster Box",
+      "titleNoDigits": "The Fishmonger Crate",
       "storyNoDigits": [
         "The coach folds a crate at the depot.",
         "Fold the net in your head, then choose."
@@ -2021,7 +2021,7 @@
       "kidLabel": "shapes and nets",
       "badge": "crate-3-83",
       "widget": "crate",
-      "titleNoDigits": "The Librarian Box",
+      "titleNoDigits": "The Librarian Parcel",
       "storyNoDigits": [
         "The baker folds a crate at the depot.",
         "Fold the net in your head, then choose."
@@ -2071,7 +2071,7 @@
       "kidLabel": "shapes and nets",
       "badge": "crate-3-85",
       "widget": "crate",
-      "titleNoDigits": "The Grocer Box",
+      "titleNoDigits": "The Fishmonger Parcel",
       "storyNoDigits": [
         "The coach folds a crate at the depot.",
         "Fold the net in your head, then choose."
@@ -2160,7 +2160,7 @@
       "kidLabel": "chance",
       "badge": "spinner-3-88",
       "widget": "spinner",
-      "titleNoDigits": "The Lighthouse Keeper Wheel",
+      "titleNoDigits": "The Fishmonger Wheel",
       "storyNoDigits": [
         "The harbourmaster spins the raffle dial.",
         "The biggest slice lands most often."
@@ -2224,7 +2224,7 @@
       "kidLabel": "chance",
       "badge": "spinner-3-90",
       "widget": "spinner",
-      "titleNoDigits": "The Lighthouse Keeper Wheel",
+      "titleNoDigits": "The Fishmonger Dial",
       "storyNoDigits": [
         "The conductor spins the raffle dial.",
         "The biggest slice lands most often."
@@ -2254,7 +2254,7 @@
       "kidLabel": "chance",
       "badge": "spinner-3-91",
       "widget": "spinner",
-      "titleNoDigits": "The Lighthouse Keeper Wheel",
+      "titleNoDigits": "The Fishmonger Spin",
       "storyNoDigits": [
         "The baker spins the raffle dial.",
         "The biggest slice lands most often."
@@ -2342,7 +2342,7 @@
       "kidLabel": "money sense",
       "badge": "coins-3-94",
       "widget": "coins",
-      "titleNoDigits": "The Harbourmaster Payment",
+      "titleNoDigits": "The Librarian Payment",
       "storyNoDigits": [
         "The coach pays the snack stand.",
         "Pay with the same coins as the picture."
@@ -2368,7 +2368,7 @@
       "kidLabel": "money sense",
       "badge": "coins-3-95",
       "widget": "coins",
-      "titleNoDigits": "The Park Ranger Payment",
+      "titleNoDigits": "The Fishmonger Payment",
       "storyNoDigits": [
         "The park ranger pays the snack stand.",
         "Pay with the same coins as the picture."
@@ -2393,7 +2393,7 @@
       "kidLabel": "money sense",
       "badge": "coins-3-96",
       "widget": "coins",
-      "titleNoDigits": "The Harbourmaster Payment",
+      "titleNoDigits": "The Fishmonger Till",
       "storyNoDigits": [
         "The harbourmaster pays the snack stand.",
         "Pay with the same coins as the picture."
@@ -2443,7 +2443,7 @@
       "kidLabel": "money sense",
       "badge": "coins-3-98",
       "widget": "coins",
-      "titleNoDigits": "The Harbourmaster Payment",
+      "titleNoDigits": "The Fishmonger Fee",
       "storyNoDigits": [
         "The lighthouse keeper pays the snack stand.",
         "Pay with the same coins as the picture."
@@ -2493,7 +2493,7 @@
       "kidLabel": "comparing numbers",
       "badge": "compare-3-100",
       "widget": "compare",
-      "titleNoDigits": "The Baker Count",
+      "titleNoDigits": "The Ferry Clerk Count",
       "storyNoDigits": [
         "Two ferry captains tallied the same harbour hour.",
         "Look at both piles, then choose the bigger one."
@@ -2523,7 +2523,7 @@
       "kidLabel": "comparing numbers",
       "badge": "compare-3-101",
       "widget": "compare",
-      "titleNoDigits": "The Librarian Count",
+      "titleNoDigits": "The Ferry Clerk Tallies",
       "storyNoDigits": [
         "Two bakers tallied the same harbour hour.",
         "Look at both piles, then choose the bigger one."
@@ -2553,7 +2553,7 @@
       "kidLabel": "comparing numbers",
       "badge": "compare-3-102",
       "widget": "compare",
-      "titleNoDigits": "The Librarian Count",
+      "titleNoDigits": "The Ferry Clerk Watch",
       "storyNoDigits": [
         "Two grocers tallied the same harbour hour.",
         "Look at both piles, then choose the bigger one."
@@ -2583,7 +2583,7 @@
       "kidLabel": "comparing numbers",
       "badge": "compare-3-103",
       "widget": "compare",
-      "titleNoDigits": "The Librarian Count",
+      "titleNoDigits": "The Fishmonger Tallies",
       "storyNoDigits": [
         "Two grocers tallied the same harbour hour.",
         "Look at both piles, then choose the bigger one."

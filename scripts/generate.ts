@@ -358,6 +358,7 @@ export function generateCases(
   const rng = mulberry32(seed)
   const seen = new Set(existing.map((c) => fingerprint(c.widget, c.puzzle)))
   const takenBadges = new Set(existing.map((c) => c.badge))
+  const takenTitles = new Set(existing.map((c) => c.titleNoDigits))
   const cases: CaseDef[] = []
   const shortfalls: string[] = []
   let serial = existing.length + 1
@@ -406,8 +407,20 @@ export function generateCases(
       let badge = `${kind}-${grade}-${serial}`
       while (takenBadges.has(badge)) badge = `${badge}-a`
       takenBadges.add(badge)
-      const actor = cap(who)
-      const noun = pick(rng, KIND_NOUNS[kind])
+      let actor = cap(who)
+      let noun = pick(rng, KIND_NOUNS[kind])
+      while (takenTitles.has(`The ${actor} ${noun}`)) {
+        const alt = cap(pick(rng, ACTORS))
+        const altNoun = pick(rng, KIND_NOUNS[kind])
+        if (!takenTitles.has(`The ${alt} ${altNoun}`)) {
+          actor = alt
+          noun = altNoun
+        } else if (actor !== cap(who) && !takenTitles.has(`The ${actor} ${pick(rng, KIND_NOUNS[kind])}`)) {
+          noun = pick(rng, KIND_NOUNS[kind])
+          if (!takenTitles.has(`The ${actor} ${noun}`)) break
+        }
+      }
+      takenTitles.add(`The ${actor} ${noun}`)
       cases.push({
         id: `${packId}-x${serial}`,
         group: groupFor(kind),

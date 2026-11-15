@@ -4,7 +4,7 @@ import { loadProgress, saveProgress } from './save/store.ts'
 import { runCase, confetti } from './engine/run.ts'
 import type { WidgetKind } from './engine/case.ts'
 import { playFanfare } from './sfx.ts'
-import { GRADES, gradeCases, gradeWord, isGradeActive, countWord, visibleCases, lockedConcepts } from './grades.ts'
+import { GRADES, gradeCases, gradeWord, isGradeActive, countWord, visibleCases, lockedConcepts, CONCEPT_SEQUENCE } from './grades.ts'
 import { openParentView, importSaveText } from './parent/parent.ts'
 import './style.css'
 
@@ -163,18 +163,27 @@ export function start(): void {
       town.append(head)
     }
     let nextAssigned = false
-    for (const def of visible) {
-      const done = doneSet.has(def.id)
-      if (done && hideSolved && doneCount < cases.length) continue
-      const card = el('button', `case-card ${done ? 'done' : ''} ${!done && !nextAssigned ? 'next' : ''}`)
-      if (!done && !nextAssigned) {
-        card.append(el('span', 'case-card-hint', 'start here'))
-        nextAssigned = true
-      }
-      card.append(el('span', 'case-card-title', def.titleNoDigits))
-      card.append(el('span', 'case-card-group', def.kidLabel))
-      if (done) card.append(el('span', 'case-card-badge', 'solved'))
-      card.dataset.caseId = def.id
+    for (const kind of CONCEPT_SEQUENCE) {
+      const bandCases = visible.filter((c) => c.widget === kind)
+      if (bandCases.length === 0) continue
+      const bandSolved = bandCases.filter((c) => doneSet.has(c.id)).length
+      const header = el('div', 'band-head')
+      header.append(el('span', 'band-head-label', conceptLabel(kind)))
+      header.append(
+        el('span', 'band-head-count', `${countWord(bandSolved)} of ${countWord(bandCases.length)} closed`),
+      )
+      town.append(header)
+      for (const def of bandCases) {
+        const done = doneSet.has(def.id)
+        if (done && hideSolved && doneCount < cases.length) continue
+        const card = el('button', `case-card ${done ? 'done' : ''} ${!done && !nextAssigned ? 'next' : ''}`)
+        if (!done && !nextAssigned) {
+          card.append(el('span', 'case-card-hint', 'start here'))
+          nextAssigned = true
+        }
+        card.append(el('span', 'case-card-title', def.titleNoDigits))
+        if (done) card.append(el('span', 'case-card-badge', 'solved'))
+        card.dataset.caseId = def.id
       card.addEventListener('click', () => {
         breakDue = false
         inCase = true
@@ -203,6 +212,7 @@ export function start(): void {
         })
       })
       town.append(card)
+      }
     }
     const locked = lockedConcepts(progress.grade, progress.completedCases)
     if (locked.length > 0) {
