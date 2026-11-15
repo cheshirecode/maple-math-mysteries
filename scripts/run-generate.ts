@@ -26,7 +26,7 @@ let totalAdded = 0
 for (const gradeStr of Object.keys(packs)) {
   const grade = Number(gradeStr)
   const { raw, pack, path } = packs[grade]
-  const { cases } = generateCases(grade, pack.packId, pack.cases, SEED)
+  const { cases, shortfalls } = generateCases(grade, pack.packId, pack.cases, SEED)
   const errors = checkGenerated(cases)
   if (errors.length > 0) throw new Error(`generated cases rejected: ${errors.join('; ')}`)
   const merged = [...pack.cases, ...cases]
@@ -35,6 +35,7 @@ for (const gradeStr of Object.keys(packs)) {
   if ('errors' in check) throw new Error(`${path} after merge: ${check.errors.join('; ')}`)
   writeFileSync(path, JSON.stringify(next, null, 2) + '\n')
   totalAdded += cases.length
-  console.log(`grade ${grade}: +${cases.length} generated (${merged.length} total)`)
+  const note = shortfalls.length > 0 ? ` [below target: ${shortfalls.join(', ')}]` : ''
+  console.log(`grade ${grade}: +${cases.length} generated (${merged.length} total)${note}`)
 }
 console.log(`done: ${totalAdded} generated cases`)

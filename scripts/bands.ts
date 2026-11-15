@@ -5,7 +5,18 @@ export interface BandSpec {
   // per-widget value range inputs; interpreted by the generator per kind
   min: number
   max: number
+  // variant axes: the generator samples these descriptors (without replacement
+  // per axis combination) and constructs operands to satisfy them. Bands in
+  // grades other than three omit them and keep the uniform draw.
+  variants?: VariantSpec[]
+  // desired case count for this band (default: BAND_FLOOR). Grade three lifts
+  // every band to ten so each concept has a real practice set.
+  target?: number
 }
+
+export type VariantSpec =
+  | { kind: 'combine-regroup'; pattern: 'none' | 'ones' | 'tens' | 'double' | 'across-zero'; shape: 'round-round' | 'round-mixed' | 'mixed-mixed'; op: 'add' | 'take' }
+  | { kind: 'compare-trap'; trap: 'plain' | 'reorder' | 'zero-place' | 'boundary'; deciding: 'hundreds' | 'tens' | 'ones' }
 
 // Value ranges keyed to grade x widget, aligned to the BC curriculum ladder.
 // The table makes no pedagogical ordering claim between bands; it only bounds
@@ -38,17 +49,43 @@ export const BANDS: Record<number, Partial<Record<WidgetKind, BandSpec>>> = {
     combine: { min: 10, max: 99, scenes: ['The {who} works with two tubs of tens and ones.'] },
   },
   3: {
-    dots: { min: 12, max: 20, scenes: ['The {who} rides with a partly punched ticket roll.'] },
-    blocks: { min: 100, max: 999, scenes: ['The {who} restocks the library ladder.'] },
-    arrays: { min: 4, max: 7, scenes: ['The {who} counts rows at the ferry queue.'] },
-    fraction: { min: 6, max: 12, scenes: ['The {who} shares a pie at the bake sale.'] },
-    pattern: { min: 3, max: 5, scenes: ['The {who} follows the growing trail.'] },
-    measure: { min: 6, max: 9, scenes: ['The {who} fills the soup kettle.'] },
-    crate: { min: 3, max: 6, scenes: ['The {who} folds a crate at the depot.'] },
-    spinner: { min: 3, max: 6, scenes: ['The {who} spins the raffle dial.'] },
-    coins: { min: 3, max: 5, scenes: ['The {who} pays the snack stand.'] },
-    compare: { min: 100, max: 999, scenes: ['Two {who}s tallied the same harbour hour.'] },
-    combine: { min: 100, max: 999, scenes: ['The {who} moves crates at the harbour gates.'] },
+    dots: { min: 12, max: 20, target: 10, scenes: ['The {who} rides with a partly punched ticket roll.'] },
+    blocks: { min: 100, max: 999, target: 10, scenes: ['The {who} restocks the library ladder.'] },
+    arrays: { min: 4, max: 7, target: 10, scenes: ['The {who} counts rows at the ferry queue.'] },
+    fraction: { min: 6, max: 12, target: 10, scenes: ['The {who} shares a pie at the bake sale.'] },
+    pattern: { min: 3, max: 5, target: 10, scenes: ['The {who} follows the growing trail.'] },
+    measure: { min: 6, max: 9, target: 10, scenes: ['The {who} fills the soup kettle.'] },
+    crate: { min: 3, max: 6, target: 10, scenes: ['The {who} folds a crate at the depot.'] },
+    spinner: { min: 3, max: 6, target: 10, scenes: ['The {who} spins the raffle dial.'] },
+    coins: { min: 3, max: 5, target: 10, scenes: ['The {who} pays the snack stand.'] },
+    compare: {
+      min: 100, max: 999, target: 10, scenes: ['Two {who}s tallied the same harbour hour.'],
+      variants: [
+        { kind: 'compare-trap', trap: 'plain', deciding: 'hundreds' },
+        { kind: 'compare-trap', trap: 'plain', deciding: 'tens' },
+        { kind: 'compare-trap', trap: 'plain', deciding: 'ones' },
+        { kind: 'compare-trap', trap: 'reorder', deciding: 'tens' },
+        { kind: 'compare-trap', trap: 'reorder', deciding: 'ones' },
+        { kind: 'compare-trap', trap: 'zero-place', deciding: 'tens' },
+        { kind: 'compare-trap', trap: 'zero-place', deciding: 'ones' },
+        { kind: 'compare-trap', trap: 'boundary', deciding: 'hundreds' },
+      ],
+    },
+    combine: {
+      min: 100, max: 999, target: 10, scenes: ['The {who} moves crates at the harbour gates.'],
+      variants: [
+        { kind: 'combine-regroup', pattern: 'none', shape: 'round-mixed', op: 'add' },
+        { kind: 'combine-regroup', pattern: 'none', shape: 'mixed-mixed', op: 'take' },
+        { kind: 'combine-regroup', pattern: 'ones', shape: 'mixed-mixed', op: 'add' },
+        { kind: 'combine-regroup', pattern: 'ones', shape: 'round-mixed', op: 'take' },
+        { kind: 'combine-regroup', pattern: 'tens', shape: 'mixed-mixed', op: 'add' },
+        { kind: 'combine-regroup', pattern: 'tens', shape: 'round-round', op: 'take' },
+        { kind: 'combine-regroup', pattern: 'double', shape: 'mixed-mixed', op: 'add' },
+        { kind: 'combine-regroup', pattern: 'double', shape: 'round-mixed', op: 'take' },
+        { kind: 'combine-regroup', pattern: 'across-zero', shape: 'round-mixed', op: 'take' },
+        { kind: 'combine-regroup', pattern: 'across-zero', shape: 'round-round', op: 'take' },
+      ],
+    },
   },
   4: {
     dots: { min: 12, max: 20, scenes: ['The {who} punches tickets on the loop line.'] },

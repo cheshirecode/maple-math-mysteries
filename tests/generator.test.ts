@@ -33,6 +33,14 @@ describe('pack generator', () => {
     assert.deepEqual(first, second)
   })
 
+  it('reports bands whose puzzle space is smaller than their target', () => {
+    const raw = gradePackRaw(3)
+    const pack = parsePack(raw)
+    assert.ok('pack' in pack)
+    const { shortfalls } = generateCases(3, pack.pack.packId, pack.pack.cases, SEED)
+    assert.ok(shortfalls.includes('fraction'), 'fraction space (parts six to twelve) cannot reach ten')
+  })
+
   it('a different seed mints different puzzles', () => {
     const raw = gradePackRaw(3)
     const pack = parsePack(raw)

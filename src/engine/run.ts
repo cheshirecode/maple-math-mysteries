@@ -48,6 +48,11 @@ export function runCase(root: HTMLElement, def: CaseDef, opts: RunOptions): void
   const story = def.storyNoDigits
 
   const box = el('div', 'case')
+  const topbar = el('div', 'case-topbar')
+  const mapBtn = el('button', 'case-back', '← Map')
+  mapBtn.addEventListener('click', () => opts.onDone())
+  topbar.append(mapBtn, el('span', 'case-topbar-title', title))
+  box.append(topbar)
   box.append(el('h2', 'case-title', title))
   for (const line of story) {
     const p = el('p', 'case-story', line)
@@ -74,6 +79,7 @@ export function runCase(root: HTMLElement, def: CaseDef, opts: RunOptions): void
       playSolve()
       confetti(box)
       opts.onBadge(def.badge)
+      feedback.scrollIntoView({ block: 'nearest' })
     },
   }
   const run = runners[def.widget]

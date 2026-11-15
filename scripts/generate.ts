@@ -5,18 +5,18 @@ import { ACTORS, BANDS, COLOURS, type BandSpec } from './bands.ts'
 
 export const BAND_FLOOR = 3
 const FACES: Record<string, number> = { cube: 6, prism: 6, cylinder: 3 }
-const KIND_NOUN: Record<WidgetKind, string> = {
-  dots: 'Roll',
-  blocks: 'Stacks',
-  arrays: 'Rows',
-  fraction: 'Share',
-  pattern: 'Pile',
-  measure: 'Pour',
-  crate: 'Box',
-  spinner: 'Wheel',
-  coins: 'Payment',
-  compare: 'Count',
-  combine: 'Total',
+const KIND_NOUNS: Record<WidgetKind, string[]> = {
+  dots: ['Roll', 'Tickets', 'Pair'],
+  blocks: ['Stacks', 'Ladder', 'Tower', 'Safe'],
+  arrays: ['Rows', 'Grid', 'Tracks'],
+  fraction: ['Share', 'Pie', 'Reel'],
+  pattern: ['Pile', 'Trail', 'Rule'],
+  measure: ['Pour', 'Kettle', 'Can'],
+  crate: ['Box', 'Crate', 'Parcel'],
+  spinner: ['Wheel', 'Dial', 'Spin'],
+  coins: ['Payment', 'Till', 'Fee'],
+  compare: ['Count', 'Tallies', 'Watch'],
+  combine: ['Total', 'Bridge', 'Ledger'],
 }
 const KIND_LABEL: Record<WidgetKind, string> = {
   dots: 'counting pairs',
@@ -85,6 +85,148 @@ function pick<T>(rng: Rng, arr: readonly T[]): T {
 function decompose(value: number): { hundreds: number; tens: number; ones: number } {
   return { hundreds: Math.floor(value / 100), tens: Math.floor((value % 100) / 10), ones: value % 10 }
 }
+
+
+type VariantSpec = import('./bands.ts').VariantSpec
+
+function digits3(n: number): [number, number, number] {
+  return [Math.floor(n / 100), Math.floor((n % 100) / 10), n % 10]
+}
+function compose3(h: number, t: number, o: number): number {
+  return h * 100 + t * 10 + o
+}
+function isRound(h: number, t: number, o: number): boolean {
+  return t === 0 || o === 0
+}
+function isMixed(h: number, t: number, o: number): boolean {
+  return t >= 1 && o >= 1
+}
+function shapeOk(shape: string, h: number, t: number, o: number): boolean {
+  if (shape === 'round-round') return isRound(h, t, o)
+  if (shape === 'mixed-mixed') return isMixed(h, t, o)
+  return true // round-mixed constrains a only; caller checks sides
+}
+
+function genCombineVariant(v: VariantSpec & { kind: 'combine-regroup' }, rng: Rng): unknown {
+  for (let i = 0; i < 400; i++) {
+    const a = randInt(rng, 100, 899)
+    const [ah, at, ao] = digits3(a)
+    let b = 0
+    if (v.op === 'add') {
+      // carry structure from digit sums (ones carry -> tens get +1)
+      const onesSum = ao + randInt(rng, 0, 9)
+      const tensSum = at + randInt(rng, 0, 9)
+      if (v.pattern === 'none' && (onesSum >= 10 || tensSum >= 10)) continue
+      if (v.pattern === 'ones' && !(ao + (onesSum - ao) >= 10 && tensSum + 1 < 10)) continue
+      if (v.pattern === 'tens' && !(onesSum < 10 && tensSum >= 10 && ah + Math.floor(tensSum / 10) <= 9)) continue
+      if (v.pattern === 'double' && !(ao + (onesSum - ao) >= 10 && tensSum + 1 >= 10)) continue
+      if (v.pattern === 'across-zero') continue // add has no borrow-across-zero
+      const bo = onesSum - ao
+      const bt = tensSum - at
+      const bhMax = 9 - ah - (tensSum >= 10 ? 1 : 0)
+      if (bo < 0 || bo > 9 || bt < 0 || bt > 9 || bhMax < 1) continue
+      if (v.shape === 'round-mixed' && !(isRound(ah, at, ao) && isMixed(ah, bt, bo))) continue
+      if (v.shape === 'round-round' && !(isRound(ah, at, ao) && isRound(ah, bt, bo))) continue
+      if (v.shape === 'mixed-mixed' && !(isMixed(ah, at, ao) && isMixed(ah, bt, bo))) continue
+      b = compose3(randInt(rng, 1, bhMax), bt, bo)
+      const result = a + b
+      if (result > 999 || result <= a) continue
+      return { kind: 'combine', op: 'add', a: decompose(a), b: decompose(b) }
+    }
+    // take
+    const bh = randInt(rng, 1, ah)
+    const bt = randInt(rng, 0, 9)
+    const bo = randInt(rng, 0, 9)
+    b = compose3(bh, bt, bo)
+    if (b < 100 || b >= a) continue
+    const borrowOnes = ao < bo
+    const borrowTens = borrowOnes ? at - 1 < bt : at < bt
+    const patternHit =
+      v.pattern === 'none'
+        ? !borrowOnes && !borrowTens
+        : v.pattern === 'ones'
+          ? borrowOnes && !borrowTens && at > 0
+          : v.pattern === 'tens'
+            ? !borrowOnes && borrowTens && ao >= bo
+            : v.pattern === 'double'
+              ? borrowOnes && borrowTens
+              : at === 0 && ao < bo // across-zero
+    if (!patternHit) continue
+    if (v.pattern === 'across-zero' && at !== 0) continue
+    if (v.shape === 'round-round' && !(isRound(ah, at, ao) && isRound(bh, bt, bo))) continue
+    if (v.shape === 'mixed-mixed' && !(isMixed(ah, at, ao) && isMixed(bh, bt, bo))) continue
+    return { kind: 'combine', op: 'take', a: decompose(a), b: decompose(b) }
+  }
+  return null
+}
+
+function genCompareVariant(v: VariantSpec & { kind: 'compare-trap' }, rng: Rng): unknown {
+  for (let i = 0; i < 400; i++) {
+    let ah = randInt(rng, 1, 9)
+    let at = randInt(rng, 0, 9)
+    let ao = randInt(rng, 0, 9)
+    let bh = 0
+    let bt = 0
+    let bo = 0
+    if (v.trap === 'plain') {
+      bh = ah
+      bt = at
+      bo = ao
+      if (v.deciding === 'hundreds') {
+        while (bh === ah) bh = randInt(rng, 1, 9)
+      } else if (v.deciding === 'tens') {
+        while (bt === at) bt = randInt(rng, 0, 9)
+      } else {
+        while (bo === ao) bo = randInt(rng, 0, 9)
+      }
+    } else if (v.trap === 'reorder') {
+      const digits = [randInt(rng, 1, 9), randInt(rng, 0, 9), randInt(rng, 0, 9)]
+      ;[ah, at, ao] = digits as [number, number, number]
+      const perms = [
+        [ah, ao, at],
+        [at, ah, ao],
+        [at, ao, ah],
+        [ao, ah, at],
+        [ao, at, ah],
+      ] as [number, number, number][]
+      const valid = perms.filter(([h, t, o]) => h > 0 && compose3(h, t, o) !== compose3(ah, at, ao))
+      if (valid.length === 0) continue
+      const chosen = pick(rng, valid)
+      bh = chosen[0]
+      bt = chosen[1]
+      bo = chosen[2]
+      if (v.deciding === 'hundreds' && bh === ah) continue
+      if (v.deciding === 'tens' && bt === at) continue
+      if (v.deciding === 'ones' && bo === ao) continue
+    } else if (v.trap === 'zero-place') {
+      bh = ah
+      if (v.deciding === 'tens') {
+        at = 0
+        bt = randInt(rng, 1, 9)
+        while (ao !== bo) bo = randInt(rng, 0, 9)
+      } else {
+        ao = 0
+        bo = randInt(rng, 1, 9)
+        while (at !== bt) bt = randInt(rng, 0, 9)
+      }
+    } else {
+      // boundary: a = h99, b = (h+1)00 + k
+      ah = randInt(rng, 1, 8)
+      at = 9
+      ao = 9
+      bh = ah + 1
+      bt = 0
+      bo = randInt(rng, 0, 9)
+      if (v.deciding !== 'hundreds') continue
+    }
+    const a = compose3(ah, at, ao)
+    const b = compose3(bh, bt, bo)
+    if (a < 100 || b < 100 || a === b) continue
+    return { kind: 'compare', a: decompose(a), b: decompose(b), more: a > b ? 'a' : 'b' }
+  }
+  return null
+}
+
 
 function genPuzzle(kind: WidgetKind, band: BandSpec, grade: number, rng: Rng): unknown {
   if (kind === 'dots') {
@@ -210,22 +352,52 @@ export function generateCases(
   packId: string,
   existing: CaseDef[],
   seed: number,
-): { cases: CaseDef[] } {
+): { cases: CaseDef[]; shortfalls: string[] } {
   const bands = BANDS[grade]
   if (!bands) throw new Error(`no band table for grade ${grade}`)
   const rng = mulberry32(seed)
   const seen = new Set(existing.map((c) => fingerprint(c.widget, c.puzzle)))
   const takenBadges = new Set(existing.map((c) => c.badge))
   const cases: CaseDef[] = []
+  const shortfalls: string[] = []
   let serial = existing.length + 1
   for (const [kind, band] of Object.entries(bands) as [WidgetKind, BandSpec][]) {
     const have = existing.filter((c) => c.widget === kind).length
-    let need = Math.max(0, BAND_FLOOR - have)
+    const target = band.target ?? BAND_FLOOR
+    let need = Math.max(0, target - have)
+    const variants = [...(band.variants ?? [])]
+    // shuffle variants so repeated runs with a new seed spread coverage
+    for (let i = variants.length - 1; i > 0; i--) {
+      const j = Math.floor(rng() * (i + 1))
+      ;[variants[i], variants[j]] = [variants[j], variants[i]]
+    }
     let attempts = 0
     while (need > 0) {
       attempts++
-      if (attempts > 200) throw new Error(`band ${grade}/${kind}: cannot mint enough distinct cases`)
-      const puzzle = genPuzzle(kind, band, grade, rng)
+      if (attempts > 400) {
+        if (have + cases.filter((c) => c.widget === kind).length < BAND_FLOOR) {
+          throw new Error(`band ${grade}/${kind}: floor ${BAND_FLOOR} unreachable`)
+        }
+        shortfalls.push(kind)
+        break
+      }
+      // Prefer an unclaimed variant descriptor; fall back to the uniform draw
+      // when the band has no variants or the descriptors run out (floor rule).
+      let puzzle: unknown = null
+      while (variants.length > 0 && puzzle === null) {
+        const v = variants.shift()
+        if (!v) break
+        if (v.kind === 'combine-regroup') {
+          const cand = genCombineVariant(v, rng)
+          if (cand && !seen.has(fingerprint(kind, cand))) puzzle = cand
+        } else if (v.kind === 'compare-trap') {
+          const cand = genCompareVariant(v, rng)
+          if (cand && !seen.has(fingerprint(kind, cand))) puzzle = cand
+        }
+      }
+      if (puzzle === null) {
+        puzzle = genPuzzle(kind, band, grade, rng)
+      }
       const fp = fingerprint(kind, puzzle)
       if (seen.has(fp)) continue
       seen.add(fp)
@@ -235,13 +407,14 @@ export function generateCases(
       while (takenBadges.has(badge)) badge = `${badge}-a`
       takenBadges.add(badge)
       const actor = cap(who)
+      const noun = pick(rng, KIND_NOUNS[kind])
       cases.push({
         id: `${packId}-x${serial}`,
         group: groupFor(kind),
         kidLabel: KIND_LABEL[kind],
         badge,
         widget: kind,
-        titleNoDigits: `The ${actor} ${KIND_NOUN[kind]}`,
+        titleNoDigits: `The ${actor} ${noun}`,
         storyNoDigits: story.storyNoDigits,
         storyDigits: story.storyDigits,
         puzzle: puzzle as CaseDef['puzzle'],
@@ -250,7 +423,7 @@ export function generateCases(
       need--
     }
   }
-  return { cases }
+  return { cases, shortfalls }
 }
 
 function groupFor(kind: WidgetKind): string {

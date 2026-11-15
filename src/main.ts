@@ -2,8 +2,9 @@ import { el } from './voice.ts'
 import { getProgress, migrate, updateProgress, subscribe } from './state.ts'
 import { loadProgress, saveProgress } from './save/store.ts'
 import { runCase, confetti } from './engine/run.ts'
+import type { WidgetKind } from './engine/case.ts'
 import { playFanfare } from './sfx.ts'
-import { GRADES, gradeCases, gradeWord, isGradeActive, countWord } from './grades.ts'
+import { GRADES, gradeCases, gradeWord, isGradeActive, countWord, visibleCases, lockedConcepts, CONCEPT_SEQUENCE } from './grades.ts'
 import { openParentView, importSaveText } from './parent/parent.ts'
 import './style.css'
 
@@ -11,6 +12,26 @@ let sessionSolves = 0
 let breakDue = false
 let justCompleted = false
 let hideSolved = true
+let inCase = false
+let lastCaseId: string | null = null
+
+const CONCEPT_LABEL: Record<WidgetKind, string> = {
+  dots: 'ticket-pair',
+  blocks: 'place-value',
+  arrays: 'equal-rows',
+  fraction: 'fair-share',
+  pattern: 'pattern-rule',
+  measure: 'measuring',
+  crate: 'net-folding',
+  spinner: 'chance',
+  coins: 'money',
+  compare: 'comparing',
+  combine: 'add-and-take-away',
+}
+
+function conceptLabel(kind: WidgetKind): string {
+  return CONCEPT_LABEL[kind] ?? kind
+}
 
 function save(): void {
   saveProgress(getProgress())
@@ -71,7 +92,18 @@ export function start(): void {
         b.addEventListener('click', () =>
           showNote(`grade ${gradeWord(g, progress.digitsMode)} is coming soon`),
         )
-      } else if (!selected) {
+      } else if (selected) {
+        // The gold pill is "where I am". Tapping it from an exercise goes home;
+        // on the map it is already home, so it stays quiet.
+        if (inCase) {
+          b.addEventListener('click', () => render())
+        }
+      } else if (inCase) {
+        // Switching grades mid-exercise would silently wipe the widget; the
+        // pills stay inert until the detective is back on the map.
+        b.setAttribute('aria-disabled', 'true')
+        b.title = 'Go back to the map first'
+      } else {
         b.addEventListener('click', () => {
           justCompleted = false
           updateProgress((p) => ({
@@ -101,12 +133,14 @@ export function start(): void {
   root.append(header, picker, note, stage)
 
   const render = () => {
+    inCase = false
     renderPicker()
     stage.innerHTML = ''
     const town = el('div', 'town')
     const progress = getProgress()
     const doneSet = new Set(progress.completedCases)
     const cases = gradeCases(progress.grade)
+    const visible = visibleCases(progress.grade, progress.completedCases)
     const doneCount = cases.filter((c) => doneSet.has(c.id)).length
     if (cases.length > 0) {
       const head = el('div', 'town-head')
@@ -114,7 +148,7 @@ export function start(): void {
         el(
           'div',
           'town-progress',
-          `${countWord(doneCount)} of ${countWord(cases.length)} mysteries closed`,
+          `${countWord(doneCount)} of ${countWord(cases.length)} closed`,
         ),
       )
       if (doneCount > 0 && doneCount < cases.length) {
@@ -129,7 +163,7 @@ export function start(): void {
       town.append(head)
     }
     let nextAssigned = false
-    for (const def of cases) {
+    for (const def of visible) {
       const done = doneSet.has(def.id)
       if (done && hideSolved && doneCount < cases.length) continue
       const card = el('button', `case-card ${done ? 'done' : ''} ${!done && !nextAssigned ? 'next' : ''}`)
@@ -140,8 +174,12 @@ export function start(): void {
       card.append(el('span', 'case-card-title', def.titleNoDigits))
       card.append(el('span', 'case-card-group', def.kidLabel))
       if (done) card.append(el('span', 'case-card-badge', 'solved'))
+      card.dataset.caseId = def.id
       card.addEventListener('click', () => {
         breakDue = false
+        inCase = true
+        lastCaseId = def.id
+        renderPicker()
         runCase(stage, def, {
           onBadge: (badge) => {
             updateProgress((p) =>
@@ -157,10 +195,30 @@ export function start(): void {
             sessionSolves++
             if (sessionSolves === 3) breakDue = true
           },
-          onDone: () => render(),
+          onDone: () => {
+            render()
+            const played = stage.querySelector<HTMLElement>(`[data-case-id="${lastCaseId}"]`)
+            ;(played ?? stage.querySelector<HTMLElement>('.case-card'))?.focus()
+          },
         })
       })
       town.append(card)
+    }
+    const locked = lockedConcepts(progress.grade, progress.completedCases)
+    if (locked.length > 0) {
+      const waiting = locked.reduce((n, l) => n + l.count, 0)
+      const shelf = el('button', 'case-card locked-shelf')
+      shelf.append(
+        el('span', 'case-card-title', `${countWord(waiting)} new mysteries wait`),
+        el(
+          'span',
+          'case-card-group',
+          `Solve more ${conceptLabel(locked[0].kind)} cases to unlock the next learning.`,
+        ),
+      )
+      shelf.setAttribute('aria-disabled', 'true')
+      shelf.tabIndex = -1
+      town.append(shelf)
     }
     stage.append(town)
     if (handoffCode) {
