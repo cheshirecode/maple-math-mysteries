@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { numToWords } from '../src/numwords.ts'
 import { fingerprint, generateCases, checkGenerated, BAND_FLOOR } from '../scripts/generate.ts'
-import { parsePack, loadPack, loadAllPacks } from '../src/content/packs.ts'
+import { parsePack, loadAllPacks } from '../src/content/packs.ts'
 
 const SEED = 2026
 
@@ -95,6 +95,23 @@ describe('pack generator', () => {
         assert.ok(!ids.has(c.id), `${c.id} collides with an existing case`)
         ids.add(c.id)
       }
+    }
+  })
+
+  it('pattern-skip variants mint true skip-counting sequences', () => {
+    const raw = gradePackRaw(3)
+    const pack = parsePack(raw)
+    assert.ok('pack' in pack)
+    // Starve the pattern band so the generator must mint skip cases.
+    const { cases } = generateCases(3, pack.pack.packId, [], SEED)
+    const skips = (cases as { id: string; widget: string; puzzle: { steps: number[]; big?: boolean } }[]).filter((c) => c.widget === 'pattern' && c.puzzle.big)
+    assert.ok(skips.length > 0, 'expected big skip-counting cases')
+    for (const c of skips) {
+      const [a, b, cc, d] = c.puzzle.steps
+      assert.equal(b - a, cc - b, `${c.id}: step is not constant`)
+      assert.equal(cc - b, d - cc, `${c.id}: step is not constant`)
+      assert.ok(d > 20, `${c.id}: big flag without a large term`)
+      assert.equal(a % (b - a), 0, `${c.id}: skip sequences start on the multiple`)
     }
   })
 

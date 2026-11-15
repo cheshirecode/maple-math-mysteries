@@ -17,6 +17,7 @@ export interface BandSpec {
 export type VariantSpec =
   | { kind: 'combine-regroup'; pattern: 'none' | 'ones' | 'tens' | 'double' | 'across-zero'; shape: 'round-round' | 'round-mixed' | 'mixed-mixed'; op: 'add' | 'take' }
   | { kind: 'compare-trap'; trap: 'plain' | 'reorder' | 'zero-place' | 'boundary'; deciding: 'hundreds' | 'tens' | 'ones' }
+  | { kind: 'pattern-skip'; step: number; backward?: boolean }
 
 // Value ranges keyed to grade x widget, aligned to the BC curriculum ladder.
 // The table makes no pedagogical ordering claim between bands; it only bounds
@@ -27,7 +28,17 @@ export const BANDS: Record<number, Partial<Record<WidgetKind, BandSpec>>> = {
     blocks: { target: 6, min: 1, max: 29, scenes: ['The {who} stacks pennies on the steps.'] },
     arrays: { target: 6, min: 2, max: 3, scenes: ['The {who} watches the ducklings paddle in rows.'] },
     fraction: { target: 6, min: 2, max: 4, scenes: ['The {who} shares one snack at the picnic.'] },
-    pattern: { target: 6, min: 1, max: 2, scenes: ['The {who} finds piles along the fence.'] },
+    pattern: {
+      target: 9,
+      min: 1,
+      max: 2,
+      scenes: ['The {who} finds piles along the fence.'],
+      variants: [
+        { kind: 'pattern-skip', step: 1 },
+        { kind: 'pattern-skip', step: 2 },
+        { kind: 'pattern-skip', step: 10 },
+      ],
+    },
     measure: { target: 6, min: 2, max: 4, scenes: ['The {who} pours juice for the picnic table.'] },
     crate: { target: 6, min: 3, max: 6, scenes: ['The {who} folds a small box.'] },
     spinner: { target: 6, min: 2, max: 4, scenes: ['The {who} spins the carnival wheel.'] },
@@ -40,7 +51,17 @@ export const BANDS: Record<number, Partial<Record<WidgetKind, BandSpec>>> = {
     blocks: { target: 6, min: 10, max: 99, scenes: ['The {who} counts the popcorn tubs.'] },
     arrays: { target: 6, min: 3, max: 5, scenes: ['The {who} lines up neat rows of prints.'] },
     fraction: { target: 6, min: 4, max: 6, scenes: ['The {who} cuts a campfire pie.'] },
-    pattern: { target: 6, min: 2, max: 4, scenes: ['The {who} spots shells along the dock path.'] },
+    pattern: {
+      target: 9,
+      min: 2,
+      max: 4,
+      scenes: ['The {who} spots shells along the dock path.'],
+      variants: [
+        { kind: 'pattern-skip', step: 2 },
+        { kind: 'pattern-skip', step: 5 },
+        { kind: 'pattern-skip', step: 10 },
+      ],
+    },
     measure: { target: 6, min: 4, max: 6, scenes: ['The {who} fills the watering can.'] },
     crate: { target: 6, min: 3, max: 6, scenes: ['The {who} matches a folded parcel.'] },
     spinner: { target: 6, min: 2, max: 4, scenes: ['The {who} spins at the school fair.'] },
@@ -64,7 +85,22 @@ export const BANDS: Record<number, Partial<Record<WidgetKind, BandSpec>>> = {
     blocks: { target: 10, min: 100, max: 999, scenes: ['The {who} restocks the library ladder.'] },
     arrays: { target: 10, min: 4, max: 7, scenes: ['The {who} counts rows at the ferry queue.'] },
     fraction: { target: 10, min: 6, max: 12, scenes: ['The {who} shares a pie at the bake sale.'] },
-    pattern: { target: 10, min: 3, max: 5, scenes: ['The {who} follows the growing trail.'] },
+    pattern: {
+      target: 18,
+      min: 3,
+      max: 5,
+      scenes: ['The {who} follows the growing trail.'],
+      variants: [
+        { kind: 'pattern-skip', step: 2 },
+        { kind: 'pattern-skip', step: 5 },
+        { kind: 'pattern-skip', step: 10 },
+        { kind: 'pattern-skip', step: 25 },
+        { kind: 'pattern-skip', step: 100 },
+        { kind: 'pattern-skip', step: 5, backward: true },
+        { kind: 'pattern-skip', step: 10, backward: true },
+        { kind: 'pattern-skip', step: 100, backward: true },
+      ],
+    },
     measure: { target: 10, min: 6, max: 9, scenes: ['The {who} fills the soup kettle.'] },
     crate: { target: 10, min: 3, max: 6, scenes: ['The {who} folds a crate at the depot.'] },
     spinner: { target: 10, min: 3, max: 6, scenes: ['The {who} spins the raffle dial.'] },
@@ -109,7 +145,18 @@ export const BANDS: Record<number, Partial<Record<WidgetKind, BandSpec>>> = {
     blocks: { target: 6, min: 100, max: 999, scenes: ['The {who} stacks supply crates at the fort.'] },
     arrays: { target: 6, min: 5, max: 8, scenes: ['The {who} arrays the parade on the avenue.'] },
     fraction: { target: 6, min: 8, max: 12, scenes: ['The {who} slices the mural circle.'] },
-    pattern: { target: 6, min: 4, max: 5, scenes: ['The {who} hops between lily pads.'] },
+    pattern: {
+      target: 10,
+      min: 4,
+      max: 5,
+      scenes: ['The {who} hops between lily pads.'],
+      variants: [
+        { kind: 'pattern-skip', step: 25 },
+        { kind: 'pattern-skip', step: 100 },
+        { kind: 'pattern-skip', step: 10, backward: true },
+        { kind: 'pattern-skip', step: 25, backward: true },
+      ],
+    },
     measure: { target: 6, min: 6, max: 10, scenes: ['The {who} measures the garden rows.'] },
     crate: { target: 6, min: 3, max: 6, scenes: ['The {who} folds a silo sketch.'] },
     spinner: { target: 6, min: 4, max: 7, scenes: ['The {who} spins the garden wheel.'] },
@@ -133,7 +180,16 @@ export const BANDS: Record<number, Partial<Record<WidgetKind, BandSpec>>> = {
     blocks: { target: 6, min: 100, max: 999, scenes: ['The {who} audits the lodge shelves.'] },
     arrays: { target: 6, min: 6, max: 9, scenes: ['The {who} charts the harvest rows.'] },
     fraction: { target: 6, min: 9, max: 12, scenes: ['The {who} splits the ribbon reel.'] },
-    pattern: { target: 6, min: 4, max: 6, scenes: ['The {who} reads the trail rule.'] },
+    pattern: {
+      target: 8,
+      min: 4,
+      max: 6,
+      scenes: ['The {who} reads the trail rule.'],
+      variants: [
+        { kind: 'pattern-skip', step: 25, backward: true },
+        { kind: 'pattern-skip', step: 100, backward: true },
+      ],
+    },
     measure: { target: 6, min: 8, max: 11, scenes: ['The {who} boils sap at the shack.'] },
     crate: { target: 6, min: 3, max: 6, scenes: ['The {who} folds a grand crate.'] },
     spinner: { target: 6, min: 5, max: 8, scenes: ['The {who} spins the garden dial again.'] },

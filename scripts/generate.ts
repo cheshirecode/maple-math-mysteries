@@ -6,17 +6,17 @@ import { ACTORS, BANDS, COLOURS, type BandSpec } from './bands.ts'
 export const BAND_FLOOR = 3
 const FACES: Record<string, number> = { cube: 6, prism: 6, cylinder: 3 }
 const KIND_NOUNS: Record<WidgetKind, string[]> = {
-  dots: ['Roll', 'Tickets', 'Pair'],
-  blocks: ['Stacks', 'Ladder', 'Tower', 'Safe'],
-  arrays: ['Rows', 'Grid', 'Tracks'],
-  fraction: ['Share', 'Pie', 'Reel'],
-  pattern: ['Pile', 'Trail', 'Rule'],
-  measure: ['Pour', 'Kettle', 'Can'],
-  crate: ['Box', 'Crate', 'Parcel'],
-  spinner: ['Wheel', 'Dial', 'Spin'],
-  coins: ['Payment', 'Till', 'Fee'],
-  compare: ['Count', 'Tallies', 'Watch'],
-  combine: ['Total', 'Bridge', 'Ledger'],
+  dots: ['Roll', 'Tickets', 'Pair', 'Bundle', 'Hand'],
+  blocks: ['Stacks', 'Ladder', 'Tower', 'Safe', 'Wall'],
+  arrays: ['Rows', 'Grid', 'Tracks', 'Lines', 'Ranks'],
+  fraction: ['Share', 'Pie', 'Reel', 'Slice', 'Bar'],
+  pattern: ['Pile', 'Trail', 'Rule', 'Heap', 'Run', 'Chain', 'Streak', 'Line'],
+  measure: ['Pour', 'Kettle', 'Can', 'Cup', 'Jug'],
+  crate: ['Box', 'Crate', 'Parcel', 'Net', 'Fold'],
+  spinner: ['Wheel', 'Dial', 'Spin', 'Prize', 'Wheelbarrow'],
+  coins: ['Payment', 'Till', 'Fee', 'Tab', 'Fare'],
+  compare: ['Count', 'Tallies', 'Watch', 'Board', 'Gate'],
+  combine: ['Total', 'Bridge', 'Ledger', 'Sum', 'Store'],
 }
 const KIND_LABEL: Record<WidgetKind, string> = {
   dots: 'counting pairs',
@@ -158,6 +158,14 @@ function genCombineVariant(v: VariantSpec & { kind: 'combine-regroup' }, rng: Rn
     return { kind: 'combine', op: 'take', a: decompose(a), b: decompose(b) }
   }
   return null
+}
+
+function genPatternSkip(v: VariantSpec & { kind: 'pattern-skip' }): unknown {
+  const s = v.step
+  const steps = v.backward
+    ? [s * 4, s * 3, s * 2, s]
+    : [s, s * 2, s * 3, s * 4]
+  return { kind: 'pattern', steps, big: steps[3] > 20 }
 }
 
 function genCompareVariant(v: VariantSpec & { kind: 'compare-trap' }, rng: Rng): unknown {
@@ -335,8 +343,7 @@ function cap(s: string): string {
   return s.replace(/\b\w/g, (c) => c.toUpperCase())
 }
 
-function makeStory(kind: WidgetKind, band: BandSpec, rng: Rng): { storyNoDigits: string[]; storyDigits: string[] } {
-  const who = pick(rng, ACTORS)
+function makeStory(kind: WidgetKind, band: BandSpec, who: string, rng: Rng): { storyNoDigits: string[]; storyDigits: string[] } {
   const scene = pick(rng, band.scenes)
   const tNumber = kind === 'dots' ? randInt(rng, Math.max(4, band.min), band.max) : band.min
   const fill = (asDigits: boolean) =>
@@ -395,6 +402,9 @@ export function generateCases(
         } else if (v.kind === 'compare-trap') {
           const cand = genCompareVariant(v, rng)
           if (cand && !seen.has(fingerprint(kind, cand))) puzzle = cand
+        } else if (v.kind === 'pattern-skip') {
+          const cand = genPatternSkip(v)
+          if (cand && !seen.has(fingerprint(kind, cand))) puzzle = cand
         }
       }
       if (puzzle === null) {
@@ -403,32 +413,36 @@ export function generateCases(
       const fp = fingerprint(kind, puzzle)
       if (seen.has(fp)) continue
       seen.add(fp)
+      // One actor owns the case: the title and the story narrate the same
+      // character. Pick the actor, then the first free title noun for them.
       const who = pick(rng, ACTORS)
-      const story = makeStory(kind, band, rng)
+      let chosenActor = cap(who)
+      let noun = KIND_NOUNS[kind].find((n) => !takenTitles.has(`The ${chosenActor} ${n}`))
+      if (noun === undefined) {
+        for (const a of ACTORS) {
+          const n = KIND_NOUNS[kind].find((x) => !takenTitles.has(`The ${cap(a)} ${x}`))
+          if (n !== undefined) {
+            chosenActor = cap(a)
+            noun = n
+            break
+          }
+        }
+      }
+      if (noun === undefined) {
+        throw new Error(`title space exhausted for ${kind} in grade ${grade}`)
+      }
+      takenTitles.add(`The ${chosenActor} ${noun}`)
+      const story = makeStory(kind, band, chosenActor.toLowerCase(), rng)
       let badge = `${kind}-${grade}-${serial}`
       while (takenBadges.has(badge)) badge = `${badge}-a`
       takenBadges.add(badge)
-      let actor = cap(who)
-      let noun = pick(rng, KIND_NOUNS[kind])
-      while (takenTitles.has(`The ${actor} ${noun}`)) {
-        const alt = cap(pick(rng, ACTORS))
-        const altNoun = pick(rng, KIND_NOUNS[kind])
-        if (!takenTitles.has(`The ${alt} ${altNoun}`)) {
-          actor = alt
-          noun = altNoun
-        } else if (actor !== cap(who) && !takenTitles.has(`The ${actor} ${pick(rng, KIND_NOUNS[kind])}`)) {
-          noun = pick(rng, KIND_NOUNS[kind])
-          if (!takenTitles.has(`The ${actor} ${noun}`)) break
-        }
-      }
-      takenTitles.add(`The ${actor} ${noun}`)
       cases.push({
         id: `${packId}-x${serial}`,
         group: groupFor(kind),
         kidLabel: KIND_LABEL[kind],
         badge,
         widget: kind,
-        titleNoDigits: `The ${actor} ${noun}`,
+        titleNoDigits: `The ${chosenActor} ${noun}`,
         storyNoDigits: story.storyNoDigits,
         storyDigits: story.storyDigits,
         puzzle: puzzle as CaseDef['puzzle'],

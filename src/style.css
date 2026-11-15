@@ -1311,3 +1311,30 @@ body {
   color: var(--accent-deep);
   min-height: 1.4rem;
 }
+
+/* Skip-counting tiles: large piles render as flats, rods, and dots */
+
+.pattern-tile.big {
+  max-width: none;
+  align-items: center;
+}
+
+.count-flat {
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, var(--gold), var(--gold-deep));
+  border: 1px solid rgb(201 154 46 / 60%);
+  display: inline-block;
+  margin: 2px;
+}
+
+.count-rod {
+  width: 26px;
+  height: 11px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, var(--gold), var(--gold-deep));
+  border: 1px solid rgb(201 154 46 / 60%);
+  display: inline-block;
+  margin: 2px;
+}

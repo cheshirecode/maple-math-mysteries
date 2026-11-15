@@ -22,7 +22,7 @@ export type PuzzleData =
   | { kind: 'blocks'; hundreds: number; tens: number; ones: number }
   | { kind: 'arrays'; rows: number; cols: number }
   | { kind: 'fraction'; parts: number }
-  | { kind: 'pattern'; steps: number[] }
+  | { kind: 'pattern'; steps: number[]; big?: boolean }
   | { kind: 'measure'; cups: number; options: number[] }
   | { kind: 'crate'; shape: 'cube' | 'prism' | 'cylinder'; suspects: number[] }
   | { kind: 'spinner'; slices: { colour: string; weight: number }[]; answer: string }
