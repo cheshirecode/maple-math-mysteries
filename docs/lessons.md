@@ -29,3 +29,5 @@ A test asserting "no widget literal shares a rare word with any case title" was 
 - **10. Diagnostics from the consumer's vantage.** A "no undo button" check that runs from the map state passes while the feature lives in the case view. Always open the case first, then probe the feature — never probe from the map.
 - **12. Scratch scripts.** Playwright scratch scripts resolve `node:./node_modules` relative to the cwd; a script in `/tmp` has no repo deps.. Run from the repo root, or wrap with `direnv exec .`.
 - **13. Per-commit green.** Staging a split commit (`git add -p`) where the working tree passes but the staged content does not is a trap — the commit will pass CI but the content is broken. squash before pushing.
+
+| gate pipeline masked by `\| tail -1` | drift-keyed check (pipe exit status replaced the gate's) | run gates unpiped or under `set -o pipefail`; never assert green from a piped tail | session 2026-11-15: CI lint failed at bf9908b while local "green" was the tail's exit code |

@@ -4,7 +4,7 @@ import { loadProgress, saveProgress } from './save/store.ts'
 import { runCase, confetti } from './engine/run.ts'
 import type { WidgetKind } from './engine/case.ts'
 import { playFanfare } from './sfx.ts'
-import { GRADES, gradeCases, gradeWord, isGradeActive, countWord, visibleCases, lockedConcepts, CONCEPT_SEQUENCE } from './grades.ts'
+import { GRADES, gradeCases, gradeWord, isGradeActive, countWord, visibleCases, lockedConcepts } from './grades.ts'
 import { openParentView, importSaveText } from './parent/parent.ts'
 import './style.css'
 

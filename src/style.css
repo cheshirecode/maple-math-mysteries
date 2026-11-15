@@ -332,10 +332,6 @@ body {
   white-space: nowrap;
 }
 
-.case-title {
-  scroll-margin-top: 64px;
-}
-
 .case {
   display: flex;
   flex-direction: column;
@@ -362,6 +358,7 @@ body {
   margin: 0.5rem 0 0;
   font-size: 1.35rem;
   font-weight: 800;
+  scroll-margin-top: 64px;
 }
 
 .case-story {
