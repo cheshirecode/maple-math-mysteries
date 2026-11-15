@@ -281,7 +281,7 @@
       "kidLabel": "counting pairs",
       "badge": "dots-5-11",
       "widget": "dots",
-      "titleNoDigits": "The Harbourmaster Tickets",
+      "titleNoDigits": "The Ferry Captain Tickets",
       "storyNoDigits": [
         "The grocer counts a nearly full roll.",
         "Count the empty spots, then choose the matching picture."
@@ -302,7 +302,7 @@
       "kidLabel": "counting pairs",
       "badge": "dots-5-12",
       "widget": "dots",
-      "titleNoDigits": "The Harbourmaster Pair",
+      "titleNoDigits": "The Ferry Captain Pair",
       "storyNoDigits": [
         "The librarian counts a nearly full roll.",
         "Count the empty spots, then choose the matching picture."
@@ -323,7 +323,7 @@
       "kidLabel": "counting pairs",
       "badge": "dots-5-13",
       "widget": "dots",
-      "titleNoDigits": "The Conductor Tickets",
+      "titleNoDigits": "The Park Ranger Roll",
       "storyNoDigits": [
         "The baker counts a nearly full roll.",
         "Count the empty spots, then choose the matching picture."
@@ -344,7 +344,7 @@
       "kidLabel": "place value",
       "badge": "blocks-5-14",
       "widget": "blocks",
-      "titleNoDigits": "The Harbourmaster Stacks",
+      "titleNoDigits": "The Conductor Ladder",
       "storyNoDigits": [
         "The conductor audits the lodge shelves.",
         "Stack the blocks to match the target picture."
@@ -366,7 +366,7 @@
       "kidLabel": "place value",
       "badge": "blocks-5-15",
       "widget": "blocks",
-      "titleNoDigits": "The Harbourmaster Ladder",
+      "titleNoDigits": "The Conductor Tower",
       "storyNoDigits": [
         "The coach audits the lodge shelves.",
         "Stack the blocks to match the target picture."
@@ -388,7 +388,7 @@
       "kidLabel": "place value",
       "badge": "blocks-5-16",
       "widget": "blocks",
-      "titleNoDigits": "The Harbourmaster Tower",
+      "titleNoDigits": "The Conductor Safe",
       "storyNoDigits": [
         "The ferry captain audits the lodge shelves.",
         "Stack the blocks to match the target picture."
@@ -410,7 +410,7 @@
       "kidLabel": "equal rows",
       "badge": "arrays-5-17",
       "widget": "arrays",
-      "titleNoDigits": "The Harbourmaster Tracks",
+      "titleNoDigits": "The Baker Tracks",
       "storyNoDigits": [
         "The coach charts the harvest rows.",
         "Count the equal rows you see."
@@ -431,7 +431,7 @@
       "kidLabel": "equal rows",
       "badge": "arrays-5-18",
       "widget": "arrays",
-      "titleNoDigits": "The Conductor Rows",
+      "titleNoDigits": "The Ferry Captain Grid",
       "storyNoDigits": [
         "The lighthouse keeper charts the harvest rows.",
         "Count the equal rows you see."
@@ -452,7 +452,7 @@
       "kidLabel": "fair shares",
       "badge": "fraction-5-19",
       "widget": "fraction",
-      "titleNoDigits": "The Harbourmaster Pie",
+      "titleNoDigits": "The Harbourmaster Reel",
       "storyNoDigits": [
         "The baker splits the ribbon reel.",
         "Look for the piece cut into fair shares."
@@ -472,7 +472,7 @@
       "kidLabel": "growing patterns",
       "badge": "pattern-5-20",
       "widget": "pattern",
-      "titleNoDigits": "The Librarian Rule",
+      "titleNoDigits": "The Harbourmaster Rule",
       "storyNoDigits": [
         "The postmaster reads the trail rule.",
         "Say the rule, then pick the next pile."
@@ -497,7 +497,7 @@
       "kidLabel": "growing patterns",
       "badge": "pattern-5-21",
       "widget": "pattern",
-      "titleNoDigits": "The Harbourmaster Trail",
+      "titleNoDigits": "The Conductor Rule",
       "storyNoDigits": [
         "The grocer reads the trail rule.",
         "Say the rule, then pick the next pile."
@@ -522,7 +522,7 @@
       "kidLabel": "growing patterns",
       "badge": "pattern-5-22",
       "widget": "pattern",
-      "titleNoDigits": "The Harbourmaster Rule",
+      "titleNoDigits": "The Ferry Captain Trail",
       "storyNoDigits": [
         "The park ranger reads the trail rule.",
         "Say the rule, then pick the next pile."
@@ -547,7 +547,7 @@
       "kidLabel": "measuring and pouring",
       "badge": "measure-5-23",
       "widget": "measure",
-      "titleNoDigits": "The Harbourmaster Kettle",
+      "titleNoDigits": "The Baker Kettle",
       "storyNoDigits": [
         "The baker boils sap at the shack.",
         "Compare the fills before you tap."
@@ -572,7 +572,7 @@
       "kidLabel": "shapes and nets",
       "badge": "crate-5-24",
       "widget": "crate",
-      "titleNoDigits": "The Harbourmaster Parcel",
+      "titleNoDigits": "The Baker Crate",
       "storyNoDigits": [
         "The harbourmaster folds a grand crate.",
         "Fold the net in your head, then choose."
@@ -622,7 +622,7 @@
       "kidLabel": "shapes and nets",
       "badge": "crate-5-26",
       "widget": "crate",
-      "titleNoDigits": "The Conductor Crate",
+      "titleNoDigits": "The Baker Parcel",
       "storyNoDigits": [
         "The park ranger folds a grand crate.",
         "Fold the net in your head, then choose."
@@ -647,7 +647,7 @@
       "kidLabel": "chance",
       "badge": "spinner-5-27",
       "widget": "spinner",
-      "titleNoDigits": "The Ferry Captain Wheel",
+      "titleNoDigits": "The Ferry Captain Dial",
       "storyNoDigits": [
         "The librarian spins the garden dial again.",
         "The biggest slice lands most often."
@@ -677,7 +677,7 @@
       "kidLabel": "chance",
       "badge": "spinner-5-28",
       "widget": "spinner",
-      "titleNoDigits": "The Harbourmaster Dial",
+      "titleNoDigits": "The Ferry Captain Spin",
       "storyNoDigits": [
         "The conductor spins the garden dial again.",
         "The biggest slice lands most often."
@@ -711,7 +711,7 @@
       "kidLabel": "money sense",
       "badge": "coins-5-29",
       "widget": "coins",
-      "titleNoDigits": "The Harbourmaster Till",
+      "titleNoDigits": "The Baker Till",
       "storyNoDigits": [
         "The grocer settles the bake-sale till.",
         "Pay with the same coins as the picture."
@@ -739,7 +739,7 @@
       "kidLabel": "comparing numbers",
       "badge": "compare-5-30",
       "widget": "compare",
-      "titleNoDigits": "The Librarian Tallies",
+      "titleNoDigits": "The Harbourmaster Tallies",
       "storyNoDigits": [
         "Two coachs compare ledger lines.",
         "Look at both piles, then choose the bigger one."
@@ -769,7 +769,7 @@
       "kidLabel": "comparing numbers",
       "badge": "compare-5-31",
       "widget": "compare",
-      "titleNoDigits": "The Librarian Watch",
+      "titleNoDigits": "The Harbourmaster Watch",
       "storyNoDigits": [
         "Two coachs compare ledger lines.",
         "Look at both piles, then choose the bigger one."
@@ -799,7 +799,7 @@
       "kidLabel": "comparing numbers",
       "badge": "compare-5-32",
       "widget": "compare",
-      "titleNoDigits": "The Harbourmaster Tallies",
+      "titleNoDigits": "The Conductor Tallies",
       "storyNoDigits": [
         "Two conductors compare ledger lines.",
         "Look at both piles, then choose the bigger one."
@@ -850,6 +850,802 @@
           "hundreds": 1,
           "tens": 7,
           "ones": 8
+        }
+      }
+    },
+    {
+      "id": "core-grade-five-x34",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "counting pairs",
+      "badge": "dots-5-34",
+      "widget": "dots",
+      "titleNoDigits": "The Park Ranger Tickets",
+      "storyNoDigits": [
+        "The conductor counts a nearly full roll.",
+        "Count the empty spots, then choose the matching picture."
+      ],
+      "storyDigits": [
+        "The conductor counts a nearly full roll.",
+        "Count the empty spots, then choose the matching picture."
+      ],
+      "puzzle": {
+        "kind": "dots",
+        "pairTarget": 18,
+        "pairA": 11
+      }
+    },
+    {
+      "id": "core-grade-five-x35",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "counting pairs",
+      "badge": "dots-5-35",
+      "widget": "dots",
+      "titleNoDigits": "The Park Ranger Pair",
+      "storyNoDigits": [
+        "The ferry captain counts a nearly full roll.",
+        "Count the empty spots, then choose the matching picture."
+      ],
+      "storyDigits": [
+        "The ferry captain counts a nearly full roll.",
+        "Count the empty spots, then choose the matching picture."
+      ],
+      "puzzle": {
+        "kind": "dots",
+        "pairTarget": 14,
+        "pairA": 1
+      }
+    },
+    {
+      "id": "core-grade-five-x36",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "counting pairs",
+      "badge": "dots-5-36",
+      "widget": "dots",
+      "titleNoDigits": "The Grocer Tickets",
+      "storyNoDigits": [
+        "The librarian counts a nearly full roll.",
+        "Count the empty spots, then choose the matching picture."
+      ],
+      "storyDigits": [
+        "The librarian counts a nearly full roll.",
+        "Count the empty spots, then choose the matching picture."
+      ],
+      "puzzle": {
+        "kind": "dots",
+        "pairTarget": 16,
+        "pairA": 14
+      }
+    },
+    {
+      "id": "core-grade-five-x37",
+      "group": "number to 1000",
+      "kidLabel": "place value",
+      "badge": "blocks-5-37",
+      "widget": "blocks",
+      "titleNoDigits": "The Baker Tower",
+      "storyNoDigits": [
+        "The coach audits the lodge shelves.",
+        "Stack the blocks to match the target picture."
+      ],
+      "storyDigits": [
+        "The coach audits the lodge shelves.",
+        "Stack the blocks to match the target picture."
+      ],
+      "puzzle": {
+        "kind": "blocks",
+        "hundreds": 9,
+        "tens": 5,
+        "ones": 8
+      }
+    },
+    {
+      "id": "core-grade-five-x38",
+      "group": "number to 1000",
+      "kidLabel": "place value",
+      "badge": "blocks-5-38",
+      "widget": "blocks",
+      "titleNoDigits": "The Baker Safe",
+      "storyNoDigits": [
+        "The lighthouse keeper audits the lodge shelves.",
+        "Stack the blocks to match the target picture."
+      ],
+      "storyDigits": [
+        "The lighthouse keeper audits the lodge shelves.",
+        "Stack the blocks to match the target picture."
+      ],
+      "puzzle": {
+        "kind": "blocks",
+        "hundreds": 4,
+        "tens": 7,
+        "ones": 2
+      }
+    },
+    {
+      "id": "core-grade-five-x39",
+      "group": "number to 1000",
+      "kidLabel": "place value",
+      "badge": "blocks-5-39",
+      "widget": "blocks",
+      "titleNoDigits": "The Ferry Captain Ladder",
+      "storyNoDigits": [
+        "The librarian audits the lodge shelves.",
+        "Stack the blocks to match the target picture."
+      ],
+      "storyDigits": [
+        "The librarian audits the lodge shelves.",
+        "Stack the blocks to match the target picture."
+      ],
+      "puzzle": {
+        "kind": "blocks",
+        "hundreds": 9,
+        "tens": 2,
+        "ones": 6
+      }
+    },
+    {
+      "id": "core-grade-five-x40",
+      "group": "multiplication and division concepts",
+      "kidLabel": "equal rows",
+      "badge": "arrays-5-40",
+      "widget": "arrays",
+      "titleNoDigits": "The Ferry Captain Tracks",
+      "storyNoDigits": [
+        "The postmaster charts the harvest rows.",
+        "Count the equal rows you see."
+      ],
+      "storyDigits": [
+        "The postmaster charts the harvest rows.",
+        "Count the equal rows you see."
+      ],
+      "puzzle": {
+        "kind": "arrays",
+        "rows": 8,
+        "cols": 3
+      }
+    },
+    {
+      "id": "core-grade-five-x41",
+      "group": "multiplication and division concepts",
+      "kidLabel": "equal rows",
+      "badge": "arrays-5-41",
+      "widget": "arrays",
+      "titleNoDigits": "The Park Ranger Rows",
+      "storyNoDigits": [
+        "The fishmonger charts the harvest rows.",
+        "Count the equal rows you see."
+      ],
+      "storyDigits": [
+        "The fishmonger charts the harvest rows.",
+        "Count the equal rows you see."
+      ],
+      "puzzle": {
+        "kind": "arrays",
+        "rows": 6,
+        "cols": 6
+      }
+    },
+    {
+      "id": "core-grade-five-x42",
+      "group": "multiplication and division concepts",
+      "kidLabel": "equal rows",
+      "badge": "arrays-5-42",
+      "widget": "arrays",
+      "titleNoDigits": "The Chandler Grid",
+      "storyNoDigits": [
+        "The coach charts the harvest rows.",
+        "Count the equal rows you see."
+      ],
+      "storyDigits": [
+        "The coach charts the harvest rows.",
+        "Count the equal rows you see."
+      ],
+      "puzzle": {
+        "kind": "arrays",
+        "rows": 9,
+        "cols": 5
+      }
+    },
+    {
+      "id": "core-grade-five-x43",
+      "group": "fraction concepts",
+      "kidLabel": "fair shares",
+      "badge": "fraction-5-43",
+      "widget": "fraction",
+      "titleNoDigits": "The Conductor Pie",
+      "storyNoDigits": [
+        "The conductor splits the ribbon reel.",
+        "Look for the piece cut into fair shares."
+      ],
+      "storyDigits": [
+        "The conductor splits the ribbon reel.",
+        "Look for the piece cut into fair shares."
+      ],
+      "puzzle": {
+        "kind": "fraction",
+        "parts": 10
+      }
+    },
+    {
+      "id": "core-grade-five-x44",
+      "group": "patterns and pattern rules",
+      "kidLabel": "growing patterns",
+      "badge": "pattern-5-44",
+      "widget": "pattern",
+      "titleNoDigits": "The Ferry Captain Rule",
+      "storyNoDigits": [
+        "The baker reads the trail rule.",
+        "Say the rule, then pick the next pile."
+      ],
+      "storyDigits": [
+        "The baker reads the trail rule.",
+        "Say the rule, then pick the next pile."
+      ],
+      "puzzle": {
+        "kind": "pattern",
+        "steps": [
+          11,
+          14,
+          17,
+          20
+        ]
+      }
+    },
+    {
+      "id": "core-grade-five-x45",
+      "group": "patterns and pattern rules",
+      "kidLabel": "growing patterns",
+      "badge": "pattern-5-45",
+      "widget": "pattern",
+      "titleNoDigits": "The Park Ranger Pile",
+      "storyNoDigits": [
+        "The conductor reads the trail rule.",
+        "Say the rule, then pick the next pile."
+      ],
+      "storyDigits": [
+        "The conductor reads the trail rule.",
+        "Say the rule, then pick the next pile."
+      ],
+      "puzzle": {
+        "kind": "pattern",
+        "steps": [
+          4,
+          7,
+          10,
+          13
+        ]
+      }
+    },
+    {
+      "id": "core-grade-five-x46",
+      "group": "patterns and pattern rules",
+      "kidLabel": "growing patterns",
+      "badge": "pattern-5-46",
+      "widget": "pattern",
+      "titleNoDigits": "The Park Ranger Rule",
+      "storyNoDigits": [
+        "The conductor reads the trail rule.",
+        "Say the rule, then pick the next pile."
+      ],
+      "storyDigits": [
+        "The conductor reads the trail rule.",
+        "Say the rule, then pick the next pile."
+      ],
+      "puzzle": {
+        "kind": "pattern",
+        "steps": [
+          6,
+          8,
+          10,
+          12
+        ]
+      }
+    },
+    {
+      "id": "core-grade-five-x47",
+      "group": "measurement and time",
+      "kidLabel": "measuring and pouring",
+      "badge": "measure-5-47",
+      "widget": "measure",
+      "titleNoDigits": "The Baker Can",
+      "storyNoDigits": [
+        "The postmaster boils sap at the shack.",
+        "Compare the fills before you tap."
+      ],
+      "storyDigits": [
+        "The postmaster boils sap at the shack.",
+        "Compare the fills before you tap."
+      ],
+      "puzzle": {
+        "kind": "measure",
+        "cups": 9,
+        "options": [
+          11,
+          9,
+          7
+        ]
+      }
+    },
+    {
+      "id": "core-grade-five-x48",
+      "group": "measurement and time",
+      "kidLabel": "measuring and pouring",
+      "badge": "measure-5-48",
+      "widget": "measure",
+      "titleNoDigits": "The Grocer Can",
+      "storyNoDigits": [
+        "The conductor boils sap at the shack.",
+        "Compare the fills before you tap."
+      ],
+      "storyDigits": [
+        "The conductor boils sap at the shack.",
+        "Compare the fills before you tap."
+      ],
+      "puzzle": {
+        "kind": "measure",
+        "cups": 11,
+        "options": [
+          13,
+          11,
+          9
+        ]
+      }
+    },
+    {
+      "id": "core-grade-five-x49",
+      "group": "measurement and time",
+      "kidLabel": "measuring and pouring",
+      "badge": "measure-5-49",
+      "widget": "measure",
+      "titleNoDigits": "The Chandler Can",
+      "storyNoDigits": [
+        "The harbourmaster boils sap at the shack.",
+        "Compare the fills before you tap."
+      ],
+      "storyDigits": [
+        "The harbourmaster boils sap at the shack.",
+        "Compare the fills before you tap."
+      ],
+      "puzzle": {
+        "kind": "measure",
+        "cups": 8,
+        "options": [
+          10,
+          8,
+          6
+        ]
+      }
+    },
+    {
+      "id": "core-grade-five-x50",
+      "group": "3d objects and graphs",
+      "kidLabel": "shapes and nets",
+      "badge": "crate-5-50",
+      "widget": "crate",
+      "titleNoDigits": "The Coach Parcel",
+      "storyNoDigits": [
+        "The lighthouse keeper folds a grand crate.",
+        "Fold the net in your head, then choose."
+      ],
+      "storyDigits": [
+        "The lighthouse keeper folds a grand crate.",
+        "Fold the net in your head, then choose."
+      ],
+      "puzzle": {
+        "kind": "crate",
+        "shape": "cylinder",
+        "suspects": [
+          5,
+          3,
+          4
+        ]
+      }
+    },
+    {
+      "id": "core-grade-five-x51",
+      "group": "3d objects and graphs",
+      "kidLabel": "shapes and nets",
+      "badge": "crate-5-51",
+      "widget": "crate",
+      "titleNoDigits": "The Lighthouse Keeper Parcel",
+      "storyNoDigits": [
+        "The ferry captain folds a grand crate.",
+        "Fold the net in your head, then choose."
+      ],
+      "storyDigits": [
+        "The ferry captain folds a grand crate.",
+        "Fold the net in your head, then choose."
+      ],
+      "puzzle": {
+        "kind": "crate",
+        "shape": "prism",
+        "suspects": [
+          3,
+          6,
+          4
+        ]
+      }
+    },
+    {
+      "id": "core-grade-five-x52",
+      "group": "3d objects and graphs",
+      "kidLabel": "shapes and nets",
+      "badge": "crate-5-52",
+      "widget": "crate",
+      "titleNoDigits": "The Park Ranger Crate",
+      "storyNoDigits": [
+        "The conductor folds a grand crate.",
+        "Fold the net in your head, then choose."
+      ],
+      "storyDigits": [
+        "The conductor folds a grand crate.",
+        "Fold the net in your head, then choose."
+      ],
+      "puzzle": {
+        "kind": "crate",
+        "shape": "cylinder",
+        "suspects": [
+          4,
+          3,
+          5
+        ]
+      }
+    },
+    {
+      "id": "core-grade-five-x53",
+      "group": "likelihood of simulated events",
+      "kidLabel": "chance",
+      "badge": "spinner-5-53",
+      "widget": "spinner",
+      "titleNoDigits": "The Park Ranger Wheel",
+      "storyNoDigits": [
+        "The postmaster spins the garden dial again.",
+        "The biggest slice lands most often."
+      ],
+      "storyDigits": [
+        "The postmaster spins the garden dial again.",
+        "The biggest slice lands most often."
+      ],
+      "puzzle": {
+        "kind": "spinner",
+        "slices": [
+          {
+            "colour": "blue",
+            "weight": 2
+          },
+          {
+            "colour": "red",
+            "weight": 4
+          }
+        ],
+        "answer": "red"
+      }
+    },
+    {
+      "id": "core-grade-five-x54",
+      "group": "likelihood of simulated events",
+      "kidLabel": "chance",
+      "badge": "spinner-5-54",
+      "widget": "spinner",
+      "titleNoDigits": "The Park Ranger Dial",
+      "storyNoDigits": [
+        "The park ranger spins the garden dial again.",
+        "The biggest slice lands most often."
+      ],
+      "storyDigits": [
+        "The park ranger spins the garden dial again.",
+        "The biggest slice lands most often."
+      ],
+      "puzzle": {
+        "kind": "spinner",
+        "slices": [
+          {
+            "colour": "blue",
+            "weight": 3
+          },
+          {
+            "colour": "gold",
+            "weight": 2
+          },
+          {
+            "colour": "green",
+            "weight": 1
+          }
+        ],
+        "answer": "blue"
+      }
+    },
+    {
+      "id": "core-grade-five-x55",
+      "group": "likelihood of simulated events",
+      "kidLabel": "chance",
+      "badge": "spinner-5-55",
+      "widget": "spinner",
+      "titleNoDigits": "The Park Ranger Spin",
+      "storyNoDigits": [
+        "The baker spins the garden dial again.",
+        "The biggest slice lands most often."
+      ],
+      "storyDigits": [
+        "The baker spins the garden dial again.",
+        "The biggest slice lands most often."
+      ],
+      "puzzle": {
+        "kind": "spinner",
+        "slices": [
+          {
+            "colour": "green",
+            "weight": 4
+          },
+          {
+            "colour": "gold",
+            "weight": 2
+          },
+          {
+            "colour": "red",
+            "weight": 1
+          }
+        ],
+        "answer": "green"
+      }
+    },
+    {
+      "id": "core-grade-five-x56",
+      "group": "financial literacy",
+      "kidLabel": "money sense",
+      "badge": "coins-5-56",
+      "widget": "coins",
+      "titleNoDigits": "The Baker Fee",
+      "storyNoDigits": [
+        "The harbourmaster settles the bake-sale till.",
+        "Pay with the same coins as the picture."
+      ],
+      "storyDigits": [
+        "The harbourmaster settles the bake-sale till.",
+        "Pay with the same coins as the picture."
+      ],
+      "puzzle": {
+        "kind": "coins",
+        "target": [
+          5,
+          10,
+          25,
+          25,
+          5,
+          10,
+          1
+        ]
+      }
+    },
+    {
+      "id": "core-grade-five-x57",
+      "group": "financial literacy",
+      "kidLabel": "money sense",
+      "badge": "coins-5-57",
+      "widget": "coins",
+      "titleNoDigits": "The Ferry Captain Fee",
+      "storyNoDigits": [
+        "The ferry captain settles the bake-sale till.",
+        "Pay with the same coins as the picture."
+      ],
+      "storyDigits": [
+        "The ferry captain settles the bake-sale till.",
+        "Pay with the same coins as the picture."
+      ],
+      "puzzle": {
+        "kind": "coins",
+        "target": [
+          25,
+          1,
+          1,
+          25,
+          25,
+          10
+        ]
+      }
+    },
+    {
+      "id": "core-grade-five-x58",
+      "group": "financial literacy",
+      "kidLabel": "money sense",
+      "badge": "coins-5-58",
+      "widget": "coins",
+      "titleNoDigits": "The Park Ranger Till",
+      "storyNoDigits": [
+        "The postmaster settles the bake-sale till.",
+        "Pay with the same coins as the picture."
+      ],
+      "storyDigits": [
+        "The postmaster settles the bake-sale till.",
+        "Pay with the same coins as the picture."
+      ],
+      "puzzle": {
+        "kind": "coins",
+        "target": [
+          5,
+          25,
+          1,
+          1,
+          5
+        ]
+      }
+    },
+    {
+      "id": "core-grade-five-x59",
+      "group": "number to 1000",
+      "kidLabel": "comparing numbers",
+      "badge": "compare-5-59",
+      "widget": "compare",
+      "titleNoDigits": "The Conductor Watch",
+      "storyNoDigits": [
+        "Two lighthouse keepers compare ledger lines.",
+        "Look at both piles, then choose the bigger one."
+      ],
+      "storyDigits": [
+        "Two lighthouse keepers compare ledger lines.",
+        "Look at both piles, then choose the bigger one."
+      ],
+      "puzzle": {
+        "kind": "compare",
+        "a": {
+          "hundreds": 2,
+          "tens": 7,
+          "ones": 8
+        },
+        "b": {
+          "hundreds": 3,
+          "tens": 0,
+          "ones": 4
+        },
+        "more": "b"
+      }
+    },
+    {
+      "id": "core-grade-five-x60",
+      "group": "number to 1000",
+      "kidLabel": "comparing numbers",
+      "badge": "compare-5-60",
+      "widget": "compare",
+      "titleNoDigits": "The Baker Tallies",
+      "storyNoDigits": [
+        "Two postmasters compare ledger lines.",
+        "Look at both piles, then choose the bigger one."
+      ],
+      "storyDigits": [
+        "Two postmasters compare ledger lines.",
+        "Look at both piles, then choose the bigger one."
+      ],
+      "puzzle": {
+        "kind": "compare",
+        "a": {
+          "hundreds": 4,
+          "tens": 7,
+          "ones": 8
+        },
+        "b": {
+          "hundreds": 3,
+          "tens": 1,
+          "ones": 7
+        },
+        "more": "a"
+      }
+    },
+    {
+      "id": "core-grade-five-x61",
+      "group": "number to 1000",
+      "kidLabel": "comparing numbers",
+      "badge": "compare-5-61",
+      "widget": "compare",
+      "titleNoDigits": "The Baker Watch",
+      "storyNoDigits": [
+        "Two postmasters compare ledger lines.",
+        "Look at both piles, then choose the bigger one."
+      ],
+      "storyDigits": [
+        "Two postmasters compare ledger lines.",
+        "Look at both piles, then choose the bigger one."
+      ],
+      "puzzle": {
+        "kind": "compare",
+        "a": {
+          "hundreds": 6,
+          "tens": 6,
+          "ones": 0
+        },
+        "b": {
+          "hundreds": 1,
+          "tens": 6,
+          "ones": 8
+        },
+        "more": "a"
+      }
+    },
+    {
+      "id": "core-grade-five-x62",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "add and take away",
+      "badge": "combine-5-62",
+      "widget": "combine",
+      "titleNoDigits": "The Harbourmaster Ledger",
+      "storyNoDigits": [
+        "The conductor sleds supplies to the summit.",
+        "Build the answer stacks before you check."
+      ],
+      "storyDigits": [
+        "The conductor sleds supplies to the summit.",
+        "Build the answer stacks before you check."
+      ],
+      "puzzle": {
+        "kind": "combine",
+        "op": "add",
+        "a": {
+          "hundreds": 6,
+          "tens": 7,
+          "ones": 0
+        },
+        "b": {
+          "hundreds": 1,
+          "tens": 7,
+          "ones": 0
+        }
+      }
+    },
+    {
+      "id": "core-grade-five-x63",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "add and take away",
+      "badge": "combine-5-63",
+      "widget": "combine",
+      "titleNoDigits": "The Conductor Bridge",
+      "storyNoDigits": [
+        "The conductor sleds supplies to the summit.",
+        "Build the answer stacks before you check."
+      ],
+      "storyDigits": [
+        "The conductor sleds supplies to the summit.",
+        "Build the answer stacks before you check."
+      ],
+      "puzzle": {
+        "kind": "combine",
+        "op": "add",
+        "a": {
+          "hundreds": 2,
+          "tens": 9,
+          "ones": 9
+        },
+        "b": {
+          "hundreds": 4,
+          "tens": 9,
+          "ones": 5
+        }
+      }
+    },
+    {
+      "id": "core-grade-five-x64",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "add and take away",
+      "badge": "combine-5-64",
+      "widget": "combine",
+      "titleNoDigits": "The Park Ranger Ledger",
+      "storyNoDigits": [
+        "The lighthouse keeper sleds supplies to the summit.",
+        "Build the answer stacks before you check."
+      ],
+      "storyDigits": [
+        "The lighthouse keeper sleds supplies to the summit.",
+        "Build the answer stacks before you check."
+      ],
+      "puzzle": {
+        "kind": "combine",
+        "op": "take",
+        "a": {
+          "hundreds": 2,
+          "tens": 0,
+          "ones": 4
+        },
+        "b": {
+          "hundreds": 1,
+          "tens": 8,
+          "ones": 9
         }
       }
     }

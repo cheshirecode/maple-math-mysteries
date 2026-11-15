@@ -352,13 +352,14 @@ export function generateCases(
   packId: string,
   existing: CaseDef[],
   seed: number,
+  takenTitles: Set<string> = new Set(),
 ): { cases: CaseDef[]; shortfalls: string[] } {
   const bands = BANDS[grade]
   if (!bands) throw new Error(`no band table for grade ${grade}`)
   const rng = mulberry32(seed)
   const seen = new Set(existing.map((c) => fingerprint(c.widget, c.puzzle)))
   const takenBadges = new Set(existing.map((c) => c.badge))
-  const takenTitles = new Set(existing.map((c) => c.titleNoDigits))
+  for (const t of existing.map((c) => c.titleNoDigits)) takenTitles.add(t)
   const cases: CaseDef[] = []
   const shortfalls: string[] = []
   let serial = existing.length + 1

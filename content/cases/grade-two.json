@@ -537,7 +537,7 @@
       "kidLabel": "shapes and nets",
       "badge": "crate-2-23",
       "widget": "crate",
-      "titleNoDigits": "The Librarian Box",
+      "titleNoDigits": "The Librarian Crate",
       "storyNoDigits": [
         "The harbourmaster matches a folded parcel.",
         "Fold the net in your head, then choose."
@@ -587,7 +587,7 @@
       "kidLabel": "shapes and nets",
       "badge": "crate-2-25",
       "widget": "crate",
-      "titleNoDigits": "The Postmaster Box",
+      "titleNoDigits": "The Librarian Parcel",
       "storyNoDigits": [
         "The conductor matches a folded parcel.",
         "Fold the net in your head, then choose."
@@ -833,6 +833,764 @@
           "hundreds": 0,
           "tens": 1,
           "ones": 3
+        }
+      }
+    },
+    {
+      "id": "core-grade-two-x34",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "counting pairs",
+      "badge": "dots-2-34",
+      "widget": "dots",
+      "titleNoDigits": "The Harbourmaster Roll",
+      "storyNoDigits": [
+        "The conductor fills a roll that holds eighteen tickets.",
+        "Count the empty spots, then choose the matching picture."
+      ],
+      "storyDigits": [
+        "The conductor fills a roll that holds 18 tickets.",
+        "Count the empty spots, then choose the matching picture."
+      ],
+      "puzzle": {
+        "kind": "dots",
+        "pairTarget": 17,
+        "pairA": 10
+      }
+    },
+    {
+      "id": "core-grade-two-x35",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "counting pairs",
+      "badge": "dots-2-35",
+      "widget": "dots",
+      "titleNoDigits": "The Lighthouse Keeper Roll",
+      "storyNoDigits": [
+        "The ferry captain fills a roll that holds eleven tickets.",
+        "Count the empty spots, then choose the matching picture."
+      ],
+      "storyDigits": [
+        "The ferry captain fills a roll that holds 11 tickets.",
+        "Count the empty spots, then choose the matching picture."
+      ],
+      "puzzle": {
+        "kind": "dots",
+        "pairTarget": 10,
+        "pairA": 1
+      }
+    },
+    {
+      "id": "core-grade-two-x36",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "counting pairs",
+      "badge": "dots-2-36",
+      "widget": "dots",
+      "titleNoDigits": "The Grocer Pair",
+      "storyNoDigits": [
+        "The librarian fills a roll that holds thirteen tickets.",
+        "Count the empty spots, then choose the matching picture."
+      ],
+      "storyDigits": [
+        "The librarian fills a roll that holds 13 tickets.",
+        "Count the empty spots, then choose the matching picture."
+      ],
+      "puzzle": {
+        "kind": "dots",
+        "pairTarget": 14,
+        "pairA": 12
+      }
+    },
+    {
+      "id": "core-grade-two-x37",
+      "group": "number to 1000",
+      "kidLabel": "place value",
+      "badge": "blocks-2-37",
+      "widget": "blocks",
+      "titleNoDigits": "The Fishmonger Ladder",
+      "storyNoDigits": [
+        "The coach counts the popcorn tubs.",
+        "Stack the blocks to match the target picture."
+      ],
+      "storyDigits": [
+        "The coach counts the popcorn tubs.",
+        "Stack the blocks to match the target picture."
+      ],
+      "puzzle": {
+        "kind": "blocks",
+        "hundreds": 0,
+        "tens": 9,
+        "ones": 5
+      }
+    },
+    {
+      "id": "core-grade-two-x38",
+      "group": "number to 1000",
+      "kidLabel": "place value",
+      "badge": "blocks-2-38",
+      "widget": "blocks",
+      "titleNoDigits": "The Librarian Stacks",
+      "storyNoDigits": [
+        "The lighthouse keeper counts the popcorn tubs.",
+        "Stack the blocks to match the target picture."
+      ],
+      "storyDigits": [
+        "The lighthouse keeper counts the popcorn tubs.",
+        "Stack the blocks to match the target picture."
+      ],
+      "puzzle": {
+        "kind": "blocks",
+        "hundreds": 0,
+        "tens": 4,
+        "ones": 7
+      }
+    },
+    {
+      "id": "core-grade-two-x39",
+      "group": "number to 1000",
+      "kidLabel": "place value",
+      "badge": "blocks-2-39",
+      "widget": "blocks",
+      "titleNoDigits": "The Librarian Safe",
+      "storyNoDigits": [
+        "The librarian counts the popcorn tubs.",
+        "Stack the blocks to match the target picture."
+      ],
+      "storyDigits": [
+        "The librarian counts the popcorn tubs.",
+        "Stack the blocks to match the target picture."
+      ],
+      "puzzle": {
+        "kind": "blocks",
+        "hundreds": 0,
+        "tens": 9,
+        "ones": 2
+      }
+    },
+    {
+      "id": "core-grade-two-x40",
+      "group": "multiplication and division concepts",
+      "kidLabel": "equal rows",
+      "badge": "arrays-2-40",
+      "widget": "arrays",
+      "titleNoDigits": "The Fishmonger Grid",
+      "storyNoDigits": [
+        "The postmaster lines up neat rows of prints.",
+        "Count the equal rows you see."
+      ],
+      "storyDigits": [
+        "The postmaster lines up neat rows of prints.",
+        "Count the equal rows you see."
+      ],
+      "puzzle": {
+        "kind": "arrays",
+        "rows": 5,
+        "cols": 3
+      }
+    },
+    {
+      "id": "core-grade-two-x41",
+      "group": "multiplication and division concepts",
+      "kidLabel": "equal rows",
+      "badge": "arrays-2-41",
+      "widget": "arrays",
+      "titleNoDigits": "The Conductor Rows",
+      "storyNoDigits": [
+        "The fishmonger lines up neat rows of prints.",
+        "Count the equal rows you see."
+      ],
+      "storyDigits": [
+        "The fishmonger lines up neat rows of prints.",
+        "Count the equal rows you see."
+      ],
+      "puzzle": {
+        "kind": "arrays",
+        "rows": 3,
+        "cols": 6
+      }
+    },
+    {
+      "id": "core-grade-two-x42",
+      "group": "multiplication and division concepts",
+      "kidLabel": "equal rows",
+      "badge": "arrays-2-42",
+      "widget": "arrays",
+      "titleNoDigits": "The Librarian Rows",
+      "storyNoDigits": [
+        "The lighthouse keeper lines up neat rows of prints.",
+        "Count the equal rows you see."
+      ],
+      "storyDigits": [
+        "The lighthouse keeper lines up neat rows of prints.",
+        "Count the equal rows you see."
+      ],
+      "puzzle": {
+        "kind": "arrays",
+        "rows": 4,
+        "cols": 2
+      }
+    },
+    {
+      "id": "core-grade-two-x43",
+      "group": "patterns and pattern rules",
+      "kidLabel": "growing patterns",
+      "badge": "pattern-2-43",
+      "widget": "pattern",
+      "titleNoDigits": "The Fishmonger Pile",
+      "storyNoDigits": [
+        "The conductor spots shells along the dock path.",
+        "Say the rule, then pick the next pile."
+      ],
+      "storyDigits": [
+        "The conductor spots shells along the dock path.",
+        "Say the rule, then pick the next pile."
+      ],
+      "puzzle": {
+        "kind": "pattern",
+        "steps": [
+          16,
+          17,
+          18,
+          19
+        ]
+      }
+    },
+    {
+      "id": "core-grade-two-x44",
+      "group": "patterns and pattern rules",
+      "kidLabel": "growing patterns",
+      "badge": "pattern-2-44",
+      "widget": "pattern",
+      "titleNoDigits": "The Baker Rule",
+      "storyNoDigits": [
+        "The baker spots shells along the dock path.",
+        "Say the rule, then pick the next pile."
+      ],
+      "storyDigits": [
+        "The baker spots shells along the dock path.",
+        "Say the rule, then pick the next pile."
+      ],
+      "puzzle": {
+        "kind": "pattern",
+        "steps": [
+          11,
+          14,
+          17,
+          20
+        ]
+      }
+    },
+    {
+      "id": "core-grade-two-x45",
+      "group": "patterns and pattern rules",
+      "kidLabel": "growing patterns",
+      "badge": "pattern-2-45",
+      "widget": "pattern",
+      "titleNoDigits": "The Baker Trail",
+      "storyNoDigits": [
+        "The conductor spots shells along the dock path.",
+        "Say the rule, then pick the next pile."
+      ],
+      "storyDigits": [
+        "The conductor spots shells along the dock path.",
+        "Say the rule, then pick the next pile."
+      ],
+      "puzzle": {
+        "kind": "pattern",
+        "steps": [
+          4,
+          7,
+          10,
+          13
+        ]
+      }
+    },
+    {
+      "id": "core-grade-two-x46",
+      "group": "measurement and time",
+      "kidLabel": "measuring and pouring",
+      "badge": "measure-2-46",
+      "widget": "measure",
+      "titleNoDigits": "The Conductor Kettle",
+      "storyNoDigits": [
+        "The coach fills the watering can.",
+        "Compare the fills before you tap."
+      ],
+      "storyDigits": [
+        "The coach fills the watering can.",
+        "Compare the fills before you tap."
+      ],
+      "puzzle": {
+        "kind": "measure",
+        "cups": 5,
+        "options": [
+          7,
+          5,
+          3
+        ]
+      }
+    },
+    {
+      "id": "core-grade-two-x47",
+      "group": "measurement and time",
+      "kidLabel": "measuring and pouring",
+      "badge": "measure-2-47",
+      "widget": "measure",
+      "titleNoDigits": "The Postmaster Can",
+      "storyNoDigits": [
+        "The lighthouse keeper fills the watering can.",
+        "Compare the fills before you tap."
+      ],
+      "storyDigits": [
+        "The lighthouse keeper fills the watering can.",
+        "Compare the fills before you tap."
+      ],
+      "puzzle": {
+        "kind": "measure",
+        "cups": 5,
+        "options": [
+          7,
+          3,
+          5
+        ]
+      }
+    },
+    {
+      "id": "core-grade-two-x48",
+      "group": "measurement and time",
+      "kidLabel": "measuring and pouring",
+      "badge": "measure-2-48",
+      "widget": "measure",
+      "titleNoDigits": "The Librarian Can",
+      "storyNoDigits": [
+        "The park ranger fills the watering can.",
+        "Compare the fills before you tap."
+      ],
+      "storyDigits": [
+        "The park ranger fills the watering can.",
+        "Compare the fills before you tap."
+      ],
+      "puzzle": {
+        "kind": "measure",
+        "cups": 4,
+        "options": [
+          6,
+          2,
+          4
+        ]
+      }
+    },
+    {
+      "id": "core-grade-two-x49",
+      "group": "3d objects and graphs",
+      "kidLabel": "shapes and nets",
+      "badge": "crate-2-49",
+      "widget": "crate",
+      "titleNoDigits": "The Postmaster Parcel",
+      "storyNoDigits": [
+        "The ferry captain matches a folded parcel.",
+        "Fold the net in your head, then choose."
+      ],
+      "storyDigits": [
+        "The ferry captain matches a folded parcel.",
+        "Fold the net in your head, then choose."
+      ],
+      "puzzle": {
+        "kind": "crate",
+        "shape": "cube",
+        "suspects": [
+          4,
+          3,
+          6
+        ]
+      }
+    },
+    {
+      "id": "core-grade-two-x50",
+      "group": "3d objects and graphs",
+      "kidLabel": "shapes and nets",
+      "badge": "crate-2-50",
+      "widget": "crate",
+      "titleNoDigits": "The Postmaster Crate",
+      "storyNoDigits": [
+        "The park ranger matches a folded parcel.",
+        "Fold the net in your head, then choose."
+      ],
+      "storyDigits": [
+        "The park ranger matches a folded parcel.",
+        "Fold the net in your head, then choose."
+      ],
+      "puzzle": {
+        "kind": "crate",
+        "shape": "prism",
+        "suspects": [
+          6,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "id": "core-grade-two-x51",
+      "group": "3d objects and graphs",
+      "kidLabel": "shapes and nets",
+      "badge": "crate-2-51",
+      "widget": "crate",
+      "titleNoDigits": "The Ferry Captain Parcel",
+      "storyNoDigits": [
+        "The postmaster matches a folded parcel.",
+        "Fold the net in your head, then choose."
+      ],
+      "storyDigits": [
+        "The postmaster matches a folded parcel.",
+        "Fold the net in your head, then choose."
+      ],
+      "puzzle": {
+        "kind": "crate",
+        "shape": "cylinder",
+        "suspects": [
+          3,
+          5,
+          4
+        ]
+      }
+    },
+    {
+      "id": "core-grade-two-x52",
+      "group": "likelihood of simulated events",
+      "kidLabel": "chance",
+      "badge": "spinner-2-52",
+      "widget": "spinner",
+      "titleNoDigits": "The Lighthouse Keeper Spin",
+      "storyNoDigits": [
+        "The chandler spins at the school fair.",
+        "The biggest slice lands most often."
+      ],
+      "storyDigits": [
+        "The chandler spins at the school fair.",
+        "The biggest slice lands most often."
+      ],
+      "puzzle": {
+        "kind": "spinner",
+        "slices": [
+          {
+            "colour": "gold",
+            "weight": 3
+          },
+          {
+            "colour": "red",
+            "weight": 1
+          }
+        ],
+        "answer": "gold"
+      }
+    },
+    {
+      "id": "core-grade-two-x53",
+      "group": "likelihood of simulated events",
+      "kidLabel": "chance",
+      "badge": "spinner-2-53",
+      "widget": "spinner",
+      "titleNoDigits": "The Fishmonger Wheel",
+      "storyNoDigits": [
+        "The postmaster spins at the school fair.",
+        "The biggest slice lands most often."
+      ],
+      "storyDigits": [
+        "The postmaster spins at the school fair.",
+        "The biggest slice lands most often."
+      ],
+      "puzzle": {
+        "kind": "spinner",
+        "slices": [
+          {
+            "colour": "blue",
+            "weight": 2
+          },
+          {
+            "colour": "red",
+            "weight": 4
+          }
+        ],
+        "answer": "red"
+      }
+    },
+    {
+      "id": "core-grade-two-x54",
+      "group": "likelihood of simulated events",
+      "kidLabel": "chance",
+      "badge": "spinner-2-54",
+      "widget": "spinner",
+      "titleNoDigits": "The Librarian Wheel",
+      "storyNoDigits": [
+        "The baker spins at the school fair.",
+        "The biggest slice lands most often."
+      ],
+      "storyDigits": [
+        "The baker spins at the school fair.",
+        "The biggest slice lands most often."
+      ],
+      "puzzle": {
+        "kind": "spinner",
+        "slices": [
+          {
+            "colour": "gold",
+            "weight": 3
+          },
+          {
+            "colour": "green",
+            "weight": 2
+          }
+        ],
+        "answer": "gold"
+      }
+    },
+    {
+      "id": "core-grade-two-x55",
+      "group": "financial literacy",
+      "kidLabel": "money sense",
+      "badge": "coins-2-55",
+      "widget": "coins",
+      "titleNoDigits": "The Fishmonger Payment",
+      "storyNoDigits": [
+        "The park ranger pays the bus driver.",
+        "Pay with the same coins as the picture."
+      ],
+      "storyDigits": [
+        "The park ranger pays the bus driver.",
+        "Pay with the same coins as the picture."
+      ],
+      "puzzle": {
+        "kind": "coins",
+        "target": [
+          1,
+          1,
+          5,
+          25
+        ]
+      }
+    },
+    {
+      "id": "core-grade-two-x56",
+      "group": "financial literacy",
+      "kidLabel": "money sense",
+      "badge": "coins-2-56",
+      "widget": "coins",
+      "titleNoDigits": "The Grocer Till",
+      "storyNoDigits": [
+        "The fishmonger pays the bus driver.",
+        "Pay with the same coins as the picture."
+      ],
+      "storyDigits": [
+        "The fishmonger pays the bus driver.",
+        "Pay with the same coins as the picture."
+      ],
+      "puzzle": {
+        "kind": "coins",
+        "target": [
+          10,
+          1
+        ]
+      }
+    },
+    {
+      "id": "core-grade-two-x57",
+      "group": "financial literacy",
+      "kidLabel": "money sense",
+      "badge": "coins-2-57",
+      "widget": "coins",
+      "titleNoDigits": "The Baker Payment",
+      "storyNoDigits": [
+        "The fishmonger pays the bus driver.",
+        "Pay with the same coins as the picture."
+      ],
+      "storyDigits": [
+        "The fishmonger pays the bus driver.",
+        "Pay with the same coins as the picture."
+      ],
+      "puzzle": {
+        "kind": "coins",
+        "target": [
+          25,
+          5
+        ]
+      }
+    },
+    {
+      "id": "core-grade-two-x58",
+      "group": "number to 1000",
+      "kidLabel": "comparing numbers",
+      "badge": "compare-2-58",
+      "widget": "compare",
+      "titleNoDigits": "The Ferry Captain Watch",
+      "storyNoDigits": [
+        "Two harbourmasters chalked scores on the board.",
+        "Look at both piles, then choose the bigger one."
+      ],
+      "storyDigits": [
+        "Two harbourmasters chalked scores on the board.",
+        "Look at both piles, then choose the bigger one."
+      ],
+      "puzzle": {
+        "kind": "compare",
+        "a": {
+          "hundreds": 0,
+          "tens": 9,
+          "ones": 6
+        },
+        "b": {
+          "hundreds": 0,
+          "tens": 7,
+          "ones": 0
+        },
+        "more": "a"
+      }
+    },
+    {
+      "id": "core-grade-two-x59",
+      "group": "number to 1000",
+      "kidLabel": "comparing numbers",
+      "badge": "compare-2-59",
+      "widget": "compare",
+      "titleNoDigits": "The Ferry Captain Count",
+      "storyNoDigits": [
+        "Two bakers chalked scores on the board.",
+        "Look at both piles, then choose the bigger one."
+      ],
+      "storyDigits": [
+        "Two bakers chalked scores on the board.",
+        "Look at both piles, then choose the bigger one."
+      ],
+      "puzzle": {
+        "kind": "compare",
+        "a": {
+          "hundreds": 0,
+          "tens": 3,
+          "ones": 0
+        },
+        "b": {
+          "hundreds": 0,
+          "tens": 1,
+          "ones": 3
+        },
+        "more": "a"
+      }
+    },
+    {
+      "id": "core-grade-two-x60",
+      "group": "number to 1000",
+      "kidLabel": "comparing numbers",
+      "badge": "compare-2-60",
+      "widget": "compare",
+      "titleNoDigits": "The Postmaster Watch",
+      "storyNoDigits": [
+        "Two librarians chalked scores on the board.",
+        "Look at both piles, then choose the bigger one."
+      ],
+      "storyDigits": [
+        "Two librarians chalked scores on the board.",
+        "Look at both piles, then choose the bigger one."
+      ],
+      "puzzle": {
+        "kind": "compare",
+        "a": {
+          "hundreds": 0,
+          "tens": 2,
+          "ones": 9
+        },
+        "b": {
+          "hundreds": 0,
+          "tens": 3,
+          "ones": 5
+        },
+        "more": "b"
+      }
+    },
+    {
+      "id": "core-grade-two-x61",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "add and take away",
+      "badge": "combine-2-61",
+      "widget": "combine",
+      "titleNoDigits": "The Fishmonger Bridge",
+      "storyNoDigits": [
+        "The lighthouse keeper works with two tubs of tens and ones.",
+        "Build the answer stacks before you check."
+      ],
+      "storyDigits": [
+        "The lighthouse keeper works with two tubs of tens and ones.",
+        "Build the answer stacks before you check."
+      ],
+      "puzzle": {
+        "kind": "combine",
+        "op": "take",
+        "a": {
+          "hundreds": 7,
+          "tens": 1,
+          "ones": 9
+        },
+        "b": {
+          "hundreds": 7,
+          "tens": 1,
+          "ones": 2
+        }
+      }
+    },
+    {
+      "id": "core-grade-two-x62",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "add and take away",
+      "badge": "combine-2-62",
+      "widget": "combine",
+      "titleNoDigits": "The Librarian Ledger",
+      "storyNoDigits": [
+        "The conductor works with two tubs of tens and ones.",
+        "Build the answer stacks before you check."
+      ],
+      "storyDigits": [
+        "The conductor works with two tubs of tens and ones.",
+        "Build the answer stacks before you check."
+      ],
+      "puzzle": {
+        "kind": "combine",
+        "op": "add",
+        "a": {
+          "hundreds": 6,
+          "tens": 7,
+          "ones": 0
+        },
+        "b": {
+          "hundreds": 1,
+          "tens": 7,
+          "ones": 0
+        }
+      }
+    },
+    {
+      "id": "core-grade-two-x63",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "add and take away",
+      "badge": "combine-2-63",
+      "widget": "combine",
+      "titleNoDigits": "The Postmaster Total",
+      "storyNoDigits": [
+        "The librarian works with two tubs of tens and ones.",
+        "Build the answer stacks before you check."
+      ],
+      "storyDigits": [
+        "The librarian works with two tubs of tens and ones.",
+        "Build the answer stacks before you check."
+      ],
+      "puzzle": {
+        "kind": "combine",
+        "op": "add",
+        "a": {
+          "hundreds": 4,
+          "tens": 4,
+          "ones": 7
+        },
+        "b": {
+          "hundreds": 5,
+          "tens": 2,
+          "ones": 9
         }
       }
     }

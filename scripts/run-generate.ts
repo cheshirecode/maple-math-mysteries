@@ -22,11 +22,12 @@ function loadPacks(): Record<number, { raw: unknown; pack: CasePack; path: strin
 }
 
 const packs = loadPacks()
+const takenTitles = new Set(Object.values(packs).flatMap((p) => p.pack.cases.map((c) => c.titleNoDigits)))
 let totalAdded = 0
 for (const gradeStr of Object.keys(packs)) {
   const grade = Number(gradeStr)
   const { raw, pack, path } = packs[grade]
-  const { cases, shortfalls } = generateCases(grade, pack.packId, pack.cases, SEED)
+  const { cases, shortfalls } = generateCases(grade, pack.packId, pack.cases, SEED, takenTitles)
   const errors = checkGenerated(cases)
   if (errors.length > 0) throw new Error(`generated cases rejected: ${errors.join('; ')}`)
   const merged = [...pack.cases, ...cases]
