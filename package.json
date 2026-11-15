@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
+    "generate": "node --experimental-strip-types scripts/run-generate.ts",
     "build": "vite build",
     "lint": "oxlint src tests vite.config.ts && stylelint src/**/*.css",
     "typecheck": "tsc --noEmit",

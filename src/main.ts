@@ -3,7 +3,7 @@ import { getProgress, migrate, updateProgress, subscribe } from './state.ts'
 import { loadProgress, saveProgress } from './save/store.ts'
 import { runCase, confetti } from './engine/run.ts'
 import { playFanfare } from './sfx.ts'
-import { GRADES, gradeCases, gradeWord, isGradeActive, COUNT_WORD } from './grades.ts'
+import { GRADES, gradeCases, gradeWord, isGradeActive, countWord } from './grades.ts'
 import { openParentView, importSaveText } from './parent/parent.ts'
 import './style.css'
 
@@ -105,15 +105,16 @@ export function start(): void {
     stage.innerHTML = ''
     const town = el('div', 'town')
     const progress = getProgress()
+    const doneSet = new Set(progress.completedCases)
     const cases = gradeCases(progress.grade)
-    const doneCount = cases.filter((c) => progress.completedCases.includes(c.id)).length
+    const doneCount = cases.filter((c) => doneSet.has(c.id)).length
     if (cases.length > 0) {
       const head = el('div', 'town-head')
       head.append(
         el(
           'div',
           'town-progress',
-          `${COUNT_WORD[doneCount]} of ${COUNT_WORD[cases.length]} mysteries closed`,
+          `${countWord(doneCount)} of ${countWord(cases.length)} mysteries closed`,
         ),
       )
       if (doneCount > 0 && doneCount < cases.length) {
@@ -129,7 +130,7 @@ export function start(): void {
     }
     let nextAssigned = false
     for (const def of cases) {
-      const done = progress.completedCases.includes(def.id)
+      const done = doneSet.has(def.id)
       if (done && hideSolved && doneCount < cases.length) continue
       const card = el('button', `case-card ${done ? 'done' : ''} ${!done && !nextAssigned ? 'next' : ''}`)
       if (!done && !nextAssigned) {
@@ -149,7 +150,8 @@ export function start(): void {
                 : { ...p, badges: [...p.badges, badge], completedCases: [...new Set([...p.completedCases, def.id])] },
             )
             const after = getProgress()
-            if (gradeCases(after.grade).every((c) => after.completedCases.includes(c.id))) {
+            const afterSet = new Set(after.completedCases)
+            if (gradeCases(after.grade).every((c) => afterSet.has(c.id))) {
               justCompleted = true
             }
             sessionSolves++
@@ -193,7 +195,7 @@ export function start(): void {
         el(
           'p',
           'town-banner-sub',
-          `All ${COUNT_WORD[cases.length]} badges are yours. Stretch your legs, then try a mystery again from the start.`,
+          `All ${countWord(cases.length)} badges are yours. Stretch your legs, then try a mystery again from the start.`,
         ),
       )
       const keepBtn = el('button', 'btn', 'Keep playing')
