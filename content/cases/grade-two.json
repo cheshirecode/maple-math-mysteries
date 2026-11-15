@@ -1,0 +1,195 @@
+{
+  "packId": "core-grade-two",
+  "schemaVersion": 1,
+  "grade": 2,
+  "title": "Maple Town mysteries for grade two",
+  "cases": [
+    {
+      "id": "g2-grid",
+      "group": "multiplication and division concepts",
+      "kidLabel": "rows and columns",
+      "badge": "row-reader",
+      "widget": "arrays",
+      "titleNoDigits": "The Muddy Grid",
+      "titleDigits": "The Muddy Grid",
+      "storyNoDigits": [
+        "A raccoon crossed the muddy yard at night.",
+        "The footprints sit in neat rows. Count the rows."
+      ],
+      "storyDigits": [
+        "A raccoon crossed the muddy yard at night.",
+        "The footprints form an array of equal rows. Count the rows."
+      ],
+      "puzzle": {
+        "kind": "arrays",
+        "rows": 3,
+        "cols": 5
+      }
+    },
+    {
+      "id": "g2-fare",
+      "group": "financial literacy",
+      "kidLabel": "money sense",
+      "badge": "fare-finder",
+      "widget": "coins",
+      "titleNoDigits": "The Bus Fare",
+      "titleDigits": "The Bus Fare",
+      "storyNoDigits": [
+        "The bus driver takes the exact fare.",
+        "Pay the same coins shown in the picture."
+      ],
+      "storyDigits": [
+        "The bus driver takes the exact fare.",
+        "Pay the same amount shown in coins."
+      ],
+      "puzzle": {
+        "kind": "coins",
+        "target": [
+          10,
+          10,
+          5
+        ]
+      }
+    },
+    {
+      "id": "g2-tickets",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "adding to twenty",
+      "badge": "ticket-splitter",
+      "widget": "dots",
+      "titleNoDigits": "The Ticket Roll",
+      "titleDigits": "The Ticket Roll",
+      "storyNoDigits": [
+        "The conductor punches tickets for the ride.",
+        "One friend already holds part of the roll. Count the empty spots."
+      ],
+      "storyDigits": [
+        "The conductor punches tickets for the ride.",
+        "One friend already holds part of the tickets. How many more?"
+      ],
+      "puzzle": {
+        "kind": "dots",
+        "pairTarget": 20,
+        "pairA": 12
+      }
+    },
+    {
+      "id": "g2-stacks",
+      "group": "number to 1000",
+      "kidLabel": "tens and ones",
+      "badge": "tub-counter",
+      "widget": "blocks",
+      "titleNoDigits": "The Popcorn Tubs",
+      "titleDigits": "The Popcorn Tubs",
+      "storyNoDigits": [
+        "The cinema counts popcorn tubs before the show.",
+        "Build the stacks that match the picture."
+      ],
+      "storyDigits": [
+        "The cinema counts popcorn tubs before the show.",
+        "Build the stacks: tens and ones blocks."
+      ],
+      "puzzle": {
+        "kind": "blocks",
+        "hundreds": 0,
+        "tens": 4,
+        "ones": 3
+      }
+    },
+    {
+      "id": "g2-berries",
+      "group": "addition and subtraction to 1000",
+      "kidLabel": "adding to twenty",
+      "badge": "berry-picker",
+      "widget": "dots",
+      "titleNoDigits": "The Berry Baskets",
+      "titleDigits": "The Berry Baskets",
+      "storyNoDigits": [
+        "The berry stand fills baskets for the market.",
+        "One basket is nearly full. Count the empty spots."
+      ],
+      "storyDigits": [
+        "The berry stand fills baskets for the market.",
+        "One basket holds 20 berries. 15 are in. How many more?"
+      ],
+      "puzzle": {
+        "kind": "dots",
+        "pairTarget": 20,
+        "pairA": 15
+      }
+    },
+    {
+      "id": "g2-campfire",
+      "group": "fraction concepts",
+      "kidLabel": "equal parts",
+      "badge": "campfire-cook",
+      "widget": "fraction",
+      "titleNoDigits": "The Campfire Pie",
+      "titleDigits": "The Campfire Pie",
+      "storyNoDigits": [
+        "Four friends share one campfire pie.",
+        "Every friend gets one equal slice. Which pie shares every part fairly?"
+      ],
+      "storyDigits": [
+        "Four friends share one campfire pie.",
+        "Cut the pie into 4 equal shares."
+      ],
+      "puzzle": {
+        "kind": "fraction",
+        "parts": 4
+      }
+    },
+    {
+      "id": "g2-shells",
+      "group": "patterns and pattern rules",
+      "kidLabel": "growing patterns",
+      "badge": "shell-sorter",
+      "widget": "pattern",
+      "titleNoDigits": "The Shell Row",
+      "titleDigits": "The Shell Row",
+      "storyNoDigits": [
+        "Shells line the path to the dock.",
+        "Each pile grows by the same rule. Find the next pile."
+      ],
+      "storyDigits": [
+        "Shells line the path to the dock.",
+        "Each pile grows by the same rule. Predict the next pile."
+      ],
+      "puzzle": {
+        "kind": "pattern",
+        "steps": [
+          3,
+          6,
+          9,
+          12
+        ]
+      }
+    },
+    {
+      "id": "g2-watering",
+      "group": "measurement and time",
+      "kidLabel": "measuring and pouring",
+      "badge": "can-carrier",
+      "widget": "measure",
+      "titleNoDigits": "The Watering Can",
+      "titleDigits": "The Watering Can",
+      "storyNoDigits": [
+        "The garden bed needs one full watering can.",
+        "Count the cupfuls the recipe asks for."
+      ],
+      "storyDigits": [
+        "The garden bed needs one full watering can.",
+        "The recipe pours a set number of cupfuls."
+      ],
+      "puzzle": {
+        "kind": "measure",
+        "cups": 5,
+        "options": [
+          5,
+          3,
+          7
+        ]
+      }
+    }
+  ]
+}

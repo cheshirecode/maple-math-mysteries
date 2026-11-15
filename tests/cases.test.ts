@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test'
 import assertStrict from 'node:assert/strict'
-import { ALL_CASES } from '../src/cases/index.ts'
+import { ALL_CASES } from '../src/content/packs.ts'
 import { validateCase, BC_GROUPS } from '../src/engine/case.ts'
 
 describe('BC coverage', () => {

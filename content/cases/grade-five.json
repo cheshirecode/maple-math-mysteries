@@ -1,0 +1,217 @@
+{
+  "packId": "core-grade-five",
+  "schemaVersion": 1,
+  "grade": 5,
+  "title": "Maple Town mysteries for grade five",
+  "cases": [
+    {
+      "id": "g5-bar",
+      "group": "fraction concepts",
+      "kidLabel": "fraction sense",
+      "badge": "share-scholar",
+      "widget": "fraction",
+      "titleNoDigits": "The Chocolate Ledger",
+      "titleDigits": "The Chocolate Ledger",
+      "storyNoDigits": [
+        "The scout troop earned one chocolate bar.",
+        "Twelve scouts share it. Every scout gets one equal piece."
+      ],
+      "storyDigits": [
+        "The scout troop earned one chocolate bar.",
+        "Cut the bar into 12 equal shares."
+      ],
+      "puzzle": {
+        "kind": "fraction",
+        "parts": 12
+      }
+    },
+    {
+      "id": "g5-punch",
+      "group": "measurement and time",
+      "kidLabel": "measuring and pouring",
+      "badge": "punch-planner",
+      "widget": "measure",
+      "titleNoDigits": "The Punch Bowl",
+      "titleDigits": "The Punch Bowl",
+      "storyNoDigits": [
+        "The graduation party needs fruit punch.",
+        "Count the cupfuls the recipe asks for."
+      ],
+      "storyDigits": [
+        "The graduation party needs fruit punch.",
+        "The recipe pours a set number of cupfuls."
+      ],
+      "puzzle": {
+        "kind": "measure",
+        "cups": 7,
+        "options": [
+          7,
+          4,
+          10
+        ]
+      }
+    },
+    {
+      "id": "g5-fund",
+      "group": "financial literacy",
+      "kidLabel": "money sense",
+      "badge": "fund-steward",
+      "widget": "coins",
+      "titleNoDigits": "The Field-Trip Fund",
+      "titleDigits": "The Field-Trip Fund",
+      "storyNoDigits": [
+        "The class pays the field-trip fee at the door.",
+        "Pay the exact fee shown in coins."
+      ],
+      "storyDigits": [
+        "The class pays the field-trip fee at the door.",
+        "Pay the exact amount shown in coins."
+      ],
+      "puzzle": {
+        "kind": "coins",
+        "target": [
+          25,
+          25,
+          25,
+          10,
+          5,
+          5
+        ]
+      }
+    },
+    {
+      "id": "g5-harvest",
+      "group": "multiplication and division concepts",
+      "kidLabel": "bigger arrays",
+      "badge": "harvest-tally",
+      "widget": "arrays",
+      "titleNoDigits": "The Harvest Chart",
+      "titleDigits": "The Harvest Chart",
+      "storyNoDigits": [
+        "The farm charts its apple crates in neat rows.",
+        "The crates sit in equal rows. How many rows are there?"
+      ],
+      "storyDigits": [
+        "The farm charts its apple crates in neat rows.",
+        "The crates form an array of equal rows. Count the rows."
+      ],
+      "puzzle": {
+        "kind": "arrays",
+        "rows": 7,
+        "cols": 8
+      }
+    },
+    {
+      "id": "g5-garden",
+      "group": "likelihood of simulated events",
+      "kidLabel": "chance",
+      "badge": "garden-spinner",
+      "widget": "spinner",
+      "titleNoDigits": "The Garden Spinner",
+      "titleDigits": "The Garden Spinner",
+      "storyNoDigits": [
+        "The garden fair spins a three-colour wheel.",
+        "Some colours cover more of the dial. Those land more often."
+      ],
+      "storyDigits": [
+        "The garden fair spins a three-colour wheel.",
+        "Which colour lands most often?"
+      ],
+      "puzzle": {
+        "kind": "spinner",
+        "slices": [
+          {
+            "colour": "green",
+            "weight": 4
+          },
+          {
+            "colour": "red",
+            "weight": 2
+          },
+          {
+            "colour": "blue",
+            "weight": 1
+          }
+        ],
+        "answer": "green"
+      }
+    },
+    {
+      "id": "g5-sap",
+      "group": "measurement and time",
+      "kidLabel": "measuring and pouring",
+      "badge": "sap-boiler",
+      "widget": "measure",
+      "titleNoDigits": "The Sap Pail",
+      "titleDigits": "The Sap Pail",
+      "storyNoDigits": [
+        "The sugar shack boils sap for the syrup.",
+        "Count the cupfuls the recipe asks for."
+      ],
+      "storyDigits": [
+        "The sugar shack boils sap for the syrup.",
+        "The recipe pours a set number of cupfuls."
+      ],
+      "puzzle": {
+        "kind": "measure",
+        "cups": 9,
+        "options": [
+          9,
+          6,
+          12
+        ]
+      }
+    },
+    {
+      "id": "g5-till",
+      "group": "financial literacy",
+      "kidLabel": "money sense",
+      "badge": "till-keeper",
+      "widget": "coins",
+      "titleNoDigits": "The Bake-Sale Till",
+      "titleDigits": "The Bake-Sale Till",
+      "storyNoDigits": [
+        "The bake sale earns coins all morning.",
+        "The till picture shows the coins. Pay the same amount."
+      ],
+      "storyDigits": [
+        "The bake sale earns coins all morning.",
+        "Pay the exact amount shown in coins."
+      ],
+      "puzzle": {
+        "kind": "coins",
+        "target": [
+          25,
+          25,
+          25,
+          25,
+          10,
+          10,
+          5,
+          5
+        ]
+      }
+    },
+    {
+      "id": "g5-ribbon",
+      "group": "fraction concepts",
+      "kidLabel": "fraction sense",
+      "badge": "ribbon-weaver",
+      "widget": "fraction",
+      "titleNoDigits": "The Ribbon Reel",
+      "titleDigits": "The Ribbon Reel",
+      "storyNoDigits": [
+        "The craft fair shares one ribbon reel.",
+        "Nine crafters share the reel. Every crafter gets one equal part."
+      ],
+      "storyDigits": [
+        "The craft fair shares one ribbon reel.",
+        "Cut the reel into 9 equal parts."
+      ],
+      "puzzle": {
+        "kind": "fraction",
+        "parts": 9
+      }
+    }
+  ]
+}
