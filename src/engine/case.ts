@@ -41,6 +41,7 @@ export interface CaseDef {
   storyNoDigits: string[]
   storyDigits?: string[]
   puzzle: PuzzleData
+  tags?: string[]
 }
 
 export const BC_GROUPS = [

@@ -23,7 +23,10 @@
       "puzzle": {
         "kind": "fraction",
         "parts": 8
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "g4-wheel",
@@ -58,7 +61,10 @@
           }
         ],
         "answer": "red"
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "g4-box",
@@ -84,7 +90,10 @@
           6,
           4
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "g4-mural",
@@ -105,7 +114,10 @@
       "puzzle": {
         "kind": "fraction",
         "parts": 10
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "g4-parade",
@@ -127,7 +139,10 @@
         "kind": "arrays",
         "rows": 6,
         "cols": 7
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "g4-silo",
@@ -153,7 +168,10 @@
           6,
           4
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "g4-hop",
@@ -179,7 +197,10 @@
           12,
           16
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "g4-rent",
@@ -206,7 +227,10 @@
           10,
           5
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "g4-ridge",
@@ -237,7 +261,12 @@
           "tens": 7,
           "ones": 5
         }
-      }
+      },
+      "tags": [
+        "tricky",
+        "regroup-double",
+        "add"
+      ]
     },
     {
       "id": "g4-docks",
@@ -268,7 +297,12 @@
           "ones": 9
         },
         "more": "b"
-      }
+      },
+      "tags": [
+        "core",
+        "trap-zero-place",
+        "deciding-ones"
+      ]
     },
     {
       "id": "core-grade-four-x11",
@@ -289,7 +323,10 @@
         "kind": "dots",
         "pairTarget": 16,
         "pairA": 5
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x12",
@@ -310,7 +347,10 @@
         "kind": "dots",
         "pairTarget": 18,
         "pairA": 14
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x13",
@@ -331,7 +371,10 @@
         "kind": "dots",
         "pairTarget": 15,
         "pairA": 2
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x14",
@@ -353,7 +396,10 @@
         "hundreds": 6,
         "tens": 0,
         "ones": 8
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x15",
@@ -375,7 +421,10 @@
         "hundreds": 8,
         "tens": 0,
         "ones": 0
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x16",
@@ -397,7 +446,10 @@
         "hundreds": 3,
         "tens": 5,
         "ones": 0
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x17",
@@ -418,7 +470,10 @@
         "kind": "arrays",
         "rows": 7,
         "cols": 6
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x18",
@@ -439,7 +494,10 @@
         "kind": "arrays",
         "rows": 5,
         "cols": 3
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x19",
@@ -459,7 +517,10 @@
       "puzzle": {
         "kind": "fraction",
         "parts": 12
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x20",
@@ -484,7 +545,10 @@
           19,
           20
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x21",
@@ -509,7 +573,10 @@
           11,
           12
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x22",
@@ -534,7 +601,10 @@
           8,
           12
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x23",
@@ -559,7 +629,10 @@
           11,
           7
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x24",
@@ -584,7 +657,10 @@
           4,
           6
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x25",
@@ -609,7 +685,10 @@
           6,
           3
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x26",
@@ -643,7 +722,10 @@
           }
         ],
         "answer": "red"
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x27",
@@ -673,7 +755,10 @@
           }
         ],
         "answer": "green"
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x28",
@@ -699,7 +784,10 @@
           1,
           1
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x29",
@@ -726,7 +814,10 @@
           5,
           25
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x30",
@@ -756,7 +847,12 @@
           "ones": 8
         },
         "more": "b"
-      }
+      },
+      "tags": [
+        "core",
+        "trap-zero-place",
+        "deciding-tens"
+      ]
     },
     {
       "id": "core-grade-four-x31",
@@ -786,7 +882,12 @@
           "ones": 9
         },
         "more": "b"
-      }
+      },
+      "tags": [
+        "warmup",
+        "trap-plain",
+        "deciding-hundreds"
+      ]
     },
     {
       "id": "core-grade-four-x32",
@@ -816,7 +917,12 @@
           "tens": 5,
           "ones": 4
         }
-      }
+      },
+      "tags": [
+        "warmup",
+        "regroup-none",
+        "take"
+      ]
     },
     {
       "id": "core-grade-four-x33",
@@ -846,7 +952,12 @@
           "tens": 8,
           "ones": 8
         }
-      }
+      },
+      "tags": [
+        "tricky",
+        "regroup-double",
+        "add"
+      ]
     },
     {
       "id": "core-grade-four-x34",
@@ -867,7 +978,10 @@
         "kind": "dots",
         "pairTarget": 17,
         "pairA": 10
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x35",
@@ -888,7 +1002,10 @@
         "kind": "dots",
         "pairTarget": 12,
         "pairA": 1
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x36",
@@ -909,7 +1026,10 @@
         "kind": "dots",
         "pairTarget": 15,
         "pairA": 13
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x37",
@@ -931,7 +1051,10 @@
         "hundreds": 9,
         "tens": 5,
         "ones": 8
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x38",
@@ -953,7 +1076,10 @@
         "hundreds": 4,
         "tens": 7,
         "ones": 2
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x39",
@@ -975,7 +1101,10 @@
         "hundreds": 9,
         "tens": 2,
         "ones": 6
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x40",
@@ -996,7 +1125,10 @@
         "kind": "arrays",
         "rows": 8,
         "cols": 5
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x41",
@@ -1017,7 +1149,10 @@
         "kind": "arrays",
         "rows": 5,
         "cols": 6
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x42",
@@ -1038,7 +1173,10 @@
         "kind": "arrays",
         "rows": 7,
         "cols": 4
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x43",
@@ -1058,7 +1196,10 @@
       "puzzle": {
         "kind": "fraction",
         "parts": 11
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x44",
@@ -1078,7 +1219,10 @@
       "puzzle": {
         "kind": "fraction",
         "parts": 9
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x45",
@@ -1103,7 +1247,10 @@
           6,
           7
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x46",
@@ -1128,7 +1275,10 @@
           8,
           10
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x47",
@@ -1153,7 +1303,10 @@
           13,
           14
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x48",
@@ -1178,7 +1331,10 @@
           6,
           8
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x49",
@@ -1203,7 +1359,10 @@
           9,
           7
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x50",
@@ -1228,7 +1387,10 @@
           8,
           10
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x51",
@@ -1253,7 +1415,10 @@
           5,
           4
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x52",
@@ -1278,7 +1443,10 @@
           4,
           3
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x53",
@@ -1303,7 +1471,10 @@
           4,
           6
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x54",
@@ -1337,7 +1508,10 @@
           }
         ],
         "answer": "green"
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x55",
@@ -1371,7 +1545,10 @@
           }
         ],
         "answer": "red"
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x56",
@@ -1405,7 +1582,10 @@
           }
         ],
         "answer": "blue"
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x57",
@@ -1432,7 +1612,10 @@
           25,
           25
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x58",
@@ -1457,7 +1640,10 @@
           25,
           1
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x59",
@@ -1484,7 +1670,10 @@
           5,
           25
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x60",
@@ -1514,7 +1703,12 @@
           "ones": 1
         },
         "more": "b"
-      }
+      },
+      "tags": [
+        "core",
+        "trap-reorder",
+        "deciding-tens"
+      ]
     },
     {
       "id": "core-grade-four-x61",
@@ -1544,7 +1738,12 @@
           "ones": 9
         },
         "more": "b"
-      }
+      },
+      "tags": [
+        "tricky",
+        "trap-boundary",
+        "deciding-hundreds"
+      ]
     },
     {
       "id": "core-grade-four-x62",
@@ -1574,7 +1773,12 @@
           "ones": 6
         },
         "more": "b"
-      }
+      },
+      "tags": [
+        "core",
+        "trap-reorder",
+        "deciding-hundreds"
+      ]
     },
     {
       "id": "core-grade-four-x63",
@@ -1604,7 +1808,12 @@
           "tens": 9,
           "ones": 2
         }
-      }
+      },
+      "tags": [
+        "core",
+        "regroup-tens",
+        "take"
+      ]
     },
     {
       "id": "core-grade-four-x64",
@@ -1634,7 +1843,12 @@
           "tens": 9,
           "ones": 5
         }
-      }
+      },
+      "tags": [
+        "core",
+        "regroup-tens",
+        "add"
+      ]
     },
     {
       "id": "core-grade-four-x65",
@@ -1664,7 +1878,12 @@
           "tens": 3,
           "ones": 5
         }
-      }
+      },
+      "tags": [
+        "core",
+        "regroup-ones",
+        "add"
+      ]
     },
     {
       "id": "core-grade-four-x66",
@@ -1690,7 +1909,12 @@
           400
         ],
         "big": true
-      }
+      },
+      "tags": [
+        "tricky",
+        "skip-one-hundred",
+        "base-ten"
+      ]
     },
     {
       "id": "core-grade-four-x67",
@@ -1716,7 +1940,10 @@
           10
         ],
         "big": false
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-four-x68",
@@ -1742,7 +1969,13 @@
           25
         ],
         "big": true
-      }
+      },
+      "tags": [
+        "tricky",
+        "skip-twenty-five",
+        "base-ten",
+        "backward"
+      ]
     },
     {
       "id": "core-grade-four-x69",
@@ -1768,7 +2001,12 @@
           100
         ],
         "big": true
-      }
+      },
+      "tags": [
+        "tricky",
+        "skip-twenty-five",
+        "base-ten"
+      ]
     }
   ]
 }

@@ -107,7 +107,15 @@ function shapeOk(shape: string, h: number, t: number, o: number): boolean {
   return true // round-mixed constrains a only; caller checks sides
 }
 
-function genCombineVariant(v: VariantSpec & { kind: 'combine-regroup' }, rng: Rng): unknown {
+const REGROUP_DIFFICULTY: Record<string, string> = {
+  none: 'warmup',
+  ones: 'core',
+  tens: 'core',
+  double: 'tricky',
+  'across-zero': 'tricky',
+}
+
+function genCombineVariant(v: VariantSpec & { kind: 'combine-regroup' }, rng: Rng): { puzzle: unknown; tags: string[] } | null {
   for (let i = 0; i < 400; i++) {
     const a = randInt(rng, 100, 899)
     const [ah, at, ao] = digits3(a)
@@ -131,7 +139,10 @@ function genCombineVariant(v: VariantSpec & { kind: 'combine-regroup' }, rng: Rn
       b = compose3(randInt(rng, 1, bhMax), bt, bo)
       const result = a + b
       if (result > 999 || result <= a) continue
-      return { kind: 'combine', op: 'add', a: decompose(a), b: decompose(b) }
+      return {
+        puzzle: { kind: 'combine', op: 'add', a: decompose(a), b: decompose(b) },
+        tags: [REGROUP_DIFFICULTY[v.pattern], `regroup-${v.pattern}`, `shape-${v.shape}`, 'add'],
+      }
     }
     // take
     const bh = randInt(rng, 1, ah)
@@ -155,20 +166,35 @@ function genCombineVariant(v: VariantSpec & { kind: 'combine-regroup' }, rng: Rn
     if (v.pattern === 'across-zero' && at !== 0) continue
     if (v.shape === 'round-round' && !(isRound(ah, at, ao) && isRound(bh, bt, bo))) continue
     if (v.shape === 'mixed-mixed' && !(isMixed(ah, at, ao) && isMixed(bh, bt, bo))) continue
-    return { kind: 'combine', op: 'take', a: decompose(a), b: decompose(b) }
+    return {
+      puzzle: { kind: 'combine', op: 'take', a: decompose(a), b: decompose(b) },
+      tags: [REGROUP_DIFFICULTY[v.pattern], `regroup-${v.pattern}`, `shape-${v.shape}`, 'take'],
+    }
   }
   return null
 }
 
-function genPatternSkip(v: VariantSpec & { kind: 'pattern-skip' }): unknown {
+function genPatternSkip(v: VariantSpec & { kind: 'pattern-skip' }): { puzzle: unknown; tags: string[] } {
   const s = v.step
   const steps = v.backward
     ? [s * 4, s * 3, s * 2, s]
     : [s, s * 2, s * 3, s * 4]
-  return { kind: 'pattern', steps, big: steps[3] > 20 }
+  const big = steps[3] > 20
+  const difficulty = big ? 'tricky' : 'core'
+  const skipWord = { 1: 'one', 2: 'two', 5: 'five', 10: 'ten', 25: 'twenty-five', 100: 'one-hundred' }[s] ?? ''
+  if (!skipWord) throw new Error(`no word numeral for skip step ${s}`)
+  const tags = [difficulty, `skip-${skipWord}`, ...(v.backward ? ['backward'] : []), ...(big ? ['base-ten'] : [])]
+  return { puzzle: { kind: 'pattern', steps, big }, tags }
 }
 
-function genCompareVariant(v: VariantSpec & { kind: 'compare-trap' }, rng: Rng): unknown {
+const TRAP_DIFFICULTY: Record<string, string> = {
+  plain: 'warmup',
+  reorder: 'core',
+  'zero-place': 'core',
+  boundary: 'tricky',
+}
+
+function genCompareVariant(v: VariantSpec & { kind: 'compare-trap' }, rng: Rng): { puzzle: unknown; tags: string[] } | null {
   for (let i = 0; i < 400; i++) {
     let ah = randInt(rng, 1, 9)
     let at = randInt(rng, 0, 9)
@@ -230,7 +256,10 @@ function genCompareVariant(v: VariantSpec & { kind: 'compare-trap' }, rng: Rng):
     const a = compose3(ah, at, ao)
     const b = compose3(bh, bt, bo)
     if (a < 100 || b < 100 || a === b) continue
-    return { kind: 'compare', a: decompose(a), b: decompose(b), more: a > b ? 'a' : 'b' }
+    return {
+      puzzle: { kind: 'compare', a: decompose(a), b: decompose(b), more: a > b ? 'a' : 'b' },
+      tags: [TRAP_DIFFICULTY[v.trap], `trap-${v.trap}`, `deciding-${v.deciding}`],
+    }
   }
   return null
 }
@@ -393,22 +422,33 @@ export function generateCases(
       // Prefer an unclaimed variant descriptor; fall back to the uniform draw
       // when the band has no variants or the descriptors run out (floor rule).
       let puzzle: unknown = null
+      let caseTags: string[] = ['core']
       while (variants.length > 0 && puzzle === null) {
         const v = variants.shift()
         if (!v) break
         if (v.kind === 'combine-regroup') {
           const cand = genCombineVariant(v, rng)
-          if (cand && !seen.has(fingerprint(kind, cand))) puzzle = cand
+          if (cand && !seen.has(fingerprint(kind, cand.puzzle))) {
+            puzzle = cand.puzzle
+            caseTags = cand.tags
+          }
         } else if (v.kind === 'compare-trap') {
           const cand = genCompareVariant(v, rng)
-          if (cand && !seen.has(fingerprint(kind, cand))) puzzle = cand
+          if (cand && !seen.has(fingerprint(kind, cand.puzzle))) {
+            puzzle = cand.puzzle
+            caseTags = cand.tags
+          }
         } else if (v.kind === 'pattern-skip') {
           const cand = genPatternSkip(v)
-          if (cand && !seen.has(fingerprint(kind, cand))) puzzle = cand
+          if (cand && !seen.has(fingerprint(kind, cand.puzzle))) {
+            puzzle = cand.puzzle
+            caseTags = cand.tags
+          }
         }
       }
       if (puzzle === null) {
         puzzle = genPuzzle(kind, band, grade, rng)
+        caseTags = ['core']
       }
       const fp = fingerprint(kind, puzzle)
       if (seen.has(fp)) continue
@@ -446,6 +486,7 @@ export function generateCases(
         storyNoDigits: story.storyNoDigits,
         storyDigits: story.storyDigits,
         puzzle: puzzle as CaseDef['puzzle'],
+        tags: caseTags,
       })
       serial++
       need--

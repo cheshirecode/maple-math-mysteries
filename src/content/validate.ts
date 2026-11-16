@@ -101,6 +101,14 @@ export function validateCaseData(raw: unknown): { def: CaseDef } | { errors: str
   if (!story) errors.push(`${id}: storyNoDigits must be a string array`)
   else for (const line of story) if (DIGIT.test(line)) errors.push(`${id}: storyNoDigits has digits`)
   if (raw.storyDigits !== undefined && !strArray(raw.storyDigits)) errors.push(`${id}: storyDigits must be a string array`)
+  if (raw.tags !== undefined) {
+    const tags = strArray(raw.tags)
+    if (!tags) errors.push(`${id}: tags must be a string array`)
+    else for (const tag of tags) {
+      if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(tag)) errors.push(`${id}: tag ${tag} must be a lowercase slug`)
+      if (DIGIT.test(tag)) errors.push(`${id}: tag ${tag} has digits`)
+    }
+  }
   if (!isObject(raw.puzzle)) {
     errors.push(`${id}: puzzle must be an object`)
     return { errors }
@@ -164,6 +172,7 @@ export function validateCaseData(raw: unknown): { def: CaseDef } | { errors: str
     storyNoDigits: story ?? [],
     storyDigits: strArray(raw.storyDigits) ?? undefined,
     puzzle: raw.puzzle as CaseDef['puzzle'],
+    tags: strArray(raw.tags) ?? undefined,
   }
   errors.push(...validateCaseFull(def))
   if (errors.length > 0) return { errors }

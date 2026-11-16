@@ -24,7 +24,10 @@
         "kind": "dots",
         "pairTarget": 10,
         "pairA": 6
-      }
+      },
+      "tags": [
+        "warmup"
+      ]
     },
     {
       "id": "g1-line",
@@ -50,7 +53,10 @@
           3,
           4
         ]
-      }
+      },
+      "tags": [
+        "warmup"
+      ]
     },
     {
       "id": "g1-juice",
@@ -76,7 +82,10 @@
           1,
           5
         ]
-      }
+      },
+      "tags": [
+        "warmup"
+      ]
     },
     {
       "id": "g1-acorn",
@@ -98,7 +107,10 @@
         "kind": "dots",
         "pairTarget": 8,
         "pairA": 5
-      }
+      },
+      "tags": [
+        "warmup"
+      ]
     },
     {
       "id": "g1-stairs",
@@ -121,7 +133,10 @@
         "hundreds": 0,
         "tens": 2,
         "ones": 4
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "g1-duck",
@@ -143,7 +158,10 @@
         "kind": "arrays",
         "rows": 2,
         "cols": 4
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "g1-lemonade",
@@ -168,7 +186,10 @@
           5,
           1
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "g1-wheel",
@@ -199,7 +220,10 @@
           }
         ],
         "answer": "red"
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "g1-hands",
@@ -230,7 +254,10 @@
           "tens": 0,
           "ones": 2
         }
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "g1-gloves",
@@ -261,7 +288,12 @@
           "ones": 4
         },
         "more": "a"
-      }
+      },
+      "tags": [
+        "core",
+        "trap-zero-place",
+        "deciding-ones"
+      ]
     },
     {
       "id": "core-grade-one-x11",
@@ -282,7 +314,10 @@
         "kind": "dots",
         "pairTarget": 7,
         "pairA": 2
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x12",
@@ -304,7 +339,10 @@
         "hundreds": 0,
         "tens": 2,
         "ones": 0
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x13",
@@ -326,7 +364,10 @@
         "hundreds": 0,
         "tens": 0,
         "ones": 2
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x14",
@@ -347,7 +388,10 @@
         "kind": "arrays",
         "rows": 2,
         "cols": 3
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x15",
@@ -368,7 +412,10 @@
         "kind": "arrays",
         "rows": 2,
         "cols": 5
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x16",
@@ -388,7 +435,10 @@
       "puzzle": {
         "kind": "fraction",
         "parts": 2
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x17",
@@ -408,7 +458,10 @@
       "puzzle": {
         "kind": "fraction",
         "parts": 3
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x18",
@@ -428,7 +481,10 @@
       "puzzle": {
         "kind": "fraction",
         "parts": 4
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x19",
@@ -453,7 +509,10 @@
           13,
           16
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x20",
@@ -478,7 +537,10 @@
           19,
           20
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x21",
@@ -503,7 +565,10 @@
           1,
           4
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x22",
@@ -528,7 +593,10 @@
           5,
           1
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x23",
@@ -553,7 +621,10 @@
           3,
           4
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x24",
@@ -578,7 +649,10 @@
           5,
           3
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x25",
@@ -603,7 +677,10 @@
           3,
           5
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x26",
@@ -633,7 +710,10 @@
           }
         ],
         "answer": "gold"
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x27",
@@ -663,7 +743,10 @@
           }
         ],
         "answer": "red"
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x28",
@@ -687,7 +770,10 @@
           25,
           10
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x29",
@@ -711,7 +797,10 @@
           25,
           5
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x30",
@@ -741,7 +830,12 @@
           "ones": 3
         },
         "more": "b"
-      }
+      },
+      "tags": [
+        "core",
+        "trap-zero-place",
+        "deciding-ones"
+      ]
     },
     {
       "id": "core-grade-one-x31",
@@ -771,7 +865,12 @@
           "ones": 1
         },
         "more": "a"
-      }
+      },
+      "tags": [
+        "core",
+        "trap-zero-place",
+        "deciding-ones"
+      ]
     },
     {
       "id": "core-grade-one-x32",
@@ -801,7 +900,12 @@
           "tens": 0,
           "ones": 5
         }
-      }
+      },
+      "tags": [
+        "warmup",
+        "regroup-none",
+        "take"
+      ]
     },
     {
       "id": "core-grade-one-x33",
@@ -831,7 +935,12 @@
           "tens": 0,
           "ones": 1
         }
-      }
+      },
+      "tags": [
+        "warmup",
+        "regroup-none",
+        "add"
+      ]
     },
     {
       "id": "core-grade-one-x34",
@@ -852,7 +961,10 @@
         "kind": "dots",
         "pairTarget": 5,
         "pairA": 1
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x35",
@@ -873,7 +985,10 @@
         "kind": "dots",
         "pairTarget": 8,
         "pairA": 3
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x36",
@@ -894,7 +1009,10 @@
         "kind": "dots",
         "pairTarget": 7,
         "pairA": 1
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x37",
@@ -916,7 +1034,10 @@
         "hundreds": 0,
         "tens": 2,
         "ones": 3
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x38",
@@ -938,7 +1059,10 @@
         "hundreds": 0,
         "tens": 2,
         "ones": 5
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x39",
@@ -960,7 +1084,10 @@
         "hundreds": 0,
         "tens": 1,
         "ones": 0
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x40",
@@ -981,7 +1108,10 @@
         "kind": "arrays",
         "rows": 3,
         "cols": 5
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x41",
@@ -1002,7 +1132,10 @@
         "kind": "arrays",
         "rows": 2,
         "cols": 6
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x42",
@@ -1023,7 +1156,10 @@
         "kind": "arrays",
         "rows": 3,
         "cols": 3
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x43",
@@ -1048,7 +1184,10 @@
           7,
           8
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x44",
@@ -1073,7 +1212,10 @@
           10,
           12
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x45",
@@ -1098,7 +1240,10 @@
           15,
           17
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x46",
@@ -1123,7 +1268,10 @@
           2,
           1
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x47",
@@ -1148,7 +1296,10 @@
           2,
           4
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x48",
@@ -1173,7 +1324,10 @@
           6,
           2
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x49",
@@ -1198,7 +1352,10 @@
           3,
           4
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x50",
@@ -1223,7 +1380,10 @@
           6,
           4
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x51",
@@ -1248,7 +1408,10 @@
           5,
           4
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x52",
@@ -1278,7 +1441,10 @@
           }
         ],
         "answer": "gold"
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x53",
@@ -1312,7 +1478,10 @@
           }
         ],
         "answer": "green"
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x54",
@@ -1346,7 +1515,10 @@
           }
         ],
         "answer": "blue"
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x55",
@@ -1370,7 +1542,10 @@
           25,
           1
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x56",
@@ -1393,7 +1568,10 @@
           10,
           25
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x57",
@@ -1417,7 +1595,10 @@
           5,
           10
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x58",
@@ -1447,7 +1628,12 @@
           "ones": 9
         },
         "more": "b"
-      }
+      },
+      "tags": [
+        "core",
+        "trap-zero-place",
+        "deciding-ones"
+      ]
     },
     {
       "id": "core-grade-one-x59",
@@ -1477,7 +1663,12 @@
           "ones": 6
         },
         "more": "b"
-      }
+      },
+      "tags": [
+        "core",
+        "trap-zero-place",
+        "deciding-ones"
+      ]
     },
     {
       "id": "core-grade-one-x60",
@@ -1507,7 +1698,12 @@
           "ones": 9
         },
         "more": "b"
-      }
+      },
+      "tags": [
+        "core",
+        "trap-zero-place",
+        "deciding-ones"
+      ]
     },
     {
       "id": "core-grade-one-x61",
@@ -1537,7 +1733,12 @@
           "tens": 0,
           "ones": 1
         }
-      }
+      },
+      "tags": [
+        "warmup",
+        "regroup-none",
+        "add"
+      ]
     },
     {
       "id": "core-grade-one-x62",
@@ -1567,7 +1768,12 @@
           "tens": 0,
           "ones": 4
         }
-      }
+      },
+      "tags": [
+        "warmup",
+        "regroup-none",
+        "take"
+      ]
     },
     {
       "id": "core-grade-one-x63",
@@ -1597,7 +1803,12 @@
           "tens": 0,
           "ones": 1
         }
-      }
+      },
+      "tags": [
+        "warmup",
+        "regroup-none",
+        "add"
+      ]
     },
     {
       "id": "core-grade-one-x64",
@@ -1623,7 +1834,10 @@
           8
         ],
         "big": false
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-one-x65",
@@ -1649,7 +1863,12 @@
           40
         ],
         "big": true
-      }
+      },
+      "tags": [
+        "tricky",
+        "skip-ten",
+        "base-ten"
+      ]
     },
     {
       "id": "core-grade-one-x66",
@@ -1675,7 +1894,10 @@
           4
         ],
         "big": false
-      }
+      },
+      "tags": [
+        "core"
+      ]
     }
   ]
 }

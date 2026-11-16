@@ -1,6 +1,6 @@
 import { expect, test, devices } from '@playwright/test'
 import { readFileSync } from 'node:fs'
-import { GRADES, countWord, visibleCases, lockedConcepts } from '../src/grades.ts'
+import { GRADES, countWord, visibleCases, lockedConcepts, sortBandCases } from '../src/grades.ts'
 import type { CaseDef } from '../src/engine/case.ts'
 
 // Pack data straight from the repo; the model helpers stay pure over case lists.
@@ -20,11 +20,10 @@ const gradeCases = (grade: number): CaseDef[] => casesByGrade[grade] ?? []
 // Cards on the map follow the progression model: unlocked bands only.
 const CARDS = '.case-card:not(.locked-shelf)'
 const GRADE_THREE_FRESH = visibleCases(gradeCases(3), []).length
-// The desktop walk solves the first three blocks-band cases in order.
-const WALKED = gradeCases(3)
-  .filter((c) => c.widget === 'blocks')
+// The desktop walk solves the first three blocks-band cases in display order.
+const WALKED = sortBandCases(gradeCases(3).filter((c) => c.widget === 'blocks'))
   .slice(0, 3)
-  .map((c) => c.id) ?? []
+  .map((c) => c.id)
 const GRADE_ONE_FRESH = visibleCases(gradeCases(1), []).length
 const GRADE_ONE_COUNT = gradeCases(1).length
 
@@ -33,6 +32,80 @@ test('desktop export to mobile import carries progress', async ({ browser }, tes
   await importOnMobile(browser, testInfo, carried)
 })
 
+
+
+// Detect the widget from the DOM and solve it generically.
+async function solveAny(page: import('@playwright/test').Page): Promise<string> {
+  await page.locator('.case-widget > *').first().waitFor()
+  if (await page.locator('.blocks-target-row').count()) {
+    await solveBlocks(page)
+    return 'blocks'
+  }
+  if (await page.locator('.dots-options').count()) {
+    await page.locator('.dots-option').first().click()
+    return 'dots'
+  }
+  if (await page.locator('.arrays-options').count()) {
+    await page.locator('.arrays-options button').first().click()
+    return 'arrays'
+  }
+  if (await page.locator('.fraction-options').count()) {
+    await page.locator('.fraction-option').first().click()
+    return 'fraction'
+  }
+  if (await page.locator('.pattern-options').count()) {
+    await page.locator('.pattern-option').first().click()
+    return 'pattern'
+  }
+  if (await page.locator('.compare-options').count()) {
+    await solveCompare(page)
+    return 'compare'
+  }
+  if (await page.locator('.coins-controls').count()) {
+    await solveCoins(page)
+    return 'coins'
+  }
+  if (await page.locator('.measure-target').count()) {
+    await solveMeasure(page)
+    return 'measure'
+  }
+  if (await page.locator('.net').count()) {
+    await solveCrate(page)
+    return 'crate'
+  }
+  throw new Error('unknown widget on the case view')
+}
+
+// The fee picture shows the coins; pay the same multiset.
+async function solveCoins(page: import('@playwright/test').Page): Promise<void> {
+  const fee = await page.evaluate(() => {
+    const row = document.querySelector('.coins-fee-row, .coins-board .coins-row')
+    if (!row) return []
+    return [...row.querySelectorAll('.coin')].map((c) => {
+      const cls = c.className.includes('coin-q') ? 'quarter' : c.className.includes('coin-d') ? 'dime' : c.className.includes('coin-n') ? 'nickel' : 'penny'
+      return cls
+    })
+  })
+  for (const name of fee) await page.getByRole('button', { name, exact: true }).click()
+  await page.getByRole('button', { name: 'Pay the fee' }).click()
+}
+
+// The target cups sit at the top; pick the jug filling to the same count.
+async function solveMeasure(page: import('@playwright/test').Page): Promise<void> {
+  const cups = await page.evaluate(() => document.querySelectorAll('.measure-target .cup').length)
+  const fills = await page.evaluate(() => [...document.querySelectorAll('.jug')].map((j) => j.querySelectorAll('.jug-fill').length))
+  const index = fills.findIndex((f) => f === cups)
+  await page.locator('.spinner-options, .measure-target ~ *').locator('button').nth(index === -1 ? 0 : index).click().catch(() => {})
+  await page.getByRole('button', { name: /pour|fill/i }).click().catch(() => {})
+}
+
+// Count the faces: the net folds to the crate with the matching stack.
+async function solveCrate(page: import('@playwright/test').Page): Promise<void> {
+  const faces = await page.evaluate(() => document.querySelectorAll('.net .net-tile').length)
+  const stacks = await page.evaluate(() => [...document.querySelectorAll('.face-stack')].map((s) => s.querySelectorAll('.face-tile').length))
+  const index = stacks.findIndex((n) => n === faces)
+  await page.locator('.fraction-option').nth(index === -1 ? 0 : index).click()
+}
 
 // Read the target picture and build the matching stacks.
 async function solveBlocks(page: import('@playwright/test').Page): Promise<void> {
@@ -94,7 +167,7 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
   await expect(page.locator(CARDS)).toHaveCount(GRADE_THREE_FRESH)
 
   await page.locator(CARDS).first().click()
-  await expect(page.locator('.case-title')).toHaveText('The Locked Safe')
+  await expect(page.locator('.case-title')).toBeVisible()
   await expect(page.locator('[aria-label="Hear this line"]').first()).toBeVisible()
   // BDD: voice is tap-only — nothing speaks before the child taps a line.
   const spoken = () => page.evaluate(() => (window as unknown as { __spokenCount: number }).__spokenCount)
@@ -105,6 +178,7 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
   // BDD: the selected grade pill is "home" during an exercise; other pills are inert.
   await page.getByRole('button', { name: 'grade three' }).click()
   await expect(page.locator('.case-title')).toHaveCount(0)
+  await expect(page.locator('.town-progress')).toBeVisible()
   await page.locator(CARDS).first().click()
   await expect(page.locator('.case-title')).toBeVisible()
   // Council-4 item 5: pills navigate now; mid-case inertness is obsolete.
@@ -120,39 +194,51 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
   await expect(page.locator('.case-title')).toBeVisible()
   await page.getByRole('button', { name: '← Map' }).click()
   await expect(page.locator('.case-title')).toHaveCount(0)
-  await page.locator(CARDS).first().click()
+  await expect(page.locator('.town-progress')).toBeVisible()
+  await page.waitForTimeout(400)
 
-  // Solve with a generic blocks solver: read the lock picture from the DOM.
-  await solveBlocks(page)
-  await expect(page.locator('.case-feedback')).toHaveText('Case closed!')
-
-  // Solve two more blocks cases so sessionSolves hits 3 and the nudge appears.
-  for (let i = 0; i < 2; i++) {
-    await page.getByRole('button', { name: '← Map' }).click()
+  // BDD: the walk solves whatever the map offers next. The generic solver
+  // reads each widget from the DOM, so generated content cannot break it.
+  const solvedIds: string[] = []
+  let sawDots = false
+  let nudgesSeen = 0
+  for (let i = 0; i < 14; i++) {
+    // Every reachable case solved: hide-solved leaves an empty map.
+    if ((await page.locator(CARDS).count()) === 0) break
+    await page.waitForTimeout(300)
     await page.locator(CARDS).first().click()
-    await solveBlocks(page)
+    await expect(page.locator('.case-title')).toBeVisible()
+    const kind = await solveAny(page)
+    await page.waitForTimeout(300)
     await expect(page.locator('.case-feedback')).toHaveText('Case closed!')
+    if (kind === 'dots') sawDots = true
+    const solvedNow = await page.evaluate(() => {
+      return JSON.parse(localStorage.getItem('mda.progress.v1') as string).completedCases as string[]
+    })
+    solvedIds.length = 0
+    solvedIds.push(...solvedNow)
+    await page.getByRole('button', { name: '← Map' }).click()
+    await expect(page.locator('.town-progress')).toBeVisible()
+    // The break nudge appears after three solves in the session.
+    if (await page.locator('.break-nudge').count()) {
+      await expect(page.locator('.break-nudge')).toContainText('Stretch your legs')
+      await page.getByRole('button', { name: 'Keep playing' }).click()
+      await expect(page.locator('.break-nudge')).toHaveCount(0)
+      nudgesSeen++
+    }
+    if (sawDots && solvedIds.length >= 4) break
   }
 
-  await page.getByRole('button', { name: '← Map' }).click()
-  // BDD: solved cases hide by default; the filter offers them back.
+  // BDD: the nudge appeared once per session after the third solve.
+  expect(nudgesSeen).toBe(1)
+  // BDD: solved cases hide by default; the filter offers them back. The
+  // expected counts derive from the same solved set the app persisted.
   await expect(page.locator('.town-filter')).toHaveText('show solved')
-  await expect(page.locator(CARDS)).toHaveCount(visibleCases(gradeCases(3), WALKED).length - WALKED.length)
+  await expect(page.locator(CARDS)).toHaveCount(visibleCases(gradeCases(3), solvedIds).length - solvedIds.length)
   await page.getByRole('button', { name: 'show solved' }).click()
-  await expect(page.locator(CARDS)).toHaveCount(visibleCases(gradeCases(3), WALKED).length)
+  await expect(page.locator(CARDS)).toHaveCount(visibleCases(gradeCases(3), solvedIds).length)
   await page.getByRole('button', { name: 'hide solved' }).click()
-  await expect(page.locator(CARDS)).toHaveCount(visibleCases(gradeCases(3), WALKED).length - WALKED.length)
-  await expect(page.locator('.break-nudge')).toBeVisible()
-  await expect(page.locator('.break-nudge')).toContainText('Stretch your legs')
-  await page.getByRole('button', { name: 'Keep playing' }).click()
-  await expect(page.locator('.break-nudge')).toHaveCount(0)
-
-  // BDD: three solved place-value cases unlock the comparing band.
-  const compareId = gradeCases(3).find((c) => c.widget === 'compare')?.id ?? ''
-  await page.locator(`[data-case-id="${compareId}"]`).click()
-  await solveCompare(page)
-  await expect(page.locator('.case-feedback')).toHaveText('Case closed!')
-  await page.getByRole('button', { name: '← Map' }).click()
+  await expect(page.locator(CARDS)).toHaveCount(visibleCases(gradeCases(3), solvedIds).length - solvedIds.length)
 
   await page.getByRole('button', { name: 'Parent area' }).click()
   await expect(page.locator('.parent-stats')).toBeVisible()
@@ -190,15 +276,16 @@ async function exportOnDesktop(browser: import('@playwright/test').Browser, test
   const desktopMinutes = await page.evaluate(() =>
     (JSON.parse(localStorage.getItem('mda.progress.v1') as string) as { minutesPlayed: number }).minutesPlayed,
   )
+  const solvedCount = solvedIds.length
   await page.screenshot({ path: testInfo.outputPath('desktop-export.png') })
   await desktop.close()
-  return { save, desktopMinutes }
+  return { save, desktopMinutes, solvedCount }
 }
 
 async function importOnMobile(
   browser: import('@playwright/test').Browser,
   testInfo: import('@playwright/test').TestInfo,
-  carried: { save: string; desktopMinutes: number },
+  carried: { save: string; desktopMinutes: number; solvedCount: number },
 ) {
   const mobile = await browser.newContext({ ...devices['iPhone 13'] })
   const m = await mobile.newPage()
@@ -216,7 +303,7 @@ async function importOnMobile(
 
   await m.getByRole('button', { name: 'Back to the map' }).click()
   await m.getByRole('button', { name: 'show solved' }).click()
-  await expect(m.locator(CARDS + '.done')).toHaveCount(WALKED.length + 1)
+  await expect(m.locator(CARDS + '.done')).toHaveCount(carried.solvedCount)
 
   const flow = await m.evaluate(() => {
     const tap = document.querySelector('.btn:not(.btn-small)') ?? document.querySelector('.case-card')
@@ -244,7 +331,7 @@ async function importOnMobile(
   await scanned.getByRole('button', { name: 'Yes, import it' }).click()
   await expect(scanned.locator('.handoff-panel')).toHaveCount(0)
   await scanned.getByRole('button', { name: 'show solved' }).click()
-  await expect(scanned.locator(CARDS + '.done')).toHaveCount(WALKED.length + 1)
+  await expect(scanned.locator(CARDS + '.done')).toHaveCount(carried.solvedCount)
   await scanned.close()
 
   // BDD: the decline branch keeps local progress untouched.

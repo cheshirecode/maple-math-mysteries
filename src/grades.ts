@@ -41,10 +41,13 @@ export function gradeFromSlug(slug: string): number | null {
 
 // The grade-three year in concept order: place value first, chance and money
 // last. Other grades follow the same sequence with their own case sets.
+// The grade-three year in concept order: place value, then counting, then
+// comparing and operating, then the wider strands. Bands open in this order
+// and each band lists its cases warm-up first.
 export const CONCEPT_SEQUENCE: WidgetKind[] = [
   'blocks',
-  'compare',
   'dots',
+  'compare',
   'combine',
   'arrays',
   'fraction',
@@ -54,6 +57,18 @@ export const CONCEPT_SEQUENCE: WidgetKind[] = [
   'spinner',
   'coins',
 ]
+
+export const DIFFICULTY_ORDER = ['warmup', 'core', 'tricky']
+
+function difficultyRank(c: CaseDef): number {
+  const tag = c.tags?.find((t) => DIFFICULTY_ORDER.includes(t))
+  return tag ? DIFFICULTY_ORDER.indexOf(tag) : 1
+}
+
+// Band display order: warm-up cases first, then core, then tricky.
+export function sortBandCases(cases: CaseDef[]): CaseDef[] {
+  return [...cases].sort((a, b) => difficultyRank(a) - difficultyRank(b))
+}
 
 const UNLOCK_AFTER_SOLVED = 3
 
@@ -84,7 +99,7 @@ export function visibleCases(cases: CaseDef[], completed: string[]): CaseDef[] {
     const bandCases = cases.filter((c) => c.widget === kind)
     if (bandCases.length === 0) continue
     if (!bandUnlocked(cases, kind, doneSet)) continue
-    out.push(...bandCases)
+    out.push(...sortBandCases(bandCases))
   }
   return out
 }

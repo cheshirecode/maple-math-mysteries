@@ -25,7 +25,10 @@
         "hundreds": 3,
         "tens": 4,
         "ones": 2
-      }
+      },
+      "tags": [
+        "warmup"
+      ]
     },
     {
       "id": "c2-fare",
@@ -47,7 +50,10 @@
         "kind": "dots",
         "pairTarget": 20,
         "pairA": 13
-      }
+      },
+      "tags": [
+        "warmup"
+      ]
     },
     {
       "id": "c3-loot",
@@ -69,7 +75,10 @@
         "kind": "arrays",
         "rows": 4,
         "cols": 6
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "c4-pie",
@@ -90,7 +99,10 @@
       "puzzle": {
         "kind": "fraction",
         "parts": 6
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "c5-trail",
@@ -116,7 +128,10 @@
           6,
           8
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "c6-jug",
@@ -142,7 +157,10 @@
           2,
           6
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "c7-crate",
@@ -168,7 +186,10 @@
           5,
           3
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "c8-spinner",
@@ -203,7 +224,10 @@
           }
         ],
         "answer": "red"
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "c9-stand",
@@ -229,7 +253,10 @@
           10,
           5
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "c10-library",
@@ -252,7 +279,10 @@
         "hundreds": 2,
         "tens": 3,
         "ones": 5
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "c11-ferry",
@@ -274,7 +304,10 @@
         "kind": "arrays",
         "rows": 5,
         "cols": 4
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "c12-tip",
@@ -300,7 +333,10 @@
           10,
           5
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "c13-watch",
@@ -331,7 +367,12 @@
           "ones": 2
         },
         "more": "b"
-      }
+      },
+      "tags": [
+        "core",
+        "trap-plain",
+        "deciding-tens"
+      ]
     },
     {
       "id": "c14-ferry-count",
@@ -362,7 +403,12 @@
           "ones": 8
         },
         "more": "a"
-      }
+      },
+      "tags": [
+        "core",
+        "trap-zero-place",
+        "deciding-ones"
+      ]
     },
     {
       "id": "c15-boundary",
@@ -393,7 +439,12 @@
           "ones": 1
         },
         "more": "b"
-      }
+      },
+      "tags": [
+        "tricky",
+        "trap-boundary",
+        "deciding-hundreds"
+      ]
     },
     {
       "id": "c16-bridge",
@@ -423,7 +474,12 @@
           "tens": 3,
           "ones": 2
         }
-      }
+      },
+      "tags": [
+        "warmup",
+        "regroup-none",
+        "add"
+      ]
     },
     {
       "id": "c17-press",
@@ -454,7 +510,12 @@
           "tens": 7,
           "ones": 5
         }
-      }
+      },
+      "tags": [
+        "tricky",
+        "regroup-double",
+        "add"
+      ]
     },
     {
       "id": "c18-harbour",
@@ -487,7 +548,12 @@
           "tens": 8,
           "ones": 7
         }
-      }
+      },
+      "tags": [
+        "tricky",
+        "regroup-double",
+        "take"
+      ]
     },
     {
       "id": "c19-route",
@@ -520,7 +586,12 @@
           "tens": 5,
           "ones": 6
         }
-      }
+      },
+      "tags": [
+        "tricky",
+        "regroup-across-zero",
+        "take"
+      ]
     },
     {
       "id": "c20-kettle",
@@ -546,7 +617,10 @@
           6,
           10
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "c21-tallies",
@@ -577,7 +651,12 @@
           "ones": 1
         },
         "more": "a"
-      }
+      },
+      "tags": [
+        "core",
+        "trap-zero-place",
+        "deciding-tens"
+      ]
     },
     {
       "id": "c22-record",
@@ -608,7 +687,12 @@
           "ones": 9
         },
         "more": "a"
-      }
+      },
+      "tags": [
+        "tricky",
+        "trap-reorder",
+        "deciding-ones"
+      ]
     },
     {
       "id": "c23-rain",
@@ -639,7 +723,12 @@
           "tens": 6,
           "ones": 4
         }
-      }
+      },
+      "tags": [
+        "tricky",
+        "regroup-double",
+        "add"
+      ]
     },
     {
       "id": "c24-thaw",
@@ -670,7 +759,12 @@
           "tens": 5,
           "ones": 8
         }
-      }
+      },
+      "tags": [
+        "tricky",
+        "regroup-across-zero",
+        "take"
+      ]
     },
     {
       "id": "c25-mail",
@@ -701,7 +795,12 @@
           "tens": 1,
           "ones": 5
         }
-      }
+      },
+      "tags": [
+        "tricky",
+        "regroup-tens",
+        "add"
+      ]
     },
     {
       "id": "core-grade-three-x26",
@@ -722,7 +821,10 @@
         "kind": "dots",
         "pairTarget": 16,
         "pairA": 5
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x27",
@@ -743,7 +845,10 @@
         "kind": "dots",
         "pairTarget": 18,
         "pairA": 14
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x28",
@@ -765,7 +870,10 @@
         "hundreds": 4,
         "tens": 4,
         "ones": 9
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x29",
@@ -786,7 +894,10 @@
         "kind": "arrays",
         "rows": 5,
         "cols": 6
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x30",
@@ -806,7 +917,10 @@
       "puzzle": {
         "kind": "fraction",
         "parts": 7
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x31",
@@ -826,7 +940,10 @@
       "puzzle": {
         "kind": "fraction",
         "parts": 11
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x32",
@@ -851,7 +968,10 @@
           14,
           15
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x33",
@@ -876,7 +996,10 @@
           3,
           4
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x34",
@@ -901,7 +1024,10 @@
           5,
           9
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x35",
@@ -926,7 +1052,10 @@
           4,
           3
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x36",
@@ -951,7 +1080,10 @@
           3,
           4
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x37",
@@ -981,7 +1113,10 @@
           }
         ],
         "answer": "gold"
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x38",
@@ -1011,7 +1146,10 @@
           }
         ],
         "answer": "red"
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x39",
@@ -1035,7 +1173,10 @@
           1,
           25
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x40",
@@ -1056,7 +1197,10 @@
         "kind": "dots",
         "pairTarget": 17,
         "pairA": 10
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x41",
@@ -1077,7 +1221,10 @@
         "kind": "dots",
         "pairTarget": 14,
         "pairA": 1
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x42",
@@ -1098,7 +1245,10 @@
         "kind": "dots",
         "pairTarget": 13,
         "pairA": 4
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x43",
@@ -1119,7 +1269,10 @@
         "kind": "dots",
         "pairTarget": 19,
         "pairA": 18
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x44",
@@ -1140,7 +1293,10 @@
         "kind": "dots",
         "pairTarget": 15,
         "pairA": 5
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x45",
@@ -1161,7 +1317,10 @@
         "kind": "dots",
         "pairTarget": 12,
         "pairA": 1
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x46",
@@ -1182,7 +1341,10 @@
         "kind": "dots",
         "pairTarget": 17,
         "pairA": 6
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x47",
@@ -1204,7 +1366,10 @@
         "hundreds": 8,
         "tens": 4,
         "ones": 7
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x48",
@@ -1226,7 +1391,10 @@
         "hundreds": 9,
         "tens": 7,
         "ones": 8
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x49",
@@ -1248,7 +1416,10 @@
         "hundreds": 6,
         "tens": 3,
         "ones": 9
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x50",
@@ -1270,7 +1441,10 @@
         "hundreds": 7,
         "tens": 9,
         "ones": 0
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x51",
@@ -1292,7 +1466,10 @@
         "hundreds": 4,
         "tens": 3,
         "ones": 6
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x52",
@@ -1314,7 +1491,10 @@
         "hundreds": 9,
         "tens": 5,
         "ones": 6
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x53",
@@ -1336,7 +1516,10 @@
         "hundreds": 5,
         "tens": 3,
         "ones": 6
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x54",
@@ -1357,7 +1540,10 @@
         "kind": "arrays",
         "rows": 7,
         "cols": 2
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x55",
@@ -1378,7 +1564,10 @@
         "kind": "arrays",
         "rows": 4,
         "cols": 4
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x56",
@@ -1399,7 +1588,10 @@
         "kind": "arrays",
         "rows": 7,
         "cols": 6
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x57",
@@ -1420,7 +1612,10 @@
         "kind": "arrays",
         "rows": 7,
         "cols": 4
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x58",
@@ -1441,7 +1636,10 @@
         "kind": "arrays",
         "rows": 6,
         "cols": 2
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x59",
@@ -1462,7 +1660,10 @@
         "kind": "arrays",
         "rows": 7,
         "cols": 3
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x60",
@@ -1483,7 +1684,10 @@
         "kind": "arrays",
         "rows": 4,
         "cols": 5
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x61",
@@ -1503,7 +1707,10 @@
       "puzzle": {
         "kind": "fraction",
         "parts": 10
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x62",
@@ -1523,7 +1730,10 @@
       "puzzle": {
         "kind": "fraction",
         "parts": 8
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x63",
@@ -1543,7 +1753,10 @@
       "puzzle": {
         "kind": "fraction",
         "parts": 12
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x64",
@@ -1563,7 +1776,10 @@
       "puzzle": {
         "kind": "fraction",
         "parts": 9
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x65",
@@ -1588,7 +1804,10 @@
           11,
           14
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x66",
@@ -1613,7 +1832,10 @@
           4,
           5
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x67",
@@ -1638,7 +1860,10 @@
           17,
           20
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x68",
@@ -1663,7 +1888,10 @@
           15,
           18
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x69",
@@ -1688,7 +1916,10 @@
           14,
           16
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x70",
@@ -1713,7 +1944,10 @@
           8,
           11
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x71",
@@ -1738,7 +1972,10 @@
           8,
           9
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x72",
@@ -1763,7 +2000,10 @@
           9,
           7
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x73",
@@ -1788,7 +2028,10 @@
           4,
           8
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x74",
@@ -1813,7 +2056,10 @@
           11,
           9
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x75",
@@ -1838,7 +2084,10 @@
           8,
           6
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x76",
@@ -1863,7 +2112,10 @@
           9,
           11
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x77",
@@ -1888,7 +2140,10 @@
           4,
           6
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x78",
@@ -1913,7 +2168,10 @@
           5,
           7
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x79",
@@ -1938,7 +2196,10 @@
           3,
           6
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x80",
@@ -1963,7 +2224,10 @@
           4,
           3
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x81",
@@ -1988,7 +2252,10 @@
           5,
           3
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x82",
@@ -2013,7 +2280,10 @@
           6,
           4
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x83",
@@ -2038,7 +2308,10 @@
           6,
           3
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x84",
@@ -2063,7 +2336,10 @@
           3,
           4
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x85",
@@ -2088,7 +2364,10 @@
           3,
           4
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x86",
@@ -2118,7 +2397,10 @@
           }
         ],
         "answer": "green"
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x87",
@@ -2152,7 +2434,10 @@
           }
         ],
         "answer": "green"
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x88",
@@ -2186,7 +2471,10 @@
           }
         ],
         "answer": "green"
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x89",
@@ -2216,7 +2504,10 @@
           }
         ],
         "answer": "red"
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x90",
@@ -2246,7 +2537,10 @@
           }
         ],
         "answer": "gold"
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x91",
@@ -2276,7 +2570,10 @@
           }
         ],
         "answer": "green"
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x92",
@@ -2310,7 +2607,10 @@
           }
         ],
         "answer": "green"
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x93",
@@ -2334,7 +2634,10 @@
           25,
           10
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x94",
@@ -2360,7 +2663,10 @@
           1,
           10
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x95",
@@ -2385,7 +2691,10 @@
           10,
           5
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x96",
@@ -2410,7 +2719,10 @@
           1,
           25
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x97",
@@ -2435,7 +2747,10 @@
           10,
           5
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x98",
@@ -2459,7 +2774,10 @@
           1,
           10
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x99",
@@ -2485,7 +2803,10 @@
           1,
           5
         ]
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x100",
@@ -2515,7 +2836,12 @@
           "ones": 2
         },
         "more": "b"
-      }
+      },
+      "tags": [
+        "core",
+        "trap-reorder",
+        "deciding-hundreds"
+      ]
     },
     {
       "id": "core-grade-three-x101",
@@ -2545,7 +2871,12 @@
           "ones": 5
         },
         "more": "b"
-      }
+      },
+      "tags": [
+        "tricky",
+        "trap-boundary",
+        "deciding-hundreds"
+      ]
     },
     {
       "id": "core-grade-three-x102",
@@ -2575,7 +2906,12 @@
           "ones": 5
         },
         "more": "b"
-      }
+      },
+      "tags": [
+        "core",
+        "trap-reorder",
+        "deciding-hundreds"
+      ]
     },
     {
       "id": "core-grade-three-x103",
@@ -2605,7 +2941,12 @@
           "ones": 2
         },
         "more": "a"
-      }
+      },
+      "tags": [
+        "warmup",
+        "trap-plain",
+        "deciding-hundreds"
+      ]
     },
     {
       "id": "core-grade-three-x104",
@@ -2635,7 +2976,12 @@
           "ones": 1
         },
         "more": "a"
-      }
+      },
+      "tags": [
+        "core",
+        "trap-zero-place",
+        "deciding-ones"
+      ]
     },
     {
       "id": "core-grade-three-x105",
@@ -2665,7 +3011,12 @@
           "tens": 5,
           "ones": 4
         }
-      }
+      },
+      "tags": [
+        "warmup",
+        "regroup-none",
+        "add"
+      ]
     },
     {
       "id": "core-grade-three-x106",
@@ -2695,7 +3046,12 @@
           "tens": 6,
           "ones": 5
         }
-      }
+      },
+      "tags": [
+        "tricky",
+        "regroup-across-zero",
+        "take"
+      ]
     },
     {
       "id": "core-grade-three-x107",
@@ -2725,7 +3081,12 @@
           "tens": 3,
           "ones": 0
         }
-      }
+      },
+      "tags": [
+        "core",
+        "regroup-tens",
+        "take"
+      ]
     },
     {
       "id": "core-grade-three-x108",
@@ -2751,7 +3112,12 @@
           40
         ],
         "big": true
-      }
+      },
+      "tags": [
+        "tricky",
+        "skip-ten",
+        "base-ten"
+      ]
     },
     {
       "id": "core-grade-three-x109",
@@ -2777,7 +3143,10 @@
           10
         ],
         "big": false
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x110",
@@ -2803,7 +3172,10 @@
           5
         ],
         "big": false
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x111",
@@ -2829,7 +3201,12 @@
           400
         ],
         "big": true
-      }
+      },
+      "tags": [
+        "tricky",
+        "skip-one-hundred",
+        "base-ten"
+      ]
     },
     {
       "id": "core-grade-three-x112",
@@ -2855,7 +3232,12 @@
           100
         ],
         "big": true
-      }
+      },
+      "tags": [
+        "tricky",
+        "skip-twenty-five",
+        "base-ten"
+      ]
     },
     {
       "id": "core-grade-three-x113",
@@ -2881,7 +3263,13 @@
           100
         ],
         "big": true
-      }
+      },
+      "tags": [
+        "tricky",
+        "skip-one-hundred",
+        "base-ten",
+        "backward"
+      ]
     },
     {
       "id": "core-grade-three-x114",
@@ -2907,7 +3295,10 @@
           20
         ],
         "big": false
-      }
+      },
+      "tags": [
+        "core"
+      ]
     },
     {
       "id": "core-grade-three-x115",
@@ -2933,7 +3324,10 @@
           8
         ],
         "big": false
-      }
+      },
+      "tags": [
+        "core"
+      ]
     }
   ]
 }
