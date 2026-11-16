@@ -174,17 +174,37 @@ function genCombineVariant(v: VariantSpec & { kind: 'combine-regroup' }, rng: Rn
   return null
 }
 
-function genPatternSkip(v: VariantSpec & { kind: 'pattern-skip' }): { puzzle: unknown; tags: string[] } {
+const SKIP_WORDS: Record<number, string> = {
+  1: 'one', 2: 'twos', 5: 'fives', 10: 'tens', 25: 'twenty-fives', 100: 'hundreds',
+}
+
+function genPatternSkip(v: VariantSpec & { kind: 'pattern-skip' }, who: string): { puzzle: unknown; tags: string[]; storyNoDigits: string[]; storyDigits: string[] } | null {
   const s = v.step
-  const steps = v.backward
-    ? [s * 4, s * 3, s * 2, s]
-    : [s, s * 2, s * 3, s * 4]
-  const big = steps[3] > 20
+  const skipWord = { 2: 'twos', 5: 'fives', 10: 'tens', 25: 'twenty-fives', 100: 'hundreds' }[s]
+  if (!skipWord) return null
+  let start: number
+  if (v.start !== undefined) {
+    start = v.start
+  } else if (v.backward) {
+    start = s * 4
+  } else {
+    start = s
+  }
+  const dir = v.backward ? -1 : 1
+  const steps = [0, 1, 2, 3].map((i) => start + dir * s * i)
+  if (steps.some((n) => n < 0 || n > 1000)) return null
+  const big = steps.some((n) => n > 20)
   const difficulty = big ? 'tricky' : 'core'
-  const skipWord = { 1: 'one', 2: 'two', 5: 'five', 10: 'ten', 25: 'twenty-five', 100: 'one-hundred' }[s] ?? ''
-  if (!skipWord) throw new Error(`no word numeral for skip step ${s}`)
-  const tags = [difficulty, `skip-${skipWord}`, ...(v.backward ? ['backward'] : []), ...(big ? ['base-ten'] : [])]
-  return { puzzle: { kind: 'pattern', steps, big }, tags }
+  const tags = [
+    difficulty,
+    `skip-${skipWord}`,
+    ...(v.backward ? ['backward'] : []),
+    ...(big ? ['base-ten'] : []),
+  ]
+  const line = v.backward
+    ? `The ${who} counts backward by ${skipWord} down the trail.`
+    : `The ${who} skip counts by ${skipWord} up the trail.`
+  return { puzzle: { kind: 'pattern', steps, big }, tags, storyNoDigits: [line], storyDigits: [line] }
 }
 
 const TRAP_DIFFICULTY: Record<string, string> = {
@@ -419,10 +439,15 @@ export function generateCases(
         shortfalls.push(kind)
         break
       }
+      // One actor owns the case: the title and the story narrate the same
+      // character. Picked before the variant loop so skip stories can name them.
+      const who = pick(rng, ACTORS)
+      let chosenActor = cap(who)
       // Prefer an unclaimed variant descriptor; fall back to the uniform draw
       // when the band has no variants or the descriptors run out (floor rule).
       let puzzle: unknown = null
       let caseTags: string[] = ['core']
+      let skipStory: { storyNoDigits: string[]; storyDigits: string[] } | null = null
       while (variants.length > 0 && puzzle === null) {
         const v = variants.shift()
         if (!v) break
@@ -439,10 +464,11 @@ export function generateCases(
             caseTags = cand.tags
           }
         } else if (v.kind === 'pattern-skip') {
-          const cand = genPatternSkip(v)
+          const cand = genPatternSkip(v, chosenActor.toLowerCase())
           if (cand && !seen.has(fingerprint(kind, cand.puzzle))) {
             puzzle = cand.puzzle
             caseTags = cand.tags
+            skipStory = { storyNoDigits: cand.storyNoDigits, storyDigits: cand.storyDigits }
           }
         }
       }
@@ -453,10 +479,7 @@ export function generateCases(
       const fp = fingerprint(kind, puzzle)
       if (seen.has(fp)) continue
       seen.add(fp)
-      // One actor owns the case: the title and the story narrate the same
-      // character. Pick the actor, then the first free title noun for them.
-      const who = pick(rng, ACTORS)
-      let chosenActor = cap(who)
+      // The first free title noun for this actor becomes the title.
       let noun = KIND_NOUNS[kind].find((n) => !takenTitles.has(`The ${chosenActor} ${n}`))
       if (noun === undefined) {
         for (const a of ACTORS) {
@@ -472,7 +495,9 @@ export function generateCases(
         throw new Error(`title space exhausted for ${kind} in grade ${grade}`)
       }
       takenTitles.add(`The ${chosenActor} ${noun}`)
-      const story = makeStory(kind, band, chosenActor.toLowerCase(), rng)
+      const story = skipStory ?? makeStory(kind, band, chosenActor.toLowerCase(), rng)
+      const storyNoDigits = story.storyNoDigits
+      const storyDigits = story.storyDigits
       let badge = `${kind}-${grade}-${serial}`
       while (takenBadges.has(badge)) badge = `${badge}-a`
       takenBadges.add(badge)
@@ -483,8 +508,8 @@ export function generateCases(
         badge,
         widget: kind,
         titleNoDigits: `The ${chosenActor} ${noun}`,
-        storyNoDigits: story.storyNoDigits,
-        storyDigits: story.storyDigits,
+        storyNoDigits,
+        storyDigits,
         puzzle: puzzle as CaseDef['puzzle'],
         tags: caseTags,
       })

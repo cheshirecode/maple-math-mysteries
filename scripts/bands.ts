@@ -17,7 +17,7 @@ export interface BandSpec {
 export type VariantSpec =
   | { kind: 'combine-regroup'; pattern: 'none' | 'ones' | 'tens' | 'double' | 'across-zero'; shape: 'round-round' | 'round-mixed' | 'mixed-mixed'; op: 'add' | 'take' }
   | { kind: 'compare-trap'; trap: 'plain' | 'reorder' | 'zero-place' | 'boundary'; deciding: 'hundreds' | 'tens' | 'ones' }
-  | { kind: 'pattern-skip'; step: number; backward?: boolean }
+  | { kind: 'pattern-skip'; step: number; start?: number; backward?: boolean }
 
 // Value ranges keyed to grade x widget, aligned to the BC curriculum ladder.
 // The table makes no pedagogical ordering claim between bands; it only bounds
@@ -81,24 +81,31 @@ export const BANDS: Record<number, Partial<Record<WidgetKind, BandSpec>>> = {
     },
   },
   3: {
-    dots: { target: 10, min: 12, max: 20, scenes: ['The {who} rides with a partly punched ticket roll.'] },
+    dots: { target: 14, min: 12, max: 20, scenes: ['The {who} rides with a partly punched ticket roll.'] },
     blocks: { target: 10, min: 100, max: 999, scenes: ['The {who} restocks the library ladder.'] },
     arrays: { target: 10, min: 4, max: 7, scenes: ['The {who} counts rows at the ferry queue.'] },
     fraction: { target: 10, min: 6, max: 12, scenes: ['The {who} shares a pie at the bake sale.'] },
     pattern: {
-      target: 18,
+      target: 30,
       min: 3,
       max: 5,
       scenes: ['The {who} follows the growing trail.'],
       variants: [
         { kind: 'pattern-skip', step: 2 },
         { kind: 'pattern-skip', step: 5 },
+        { kind: 'pattern-skip', step: 5, start: 25 },
         { kind: 'pattern-skip', step: 10 },
+        { kind: 'pattern-skip', step: 10, start: 120 },
+        { kind: 'pattern-skip', step: 10, start: 480, backward: true },
         { kind: 'pattern-skip', step: 25 },
+        { kind: 'pattern-skip', step: 25, start: 875 },
         { kind: 'pattern-skip', step: 100 },
-        { kind: 'pattern-skip', step: 5, backward: true },
-        { kind: 'pattern-skip', step: 10, backward: true },
+        { kind: 'pattern-skip', step: 100, start: 600 },
+        { kind: 'pattern-skip', step: 100, start: 700 },
+        { kind: 'pattern-skip', step: 100, start: 1000, backward: true },
         { kind: 'pattern-skip', step: 100, backward: true },
+        { kind: 'pattern-skip', step: 25, start: 1000, backward: true },
+        { kind: 'pattern-skip', step: 10, start: 500, backward: true },
       ],
     },
     measure: { target: 10, min: 6, max: 9, scenes: ['The {who} fills the soup kettle.'] },
@@ -106,7 +113,7 @@ export const BANDS: Record<number, Partial<Record<WidgetKind, BandSpec>>> = {
     spinner: { target: 10, min: 3, max: 6, scenes: ['The {who} spins the raffle dial.'] },
     coins: { target: 10, min: 3, max: 5, scenes: ['The {who} pays the snack stand.'] },
     compare: {
-      target: 10,
+      target: 14,
       min: 100,
       max: 999,
       scenes: ['Two {who}s tallied the same harbour hour.'],
@@ -122,21 +129,30 @@ export const BANDS: Record<number, Partial<Record<WidgetKind, BandSpec>>> = {
       ],
     },
     combine: {
-      target: 10,
+      target: 20,
       min: 100,
       max: 999,
       scenes: ['The {who} moves crates at the harbour gates.'],
       variants: [
+        { kind: 'combine-regroup', pattern: 'none', shape: 'round-round', op: 'add' },
         { kind: 'combine-regroup', pattern: 'none', shape: 'round-mixed', op: 'add' },
+        { kind: 'combine-regroup', pattern: 'none', shape: 'mixed-mixed', op: 'add' },
+        { kind: 'combine-regroup', pattern: 'none', shape: 'round-round', op: 'take' },
+        { kind: 'combine-regroup', pattern: 'none', shape: 'round-mixed', op: 'take' },
         { kind: 'combine-regroup', pattern: 'none', shape: 'mixed-mixed', op: 'take' },
+        { kind: 'combine-regroup', pattern: 'ones', shape: 'round-mixed', op: 'add' },
         { kind: 'combine-regroup', pattern: 'ones', shape: 'mixed-mixed', op: 'add' },
-        { kind: 'combine-regroup', pattern: 'ones', shape: 'round-mixed', op: 'take' },
+        { kind: 'combine-regroup', pattern: 'ones', shape: 'mixed-mixed', op: 'take' },
         { kind: 'combine-regroup', pattern: 'tens', shape: 'mixed-mixed', op: 'add' },
+        { kind: 'combine-regroup', pattern: 'tens', shape: 'round-round', op: 'add' },
         { kind: 'combine-regroup', pattern: 'tens', shape: 'round-round', op: 'take' },
+        { kind: 'combine-regroup', pattern: 'tens', shape: 'round-mixed', op: 'take' },
         { kind: 'combine-regroup', pattern: 'double', shape: 'mixed-mixed', op: 'add' },
         { kind: 'combine-regroup', pattern: 'double', shape: 'round-mixed', op: 'take' },
+        { kind: 'combine-regroup', pattern: 'double', shape: 'mixed-mixed', op: 'take' },
         { kind: 'combine-regroup', pattern: 'across-zero', shape: 'round-mixed', op: 'take' },
         { kind: 'combine-regroup', pattern: 'across-zero', shape: 'round-round', op: 'take' },
+        { kind: 'combine-regroup', pattern: 'across-zero', shape: 'mixed-mixed', op: 'take' },
       ],
     },
   },
