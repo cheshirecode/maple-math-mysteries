@@ -1,6 +1,6 @@
 import { expect, test, devices } from '@playwright/test'
 import { readFileSync } from 'node:fs'
-import { GRADES, countWord, visibleCases, lockedConcepts, sortBandCases } from '../src/grades.ts'
+import { GRADES, countWord, visibleCases, lockedTopics, sortBandCases } from '../src/grades.ts'
 import type { CaseDef } from '../src/engine/case.ts'
 
 // Pack data straight from the repo; the model helpers stay pure over case lists.

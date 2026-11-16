@@ -4,7 +4,7 @@ import { loadProgress, saveProgress } from './save/store.ts'
 import { runCase, confetti } from './engine/run.ts'
 import type { WidgetKind } from './engine/case.ts'
 import { playFanfare } from './sfx.ts'
-import { GRADES, gradeCases, gradeWord, gradeSlug, gradeFromSlug, isGradeActive, countWord, visibleCases, lockedConcepts, CONCEPT_SEQUENCE } from './grades.ts'
+import { GRADES, gradeCases, gradeWord, gradeSlug, gradeFromSlug, isGradeActive, countWord, visibleCases, lockedTopics, TOPICS } from './grades.ts'
 import { loadPack, packForGrade } from './content/packs.ts'
 import { navigate, onRoute, startRouter, type Route } from './lib/router.ts'
 import { openParentView } from './parent/parent.ts'
@@ -18,24 +18,6 @@ let hideSolved = true
 let lastCaseId: string | null = null
 let handoffDone = false
 let currentRoute: Route = { grade: 'grade-three' }
-
-const CONCEPT_LABEL: Record<WidgetKind, string> = {
-  dots: 'ticket-pair',
-  blocks: 'place-value',
-  arrays: 'equal-rows',
-  fraction: 'fair-share',
-  pattern: 'pattern-rule',
-  measure: 'measuring',
-  crate: 'net-folding',
-  spinner: 'chance',
-  coins: 'money',
-  compare: 'comparing',
-  combine: 'add-and-take-away',
-}
-
-function conceptLabel(kind: WidgetKind): string {
-  return CONCEPT_LABEL[kind] ?? kind
-}
 
 function save(): void {
   saveProgress(getProgress())
@@ -170,13 +152,14 @@ export function start(): void {
       town.append(head)
     }
     let nextAssigned = false
-    for (const kind of CONCEPT_SEQUENCE) {
-      const bandCases = visible.filter((c) => c.widget === kind)
+    for (const topic of TOPICS) {
+      const tagPrefix = topic.requireTagPrefix
+      const bandCases = visible.filter((c) => topic.kinds.includes(c.widget) && (!tagPrefix || (c.tags?.some((t) => t.startsWith(tagPrefix)) ?? false)))
       if (bandCases.length === 0) continue
       const bandSolved = bandCases.filter((c) => doneSet.has(c.id)).length
       const header = el('div', 'band-head')
-      header.dataset.band = kind
-      header.append(el('span', 'band-head-label', conceptLabel(kind)))
+      header.dataset.band = topic.key
+      header.append(el('span', 'band-head-label', topic.label))
       header.append(
         el('span', 'band-head-count', `${countWord(bandSolved)} of ${countWord(bandCases.length)} closed`),
       )
@@ -198,7 +181,7 @@ export function start(): void {
       town.append(card)
       }
     }
-    const locked = lockedConcepts(cases, progress.completedCases)
+    const locked = lockedTopics(cases, progress.completedCases)
     if (locked.length > 0) {
       const waiting = locked.reduce((n, l) => n + l.count, 0)
       const shelf = el('button', 'case-card locked-shelf')
@@ -207,7 +190,7 @@ export function start(): void {
         el(
           'span',
           'case-card-group',
-          `Solve more ${conceptLabel(locked[0].kind)} cases to unlock the next learning.`,
+          `Solve more ${locked[0].label.toLowerCase()} cases to unlock the next learning.`,
         ),
       )
       shelf.setAttribute('aria-disabled', 'true')

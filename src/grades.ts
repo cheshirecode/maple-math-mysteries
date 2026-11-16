@@ -39,23 +39,29 @@ export function gradeFromSlug(slug: string): number | null {
   return GRADES.find((g) => WORD[g] === m[1]) ?? null
 }
 
-// The grade-three year in concept order: place value first, chance and money
-// last. Other grades follow the same sequence with their own case sets.
-// The grade-three year in concept order: place value, then counting, then
-// comparing and operating, then the wider strands. Bands open in this order
-// and each band lists its cases warm-up first.
-export const CONCEPT_SEQUENCE: WidgetKind[] = [
-  'blocks',
-  'dots',
-  'compare',
-  'combine',
-  'arrays',
-  'fraction',
-  'pattern',
-  'measure',
-  'crate',
-  'spinner',
-  'coins',
+// Topics are the kid-findable groupings: each band answers "what kind of
+// math is this" rather than "which widget renders it". Skip counting gets its
+// own band, split out of the pattern widget by tag.
+export interface Topic {
+  key: string
+  label: string
+  kinds: WidgetKind[]
+  requireTagPrefix?: string
+}
+
+export const TOPICS: Topic[] = [
+  { key: 'blocks', label: 'Place value', kinds: ['blocks'] },
+  { key: 'dots', label: 'Counting facts', kinds: ['dots'] },
+  { key: 'compare', label: 'Comparing numbers', kinds: ['compare'] },
+  { key: 'combine', label: 'Add and take away', kinds: ['combine'] },
+  { key: 'skip-counting', label: 'Skip counting', kinds: ['pattern'], requireTagPrefix: 'skip-' },
+  { key: 'pattern', label: 'Growing patterns', kinds: ['pattern'] },
+  { key: 'arrays', label: 'Equal rows', kinds: ['arrays'] },
+  { key: 'fraction', label: 'Fair shares', kinds: ['fraction'] },
+  { key: 'measure', label: 'Measuring', kinds: ['measure'] },
+  { key: 'crate', label: 'Nets and shapes', kinds: ['crate'] },
+  { key: 'spinner', label: 'Chance', kinds: ['spinner'] },
+  { key: 'coins', label: 'Money', kinds: ['coins'] },
 ]
 
 export const DIFFICULTY_ORDER = ['warmup', 'core', 'tricky']
@@ -75,16 +81,13 @@ const UNLOCK_AFTER_SOLVED = 3
 // A concept band unlocks when the previous band has enough solved cases, or
 // when the band itself already holds a completed case (replayed or imported
 // progress stays visible instead of vanishing behind a lock).
-function bandUnlocked(
-  cases: CaseDef[],
-  kind: WidgetKind,
-  doneSet: Set<string>,
-): boolean {
-  if (cases.some((c) => c.widget === kind && doneSet.has(c.id))) return true
-  const position = CONCEPT_SEQUENCE.indexOf(kind)
+function bandUnlocked(cases: CaseDef[], topic: Topic, doneSet: Set<string>): boolean {
+  const own = topicCases(topic, cases)
+  if (own.some((c) => doneSet.has(c.id))) return true
+  const position = TOPICS.indexOf(topic)
   if (position <= 0) return true
-  const prev = CONCEPT_SEQUENCE[position - 1]
-  const prevCases = cases.filter((c) => c.widget === prev)
+  const prev = TOPICS[position - 1]
+  const prevCases = topicCases(prev, cases)
   if (prevCases.length === 0) return true
   const prevSolved = prevCases.filter((c) => doneSet.has(c.id)).length
   return prevSolved >= Math.min(UNLOCK_AFTER_SOLVED, prevCases.length)
@@ -92,25 +95,36 @@ function bandUnlocked(
 
 // Cards the map shows for this grade: every unlocked band's cases, in concept
 // order. Locked bands collapse to shelves in the caller.
+function topicCases(topic: Topic, cases: CaseDef[]): CaseDef[] {
+  const tagPrefix = topic.requireTagPrefix
+  return cases.filter(
+    (c) =>
+      topic.kinds.includes(c.widget) &&
+      (!tagPrefix || (c.tags?.some((t) => t.startsWith(tagPrefix)) ?? false)),
+  )
+}
+
 export function visibleCases(cases: CaseDef[], completed: string[]): CaseDef[] {
   const doneSet = new Set(completed)
   const out: CaseDef[] = []
-  for (const kind of CONCEPT_SEQUENCE) {
-    const bandCases = cases.filter((c) => c.widget === kind)
+  for (const topic of TOPICS) {
+    const bandCases = topicCases(topic, cases)
     if (bandCases.length === 0) continue
-    if (!bandUnlocked(cases, kind, doneSet)) continue
+    if (!bandUnlocked(cases, topic, doneSet)) continue
     out.push(...sortBandCases(bandCases))
   }
   return out
 }
 
-export function lockedConcepts(cases: CaseDef[], completed: string[]): { kind: WidgetKind; count: number }[] {
+export function lockedTopics(cases: CaseDef[], completed: string[]): { key: string; label: string; count: number }[] {
   const doneSet = new Set(completed)
-  const out: { kind: WidgetKind; count: number }[] = []
-  for (const kind of CONCEPT_SEQUENCE) {
-    const bandCases = cases.filter((c) => c.widget === kind)
+  const out: { key: string; label: string; count: number }[] = []
+  for (const topic of TOPICS) {
+    const bandCases = topicCases(topic, cases)
     if (bandCases.length === 0) continue
-    if (!bandUnlocked(cases, kind, doneSet)) out.push({ kind, count: bandCases.length })
+    if (!bandUnlocked(cases, topic, doneSet)) {
+      out.push({ key: topic.key, label: topic.label, count: bandCases.length })
+    }
   }
   return out
 }

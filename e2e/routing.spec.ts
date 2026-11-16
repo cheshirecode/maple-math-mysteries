@@ -15,10 +15,10 @@ test('deep link opens a case, back returns to the band map', async ({ page }) =>
 
 test('band route scrolls the map and survives a reload', async ({ page }) => {
   await page.goto('/#/grade-three/combine')
-  await expect(page.locator('.band-head-label').first()).toHaveText('place-value')
+  await expect(page.locator('.band-head-label').first()).toHaveText('Place value')
   await expect(page.locator('.case-card').first()).toBeVisible()
   await page.reload({ waitUntil: 'networkidle' })
-  await expect(page.locator('.band-head-label').first()).toHaveText('place-value')
+  await expect(page.locator('.band-head-label').first()).toHaveText('Place value')
   // The band route scrolls the map to that concept section.
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(20)
   expect(page.url()).toContain('#/grade-three/combine')
