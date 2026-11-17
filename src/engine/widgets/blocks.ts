@@ -72,12 +72,6 @@ export function widgetBlocks(root: HTMLElement, puzzle: PuzzleData, hooks: Widge
   )
   board.prepend(hint)
   hint.after(target)
-  target.after(
-    baseTenLegend({
-      ones: want.ones > 0,
-      tens: want.tens > 0,
-      hundreds: want.hundreds > 0,
-    }),
-  )
+  target.after(baseTenLegend())
   root.append(board)
 }

@@ -85,10 +85,5 @@ export function widgetCombine(root: HTMLElement, puzzle: PuzzleData, hooks: Widg
         ? 'Build the stacks for both piles put together.'
         : 'Build the stacks that are left.',
   )
-  const legend = baseTenLegend({
-    ones: result % 10 > 0 || blockValue(puzzle.a) % 10 > 0,
-    tens: result >= 10 || blockValue(puzzle.a) >= 10,
-    hundreds: result >= 100,
-  })
-  root.append(q, legend, pictures, board)
+  root.append(q, baseTenLegend(), pictures, board)
 }

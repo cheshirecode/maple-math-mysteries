@@ -1,25 +1,22 @@
 import { el } from '../../voice.ts'
 
-// One shared key for the base-ten pictures: a dot is one, a bar is ten, a
-// square is one hundred. Widgets that draw blocks call this so the notation
-// is never on screen without an explanation.
+// One shared key for the base-ten pictures, drawn so the notation explains
+// itself: the rod is built of ten cells, the square of a hundred-cell grid.
+// Every block-using widget renders the same bordered key, so kids learn one
+// notation once and never meet an unexplained symbol.
 
-export interface LegendOptions {
-  ones?: boolean
-  tens?: boolean
-  hundreds?: boolean
+export function baseTenLegend(): HTMLElement {
+  const legend = el('div', 'pattern-legend')
+  legend.append(
+    legendItem('legend-dot', 'one'),
+    legendItem('legend-rod', 'ten'),
+    legendItem('legend-flat', 'one hundred'),
+  )
+  return legend
 }
 
-function item(chipCls: string, label: string): HTMLElement {
+function legendItem(chipCls: string, label: string): HTMLElement {
   const item = el('span', 'legend-item')
   item.append(el('span', `legend-chip ${chipCls}`), el('span', 'legend-text', label))
   return item
-}
-
-export function baseTenLegend(opts: LegendOptions): HTMLElement {
-  const legend = el('div', 'pattern-legend')
-  if (opts.ones) legend.append(item('legend-dot', 'a dot is one'))
-  if (opts.tens) legend.append(item('legend-rod', 'a bar is ten'))
-  if (opts.hundreds) legend.append(item('legend-flat', 'a square is one hundred'))
-  return legend
 }

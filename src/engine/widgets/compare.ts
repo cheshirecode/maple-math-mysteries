@@ -45,6 +45,5 @@ export function widgetCompare(root: HTMLElement, puzzle: PuzzleData, hooks: Widg
   )
   const options = el('div', 'compare-options')
   options.append(option('a', puzzle.a, hooks, puzzle), option('b', puzzle.b, hooks, puzzle))
-  const maxValue = Math.max(blockValue(puzzle.a), blockValue(puzzle.b))
-  root.append(q, baseTenLegend({ ones: maxValue % 10 > 0, tens: maxValue >= 10, hundreds: maxValue >= 100 }), options)
+  root.append(q, baseTenLegend(), options)
 }

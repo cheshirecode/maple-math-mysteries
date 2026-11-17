@@ -26,15 +26,7 @@ export function widgetPattern(root: HTMLElement, puzzle: PuzzleData, hooks: Widg
   const next = steps[steps.length - 1] + (steps[steps.length - 1] - steps[steps.length - 2])
   const big = puzzle.big ?? false
   const max = Math.max(...steps, next)
-  if (big) {
-    root.append(
-      baseTenLegend({
-        ones: max % 10 > 0 || steps.some((n) => n % 10 > 0),
-        tens: max >= 10,
-        hundreds: max >= 100,
-      }),
-    )
-  }
+  if (big) root.append(baseTenLegend())
   const shown = el('div', 'pattern-strip')
   for (const n of steps) shown.append(tile(n, big))
   root.append(shown)

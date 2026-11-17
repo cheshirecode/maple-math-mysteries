@@ -1339,22 +1339,26 @@ body {
   margin: 2px;
 }
 
-/* Base-ten legend: explains the dot, bar and square notation */
+/* Base-ten legend: a bordered key where each chip draws its own value */
 
 .pattern-legend {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 0.9rem;
   flex-wrap: wrap;
-  margin: 0.2rem 0 0.5rem;
+  margin: 0.2rem auto 0.6rem;
+  padding: 0.35rem 0.9rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-s);
 }
 
 .legend-item {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.8rem;
   color: var(--ink-soft);
 }
@@ -1365,24 +1369,41 @@ body {
 }
 
 .legend-dot {
-  width: 12px;
-  height: 12px;
+  width: 13px;
+  height: 13px;
   border-radius: 50%;
   background: radial-gradient(circle at 32% 30%, #f08a78, var(--accent) 70%);
 }
 
 .legend-rod {
-  width: 18px;
-  height: 9px;
+  width: 11px;
+  height: 26px;
   border-radius: 3px;
-  background: linear-gradient(180deg, var(--gold), var(--gold-deep));
   border: 1px solid rgb(201 154 46 / 60%);
+  background:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0 2px,
+      rgb(201 154 46 / 55%) 2px 2.8px
+    ),
+    linear-gradient(180deg, var(--gold), var(--gold-deep));
 }
 
 .legend-flat {
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   border-radius: 4px;
-  background: linear-gradient(180deg, var(--gold), var(--gold-deep));
   border: 1px solid rgb(201 154 46 / 60%);
+  background:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0 4.8px,
+      rgb(201 154 46 / 45%) 4.8px 5.6px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 4.8px,
+      rgb(201 154 46 / 45%) 4.8px 5.6px
+    ),
+    linear-gradient(180deg, var(--gold), var(--gold-deep));
 }
