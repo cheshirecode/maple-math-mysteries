@@ -38,7 +38,7 @@ export function widgetSpinner(root: HTMLElement, puzzle: PuzzleData, hooks: Widg
   for (const s of puzzle.slices) {
     if (seen.has(s.colour)) continue
     seen.add(s.colour)
-    const opt = el('button', 'btn', s.colour)
+    const opt = el('button', 'spinner-option', s.colour)
     opt.addEventListener('click', () =>
       s.colour === puzzle.answer ? hooks.onSolved() : hooks.onRetry(),
     )

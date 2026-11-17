@@ -616,7 +616,8 @@ body {
   border: 1px solid var(--line);
 }
 
-/* Arrays */
+/* The question is the prompt: coral bar and bold weight set it apart from
+   the story prose above and the answer tray below. */
 
 .arrays-question,
 .fraction-question,
@@ -625,9 +626,66 @@ body {
 .crate-question,
 .measure-question,
 .dots-question,
-.coins-question {
+.coins-question,
+.compare-question,
+.combine-question {
   margin: 0.2rem 0 0.8rem;
-  font-size: 1.02rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--ink);
+  border-left: 4px solid var(--coral);
+  padding-left: 0.6rem;
+}
+
+/* The answer tray: every pick-one widget's choices share one tinted, dashed
+   panel so the child can see where the problem ends and the choices begin. */
+
+.answer-tray {
+  background: var(--gold-tint);
+  border: 2px dashed rgb(201 154 46 / 45%);
+  border-radius: var(--radius-m);
+  padding: 0.9rem;
+  margin-top: 0.4rem;
+}
+
+.answer-tray::before {
+  content: 'Choose one';
+  display: block;
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-bottom: 0.4rem;
+}
+
+.dots-options,
+.arrays-options,
+.fraction-options,
+.pattern-options,
+.compare-options,
+.spinner-options {
+  background: var(--gold-tint);
+  border: 2px dashed rgb(201 154 46 / 45%);
+  border-radius: var(--radius-m);
+  padding: 0.9rem;
+  margin-top: 0.4rem;
+}
+
+.dots-options::before,
+.arrays-options::before,
+.fraction-options::before,
+.pattern-options::before,
+.compare-options::before,
+.spinner-options::before {
+  content: 'Choose one';
+  display: block;
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  margin-bottom: 0.4rem;
 }
 
 .arrays-grid {
@@ -1406,4 +1464,22 @@ body {
       rgb(201 154 46 / 45%) 4.8px 5.6px
     ),
     linear-gradient(180deg, var(--gold), var(--gold-deep));
+}
+
+.spinner-option {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  background: var(--surface);
+  padding: 0.7rem 1.3rem;
+  font: inherit;
+  font-weight: 800;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: var(--shadow-s);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.spinner-option:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-m);
 }
