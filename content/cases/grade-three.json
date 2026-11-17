@@ -3096,11 +3096,11 @@
       "widget": "pattern",
       "titleNoDigits": "The Librarian Streak",
       "storyNoDigits": [
-        "The librarian follows the growing trail.",
+        "The librarian skip counts by tens up the trail.",
         "Say the rule, then pick the next pile."
       ],
       "storyDigits": [
-        "The librarian follows the growing trail.",
+        "The librarian skip counts by tens up the trail.",
         "Say the rule, then pick the next pile."
       ],
       "puzzle": {
@@ -3185,11 +3185,11 @@
       "widget": "pattern",
       "titleNoDigits": "The Baker Run",
       "storyNoDigits": [
-        "The baker follows the growing trail.",
+        "The baker skip counts by hundreds up the trail.",
         "Say the rule, then pick the next pile."
       ],
       "storyDigits": [
-        "The baker follows the growing trail.",
+        "The baker skip counts by hundreds up the trail.",
         "Say the rule, then pick the next pile."
       ],
       "puzzle": {
@@ -3216,11 +3216,11 @@
       "widget": "pattern",
       "titleNoDigits": "The Coach Heap",
       "storyNoDigits": [
-        "The coach follows the growing trail.",
+        "The coach skip counts by twenty-fives up the trail.",
         "Say the rule, then pick the next pile."
       ],
       "storyDigits": [
-        "The coach follows the growing trail.",
+        "The coach skip counts by twenty-fives up the trail.",
         "Say the rule, then pick the next pile."
       ],
       "puzzle": {
@@ -3247,11 +3247,11 @@
       "widget": "pattern",
       "titleNoDigits": "The Park Ranger Chain",
       "storyNoDigits": [
-        "The park ranger follows the growing trail.",
+        "The park ranger counts backward by hundreds down the trail.",
         "Say the rule, then pick the next pile."
       ],
       "storyDigits": [
-        "The park ranger follows the growing trail.",
+        "The park ranger counts backward by hundreds down the trail.",
         "Say the rule, then pick the next pile."
       ],
       "puzzle": {

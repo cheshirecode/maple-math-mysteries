@@ -2,6 +2,7 @@ import { el } from '../../voice.ts'
 import type { WidgetHooks } from '../run.ts'
 import type { PuzzleData } from '../case.ts'
 import { blockValue, miniStacks } from './compare.ts'
+import { baseTenLegend } from './legend.ts'
 
 type Name = 'hundreds' | 'tens' | 'ones'
 const NAMES: Name[] = ['hundreds', 'tens', 'ones']
@@ -73,7 +74,7 @@ export function widgetCombine(root: HTMLElement, puzzle: PuzzleData, hooks: Widg
   })
   board.append(check)
 
-  const q = el(
+    const q = el(
     'p',
     'combine-question',
     hooks.digitsMode
@@ -84,5 +85,10 @@ export function widgetCombine(root: HTMLElement, puzzle: PuzzleData, hooks: Widg
         ? 'Build the stacks for both piles put together.'
         : 'Build the stacks that are left.',
   )
-  root.append(q, pictures, board)
+  const legend = baseTenLegend({
+    ones: result % 10 > 0 || blockValue(puzzle.a) % 10 > 0,
+    tens: result >= 10 || blockValue(puzzle.a) >= 10,
+    hundreds: result >= 100,
+  })
+  root.append(q, legend, pictures, board)
 }

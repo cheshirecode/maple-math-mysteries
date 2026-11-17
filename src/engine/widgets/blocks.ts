@@ -1,6 +1,7 @@
 import { el } from '../../voice.ts'
 import type { WidgetHooks } from '../run.ts'
 import type { PuzzleData } from '../case.ts'
+import { baseTenLegend } from './legend.ts'
 
 type Name = 'hundreds' | 'tens' | 'ones'
 const NAMES: Name[] = ['hundreds', 'tens', 'ones']
@@ -71,5 +72,12 @@ export function widgetBlocks(root: HTMLElement, puzzle: PuzzleData, hooks: Widge
   )
   board.prepend(hint)
   hint.after(target)
+  target.after(
+    baseTenLegend({
+      ones: want.ones > 0,
+      tens: want.tens > 0,
+      hundreds: want.hundreds > 0,
+    }),
+  )
   root.append(board)
 }

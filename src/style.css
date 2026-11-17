@@ -1338,3 +1338,51 @@ body {
   display: inline-block;
   margin: 2px;
 }
+
+/* Base-ten legend: explains the dot, bar and square notation */
+
+.pattern-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin: 0.2rem 0 0.5rem;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.legend-chip {
+  display: inline-block;
+  flex: none;
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, #f08a78, var(--accent) 70%);
+}
+
+.legend-rod {
+  width: 18px;
+  height: 9px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, var(--gold), var(--gold-deep));
+  border: 1px solid rgb(201 154 46 / 60%);
+}
+
+.legend-flat {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, var(--gold), var(--gold-deep));
+  border: 1px solid rgb(201 154 46 / 60%);
+}

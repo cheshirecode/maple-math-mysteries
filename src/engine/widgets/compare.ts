@@ -1,6 +1,7 @@
 import { el } from '../../voice.ts'
 import type { WidgetHooks } from '../run.ts'
 import type { PuzzleData, BlockPicture } from '../case.ts'
+import { baseTenLegend } from './legend.ts'
 
 export function miniStacks(num: BlockPicture): HTMLElement {
   const box = el('div', 'compare-stack')
@@ -44,5 +45,6 @@ export function widgetCompare(root: HTMLElement, puzzle: PuzzleData, hooks: Widg
   )
   const options = el('div', 'compare-options')
   options.append(option('a', puzzle.a, hooks, puzzle), option('b', puzzle.b, hooks, puzzle))
-  root.append(q, options)
+  const maxValue = Math.max(blockValue(puzzle.a), blockValue(puzzle.b))
+  root.append(q, baseTenLegend({ ones: maxValue % 10 > 0, tens: maxValue >= 10, hundreds: maxValue >= 100 }), options)
 }
