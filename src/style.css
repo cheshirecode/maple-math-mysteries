@@ -1483,3 +1483,71 @@ body {
   transform: translateY(-1px);
   box-shadow: var(--shadow-m);
 }
+
+/* Coin key and distinct coin choices: the undo control never looks like a
+   coin choice, and every coin choice shows the coin itself. */
+
+.coin-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin: 0.2rem auto 0.7rem;
+  padding: 0.3rem 0.9rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-s);
+}
+
+.coin-legend .coin {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+}
+
+.coin-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  background: var(--surface);
+  padding: 0.5rem 0.9rem;
+  min-height: 44px;
+  font: inherit;
+  font-weight: 800;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: var(--shadow-s);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.coin-choice:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-m);
+}
+
+.coin-choice .coin {
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  flex: none;
+}
+
+.btn-undo {
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline dotted;
+  text-underline-offset: 4px;
+  min-height: 44px;
+  padding: 0 0.7rem;
+  cursor: pointer;
+}
+
+.btn-undo:hover {
+  color: var(--ink);
+}

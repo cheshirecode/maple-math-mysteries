@@ -22,6 +22,20 @@ function sorted(values: number[]): number[] {
   return [...values].sort((a, b) => b - a)
 }
 
+// The coin key: children meet four different coins in the fee picture with
+// nothing saying which is which. The legend names every coin at its real
+// size, so the fee picture becomes readable before the first tap.
+
+function coinLegend(): HTMLElement {
+  const legend = el('div', 'coin-legend')
+  for (const [name, cls] of COIN_CLS) {
+    const item = el('span', 'legend-item')
+    item.append(el('span', `coin ${cls}`), el('span', 'legend-text', name))
+    legend.append(item)
+  }
+  return legend
+}
+
 export function widgetCoins(root: HTMLElement, puzzle: PuzzleData, hooks: WidgetHooks): void {
   if (puzzle.kind !== 'coins') return
   const fee = sorted(puzzle.target)
@@ -34,6 +48,8 @@ export function widgetCoins(root: HTMLElement, puzzle: PuzzleData, hooks: Widget
       ? `Pay the exact fee of ${centsOf(fee)} cents using the same coins.`
       : 'Pay the fee using the same coins as the picture.',
   )
+
+  root.append(q, coinLegend())
 
   const board = el('div', 'coins-board')
   const feeRow = el('div', 'coins-row')
@@ -61,7 +77,9 @@ export function widgetCoins(root: HTMLElement, puzzle: PuzzleData, hooks: Widget
 
   const controls = el('div', 'coins-controls')
   for (const [name] of COIN_CLS) {
-    const btn = el('button', 'btn btn-small', name)
+    const btn = el('button', 'coin-choice')
+    const chip = el('span', `coin ${clsFor(name === 'quarter' ? 25 : name === 'dime' ? 10 : name === 'nickel' ? 5 : 1)}`)
+    btn.append(chip, el('span', 'coin-name', name))
     const value = name === 'quarter' ? 25 : name === 'dime' ? 10 : name === 'nickel' ? 5 : 1
     btn.addEventListener('click', () => {
       paid.push(value)
@@ -69,7 +87,7 @@ export function widgetCoins(root: HTMLElement, puzzle: PuzzleData, hooks: Widget
     })
     controls.append(btn)
   }
-  const undo = el('button', 'btn btn-ghost btn-small', 'take one back')
+  const undo = el('button', 'btn-undo', 'take one back')
   undo.addEventListener('click', () => {
     if (paid.length > 0) {
       paid.pop()
@@ -83,5 +101,5 @@ export function widgetCoins(root: HTMLElement, puzzle: PuzzleData, hooks: Widget
     if (ok) hooks.onSolved()
     else hooks.onRetry()
   })
-  root.append(q, board, trayInfo, controls, check)
+  root.append(board, trayInfo, controls, check)
 }
