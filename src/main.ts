@@ -79,7 +79,7 @@ export function start(): void {
           showNote(`grade ${gradeWord(g, progress.digitsMode)} is coming soon`),
         )
       } else if (selected) {
-        // The gold pill is "where I am": tapping it goes home from a case.
+        // The selected pill is "where I am": tapping it goes home from a case.
         if (currentRoute.band || currentRoute.caseId) {
           b.addEventListener('click', () => navigate({ grade: gradeSlug(g) }))
         }

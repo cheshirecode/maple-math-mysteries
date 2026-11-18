@@ -2,7 +2,7 @@
 // the newest build; the cache is the fallback for offline play. Asset
 // requests are cache-first because their filenames are hashed. Bump the
 // cache name when the shell changes shape.
-const CACHE = 'mmm-v2'
+const CACHE = 'mmm-v3'
 
 self.addEventListener('install', (event) => {
   event.waitUntil(

@@ -1,28 +1,58 @@
-/* Design system: warm paper, maple accent, soft depth.
-   Tokens first; components use them. No web fonts loaded. */
+/* Design system: clay learning-blue — soft pressable 3D, blue primary chrome.
+   Red is reserved for the counting dots and danger; gold is reserved for the
+   base-ten objects (copy names them). Fonts self-host in src/fonts; Vite
+   hashes them and the service worker caches them for offline play. */
+
+@font-face {
+  font-family: "Baloo 2";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("./fonts/baloo2-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Comic Neue";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/comic-neue-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Comic Neue";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./fonts/comic-neue-700.woff2") format("woff2");
+}
 
 :root {
-  --paper: #fffdf6;
-  --surface: #fffdf8;
-  --ink: #2b2622;
-  --ink-soft: #6e6560;
-  --line: #e7e0d2;
-  --accent: #e8443a;
-  --accent-deep: #b93228;
-  --accent-tint: #ffe9e5;
+  --paper: #eff6ff;
+  --surface: #fff;
+  --ink: #0f172a;
+  --ink-soft: #475569;
+  --line: #dbe6f8;
+  --primary: #2563eb;
+  --primary-deep: #1d4ed8;
+  --primary-tint: #dbeafe;
+  --accent: #dc2626;
+  --accent-deep: #b91c1c;
+  --accent-tint: #fee2e2;
+  --pink: #ec4899;
   --gold: #ffc834;
   --gold-deep: #e0a41a;
-  --gold-tint: #fff4d2;
-  --green: #2ea44f;
-  --green-tint: #e3f6e9;
+  --green: #16a34a;
+  --green-tint: #dcfce7;
   --sky: #4a90d9;
   --sky-tint: #e8f1fb;
   --radius-s: 12px;
   --radius-m: 18px;
   --radius-pill: 999px;
-  --shadow-s: 0 1px 2px rgb(43 38 34 / 8%), 0 2px 6px rgb(43 38 34 / 6%);
-  --shadow-m: 0 2px 4px rgb(43 38 34 / 8%), 0 8px 20px rgb(43 38 34 / 10%);
-  --font: ui-rounded, "SF Pro Rounded", "Quicksand", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --shadow-s: 0 1px 2px rgb(15 23 42 / 8%), 0 2px 6px rgb(15 23 42 / 6%);
+  --shadow-m: 0 2px 4px rgb(15 23 42 / 8%), 0 8px 20px rgb(15 23 42 / 10%);
+  --font: "Comic Neue", ui-rounded, "SF Pro Rounded", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display: "Baloo 2", "Comic Neue", ui-rounded, "Segoe UI", system-ui, sans-serif;
 }
 
 * {
@@ -38,8 +68,8 @@ body {
   font-family: var(--font);
   color: var(--ink);
   background:
-    radial-gradient(1200px 500px at 50% -10%, #fffdf8 0%, transparent 60%),
-    radial-gradient(circle at 1px 1px, rgb(196 181 152 / 28%) 1.6px, transparent 0),
+    radial-gradient(1200px 500px at 50% -10%, #fff 0%, transparent 60%),
+    radial-gradient(circle at 1px 1px, rgb(148 163 184 / 30%) 1.6px, transparent 0),
     var(--paper);
   background-size: auto, 26px 26px, auto;
   -webkit-font-smoothing: antialiased;
@@ -53,7 +83,7 @@ body {
 }
 
 :focus-visible {
-  outline: 3px solid rgb(232 68 58 / 45%);
+  outline: 3px solid rgb(37 99 235 / 50%);
   outline-offset: 2px;
   border-radius: var(--radius-s);
 }
@@ -79,6 +109,7 @@ body {
 
 .brand {
   margin: 0;
+  font-family: var(--font-display);
   font-size: clamp(1.15rem, 2.5vw, 1.45rem);
   font-weight: 800;
   letter-spacing: 0.01em;
@@ -94,35 +125,35 @@ body {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #f08a78, var(--accent));
-  box-shadow: 0 1px 3px rgb(185 50 40 / 40%);
+  background: radial-gradient(circle at 30% 30%, #60a5fa, var(--primary));
+  box-shadow: 0 1px 3px rgb(29 78 216 / 40%);
   flex: none;
 }
 
 /* Buttons */
 
 .btn {
-  border: 1px solid var(--gold-deep);
+  border: 1px solid var(--primary-deep);
   border-radius: var(--radius-pill);
-  background: linear-gradient(180deg, var(--gold) 0%, var(--gold-deep) 100%);
-  color: #292524;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-deep) 100%);
+  color: #fff;
   font: inherit;
   font-weight: 700;
   padding: 0 1.15rem;
   min-height: 44px;
   cursor: pointer;
-  box-shadow: 0 4px 0 var(--gold-deep);
+  box-shadow: 0 4px 0 var(--primary-deep);
   transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
 }
 
 .btn:hover {
   transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 5px 0 var(--gold-deep);
+  box-shadow: 0 5px 0 var(--primary-deep);
 }
 
 .btn:active {
   transform: translateY(3px);
-  box-shadow: 0 1px 0 var(--gold-deep);
+  box-shadow: 0 1px 0 var(--primary-deep);
 }
 
 .btn-ghost {
@@ -156,7 +187,7 @@ body {
   margin: -0.5rem auto 0.9rem;
   padding: 0.35rem 0.95rem;
   background: var(--ink);
-  color: #fffdf6;
+  color: #fff;
   border-radius: var(--radius-pill);
   font-weight: 700;
   font-size: 0.8rem;
@@ -212,7 +243,7 @@ body {
 }
 
 .band-head-label {
-  font-family: var(--font);
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: 1.02rem;
   color: var(--ink);
@@ -223,7 +254,7 @@ body {
   font-weight: 700;
   font-size: 0.78rem;
   letter-spacing: 0.03em;
-  color: #1e7d38;
+  color: #15803d;
 }
 
 .town-progress {
@@ -231,7 +262,7 @@ body {
   font-weight: 800;
   font-size: 0.8rem;
   letter-spacing: 0.04em;
-  color: #1e7d38;
+  color: #15803d;
 }
 
 .case-card {
@@ -262,7 +293,7 @@ body {
   inset: 0 auto 0 0;
   width: 6px;
   border-radius: var(--radius-m) 0 0 var(--radius-m);
-  background: linear-gradient(180deg, var(--gold), var(--gold-deep));
+  background: linear-gradient(180deg, var(--primary), var(--primary-deep));
 }
 
 .case-card-title {
@@ -273,7 +304,7 @@ body {
 
 .case-card-group {
   font-size: 0.8rem;
-  color: #57504a;
+  color: var(--ink-soft);
   letter-spacing: 0.02em;
   overflow-wrap: anywhere;
 }
@@ -285,7 +316,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.14em;
   color: var(--green);
-  border: 2px dashed rgb(46 164 79 / 55%);
+  border: 2px dashed rgb(22 163 74 / 55%);
   border-radius: var(--radius-s);
   padding: 0.15rem 0.55rem;
   transform: rotate(-4deg);
@@ -293,15 +324,15 @@ body {
 
 .case-card.done {
   background: var(--green-tint);
-  border-color: rgb(46 164 79 / 25%);
+  border-color: rgb(22 163 74 / 25%);
 }
 
 .case-card.done::before {
-  background: linear-gradient(180deg, #4c8a60, var(--green));
+  background: linear-gradient(180deg, #15803d, var(--green));
 }
 
 .case-card.next {
-  box-shadow: 0 0 0 3px var(--gold-tint), var(--shadow-m);
+  box-shadow: 0 0 0 3px var(--primary-tint), var(--shadow-m);
 }
 
 .case-card-hint {
@@ -311,7 +342,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: #fff;
-  background: linear-gradient(180deg, #4c8a60, var(--green));
+  background: linear-gradient(180deg, #15803d, var(--green));
   border-radius: var(--radius-pill);
   padding: 0.28rem 0.85rem;
 }
@@ -329,7 +360,7 @@ body {
   margin: 0;
   background: color-mix(in srgb, var(--paper) 97%, transparent);
   backdrop-filter: blur(6px);
-  box-shadow: 0 2px 6px rgb(43 38 34 / 8%);
+  box-shadow: 0 2px 6px rgb(15 23 42 / 8%);
 }
 
 .case-back {
@@ -347,7 +378,7 @@ body {
 }
 
 .case-back:hover {
-  background: var(--gold-tint);
+  background: var(--primary-tint);
 }
 
 .case-topbar-title {
@@ -383,6 +414,7 @@ body {
 
 .case-title {
   margin: 0.5rem 0 0;
+  font-family: var(--font-display);
   font-size: 1.35rem;
   font-weight: 800;
   scroll-margin-top: 64px;
@@ -468,8 +500,8 @@ body {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: radial-gradient(circle at 32% 30%, #f08a78, var(--accent) 70%);
-  box-shadow: inset 0 -2px 3px rgb(185 50 40 / 35%);
+  background: radial-gradient(circle at 32% 30%, #f87171, var(--accent) 70%);
+  box-shadow: inset 0 -2px 3px rgb(185 28 28 / 35%);
   display: inline-block;
   margin: 2px;
 }
@@ -482,7 +514,7 @@ body {
 }
 
 .dots-held {
-  background: var(--gold-tint);
+  background: var(--primary-tint);
   border: 1px solid var(--line);
   border-radius: var(--radius-s);
   padding: 0.45rem 0.6rem;
@@ -521,7 +553,7 @@ body {
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
-  background: var(--gold-tint);
+  background: var(--primary-tint);
   border: 1px solid var(--line);
   border-radius: var(--radius-s);
   padding: 0.5rem 0.6rem;
@@ -537,7 +569,7 @@ body {
 
 .dot-ghost {
   background: transparent;
-  border: 2px dashed rgb(110 101 96 / 45%);
+  border: 2px dashed rgb(100 116 139 / 45%);
   box-shadow: none;
 }
 
@@ -577,7 +609,7 @@ body {
   background: linear-gradient(180deg, var(--gold), var(--gold-deep));
   border: 1px solid rgb(201 154 46 / 60%);
   border-radius: 4px;
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 50%), 0 1px 2px rgb(43 38 34 / 15%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 50%), 0 1px 2px rgb(15 23 42 / 15%);
   display: inline-block;
   margin: 2px;
 }
@@ -616,7 +648,7 @@ body {
   border: 1px solid var(--line);
 }
 
-/* The question is the prompt: coral bar and bold weight set it apart from
+/* The question is the prompt: pink bar and bold weight set it apart from
    the story prose above and the answer tray below. */
 
 .arrays-question,
@@ -633,7 +665,7 @@ body {
   font-size: 1.05rem;
   font-weight: 800;
   color: var(--ink);
-  border-left: 4px solid var(--coral);
+  border-left: 4px solid var(--pink);
   padding-left: 0.6rem;
 }
 
@@ -641,8 +673,8 @@ body {
    panel so the child can see where the problem ends and the choices begin. */
 
 .answer-tray {
-  background: var(--gold-tint);
-  border: 2px dashed rgb(201 154 46 / 45%);
+  background: var(--primary-tint);
+  border: 2px dashed rgb(37 99 235 / 45%);
   border-radius: var(--radius-m);
   padding: 0.9rem;
   margin-top: 0.4rem;
@@ -655,7 +687,7 @@ body {
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--gold-deep);
+  color: var(--primary-deep);
   margin-bottom: 0.4rem;
 }
 
@@ -665,8 +697,8 @@ body {
 .pattern-options,
 .compare-options,
 .spinner-options {
-  background: var(--gold-tint);
-  border: 2px dashed rgb(201 154 46 / 45%);
+  background: var(--primary-tint);
+  border: 2px dashed rgb(37 99 235 / 45%);
   border-radius: var(--radius-m);
   padding: 0.9rem;
   margin-top: 0.4rem;
@@ -684,7 +716,7 @@ body {
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--gold-deep);
+  color: var(--primary-deep);
   margin-bottom: 0.4rem;
 }
 
@@ -692,7 +724,7 @@ body {
   display: grid;
   gap: 7px;
   margin: 1rem 0;
-  background: var(--gold-tint);
+  background: var(--primary-tint);
   border: 1px solid var(--line);
   border-radius: var(--radius-s);
   padding: 0.8rem;
@@ -814,14 +846,14 @@ body {
 .jug {
   width: 58px;
   height: 92px;
-  border: 1px solid #d8cfc0;
+  border: 1px solid #c3d2e8;
   border-radius: 8px 8px 16px 16px;
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
   padding: 5px;
   gap: 2px;
-  background: linear-gradient(180deg, rgb(255 255 255 / 70%), rgb(233 228 217 / 35%));
+  background: linear-gradient(180deg, rgb(255 255 255 / 70%), rgb(226 232 240 / 45%));
   box-shadow: var(--shadow-s);
 }
 
@@ -892,7 +924,7 @@ body {
   inset: 44%;
   border-radius: 50%;
   background: var(--surface);
-  box-shadow: 0 1px 3px rgb(43 38 34 / 25%);
+  box-shadow: 0 1px 3px rgb(15 23 42 / 25%);
 }
 
 .spinner-options {
@@ -908,8 +940,8 @@ body {
   display: inline-block;
   border-radius: 50%;
   margin: 2px;
-  box-shadow: inset 0 1px 1px rgb(255 255 255 / 70%), inset 0 -2px 3px rgb(43 38 34 / 25%),
-    0 1px 2px rgb(43 38 34 / 20%);
+  box-shadow: inset 0 1px 1px rgb(255 255 255 / 70%), inset 0 -2px 3px rgb(15 23 42 / 25%),
+    0 1px 2px rgb(15 23 42 / 20%);
 }
 
 .coin-q {
@@ -981,7 +1013,7 @@ body {
 }
 
 .coins-fee-row {
-  background: var(--gold-tint);
+  background: var(--primary-tint);
   border: 1px solid var(--line);
   border-radius: var(--radius-s);
   padding: 4px 6px;
@@ -997,7 +1029,7 @@ body {
 }
 
 .coin-slot-empty {
-  border: 2px dashed rgb(110 101 96 / 40%);
+  border: 2px dashed rgb(100 116 139 / 40%);
   border-radius: 50%;
 }
 
@@ -1049,7 +1081,7 @@ body {
 }
 
 .combine-picture {
-  background: var(--gold-tint);
+  background: var(--primary-tint);
   border: 1px solid var(--line);
   border-radius: var(--radius-s);
   padding: 8px 12px;
@@ -1100,6 +1132,7 @@ body {
 }
 
 .town-banner-title {
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: 1.1rem;
 }
@@ -1119,6 +1152,7 @@ body {
 
 .parent-title {
   margin: 0.5rem 0 0.3rem;
+  font-family: var(--font-display);
   font-size: 1.3rem;
   font-weight: 800;
 }
@@ -1176,6 +1210,7 @@ body {
 
 .parent-box h3 {
   margin: 0 0 0.5rem;
+  font-family: var(--font-display);
   font-size: 1.02rem;
 }
 
@@ -1209,7 +1244,7 @@ body {
 }
 
 .parent-danger {
-  border-color: rgb(232 68 58 / 35%);
+  border-color: rgb(220 38 38 / 35%);
   background: var(--accent-tint);
 }
 
@@ -1253,18 +1288,18 @@ body {
 }
 
 .grade-pill.selected {
-  background: linear-gradient(180deg, var(--gold) 0%, var(--gold-deep) 100%);
-  color: #292524;
+  background: linear-gradient(180deg, var(--primary) 0%, var(--primary-deep) 100%);
+  color: #fff;
   box-shadow: var(--shadow-s);
 }
 
 .grade-pill.off {
-  color: #5f574d;
+  color: #64748b;
   cursor: default;
 }
 
 .grade-pill.off:hover {
-  color: #5f574d;
+  color: #64748b;
   background: transparent;
 }
 
@@ -1354,6 +1389,7 @@ body {
 
 .handoff-title {
   margin: 0;
+  font-family: var(--font-display);
   font-weight: 800;
   font-size: 1.1rem;
 }
@@ -1430,7 +1466,7 @@ body {
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background: radial-gradient(circle at 32% 30%, #f08a78, var(--accent) 70%);
+  background: radial-gradient(circle at 32% 30%, #f87171, var(--accent) 70%);
 }
 
 .legend-rod {

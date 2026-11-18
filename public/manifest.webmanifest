@@ -4,8 +4,8 @@
   "description": "A detective game where math is the tool. Built for grade 3, BC curriculum.",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#fff8ee",
-  "theme_color": "#b22234",
+  "background_color": "#eff6ff",
+  "theme_color": "#2563eb",
   "icons": [
     {
       "src": "icon.svg",
